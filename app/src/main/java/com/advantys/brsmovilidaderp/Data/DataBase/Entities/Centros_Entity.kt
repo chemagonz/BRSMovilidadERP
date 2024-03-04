@@ -17,26 +17,20 @@ class Centros_Entity {
     var serie:Int? = null
     var aplicaCargo: Boolean?= null
     var ventaMenorA: Boolean?= null
-
-
-
     fun fromCursor1(cursor: Cursor): Centros_Entity {
         var modelo = Centros_Entity()
         modelo.nCentro= cursor.getInt(cursor.getColumnIndexOrThrow(Centros_Schema.CENTRO_FIELD))
 
         return modelo
     }
-
     //Cursor para recorrer los centros disponibles
+    companion object{
         fun fromCursorA(cursor: Cursor):Centros_Entity{
-            var modelo= Centros_Entity()
-            modelo.nCentro= cursor.getInt(cursor.getColumnIndexOrThrow(Centros_Schema.CENTRO_FIELD))
-            modelo.nombre= cursor.getString(cursor.getColumnIndexOrThrow(Centros_Schema.NOMBRE_FIELD))
-            return modelo
-        }
-
-    //Cursor para recorrer los detalles de los centros
-
+        var modelo= Centros_Entity()
+        modelo.nCentro= cursor.getInt(cursor.getColumnIndexOrThrow(Centros_Schema.CENTRO_FIELD))
+        modelo.nombre= cursor.getString(cursor.getColumnIndexOrThrow(Centros_Schema.NOMBRE_FIELD))
+        return modelo
+    }
         fun fromCursorB(cursor: Cursor): Centros_Entity{
             var modelo= Centros_Entity()
             modelo.nombre= cursor.getString(cursor.getColumnIndexOrThrow(Centros_Schema.NOMBRE_FIELD))
@@ -52,3 +46,4 @@ class Centros_Entity {
             return modelo
         }
     }
+}

@@ -24,6 +24,7 @@
             android:name=".UI.Views.Centros.Centros_Activity"
             android:exported="false">
 
+
         </activity>
         <activity
             android:name=".UI.Views.TipoOperacion.TipoOperacion_Activity"

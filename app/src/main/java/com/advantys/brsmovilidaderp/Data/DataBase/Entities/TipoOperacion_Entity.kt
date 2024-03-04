@@ -27,14 +27,6 @@ class TipoOperacion_Entity {
     var actStkDep: String? = null
     var actStkPro: String? = null
     var actStkInc: String? = null
-
-
-    fun fromCursor1(cursor: Cursor): TipoOperacion_Entity {
-        var modelo = TipoOperacion_Entity()
-        modelo.tipoOperacion = cursor.getInt(cursor.getColumnIndexOrThrow(TipoOperacion_Schema.TIPOOPERACION_FIELD))
-
-        return modelo
-    }
     companion object{
         fun fromCursorA(cursor: Cursor):TipoOperacion_Entity{
             var modelo= TipoOperacion_Entity()

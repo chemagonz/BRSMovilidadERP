@@ -3,9 +3,7 @@ package com.advantys.brsmovilidaderp.Utils
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-import android.database.sqlite.SQLiteDatabase
 import com.advantys.brsmovilidaderp.Data.DataBase.BD
-import com.advantys.brsmovilidaderp.Data.DataBase.Entities.TipoOperacion_Entity
 
 class BDUtil (context: Context){
 
@@ -64,6 +62,8 @@ class BDUtil (context: Context){
 
         return resultado
     }
+
+    //Funcion generica para mostrar una lista    04/03/2024
     fun <T> query(sql: String, fromCursor: (cursor: Cursor) -> T): List<T>{
         val db = dbHelper.openDatabaseRead()
         val cursor: Cursor = db.rawQuery(sql, null)
@@ -84,90 +84,27 @@ class BDUtil (context: Context){
 
         return lista
     }
-
-    fun getAllFromQuery(sql: String): List<Map<String, String>> {
-        val db = dbHelper.openDatabaseRead()
+    //Funcion generica para mostrar detalles    04/03/2024
+    fun <T> queryDetalles(sql: String, fromCursor: (cursor: Cursor) -> T):List<T>{
+        val db= dbHelper.openDatabaseRead()
         val cursor: Cursor = db.rawQuery(sql, null)
-        val data = mutableListOf<Map<String, String>>()
+        var lista: MutableList<T> = arrayListOf()
 
-        while (cursor.moveToNext()) {
-            val rowData = mutableMapOf<String, String>()
-            for (i in 0 until cursor.columnCount) {
-                rowData[cursor.getColumnName(i)] = cursor.getString(i)
-            }
-            data.add(rowData)
-        }
-
-        cursor.close()
-        db.close()
-        return data
-    }
-    fun getAll(tableName: String): List<Map<String, String>> {
-      val db = dbHelper.openDatabaseRead()
-      val cursor: Cursor = db.query(tableName, null, null, null, null, null, null)
-      val data = mutableListOf<Map<String, String>>()
-
-      while (cursor.moveToNext()) {
-          val rowData = mutableMapOf<String, String>()
-          for (i in 0 until cursor.columnCount) {
-              rowData[cursor.getColumnName(i)] = cursor.getString(i)
-          }
-          data.add(rowData)
-      }
-
-      cursor.close()
-      db.close()
-      return data
-  }
-
-
-
-    fun query(sql: String): TipoOperacion_Entity? {
-        val db = dbHelper.openDatabaseRead()
-        val cursor: Cursor = db.rawQuery(sql, null)
-        var modelo2 : TipoOperacion_Entity? = null
-
-        try {
-            if (cursor != null) {
-                while (cursor.moveToNext()) {
-                    modelo2 = TipoOperacion_Entity.fromCursorA(cursor)
+        try{
+            if(cursor!= null){
+                while(cursor.moveToNext()){
+                    lista.add(fromCursor(cursor))
                 }
             }
-
-        }catch (e:Exception){
+        }catch (e: Exception){
             e.printStackTrace()
-        } finally {
+        }finally {
             cursor.cerrar()
             db.close()
         }
-
-        return modelo2
+        return lista
     }
 
-    fun query2(sql: String): TipoOperacion_Entity? {
-        lateinit var db: SQLiteDatabase
-        lateinit var cursor: Cursor
-
-        var modelo2 : TipoOperacion_Entity? = null
-
-        try {
-            db = dbHelper.openDatabaseRead()
-            cursor = db.rawQuery(sql, null)
-            if (!cursor.isEmpty()) {
-                while (cursor.moveToNext()) {
-                    modelo2 = TipoOperacion_Entity.fromCursorA(cursor)
-                }
-            }
-
-        }catch (e:Exception){
-            e.printStackTrace()
-        } finally {
-            cursor.cerrar()
-            db.close()
-        }
-
-        return modelo2
-    }
 
     ///region  Utilidades
 
