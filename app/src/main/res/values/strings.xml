@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">BRSMovilidadERP</string>
+    <item name="colorPrimary" type="color">@color/teal</item>
+    <string name="title_activity_tipo_operacion">TipoOperacion_activity</string>
+    <string name="title_activity_centros">Centros_Activity</string>
+    <string name="title_activity_main">MainActivity</string>
+</resources>

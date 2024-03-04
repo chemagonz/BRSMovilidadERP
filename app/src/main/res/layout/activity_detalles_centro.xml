@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.Views.Centros.DetallesCentro_Activity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:background="@color/teal"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="#00000000"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_action_name2" />
+
+            <TextView
+                android:id="@+id/tvCentros"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="CENTROS"
+                android:textColor="#FFFFFF"
+                tools:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/tvDetalles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvCentros"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:paddingTop="5sp"
+                android:paddingBottom="5sp"
+                android:text="DETALLES"
+                android:textColor="#FFFFFF" />
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="#00000000"
+                android:padding="16dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/x" />
+
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+    <EditText
+        android:id="@+id/edNIF"
+        android:layout_width="150dp"
+        android:layout_height="31dp"
+        android:background="@drawable/plaintextdesign"
+        android:ems="10"
+        android:hint="NIF"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.881"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.141"
+        tools:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/edNombre"
+        android:layout_width="350dp"
+        android:layout_height="31dp"
+        android:background="@drawable/plaintextdesign"
+        android:ems="10"
+        android:hint="NOMBRE"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.59"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNombre"
+        app:layout_constraintVertical_bias="0.022"
+        tools:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/edCodigo"
+        android:layout_width="150dp"
+        android:layout_height="31dp"
+        android:background="@drawable/plaintextdesign"
+        android:ems="10"
+        android:hint="Cod"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/edNIF"
+        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.141"
+        tools:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/edSerie"
+        android:layout_width="220dp"
+        android:layout_height="31dp"
+        android:background="@drawable/plaintextdesign"
+        android:ems="10"
+        android:hint="SERIE"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.837"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14"
+        app:layout_constraintVertical_bias="0.045"
+        tools:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/edSerie1"
+        android:layout_width="100dp"
+        android:layout_height="31dp"
+        android:background="@drawable/plaintextdesign"
+        android:ems="10"
+        android:hint="Nº"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14"
+        app:layout_constraintVertical_bias="0.044"
+        tools:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/edTelefono"
+        android:layout_width="150dp"
+        android:layout_height="31dp"
+        android:background="@drawable/plaintextdesign"
+        android:ems="10"
+        android:hint="TELEFONO"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/edNIF"
+        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        app:layout_constraintVertical_bias="0.022"
+        tools:textAlignment="center" />
+
+
+    <TextView
+        android:id="@+id/txtCodigo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Codigo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.098"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+        app:layout_constraintVertical_bias="0.01" />
+
+    <TextView
+        android:id="@+id/txtNIF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:text="NIF"
+        app:layout_constraintBottom_toTopOf="@+id/edCodigo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintStart_toEndOf="@+id/txtCodigo"
+        app:layout_constraintVertical_bias="0.411" />
+
+    <TextView
+        android:id="@+id/txtNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edCodigo"
+        app:layout_constraintVertical_bias="0.015" />
+
+    <View
+        android:id="@+id/separator2"
+        android:layout_width="375dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/teal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edNombre" />
+
+    <View
+        android:id="@+id/separator3"
+        android:layout_width="375dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/teal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edSerie" />
+
+    <View
+        android:id="@+id/separator4"
+        android:layout_width="375dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/teal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edTelefono" />
+
+    <View
+        android:id="@+id/separator5"
+        android:layout_width="375dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="164dp"
+        android:background="@color/teal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edNombre" />
+
+    <TextView
+        android:id="@+id/txtDireccion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="216dp"
+        android:text="Direccion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.102"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Telefono"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/separator5"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Serie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.094"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/separator4" />
+
+    <CheckBox
+        android:id="@+id/checkAplCargo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aplicar cargo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.232"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/separator3"
+        app:layout_constraintVertical_bias="0.115" />
+
+    <CheckBox
+        android:id="@+id/checkVenMenorA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Venta menor "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/separator3"
+        app:layout_constraintVertical_bias="0.115" />
+
+    <EditText
+        android:id="@+id/edCalleCPMunicProvin"
+        android:layout_width="346dp"
+        android:layout_height="97dp"
+        android:background="@drawable/plaintextdesign"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="CALLE                                                            CP-MUNICIPIO                                    (PROVINCIA)"
+        android:inputType="textMultiLine"
+        android:paddingStart="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/separator5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDireccion"
+        app:layout_constraintVertical_bias="0.31" />
+
+
+
+P
+</androidx.constraintlayout.widget.ConstraintLayout>

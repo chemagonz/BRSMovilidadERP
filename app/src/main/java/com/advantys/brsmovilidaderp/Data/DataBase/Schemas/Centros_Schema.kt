@@ -1,0 +1,38 @@
+package com.advantys.brsmovilidaderp.Data.DataBase.Schemas
+
+class Centros_Schema {
+    companion object {
+        const val TABLE_NAME = "CENTROS"
+        const val CENTRO_FIELD = "NCENTRO"
+        const val NOMBRE_FIELD = "CNOMBRE"
+        const val DIRECCION_FIELD = "CDIRECCION"
+        const val CODPOSTAL_FIELD = "CCODPOSTAL"
+        const val POBLACION_FIELD = "CPOBLACION"
+        const val PROVINCIA_FIELD = "CPROVINCIA"
+        const val TELEFONO_FIELD = "CTELEFONO1"
+        const val NIF_FIELD = "CNIF"
+        const val SERIE_FIELD = "CSERIE"
+        const val VENTAMENORA_FIELD = "CVENTAMENORA"
+        const val CANTIDAD_FIELD = "NCANTIDAD1"
+        const val AGRRSGDEL_FIELD= "LAGRRSGDEL"
+        const val DESVPESO_FIELD = "NDESVPESO"
+        const val AVIVTADIR_FIELD = "LAVIVTADIR"
+        const val PTECOBREC_FIELD= "NPTECOBREC"
+        const val PTECOBANT_FIELD = "NPTECOBANT"
+        const val CONSUMEREC_FIELD = "NCONSUMEREC"
+        const val CONSUMANT_FIELD = "NCONSUMANT"
+        const val INCALBRSG_FIELD = "LINCALBRSG"
+        const val INCDOCRSG_FIELD= "LINCDOCRSG"
+        const val APLCARGO_FIELD = "NAPLCARGO"
+        const val LATITUD_FIELD = "CLATITUD"
+        const val LONGITUD_FIELD = "CLONGITUD"
+        const val TIPODEEFECTO_FIELD = "NTIPODEEFECTO"
+        const val SITUACION_FIELD = "NSITUACION"
+        const val PERMISOBLOQUEO_FIELD = "CPERMISOBLOQUEO"
+        const val EMAILCIERALM_FIELD = "CEMAILCIERALM"
+        const val EMAILINVEN_FIELD = "CEMAILINVEN"
+        const val EMAILCARGA_FIELD = "CEMAILCARGA"
+        const val REGIMENIVA_FIELD = "CREGIMENIVA"
+        const val LOPD_FIELD = "CLOPD"
+    }
+}
