@@ -64,6 +64,26 @@ class BDUtil (context: Context){
 
         return resultado
     }
+    fun <T> query(sql: String, fromCursor: (cursor: Cursor) -> T): List<T>{
+        val db = dbHelper.openDatabaseRead()
+        val cursor: Cursor = db.rawQuery(sql, null)
+        val lista: MutableList<T> = arrayListOf()
+
+        try {
+            if (cursor != null) {
+                while (cursor.moveToNext()) {
+                    lista.add(fromCursor(cursor))
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            cursor.cerrar()
+            db.close()
+        }
+
+        return lista
+    }
 
     fun getAllFromQuery(sql: String): List<Map<String, String>> {
         val db = dbHelper.openDatabaseRead()
