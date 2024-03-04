@@ -16,10 +16,14 @@ class TipoOperacion_Dao(context: Context){
 
      fun getAll():List<TipoOperacion_Entity?>{
         var sql= "SELECT * FROM ${TipoOperacion_Schema.TABLE_NAME} ORDER BY ${TipoOperacion_Schema.TIPOOPERACION_FIELD} ASC"
-         return query(sql)
+         return query(sql) { cursor ->
+             TipoOperacion_Entity.fromCursorA(cursor)
+         }
      }
 
-    fun query(sql: String): List<TipoOperacion_Entity?> {
+
+
+    /*fun query(sql: String): List<TipoOperacion_Entity?> {
         val db = dbHelper.openDatabaseRead()
         val cursor: Cursor = db.rawQuery(sql, null)
         var lista: MutableList<TipoOperacion_Entity?> = arrayListOf()
@@ -32,6 +36,27 @@ class TipoOperacion_Dao(context: Context){
             }
 
         }catch (e:Exception){
+            e.printStackTrace()
+        } finally {
+            cursor.cerrar()
+            db.close()
+        }
+
+        return lista
+    }*/
+
+    fun <T> query(sql: String, fromCursor: (cursor: Cursor) -> T): List<T>{
+        val db = dbHelper.openDatabaseRead()
+        val cursor: Cursor = db.rawQuery(sql, null)
+        val lista: MutableList<T> = arrayListOf()
+
+        try {
+            if (cursor != null) {
+                while (cursor.moveToNext()) {
+                    lista.add(fromCursor(cursor))
+                }
+            }
+        } catch (e: Exception) {
             e.printStackTrace()
         } finally {
             cursor.cerrar()
