@@ -17,7 +17,7 @@ class Centros_Dao(context: Context) {
     }
     fun getAllDetalles():List<Centros_Entity?>{
         var sql= "SELECT * FROM ${Centros_Schema.TABLE_NAME} ORDER BY ${Centros_Schema.CENTRO_FIELD} DESC"
-        return  databaseManager.queryDetalles(sql){cursor ->
+        return  databaseManager.query(sql){cursor ->
             Centros_Entity.fromCursorB(cursor)
         }
     }

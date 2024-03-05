@@ -10,5 +10,4 @@ class TipoOperacion_Repository (private val tipoOperacionDao: TipoOperacion_Dao)
         val response: List <TipoOperacion_Entity?> = tipoOperacionDao.getAll()
         return response.filterNotNull().map { it.toDomain() }
     }
-
 }

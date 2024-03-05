@@ -17,12 +17,6 @@ class Centros_Entity {
     var serie:Int? = null
     var aplicaCargo: Boolean?= null
     var ventaMenorA: Boolean?= null
-    fun fromCursor1(cursor: Cursor): Centros_Entity {
-        var modelo = Centros_Entity()
-        modelo.nCentro= cursor.getInt(cursor.getColumnIndexOrThrow(Centros_Schema.CENTRO_FIELD))
-
-        return modelo
-    }
     //Cursor para recorrer los centros disponibles
     companion object{
         fun fromCursorA(cursor: Cursor):Centros_Entity{
@@ -31,6 +25,8 @@ class Centros_Entity {
         modelo.nombre= cursor.getString(cursor.getColumnIndexOrThrow(Centros_Schema.NOMBRE_FIELD))
         return modelo
     }
+
+        //cambiar
         fun fromCursorB(cursor: Cursor): Centros_Entity{
             var modelo= Centros_Entity()
             modelo.nombre= cursor.getString(cursor.getColumnIndexOrThrow(Centros_Schema.NOMBRE_FIELD))

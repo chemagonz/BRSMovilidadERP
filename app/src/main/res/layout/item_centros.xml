@@ -13,7 +13,7 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/NCENTRO"
+            android:id="@+id/numCentro"
             android:layout_width="57dp"
             android:layout_height="34dp"
             android:text="T"
@@ -28,7 +28,7 @@
             android:text="nombreCentro"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_toEndOf="@id/NCENTRO" />
+            android:layout_toEndOf="@id/numCentro" />
 
         <ImageButton
             android:id="@+id/verDetallesButton"

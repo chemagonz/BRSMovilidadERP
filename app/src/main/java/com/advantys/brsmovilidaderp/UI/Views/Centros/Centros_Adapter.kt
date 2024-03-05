@@ -4,11 +4,10 @@ import Centro_ViewModel
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.advantys.brsmovilidaderp.Domain.Models.Centro
 import com.advantys.brsmovilidaderp.R
+import com.advantys.brsmovilidaderp.databinding.ItemCentrosBinding
 
 
 class Centros_Adapter(private val centrosList: List<Centro?>, private val centroViewModel: Centro_ViewModel): RecyclerView.Adapter<Centros_ViewHolder>(){
@@ -22,10 +21,10 @@ class Centros_Adapter(private val centrosList: List<Centro?>, private val centro
     override fun getItemCount(): Int = centrosList.size
 
     override fun onBindViewHolder(holder: Centros_ViewHolder, position: Int) {
-        holder.render(centrosList[position])
+        holder.bind(centrosList[position])
         val item = centrosList[position]
-        holder.nombreCentro.text= item?.nombre
-        holder.nCentro.text= item?.centro.toString()
+        holder.binding.nombreCentro.text= item?.nombre
+        holder.binding.numCentro.text= item?.centro.toString()
 
        /* holder.verDetalles.setOnClickListener {
             if (item != null) {
@@ -35,13 +34,9 @@ class Centros_Adapter(private val centrosList: List<Centro?>, private val centro
     }
 }
     class Centros_ViewHolder (view: View): RecyclerView.ViewHolder(view){
-        val nombreCentro= view.findViewById<TextView>(R.id.nombreCentro)
-        val nCentro= view.findViewById<TextView>(R.id.NCENTRO)
-        val verDetalles= view.findViewById<ImageButton>(R.id.verDetallesButton)
-
-        fun render(centrosModel: Centro?){
-            nombreCentro.text= centrosModel?.nombre
-            nCentro.text= centrosModel?.centro.toString()
+        val binding = ItemCentrosBinding.bind(view)
+        fun bind(centrosModel: Centro?){
+            binding.nombreCentro.text= centrosModel?.nombre
+            binding.numCentro.text= centrosModel?.centro.toString()
         }
-
     }

@@ -84,28 +84,6 @@ class BDUtil (context: Context){
 
         return lista
     }
-    //Funcion generica para mostrar detalles    04/03/2024
-    fun <T> queryDetalles(sql: String, fromCursor: (cursor: Cursor) -> T):List<T>{
-        val db= dbHelper.openDatabaseRead()
-        val cursor: Cursor = db.rawQuery(sql, null)
-        var lista: MutableList<T> = arrayListOf()
-
-        try{
-            if(cursor!= null){
-                while(cursor.moveToNext()){
-                    lista.add(fromCursor(cursor))
-                }
-            }
-        }catch (e: Exception){
-            e.printStackTrace()
-        }finally {
-            cursor.cerrar()
-            db.close()
-        }
-        return lista
-    }
-
-
     ///region  Utilidades
 
     fun Any?.esNulo() = this == null
