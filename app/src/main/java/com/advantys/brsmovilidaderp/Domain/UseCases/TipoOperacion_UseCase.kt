@@ -2,8 +2,9 @@ package com.advantys.brsmovilidaderp.Domain.UseCases
 
 import com.advantys.brsmovilidaderp.Data.Repositories.TipoOperacion_Repository
 import com.advantys.brsmovilidaderp.Domain.Models.tipoOperacion
+import javax.inject.Inject
 
-class TipoOperacion_UseCase (private val repository: TipoOperacion_Repository)
+class TipoOperacion_UseCase @Inject constructor(private val repository: TipoOperacion_Repository)
 {
     suspend operator fun invoke(): List<tipoOperacion>{
         val tipoOp = repository.getAllTipos()

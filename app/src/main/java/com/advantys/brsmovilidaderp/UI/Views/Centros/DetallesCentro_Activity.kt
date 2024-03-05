@@ -5,11 +5,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.advantys.brsmovilidaderp.Data.DataBase.Daos.Centros_Dao
 import com.advantys.brsmovilidaderp.databinding.ActivityDetallesCentroBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class DetallesCentro_Activity : AppCompatActivity() {
-
-    //Instancia de Centros_Dao
-    private val centros = Centros_Dao(this)
+@AndroidEntryPoint
+class DetallesCentro_Activity @Inject constructor(  private val centros : Centros_Dao): AppCompatActivity() {
     //Llamada a funciones
     val centrosList= centros.getAllDetalles()
     //BindingView

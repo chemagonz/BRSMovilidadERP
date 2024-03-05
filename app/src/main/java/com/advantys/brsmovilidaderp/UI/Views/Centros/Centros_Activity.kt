@@ -7,18 +7,16 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.advantys.brsmovilidaderp.Data.DataBase.Daos.Centros_Dao
-import com.advantys.brsmovilidaderp.Data.Repositories.Centro_Repository
-import com.advantys.brsmovilidaderp.Domain.UseCases.Centro_UseCase
-import com.advantys.brsmovilidaderp.UI.ViewModels.Centro_ViewModel.CentroViewModelFactory
 import com.advantys.brsmovilidaderp.databinding.ActivityCentrosBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class Centros_Activity : AppCompatActivity() {
     //Region variables
-    private val centrosDao= Centros_Dao(this)
-    private val centroRepository= Centro_Repository(centrosDao)
-    private val centroUseCase = Centro_UseCase(centroRepository)
-    private val centroViewModel: Centro_ViewModel by viewModels { CentroViewModelFactory(centroUseCase) }
+//    private val centrosDao= Centros_Dao(this)
+//    private val centroRepository= Centro_Repository(centrosDao)
+//    private val centroUseCase = Centro_UseCase(centroRepository)
+   private val centroViewModel: Centro_ViewModel by viewModels()
     //Binding
     private lateinit var binding: ActivityCentrosBinding
     @SuppressLint("MissingInflatedId")

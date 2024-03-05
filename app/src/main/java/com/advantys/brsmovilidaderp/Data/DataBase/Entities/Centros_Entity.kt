@@ -3,20 +3,21 @@ package com.advantys.brsmovilidaderp.Data.DataBase.Entities
 import android.database.Cursor
 import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.Centros_Schema
 
-class Centros_Entity {
+ data class Centros_Entity(
+     var nCentro: Int? = null,
+     var nombre: String? = null,
+     var codigo: Int?= null,
+     var NIF: String?= null,
+     var direccion: String?= null,
+     var codigoPostal: Int?= null,
+     var poblacion: String?= null,
+     var provincia: String?= null,
+     var telefono: Int?= null,
+     var serie:Int? = null,
+     var aplicaCargo: Boolean?= null,
+     var ventaMenorA: Boolean?= null) {
 
-    var nCentro: Int? = null
-    var nombre: String? = null
-    var codigo: Int?= null
-    var NIF: String?= null
-    var direccion: String?= null
-    var codigoPostal: Int?= null
-    var poblacion: String?= null
-    var provincia: String?= null
-    var telefono: Int?= null
-    var serie:Int? = null
-    var aplicaCargo: Boolean?= null
-    var ventaMenorA: Boolean?= null
+
     //Cursor para recorrer los centros disponibles
     companion object{
         fun fromCursorA(cursor: Cursor):Centros_Entity{

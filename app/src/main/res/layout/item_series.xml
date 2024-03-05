@@ -13,7 +13,7 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/numCentro"
+            android:id="@+id/cSerie"
             android:layout_width="57dp"
             android:layout_height="34dp"
             android:text="T"
@@ -21,12 +21,12 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/nombreCentro"
+            android:id="@+id/nombreSerie"
             android:layout_width="160dp"
             android:layout_height="32dp"
             android:layout_marginStart="16dp"
-            android:layout_toEndOf="@id/numCentro"
-            android:text="nombreCentro"
+            android:layout_toEndOf="@id/cSerie"
+            android:text="nombreSerie"
             android:textSize="18sp"
             android:textStyle="bold" />
 

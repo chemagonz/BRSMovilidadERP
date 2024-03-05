@@ -5,18 +5,19 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.advantys.brsmovilidaderp.Data.DataBase.Daos.TipoOperacion_Dao
-import com.advantys.brsmovilidaderp.Data.Repositories.TipoOperacion_Repository
-import com.advantys.brsmovilidaderp.Domain.UseCases.TipoOperacion_UseCase
-import com.advantys.brsmovilidaderp.UI.ViewModels.TipoOperacionViewModelFactory
 import com.advantys.brsmovilidaderp.UI.ViewModels.TipoOperacion_ViewModel
 import com.advantys.brsmovilidaderp.databinding.ActivityTipoOperacionBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TipoOperacion_Activity : AppCompatActivity() {
-    private val tipoOperacion= TipoOperacion_Dao(this)
-    private val tipoOperacionRepository = TipoOperacion_Repository(tipoOperacion)
-    private val tipoOperacionUseCase= TipoOperacion_UseCase(tipoOperacionRepository)
-    private val tipoOperacionViewModel:  TipoOperacion_ViewModel by viewModels { TipoOperacionViewModelFactory(tipoOperacionUseCase) }
+
+
+//    private val tipoOperacion= TipoOperacion_Dao(this)
+//    private val tipoOperacionRepository = TipoOperacion_Repository(tipoOperacion)
+//    private val tipoOperacionUseCase= TipoOperacion_UseCase(tipoOperacionRepository)
+    private val tipoOperacionViewModel: TipoOperacion_ViewModel by viewModels()
+    //{ TipoOperacionViewModelFactory(tipoOperacionUseCase) }
     //Binding
     private lateinit var binding : ActivityTipoOperacionBinding
 
@@ -41,5 +42,4 @@ class TipoOperacion_Activity : AppCompatActivity() {
             binding.tipoOperacionRecyclerView.adapter= TipoOperacion_Adapter(it, tipoOperacionViewModel)
         })
     }
-
 }
