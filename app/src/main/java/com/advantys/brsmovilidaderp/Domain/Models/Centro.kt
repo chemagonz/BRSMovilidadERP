@@ -3,7 +3,8 @@ package com.advantys.brsmovilidaderp.Domain.Models
 import com.advantys.brsmovilidaderp.Data.DataBase.Entities.Centros_Entity
 
 class Centro (
-    var centro: Int? = null,
+
+    var numCentro: Int? = null,
     var nombre: String? = null,
     var codigo: Int? = null,
     var nif: String? = null,

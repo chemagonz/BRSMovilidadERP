@@ -20,16 +20,17 @@ import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.Centros_Schema
 
     //Cursor para recorrer los centros disponibles
     companion object{
-        fun fromCursorA(cursor: Cursor):Centros_Entity{
-        var modelo= Centros_Entity()
-        modelo.nCentro= cursor.getInt(cursor.getColumnIndexOrThrow(Centros_Schema.CENTRO_FIELD))
-        modelo.nombre= cursor.getString(cursor.getColumnIndexOrThrow(Centros_Schema.NOMBRE_FIELD))
-        return modelo
-    }
+//        fun fromCursorA(cursor: Cursor):Centros_Entity{
+//        var modelo= Centros_Entity()
+//
+//        modelo.nombre= cursor.getString(cursor.getColumnIndexOrThrow(Centros_Schema.NOMBRE_FIELD))
+//        return modelo
+
 
         //cambiar
-        fun fromCursorB(cursor: Cursor): Centros_Entity{
+        fun fromCursor(cursor: Cursor): Centros_Entity{
             var modelo= Centros_Entity()
+            modelo.nCentro= cursor.getInt(cursor.getColumnIndexOrThrow(Centros_Schema.CENTRO_FIELD))
             modelo.nombre= cursor.getString(cursor.getColumnIndexOrThrow(Centros_Schema.NOMBRE_FIELD))
             modelo.NIF= cursor.getString(cursor.getColumnIndexOrThrow(Centros_Schema.NIF_FIELD))
             modelo.direccion= cursor.getString(cursor.getColumnIndexOrThrow(Centros_Schema.DIRECCION_FIELD))

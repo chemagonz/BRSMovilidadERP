@@ -1,15 +1,13 @@
 package com.advantys.brsmovilidaderp.Utils
 
 import android.content.ContentValues
+import android.content.Context
 import android.database.Cursor
 import com.advantys.brsmovilidaderp.Data.DataBase.BD
-import javax.inject.Inject
 
-class BDUtil @Inject constructor(private val dbHelper: BD){
+class BDUtil (context:Context){
 
-
-
-
+    private val dbHelper:BD= BD(context)
     fun insert(tabla: String, parametros : ContentValues) {
         val db = dbHelper.openDatabaseWrite()
         db.insert(tabla, null, parametros)
@@ -84,6 +82,25 @@ class BDUtil @Inject constructor(private val dbHelper: BD){
 
         return lista
     }
+
+    fun <T> queryDetalles(sql:String, fromCursor:(cursor:Cursor)->T):T?{
+        val db = dbHelper.openDatabaseRead()
+        val cursor: Cursor = db.rawQuery(sql, null)
+        var result: T? = null
+        try{
+            if (cursor!=null&&cursor.moveToNext()){
+                result=fromCursor(cursor)
+            }
+        }catch(e:Exception){
+            e.printStackTrace()
+        }finally {
+            cursor?.close()
+            db.close()
+        }
+    return result
+    }
+
+
     ///region  Utilidades
 
     fun Any?.esNulo() = this == null

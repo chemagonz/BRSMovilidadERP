@@ -21,12 +21,18 @@ class Series_Adapter(private val seriesList:List<Serie?>, private val serieViewM
         val item= seriesList[position]
         holder.binding.nombreSerie.text= item?.nombre
         holder.binding.cSerie.text= item?.cSeries.toString()
+
+
+        holder.binding.verDetallesButton.setOnClickListener {
+            serieViewModel.btnDetalle(item, holder.itemView.context)
+        }
     }
 
     override fun getItemCount(): Int = seriesList.size
 }
 
 class Series_ViewHolder(view: View): RecyclerView.ViewHolder(view){
+
     val binding = ItemSeriesBinding.bind(view)
 
     fun bind(seriesModel: Serie?){

@@ -6,9 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.advantys.brsmovilidaderp.Domain.Models.tipoOperacion
 import com.advantys.brsmovilidaderp.Domain.UseCases.TipoOperacion_UseCase
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class TipoOperacion_ViewModel @Inject constructor(private val tipoOperacionUsecase: TipoOperacion_UseCase) : ViewModel() {
+class TipoOperacion_ViewModel (private val tipoOperacionUsecase: TipoOperacion_UseCase) : ViewModel() {
     val tipoOperacionModel = MutableLiveData<List<tipoOperacion>>()
 
     fun onCreate(){
