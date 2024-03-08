@@ -6,8 +6,8 @@ import com.advantys.brsmovilidaderp.Domain.Models.Ruta
 class Ruta_UseCase(private val repository: Ruta_Repository) {
     suspend operator fun invoke():List<Ruta>{
         val ruta= repository.getAllRutas()
-        return if(!ruta.isNullOrEmpty())
+        return if(ruta.isNullOrEmpty()) {
             listOf<Ruta>()
-        else ruta
+        } else ruta
     }
 }
