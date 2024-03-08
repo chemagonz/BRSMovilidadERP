@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.advantys.brsmovilidaderp.Domain.Models.Centro
 import com.advantys.brsmovilidaderp.Domain.UseCases.Centro_UseCase
@@ -15,7 +16,7 @@ import kotlinx.coroutines.launch
 class Centro_ViewModel (private val centroUsecase: Centro_UseCase): ViewModel() {
 
     val centrosModel = MutableLiveData<List<Centro>>()
-    val centroModel = Centro()
+    val centroModel = MutableLiveData<Centro>()
 
         fun onCreate(){
         viewModelScope.launch(Dispatchers.Default ) {
@@ -23,11 +24,11 @@ class Centro_ViewModel (private val centroUsecase: Centro_UseCase): ViewModel() 
             if(!resultado.isNullOrEmpty()) centrosModel.postValue(resultado)
         }
     }
-        fun onCreateDetalles(){
+        fun onCreateDetalles(centro: Int?){
             viewModelScope.launch(Dispatchers.Default) {
-                val resultado = centroUsecase()
+                val resultado = centroUsecase(centro)
                 if (resultado != null) {
-                  //  centroModel.postValue(resultado)
+                    centroModel.postValue(resultado)
                 }
             }
         }
@@ -37,3 +38,17 @@ class Centro_ViewModel (private val centroUsecase: Centro_UseCase): ViewModel() 
         context.startActivity(intent)
     }
 }
+
+
+class CentroViewModelFactory (private val centroUseCase: Centro_UseCase) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(Centro_ViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return Centro_ViewModel(centroUseCase) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
+}
+
+
+

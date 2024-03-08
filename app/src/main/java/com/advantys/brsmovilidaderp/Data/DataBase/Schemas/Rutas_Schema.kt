@@ -6,6 +6,7 @@ class Rutas_Schema {
         const val TABLE_NAME = "RUTAS"
         const val RUTA_FIELD = "CRUTA"
         const val NOMBRE_FIELD = "CNOMBRE"
-        const val MARCADO_FIELD= "LMARCADO"
+        const val LMARCADO_FIELD= "LMARCADO"
+        const val CMARCADO_FIELD= "CMARCADO"
     }
 }

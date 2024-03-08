@@ -3,7 +3,7 @@ package com.advantys.brsmovilidaderp.Domain.Models
 import com.advantys.brsmovilidaderp.Data.DataBase.Entities.Series_Entity
 
 class Serie(
-    var cSeries: Int?= null,
+    var cSeries: String?= null,
     var nombre: String?= null,
     var ultPedido: Int?= null,
     var ultAlbaran: Int?= null,

@@ -1,5 +1,6 @@
 package com.advantys.brsmovilidaderp.UI.Views.Centros
 
+import CentroViewModelFactory
 import Centro_ViewModel
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -10,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.advantys.brsmovilidaderp.Data.DataBase.Daos.Centros_Dao
 import com.advantys.brsmovilidaderp.Data.Repositories.Centro_Repository
 import com.advantys.brsmovilidaderp.Domain.UseCases.Centro_UseCase
-import com.advantys.brsmovilidaderp.UI.ViewModels.Centro_ViewModel.CentroViewModelFactory
 import com.advantys.brsmovilidaderp.databinding.ActivityCentrosBinding
 
 
@@ -19,7 +19,7 @@ class Centros_Activity : AppCompatActivity() {
     private val centrosDao= Centros_Dao(this)
     private val centroRepository= Centro_Repository(centrosDao)
     private val centroUseCase = Centro_UseCase(centroRepository)
-    private val centroViewModel: Centro_ViewModel by viewModels{ CentroViewModelFactory(centroUseCase) }
+    private val centroViewModel: Centro_ViewModel by viewModels { CentroViewModelFactory(centroUseCase) }
     //Binding
 
     private lateinit var binding: ActivityCentrosBinding

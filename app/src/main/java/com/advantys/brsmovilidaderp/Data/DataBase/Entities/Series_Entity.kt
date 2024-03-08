@@ -4,7 +4,7 @@ import android.database.Cursor
 import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.Series_Schema
 
 data class Series_Entity(
-    var cSeries: Int?= null,
+    var cSeries: String?= null,
     var nombre: String?= null,
     var ultPedido: Int?= null,
     var ultAlbaran: Int?= null,
@@ -25,7 +25,7 @@ data class Series_Entity(
     companion object{
         fun fromCursor(cursor: Cursor):Series_Entity{
             var modelo= Series_Entity()
-            modelo.cSeries= cursor.getInt(cursor.getColumnIndexOrThrow(Series_Schema.SERIE_FIELD))
+            modelo.cSeries= cursor.getString(cursor.getColumnIndexOrThrow(Series_Schema.SERIE_FIELD))
             modelo.nombre= cursor.getString(cursor.getColumnIndexOrThrow(Series_Schema.NOMBRE_FIELD))
             modelo.ultPedido= cursor.getInt(cursor.getColumnIndexOrThrow(Series_Schema.ULTPEDIDO_FIELD))
             modelo.ultAlbaran= cursor.getInt(cursor.getColumnIndexOrThrow(Series_Schema.ULTALBARAN_FIELD))

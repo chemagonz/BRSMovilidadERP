@@ -14,5 +14,6 @@ class Rutas_Dao (context: Context) {
         return ddatabaseManager.query(sql){ cursor ->
             Rutas_Entity.fromCursor(cursor)
         }
+
     }
 }

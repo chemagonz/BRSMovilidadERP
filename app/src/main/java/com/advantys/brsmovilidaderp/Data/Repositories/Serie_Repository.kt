@@ -10,4 +10,10 @@ class Serie_Repository ( private val seriesDao:Series_Dao){
         val response : List<Series_Entity?> = seriesDao.getAll()
         return response.filterNotNull().map { it.toDomain() }
     }
+
+    suspend fun getAllDetalles(serie: String?):Serie?{
+        val response: Series_Entity? = seriesDao.getAllDetalles(serie)
+        return response?.toDomain()
+
+    }
 }

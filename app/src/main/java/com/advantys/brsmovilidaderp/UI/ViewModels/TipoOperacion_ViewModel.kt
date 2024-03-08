@@ -2,6 +2,7 @@ package com.advantys.brsmovilidaderp.UI.ViewModels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.advantys.brsmovilidaderp.Domain.Models.tipoOperacion
 import com.advantys.brsmovilidaderp.Domain.UseCases.TipoOperacion_UseCase
@@ -15,5 +16,15 @@ class TipoOperacion_ViewModel (private val tipoOperacionUsecase: TipoOperacion_U
             val resultado = tipoOperacionUsecase()
             if(!resultado.isNullOrEmpty()) tipoOperacionModel.postValue(resultado)
         }
+    }
+}
+
+class TipoOperacionViewModelFactory(private val tipoOperacionUsecase: TipoOperacion_UseCase) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(TipoOperacion_ViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return TipoOperacion_ViewModel(tipoOperacionUsecase) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

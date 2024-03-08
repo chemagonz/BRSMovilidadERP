@@ -11,4 +11,12 @@ class Serie_UseCase (private val repository:Serie_Repository) {
             listOf<Serie>()
         else serie
     }
+
+    suspend operator fun invoke(serie:String?): Serie {
+        serie?.let {
+            val serieDet= repository.getAllDetalles(serie)
+            return serieDet ?: throw NoSuchElementException("Error")
+        }?:throw IllegalArgumentException("no puede ser nulo")
+
+    }
 }

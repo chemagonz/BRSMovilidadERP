@@ -2,18 +2,34 @@ package com.advantys.brsmovilidaderp.UI.Views.Series
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.advantys.brsmovilidaderp.Data.DataBase.Daos.Series_Dao
+import com.advantys.brsmovilidaderp.Data.Repositories.Serie_Repository
+import com.advantys.brsmovilidaderp.Domain.Models.Serie
+import com.advantys.brsmovilidaderp.Domain.UseCases.Serie_UseCase
+import com.advantys.brsmovilidaderp.UI.ViewModels.Serie_ViewModel
 import com.advantys.brsmovilidaderp.databinding.ActivityDetallesSerieBinding
 
-class DetallesSerie_Activity (private val series: Series_Dao) : AppCompatActivity() {
+class DetallesSerie_Activity () : AppCompatActivity() {
 
-    //private val seriesList= series.getAllDetalles("")
+    private val series= Series_Dao(this)
+    private val seriesR= Serie_Repository(series)
+    private val serieUse= Serie_UseCase(seriesR)
+    private val serieViewModel = Serie_ViewModel(serieUse)
     lateinit var binding: ActivityDetallesSerieBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityDetallesSerieBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val serieD= intent.getStringExtra("cSeries")
+        serieViewModel.onCreateDetalles(serieD)
+        serieViewModel.serieModel.observe(this, Observer { serie->
+            serie?.let {
+                verDetallesSeries(serie)
+            }
+
+        })
         //ACTION BAR
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
@@ -21,25 +37,18 @@ class DetallesSerie_Activity (private val series: Series_Dao) : AppCompatActivit
             title = "SERIES"
             setSubtitle("DETALLES")
         }
-
-
     }
-
-    //Al no ser una lista, da error, corregir
-//    private fun verDetallesSeries(){
-//        if(!seriesList.isEmpty()){
-//            val serie= seriesList.first()
-//            serie?.let {
-//                binding.edCodigoSerie.setText(it.cSeries.toString())
-//                binding.edAplicaIVA.setText(it.aplicaIva)
-//                binding.edNombreSerie.setText(it.nombre)
-//                binding.edUltPedido.setText(it.ultPedido.toString())
-//                binding.edUltAlbaran.setText(it.ultAlbaran.toString())
-//                binding.edUltFactura.setText(it.ultFactura.toString())
-//                binding.edCentroSerie.setText(it.centro.toString())
-//                binding.edArtServicioSerie.setText(it.artServicio.toString())
-//                binding.edArtServicioSerie.setText(it.fabServicio.toString())
-//            }
-//        }
-//    }
+    fun verDetallesSeries(serie: Serie){
+        val detalles= StringBuilder()
+        binding.edCodigoSerie.setText(serie.cSeries)
+        binding.edAplicaIVA.setText(serie.aplicaIva)
+        binding.edNombreSerie.setText(serie.nombre)
+        binding.edUltPedido.setText(serie.ultPedido.toString())
+        binding.edUltAlbaran.setText(serie.ultAlbaran.toString())
+        binding.edUltFactura.setText(serie.ultFactura.toString())
+        binding.edCentroSerie.setText(serie.centro.toString())
+        detalles.append(serie.artServicio).append("\n")
+        detalles.append(serie.fabServicio)
+        binding.edArtServicioSerie.setText(detalles.toString())
+    }
 }

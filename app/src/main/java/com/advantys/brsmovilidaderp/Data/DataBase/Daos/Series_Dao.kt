@@ -3,7 +3,6 @@ package com.advantys.brsmovilidaderp.Data.DataBase.Daos
 import android.content.Context
 import com.advantys.brsmovilidaderp.Data.DataBase.Entities.Series_Entity
 import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.Series_Schema
-import com.advantys.brsmovilidaderp.Domain.Models.Serie
 import com.advantys.brsmovilidaderp.Utils.BDUtil
 
 class Series_Dao (context: Context) {
@@ -15,8 +14,8 @@ class Series_Dao (context: Context) {
         }
     }
 
-    fun getAllDetalles(serie: Serie):Series_Entity?{
-        var sql= "SELECT * FROM ${Series_Schema.TABLE_NAME} WHERE ${Series_Schema.SERIE_FIELD} =${serie.cSeries}"
+    fun getAllDetalles(serie: String?):Series_Entity?{
+        var sql= "SELECT * FROM ${Series_Schema.TABLE_NAME} WHERE ${Series_Schema.SERIE_FIELD} ='${serie}'"
     return databaseManager.queryDetalles(sql) { cursor ->
         Series_Entity.fromCursor(cursor)
         }

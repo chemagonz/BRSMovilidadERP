@@ -1,10 +1,14 @@
 package com.advantys.brsmovilidaderp.UI.Views.Centros
 
 import Centro_ViewModel
+import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.advantys.brsmovilidaderp.Data.DataBase.Daos.Centros_Dao
 import com.advantys.brsmovilidaderp.Data.Repositories.Centro_Repository
+import com.advantys.brsmovilidaderp.Domain.Models.Centro
 import com.advantys.brsmovilidaderp.Domain.UseCases.Centro_UseCase
 import com.advantys.brsmovilidaderp.databinding.ActivityDetallesCentroBinding
 
@@ -21,12 +25,13 @@ class DetallesCentro_Activity (): AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetallesCentroBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val centro= intent.getIntExtra("numCentro", 0)
-//        centroViewmodel.centroModel.observe(this, Observer{
-//            centroViewmodel.onCreateDetalles()
-//        })
 
-        //verDetallesCentro()
+        val centroC= intent.getIntExtra("numCentro", 0)
+        centroViewmodel.onCreateDetalles(centroC)
+        centroViewmodel.centroModel.observe(this, Observer{ centro ->
+            centro?.let { verDetallesCentro(centro) }
+
+        })
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
@@ -34,21 +39,33 @@ class DetallesCentro_Activity (): AppCompatActivity() {
             setSubtitle("DETALLES")
         }
     }
-//    private fun verDetallesCentro() {
-//        centroViewmodel.onCreateDetalles().let {
-//            binding.edCodigoCentro.setText(it?.codigo.toString())
-//            binding.edNIFCentros.setText(it?.NIF)
-//            binding.edNombreCentro.setText(it?.nombre)
-//            binding.edCalleCPMunicProvin.setText(it?.direccion)
-//            binding.edCalleCPMunicProvin.setText(it?.codigoPostal?.toString())
-//            binding.edCalleCPMunicProvin.setText(it?.poblacion)
-//            binding.edCalleCPMunicProvin.setText(it?.provincia)
-//            binding.edTelefonoCentro.setText(it?.telefono?.toString())
-//            binding.edSerieCentro.setText(it?.serie?.toString())
-//            binding.edVentaMenorA.setText(it?.ventaMenorA?.toString())
-//            it?.aplicaCargo?.let { aplicaCargo ->
-//                binding.checkAplicaCargo.isChecked = aplicaCargo
-//            }
-//        }
-//    }
+
+    //Funcion para manejar botones
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                //Boton para atras
+                val intent = Intent(this, Centros_Activity::class.java)
+                startActivity(intent)
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+    //Funcion para ver los detalles de cada centro, stringbuilder para editText multiline
+    private fun verDetallesCentro(centro: Centro) {
+        val detalles = StringBuilder()
+        binding.edCodigoCentro.setText(centro.numCentro.toString())
+        binding.edNIFCentros.setText(centro.nif)
+        binding.edNombreCentro.setText(centro.nombre)
+        detalles.append(centro.direccion).append("\n")
+        detalles.append(centro.codigoPostal).append("\n")
+        detalles.append(centro.poblacion).append("\n")
+        detalles.append(centro.provincia)
+        binding.edCalleCPMunicProvin.setText(detalles.toString())
+        binding.edTelefonoCentro.setText(centro.telefono.toString())
+        binding.edSerieCentro.setText(centro.serie)
+        binding.edVentaMenorA.setText(centro.ventaMenorA.toString())
+        binding.checkAplicaCargo.isChecked = centro.aplicaCargo
+    }
 }

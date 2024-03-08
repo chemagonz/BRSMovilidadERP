@@ -12,7 +12,10 @@ class Centro_UseCase (private val repository: Centro_Repository) {
     }
 
     suspend operator fun invoke(centro:Int?):Centro{
-        val centroDet= repository.getAllDetalles(centro)
-        return centroDet ?: throw NoSuchElementException("Error")
+        centro?.let {
+            val centroDet= repository.getAllDetalles(centro)
+            return centroDet ?: throw NoSuchElementException("Error")
+        }?:throw IllegalArgumentException("no puede ser nulo")
+
     }
 }

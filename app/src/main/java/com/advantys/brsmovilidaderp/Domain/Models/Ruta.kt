@@ -3,9 +3,11 @@ package com.advantys.brsmovilidaderp.Domain.Models
 import com.advantys.brsmovilidaderp.Data.DataBase.Entities.Rutas_Entity
 
 class Ruta (
-    var numRuta:Int?= null,
+    var numRuta:String?= null,
     var nombre:String? = null,
-    var marcado : Int? = null
+    var lmarcado : Boolean? =null,
+    var cmarcado:String?= null
+
 )
 
-fun Rutas_Entity.toDomain() = Ruta(nRuta, nombre, marcado)
+fun Rutas_Entity.toDomain() = Ruta(nRuta, nombre, lmarcado, cmarcado)

@@ -3,7 +3,7 @@ package com.advantys.brsmovilidaderp.Data.DataBase.Schemas
 class Series_Schema {
     companion object{
         const val TABLE_NAME = "SERIES"
-        const val SERIE_FIELD= "CSERIES"
+        const val SERIE_FIELD= "CSERIE"
         const val NOMBRE_FIELD = "CNOMBRE"
         const val ULTPEDIDO_FIELD = "NULTPEDIDO"
         const val ULTALBARAN_FIELD= "NULTALBARAN"
@@ -16,6 +16,6 @@ class Series_Schema {
         const val  FABSERVICIO_FIELD = "NFABSERVICIO"
         const val ARTSERVICIO_FIELD= "CARTSERVICIO"
         const val TARIFA_FIELD= "NTARIFA"
-        const val TIPOLINEA_FIELD= "TIPOLINEA"
+        const val TIPOLINEA_FIELD= "CTIPOLINEA"
     }
 }

@@ -4,26 +4,46 @@ import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.advantys.brsmovilidaderp.Domain.Models.Serie
 import com.advantys.brsmovilidaderp.Domain.UseCases.Serie_UseCase
 import com.advantys.brsmovilidaderp.UI.Views.Series.DetallesSerie_Activity
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class Serie_ViewModel (private val serieUsecase: Serie_UseCase):ViewModel(){
-    val serieModel = MutableLiveData<List<Serie>>()
+    val seriesModel = MutableLiveData<List<Serie>>()
+    val serieModel= MutableLiveData<Serie>()
 
     fun onCreate(){
         viewModelScope.launch{
             val resultado = serieUsecase()
-            if(!resultado.isNullOrEmpty()) serieModel.postValue(resultado)
+            if(!resultado.isNullOrEmpty()) seriesModel.postValue(resultado)
         }
     }
 
-
+    fun onCreateDetalles(serie: String?){
+        viewModelScope.launch (Dispatchers.Default){
+            val resultado= serieUsecase(serie)
+            if(resultado!=null){
+                serieModel.postValue(resultado)
+            }
+        }
+    }
     fun btnDetalle(item: Serie?, context: Context){
         val intent = Intent(context, DetallesSerie_Activity::class.java)
+        intent.putExtra("cSeries", item?.cSeries)
         context.startActivity(intent)
     }
+}
+class SerieViewModelFactory (private val serieUsecase: Serie_UseCase) : ViewModelProvider.Factory {
 
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(Serie_ViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return Serie_ViewModel(serieUsecase) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
 }
