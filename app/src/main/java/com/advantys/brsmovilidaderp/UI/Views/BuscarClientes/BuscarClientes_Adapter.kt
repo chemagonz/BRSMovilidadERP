@@ -1,6 +1,7 @@
 package com.advantys.brsmovilidaderp.UI.Views.BuscarClientes
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,33 +31,40 @@ class BuscarClientes_Adapter(private val buscarClienteList: List<Cliente?>, priv
         holder.binding.nombreCliente.text= item?.nombre
         holder.binding.codigoCliente.text= item?.numClientes.toString()
 
-        //Seleccionar items HAY QUE MODIFICARLO
-
+        // Seleccionar items
+        holder.itemView.setOnLongClickListener { view ->
+            limpiar()
+            holder.itemView.setBackgroundColor(Color.BLUE)
+            selectedItems.add(position)
+            true
+        }
+        // Cambiar color de fondo al hacer clic
         holder.itemView.setOnClickListener {
             if (selectedItems.contains(position)) {
-                holder.itemView.setBackgroundColor(androidx.appcompat.R.color.abc_search_url_text_pressed)
+                holder.itemView.setBackgroundColor(Color.WHITE)
                 selectedItems.remove(position)
             } else {
+                holder.itemView.setBackgroundColor(Color.BLUE)
                 selectedItems.add(position)
             }
-            notifyItemChanged(position)
         }
         holder.itemView.isSelected = selectedItems.contains(position)
     }
-}
 
+    private fun limpiar() {
+        for (position in selectedItems) {
+            notifyItemChanged(position)
+        }
+        selectedItems.clear()
+    }
+}
 class BuscarClientes_ViewHolder(view: View) :RecyclerView.ViewHolder(view){
     val binding = ItemClientesBinding.bind(view)
-
-
-
 
     fun bind(buscarClientesModel: Cliente?){
         binding.nombreCliente.text= buscarClientesModel?.nombre
         binding.codigoCliente.text= buscarClientesModel?.numClientes.toString()
         val direccionCompleta= "${buscarClientesModel?.direccion} , ${buscarClientesModel?.provincia} , ${buscarClientesModel?.poblacion} "
         binding.direccionCompleta.text= direccionCompleta
-
-
     }
 }

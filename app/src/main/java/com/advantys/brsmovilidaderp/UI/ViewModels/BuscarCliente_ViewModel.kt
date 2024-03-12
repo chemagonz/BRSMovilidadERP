@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.advantys.brsmovilidaderp.Data.DataBase.Daos.columnas
 import com.advantys.brsmovilidaderp.Domain.Models.Cliente
 import com.advantys.brsmovilidaderp.Domain.UseCases.BuscarCliente_UseCase
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +20,7 @@ class BuscarCliente_ViewModel (private val buscarClienteUsecase: BuscarCliente_U
         }
     }
 
-    fun buscarClientes(tipo:String, query:String){
+    fun buscarClientes(tipo:columnas, query:String){
         viewModelScope.launch(Dispatchers.Default) {
             val resultado= buscarClienteUsecase(tipo, query)
             if (!resultado.isNullOrEmpty()) buscarClientesModel.postValue(resultado)

@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.PopupMenu
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -54,11 +54,9 @@ class Rutas_Activity : AppCompatActivity() {
     // Manejar las acciones del menu
     @SuppressLint("ResourceType")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-
         return when (item.itemId) {
             R.id.calendario->{
-                mostrarVentana()
+                showPopMenu()
                 true
             }
             android.R.id.home -> {
@@ -68,18 +66,36 @@ class Rutas_Activity : AppCompatActivity() {
         }
     }
 
-    fun mostrarVentana(){
-        val diasSemana = arrayOf("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo")
-        val checkedItems = booleanArrayOf(false, false, false, false, false, false, false)
-        AlertDialog.Builder(this)
-            .setTitle("Selecciona los días de la semana")
-            .setMultiChoiceItems(diasSemana, checkedItems) { _, _, _ -> }
-            .setNegativeButton("Cancelar", null)
-            .setPositiveButton("Aceptar") { _, _ ->
-                //Aqui ya se modificara la accion de aceptar en la base de datos
+    private fun showPopMenu(){
+        val popMenu= PopupMenu(this, findViewById(R.id.calendario))
+        popMenu.menuInflater.inflate(R.menu.semana, popMenu.menu)
+        popMenu.setOnMenuItemClickListener { menuItem->
+            when(menuItem.itemId) {
+                R.id.lunes->true
+                R.id.martes->true
+                R.id.miercoles->true
+                R.id.jueves->true
+                R.id.viernes->true
+                R.id.sabado->true
+                R.id.domingo->true
+                else -> false
             }
-            .show()
+        }
+        popMenu.show()
     }
+
+//    fun mostrarVentana(){
+//        val diasSemana = arrayOf("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo")
+//        val checkedItems = booleanArrayOf(false, false, false, false, false, false, false)
+//        AlertDialog.Builder(this)
+//            .setTitle("Selecciona los días de la semana")
+//            .setMultiChoiceItems(diasSemana, checkedItems) { _, _, _ -> }
+//            .setNegativeButton("Cancelar", null)
+//            .setPositiveButton("Aceptar") { _, _ ->
+//                //Aqui ya se modificara la accion de aceptar en la base de datos
+//            }
+//            .show()
+//    }
 }
 
 

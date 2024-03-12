@@ -15,18 +15,34 @@ class BuscarClientes_Dao (context: Context){
         }
     }
 
-    fun getFilterNombre(nombre:String?):List <BuscarClientes_Entity?>{
-        var sql= "SELECT * FROM ${BuscarClientes_Schema.TABLE_NAME} WHERE ${BuscarClientes_Schema.NOMBRE_FIELD} LIKE '%$nombre%'"
-        return databaseManager.query(sql){ cursor ->
+//    fun getFilterNombre(nombre:String?):List <BuscarClientes_Entity?>{
+//        var sql= "SELECT * FROM ${BuscarClientes_Schema.TABLE_NAME} WHERE ${BuscarClientes_Schema.NOMBRE_FIELD} LIKE '%$nombre%'"
+//        return databaseManager.query(sql){ cursor ->
+//            BuscarClientes_Entity.fromCursor(cursor)
+//        }
+//    }
+//
+//    fun getFilterCodigo(codigo: String?):List<BuscarClientes_Entity?>{
+//        var sql = "SELECT * FROM ${BuscarClientes_Schema.TABLE_NAME} WHERE ${BuscarClientes_Schema.CLIENTE_FIELD} LIKE '%$codigo%'"
+//        return databaseManager.query(sql){ cursor ->
+//            BuscarClientes_Entity.fromCursor(cursor)
+//        }
+//    }
+    fun getFilter( columna: columnas,tipoConsulta:String?):List<BuscarClientes_Entity?>{
+        val columnas= when(columna){
+            columnas.Nombre-> BuscarClientes_Schema.NOMBRE_FIELD
+            columnas.Codigo-> BuscarClientes_Schema.CLIENTE_FIELD
+        }
+        var sql= "SELECT * FROM ${BuscarClientes_Schema.TABLE_NAME} WHERE ${columnas} LIKE '%$tipoConsulta%'"
+        return databaseManager.query(sql){cursor ->
             BuscarClientes_Entity.fromCursor(cursor)
         }
     }
+        //Modificar para hacerlo con una sola funcion
+}
 
-    fun getFilterCodigo(codigo: String?):List<BuscarClientes_Entity?>{
-        var sql = "SELECT * FROM ${BuscarClientes_Schema.TABLE_NAME} WHERE ${BuscarClientes_Schema.CLIENTE_FIELD} LIKE '%$codigo%'"
-        return databaseManager.query(sql){ cursor ->
-            BuscarClientes_Entity.fromCursor(cursor)
-        }
-    }
-
+//Se implementa una enum class para simplificar mejor la funcion, ya que guardo en una variable dos posibles columnas, asi no tengo que hacer dos veces lo mismo
+enum class columnas{
+    Nombre,
+    Codigo
 }
