@@ -10,4 +10,8 @@ class Ruta_Repository (private val rutasDao: Rutas_Dao) {
        val response: List<Rutas_Entity?> = rutasDao.getAll()
         return response.filterNotNull().map { it.toDomain() }
     }
+
+    suspend fun getUpdateRutas(valor:Boolean?, ruta:String?){
+        rutasDao.updateCheck(valor, ruta)
+    }
 }

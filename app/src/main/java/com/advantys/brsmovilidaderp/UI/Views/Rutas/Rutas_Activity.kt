@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,9 +41,9 @@ class Rutas_Activity : AppCompatActivity() {
         rutaViewModel.onCreate()
         rutaViewModel.rutasModel.observe(this, Observer {
             binding.rutasRecyclerView.layoutManager = LinearLayoutManager(this)
-            binding.rutasRecyclerView.post {
-                binding.rutasRecyclerView.adapter= Rutas_Adapter(it,rutaViewModel)
-            }
+            binding.rutasRecyclerView.adapter= Rutas_Adapter(it,rutaViewModel)
+            //binding.rutasRecyclerView.addItemDecoration(CustomItemDecoration(0)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       )
+
         })
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -50,10 +51,14 @@ class Rutas_Activity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    // Manejar las acciones del menú
+    // Manejar las acciones del menu
+    @SuppressLint("ResourceType")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+
         return when (item.itemId) {
-            R.drawable.calendario -> {
+            R.id.calendario->{
+                mostrarVentana()
                 true
             }
             android.R.id.home -> {
@@ -62,4 +67,20 @@ class Rutas_Activity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    fun mostrarVentana(){
+        val diasSemana = arrayOf("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo")
+        val checkedItems = booleanArrayOf(false, false, false, false, false, false, false)
+        AlertDialog.Builder(this)
+            .setTitle("Selecciona los días de la semana")
+            .setMultiChoiceItems(diasSemana, checkedItems) { _, _, _ -> }
+            .setNegativeButton("Cancelar", null)
+            .setPositiveButton("Aceptar") { _, _ ->
+                //Aqui ya se modificara la accion de aceptar en la base de datos
+            }
+            .show()
+    }
 }
+
+
+

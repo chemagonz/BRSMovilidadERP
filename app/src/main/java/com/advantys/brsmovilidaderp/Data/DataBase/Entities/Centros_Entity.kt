@@ -38,7 +38,7 @@ import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.Centros_Schema
             modelo.provincia= cursor.getString(cursor.getColumnIndexOrThrow(Centros_Schema.PROVINCIA_FIELD))
             modelo.telefono= cursor.getInt(cursor.getColumnIndexOrThrow(Centros_Schema.TELEFONO_FIELD))
             modelo.serie= cursor.getString(cursor.getColumnIndexOrThrow(Centros_Schema.SERIE_FIELD))
-            modelo.aplicaCargo= cursor.getInt(cursor.getColumnIndexOrThrow(Centros_Schema.APLCARGO_FIELD))==1
+            modelo.aplicaCargo= cursor.getInt(cursor.getColumnIndexOrThrow(Centros_Schema.APLCARGO_FIELD))!=0
             modelo.ventaMenorA= cursor.getInt(cursor.getColumnIndexOrThrow(Centros_Schema.VENTAMENORA_FIELD))
             return modelo
         }

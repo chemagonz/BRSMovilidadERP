@@ -19,12 +19,16 @@ class Rutas_Adapter (private val rutaList: List<Ruta?>, private val rutaViewMode
     override fun onBindViewHolder(holder: Rutas_ViewHolder, position: Int) {
         holder.bind(rutaList[position])
         val item = rutaList[position]
-        //Agregar item_rutas 07/03/2024
+        val ruta= item?.numRuta
+        val valor= item?.lmarcado
 
         holder.binding.nombreRuta.text= item?.nombre
         holder.binding.cRuta.text= item?.numRuta.toString()
-        holder.binding.check.isChecked= item?.lmarcado==true
+        holder.binding.check.isChecked= item?.lmarcado!!
 
+        holder.binding.check.setOnCheckedChangeListener { buttonView, isChecked ->
+                rutaViewModel.cambiarCheck(valor, ruta,isChecked)
+        }
     }
 }
 class Rutas_ViewHolder(view: View): RecyclerView.ViewHolder(view){

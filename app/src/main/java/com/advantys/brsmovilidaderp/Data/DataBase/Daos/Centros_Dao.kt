@@ -21,4 +21,5 @@ class Centros_Dao (context:Context) {
             Centros_Entity.fromCursor(cursor)
         }
     }
+
 }

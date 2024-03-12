@@ -23,7 +23,6 @@ class BDUtil (context:Context){
         db.update(tabla, parametros, where, null)
         db.close()
     }
-
     fun upsert(tabla: String, parametros : ContentValues, where: String) {
         if(existe(tabla, where))
             update(tabla, parametros, where)
@@ -82,7 +81,16 @@ class BDUtil (context:Context){
 
         return lista
     }
-
+    fun queryUp(sql:String){
+        val db = dbHelper.openDatabaseRead()
+        try{
+            db.execSQL(sql)
+        }catch (e:Exception){
+            e.printStackTrace()
+        }finally{
+            db.close()
+        }
+    }
     fun <T> queryDetalles(sql:String, fromCursor:(cursor:Cursor)->T):T?{
         val db = dbHelper.openDatabaseRead()
         val cursor: Cursor = db.rawQuery(sql, null)
@@ -156,6 +164,17 @@ class BDUtil (context:Context){
         return resultado
     }
 
+    fun Cursor.getBooleanInt(column: Int) : Boolean {
+        var resultado = true
+        if(!this.esNulo()) {
+            if (this.count > 0){
+                this.moveToFirst()
+                resultado = false
+            }
+        }
+        return resultado
+    }
+
     fun cerrarConexionDB(db: BD){
 
     }
@@ -163,5 +182,7 @@ class BDUtil (context:Context){
         db.cerrarConexion();
 
     }
+
+
 
 }

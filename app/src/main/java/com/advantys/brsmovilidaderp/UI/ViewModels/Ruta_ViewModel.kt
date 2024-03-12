@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 
 class Ruta_ViewModel (private val rutaUsecase: Ruta_UseCase): ViewModel() {
     val rutasModel = MutableLiveData<List<Ruta>>()
+    val rutaModel= MutableLiveData<Ruta>()
 
     fun onCreate(){
         viewModelScope.launch(Dispatchers.Default) {
@@ -19,7 +20,13 @@ class Ruta_ViewModel (private val rutaUsecase: Ruta_UseCase): ViewModel() {
         }
     }
 
+    fun cambiarCheck(valor:Boolean?, ruta:String?, check:Boolean?){
+        viewModelScope.launch  (Dispatchers.Default){
+            rutaUsecase(valor,ruta)
+        }
+    }
 }
+
 class RutaViewModelFactory (private val rutaUsecase: Ruta_UseCase) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(Ruta_ViewModel::class.java)) {
