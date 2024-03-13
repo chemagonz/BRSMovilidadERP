@@ -9,22 +9,24 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.advantys.brsmovilidaderp.Data.DataBase.Daos.BuscarClientes_Dao
 import com.advantys.brsmovilidaderp.Data.DataBase.Daos.columnas
-import com.advantys.brsmovilidaderp.Data.Repositories.BuscarClientes_Repository
-import com.advantys.brsmovilidaderp.Domain.UseCases.BuscarCliente_UseCase
 import com.advantys.brsmovilidaderp.R
-import com.advantys.brsmovilidaderp.UI.ViewModels.BuscarClienteViewModelFactoy
 import com.advantys.brsmovilidaderp.UI.ViewModels.BuscarCliente_ViewModel
 import com.advantys.brsmovilidaderp.databinding.ActivityBuscarClienteBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BuscarCliente_Activity : AppCompatActivity() {
 
-    private val buscarClientesDao= BuscarClientes_Dao(this)
-    private val buscarClientesRepository= BuscarClientes_Repository(buscarClientesDao)
-    private val buscarClientesUseCase= BuscarCliente_UseCase(buscarClientesRepository)
-    private val buscarClientesVieModel: BuscarCliente_ViewModel by viewModels { BuscarClienteViewModelFactoy(buscarClientesUseCase) }
-    private var tipoSeleccionado:columnas? =null
+//    private val buscarClientesDao= BuscarClientes_Dao(this)
+//    private val buscarClientesRepository= BuscarClientes_Repository(buscarClientesDao)
+//    private val buscarClientesUseCase= BuscarCliente_UseCase(buscarClientesRepository)
+    val buscarClientesVieModel: BuscarCliente_ViewModel by viewModels()
+    //{ BuscarClienteViewModelFactoy(buscarClientesUseCase) }
+    private var tipoSeleccionado:columnas?= columnas.Nombre
+
+
+
 
     lateinit var binding: ActivityBuscarClienteBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,11 +35,13 @@ class BuscarCliente_Activity : AppCompatActivity() {
         setContentView(binding.root)
 
 
+
         //ACTION BAR
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
             title = "BUSCAR CLIENTE"
+            subtitle= "POR NOMBRE"
 
 
         }
@@ -55,6 +59,18 @@ class BuscarCliente_Activity : AppCompatActivity() {
         val searchItem = menu.findItem(R.id.search)
         val searchView = searchItem.actionView as SearchView
         searchView.queryHint = "Buscar cliente"
+
+        searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
+
+            override fun onMenuItemActionExpand(item: MenuItem): Boolean {
+               return true
+            }
+
+            override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
+                buscarClientesVieModel.onCreate()
+                return true
+            }
+        })
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -65,11 +81,9 @@ class BuscarCliente_Activity : AppCompatActivity() {
                 la busqueda mediante la llamada a buscarClientesViewModel, si no se selecciona nada devuelve la lista vacia ya que no hay nada que mostrar*/
                 if (!newText.isNullOrEmpty() && tipoSeleccionado !=null) {
                     buscarClientesVieModel.buscarClientes(tipoSeleccionado!!, newText)
-                } else {
-                    //Esto sirve por si se busca alguna letra que no se compone por algun nombre o numero por algun codigo, devuelva la lista de clientes vacia
-                    binding.buscarClientesRecyclerView.adapter= BuscarClientes_Adapter(emptyList(), buscarClientesVieModel)
-                }
-                return true
+                }else binding.buscarClientesRecyclerView.adapter= BuscarClientes_Adapter(emptyList(), buscarClientesVieModel)
+
+                return false
             }
         })
         return super.onCreateOptionsMenu(menu)
@@ -80,7 +94,8 @@ class BuscarCliente_Activity : AppCompatActivity() {
                 showPopupMenu()
                 true
             }
-            else -> super.onOptionsItemSelected(item)
+
+                       else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -106,3 +121,4 @@ class BuscarCliente_Activity : AppCompatActivity() {
         popupMenu.show()
     }
 }
+
