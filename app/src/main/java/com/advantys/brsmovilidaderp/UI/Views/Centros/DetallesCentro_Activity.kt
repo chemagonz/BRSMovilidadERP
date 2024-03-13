@@ -1,23 +1,22 @@
 package com.advantys.brsmovilidaderp.UI.Views.Centros
 
-import Centro_ViewModel
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.advantys.brsmovilidaderp.Data.DataBase.Daos.Centros_Dao
-import com.advantys.brsmovilidaderp.Data.Repositories.Centro_Repository
 import com.advantys.brsmovilidaderp.Domain.Models.Centro
-import com.advantys.brsmovilidaderp.Domain.UseCases.Centro_UseCase
+import com.advantys.brsmovilidaderp.UI.ViewModels.Centro_ViewModel
 import com.advantys.brsmovilidaderp.databinding.ActivityDetallesCentroBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class DetallesCentro_Activity (): AppCompatActivity() {
-    private val centros = Centros_Dao(this)
-    private val centrosR= Centro_Repository(centros)
-    private val centroUse= Centro_UseCase(centrosR)
-    private var centroViewmodel= Centro_ViewModel(centroUse)
+////    private val centros = Centros_Dao(this)
+//    private val centrosR= Centro_Repository(centros)
+//    private val centroUse= Centro_UseCase(centrosR)
+        val centroViewmodel: Centro_ViewModel by viewModels()
 
     //BindingView
     lateinit var binding: ActivityDetallesCentroBinding

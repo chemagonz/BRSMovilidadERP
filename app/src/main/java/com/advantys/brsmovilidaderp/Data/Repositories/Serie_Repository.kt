@@ -4,8 +4,9 @@ import com.advantys.brsmovilidaderp.Data.DataBase.Daos.Series_Dao
 import com.advantys.brsmovilidaderp.Data.DataBase.Entities.Series_Entity
 import com.advantys.brsmovilidaderp.Domain.Models.Serie
 import com.advantys.brsmovilidaderp.Domain.Models.toDomain
+import javax.inject.Inject
 
-class Serie_Repository ( private val seriesDao:Series_Dao){
+class Serie_Repository @Inject constructor( private val seriesDao:Series_Dao){
     suspend fun getAllSeries():List<Serie>{
         val response : List<Series_Entity?> = seriesDao.getAll()
         return response.filterNotNull().map { it.toDomain() }

@@ -1,6 +1,6 @@
 package com.advantys.brsmovilidaderp.UI.Views.Centros
 
-import Centro_ViewModel
+import com.advantys.brsmovilidaderp.UI.ViewModels.Centro_ViewModel
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

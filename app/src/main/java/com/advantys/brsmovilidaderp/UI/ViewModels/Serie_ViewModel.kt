@@ -4,15 +4,17 @@ import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.advantys.brsmovilidaderp.Domain.Models.Serie
 import com.advantys.brsmovilidaderp.Domain.UseCases.Serie_UseCase
 import com.advantys.brsmovilidaderp.UI.Views.Series.DetallesSerie_Activity
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class Serie_ViewModel (private val serieUsecase: Serie_UseCase):ViewModel(){
+@HiltViewModel
+class Serie_ViewModel @Inject constructor(private val serieUsecase: Serie_UseCase):ViewModel(){
     val seriesModel = MutableLiveData<List<Serie>>()
     val serieModel= MutableLiveData<Serie>()
 
@@ -37,13 +39,13 @@ class Serie_ViewModel (private val serieUsecase: Serie_UseCase):ViewModel(){
         context.startActivity(intent)
     }
 }
-class SerieViewModelFactory (private val serieUsecase: Serie_UseCase) : ViewModelProvider.Factory {
-
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(Serie_ViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return Serie_ViewModel(serieUsecase) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}
+//class SerieViewModelFactory (private val serieUsecase: Serie_UseCase) : ViewModelProvider.Factory {
+//
+//    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+//        if (modelClass.isAssignableFrom(Serie_ViewModel::class.java)) {
+//            @Suppress("UNCHECKED_CAST")
+//            return Serie_ViewModel(serieUsecase) as T
+//        }
+//        throw IllegalArgumentException("Unknown ViewModel class")
+//    }
+//}

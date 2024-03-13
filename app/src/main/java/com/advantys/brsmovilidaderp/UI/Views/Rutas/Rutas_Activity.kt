@@ -1,28 +1,28 @@
 package com.advantys.brsmovilidaderp.UI.Views.Rutas
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.PopupMenu
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.advantys.brsmovilidaderp.Data.DataBase.Daos.Rutas_Dao
-import com.advantys.brsmovilidaderp.Data.Repositories.Ruta_Repository
-import com.advantys.brsmovilidaderp.Domain.UseCases.Ruta_UseCase
 import com.advantys.brsmovilidaderp.R
-import com.advantys.brsmovilidaderp.UI.ViewModels.RutaViewModelFactory
 import com.advantys.brsmovilidaderp.UI.ViewModels.Ruta_ViewModel
+import com.advantys.brsmovilidaderp.UI.Views.Clientes.Clientes_Activity
 import com.advantys.brsmovilidaderp.databinding.ActivityRutasBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class Rutas_Activity : AppCompatActivity() {
 
-    private val rutasDao= Rutas_Dao(this)
-    private val rutaRepository= Ruta_Repository(rutasDao)
-    private val rutaUsecase= Ruta_UseCase(rutaRepository)
-    private val rutaViewModel: Ruta_ViewModel by viewModels { RutaViewModelFactory(rutaUsecase)  }
+//    private val rutasDao= Rutas_Dao(this)
+//    private val rutaRepository= Ruta_Repository(rutasDao)
+//    private val rutaUsecase= Ruta_UseCase(rutaRepository)
+    val rutaViewModel: Ruta_ViewModel by viewModels()
+//    { RutaViewModelFactory(rutaUsecase)  }
 
     private lateinit var binding: ActivityRutasBinding
     @SuppressLint("MissingInflatedId")
@@ -56,46 +56,17 @@ class Rutas_Activity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.calendario->{
-                showPopMenu()
                 true
             }
             android.R.id.home -> {
-                true
+                //Boton para atras
+                val intent = Intent(this, Clientes_Activity::class.java)
+                startActivity(intent)
+                return true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
-
-    private fun showPopMenu(){
-        val popMenu= PopupMenu(this, findViewById(R.id.calendario))
-        popMenu.menuInflater.inflate(R.menu.semana, popMenu.menu)
-        popMenu.setOnMenuItemClickListener { menuItem->
-            when(menuItem.itemId) {
-                R.id.lunes->true
-                R.id.martes->true
-                R.id.miercoles->true
-                R.id.jueves->true
-                R.id.viernes->true
-                R.id.sabado->true
-                R.id.domingo->true
-                else -> false
-            }
-        }
-        popMenu.show()
-    }
-
-//    fun mostrarVentana(){
-//        val diasSemana = arrayOf("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo")
-//        val checkedItems = booleanArrayOf(false, false, false, false, false, false, false)
-//        AlertDialog.Builder(this)
-//            .setTitle("Selecciona los días de la semana")
-//            .setMultiChoiceItems(diasSemana, checkedItems) { _, _, _ -> }
-//            .setNegativeButton("Cancelar", null)
-//            .setPositiveButton("Aceptar") { _, _ ->
-//                //Aqui ya se modificara la accion de aceptar en la base de datos
-//            }
-//            .show()
-//    }
 }
 
 

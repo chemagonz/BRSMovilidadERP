@@ -1,6 +1,6 @@
 package com.advantys.brsmovilidaderp.Domain.Models
 
-import com.advantys.brsmovilidaderp.Data.DataBase.Entities.BuscarClientes_Entity
+import com.advantys.brsmovilidaderp.Data.DataBase.Entities.Clientes_Entity
 import java.time.format.DateTimeFormatter
 
 class Cliente (
@@ -69,5 +69,5 @@ class Cliente (
     var orden: Int?=null
 )
 
-fun BuscarClientes_Entity.toDomain()= Cliente(nClientes,delegacion,nombre, razonSocial, direccion, codPostal, poblacion, provincia, NIF, telefono1, telefono2, regimenIva, copiasAlb, copiasFac, categoria, formaPago, tarifa, riesgoConsumo, impoRiesgo, diasRiesgo, docsRiesgo, riesgoImpo, riesgoDias, riesgoDocs, aplicaPromgral, centro, facturaEnvases, aplicaAlcoholes, aplicapVerde, porCDTO, serieAlbaran, facturable, tipoOperacion, facturaInmediata, ultVenta, clienteFiscal, delegacionFiscal, DTOvtacaj, DTOportes, consumoAnt, consumoAct, desviacion, serieFactura, sector, actividad, avisos, estado, lmarcado, cmarcado, aplexcart, tipoEnvaseSemanal, latitud, longitud, pendiente, deuda, ultPedido, pendienteValidar, limiteRiesgo, tiplinenvaut, aplicaManipulacion, correo,aplicaAzucar,orden)
+fun Clientes_Entity.toDomain()= Cliente(nClientes,delegacion,nombre, razonSocial, direccion, codPostal, poblacion, provincia, NIF, telefono1, telefono2, regimenIva, copiasAlb, copiasFac, categoria, formaPago, tarifa, riesgoConsumo, impoRiesgo, diasRiesgo, docsRiesgo, riesgoImpo, riesgoDias, riesgoDocs, aplicaPromgral, centro, facturaEnvases, aplicaAlcoholes, aplicapVerde, porCDTO, serieAlbaran, facturable, tipoOperacion, facturaInmediata, ultVenta, clienteFiscal, delegacionFiscal, DTOvtacaj, DTOportes, consumoAnt, consumoAct, desviacion, serieFactura, sector, actividad, avisos, estado, lmarcado, cmarcado, aplexcart, tipoEnvaseSemanal, latitud, longitud, pendiente, deuda, ultPedido, pendienteValidar, limiteRiesgo, tiplinenvaut, aplicaManipulacion, correo,aplicaAzucar,orden)
 

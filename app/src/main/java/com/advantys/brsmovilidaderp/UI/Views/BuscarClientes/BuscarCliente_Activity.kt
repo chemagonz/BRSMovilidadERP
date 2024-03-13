@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.advantys.brsmovilidaderp.Data.DataBase.Daos.columnas
 import com.advantys.brsmovilidaderp.R
-import com.advantys.brsmovilidaderp.UI.ViewModels.BuscarCliente_ViewModel
+import com.advantys.brsmovilidaderp.UI.ViewModels.Cliente_ViewModel
 import com.advantys.brsmovilidaderp.databinding.ActivityBuscarClienteBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,7 +21,7 @@ class BuscarCliente_Activity : AppCompatActivity() {
 //    private val buscarClientesDao= BuscarClientes_Dao(this)
 //    private val buscarClientesRepository= BuscarClientes_Repository(buscarClientesDao)
 //    private val buscarClientesUseCase= BuscarCliente_UseCase(buscarClientesRepository)
-    val buscarClientesVieModel: BuscarCliente_ViewModel by viewModels()
+    val buscarClientesVieModel: Cliente_ViewModel by viewModels()
     //{ BuscarClienteViewModelFactoy(buscarClientesUseCase) }
     private var tipoSeleccionado:columnas?= columnas.Nombre
 
@@ -46,7 +46,7 @@ class BuscarCliente_Activity : AppCompatActivity() {
 
         }
         buscarClientesVieModel.onCreate()
-        buscarClientesVieModel.buscarClientesModel.observe(this , Observer {
+        buscarClientesVieModel.ClientesModel.observe(this , Observer {
             binding.buscarClientesRecyclerView.layoutManager= LinearLayoutManager(this)
             binding.buscarClientesRecyclerView.adapter= BuscarClientes_Adapter(it, buscarClientesVieModel)
         })

@@ -4,10 +4,11 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.os.Environment.getExternalStorageDirectory
+import javax.inject.Inject
 
 val DATABASE_NAME="BRSAndroid.db"
 
-class BD (contexto: Context): SQLiteOpenHelper(contexto, DATABASE_NAME, null, 1){
+class BD @Inject constructor(contexto: Context): SQLiteOpenHelper(contexto, DATABASE_NAME, null, 1){
 
     private val DATABASE_RUTA = getExternalStorageDirectory().path+ "/BRSAndroid/"
 

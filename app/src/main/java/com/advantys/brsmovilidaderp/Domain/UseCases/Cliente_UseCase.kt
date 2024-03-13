@@ -1,28 +1,21 @@
 package com.advantys.brsmovilidaderp.Domain.UseCases
 
 import com.advantys.brsmovilidaderp.Data.DataBase.Daos.columnas
-import com.advantys.brsmovilidaderp.Data.Repositories.BuscarClientes_Repository
+import com.advantys.brsmovilidaderp.Data.Repositories.Clientes_Repository
 import com.advantys.brsmovilidaderp.Domain.Models.Cliente
+import javax.inject.Inject
 
-class BuscarCliente_UseCase(private val repository: BuscarClientes_Repository) {
+class Cliente_UseCase @Inject constructor(private val repository: Clientes_Repository) {
 
+   //Funcion para obtener todos los clientes
     suspend operator fun invoke():List<Cliente>{
         val cliente= repository.getAllClientes()
         return if(cliente.isNullOrEmpty()){
             listOf<Cliente>()
         }else cliente
     }
-
-//    suspend operator fun invoke(tipo:String, query:String):List<Cliente>{
-//        return when (tipo){
-//            "Nombre" ->repository.getClientesNombre(query)
-//            "Codigo" -> repository.getClientesCodigo(query)
-//            else-> emptyList()
-//        }.takeIf { it.isNotEmpty() } ?: emptyList()
-//    }
-
+    //Funcion para filtrar clientes
     suspend operator fun invoke(tipo:columnas, query:String):List<Cliente>{
         return repository.getFilter(tipo,query)
     }
-
 }

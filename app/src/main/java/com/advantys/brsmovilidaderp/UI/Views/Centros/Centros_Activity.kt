@@ -1,25 +1,26 @@
 package com.advantys.brsmovilidaderp.UI.Views.Centros
 
-import CentroViewModelFactory
-import Centro_ViewModel
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.advantys.brsmovilidaderp.Data.DataBase.Daos.Centros_Dao
-import com.advantys.brsmovilidaderp.Data.Repositories.Centro_Repository
-import com.advantys.brsmovilidaderp.Domain.UseCases.Centro_UseCase
+import com.advantys.brsmovilidaderp.UI.ViewModels.Centro_ViewModel
+import com.advantys.brsmovilidaderp.UI.Views.Clientes.Clientes_Activity
 import com.advantys.brsmovilidaderp.databinding.ActivityCentrosBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class Centros_Activity : AppCompatActivity() {
     //Region variables
-    private val centrosDao= Centros_Dao(this)
-    private val centroRepository= Centro_Repository(centrosDao)
-    private val centroUseCase = Centro_UseCase(centroRepository)
-    private val centroViewModel: Centro_ViewModel by viewModels { CentroViewModelFactory(centroUseCase) }
+//    private val centrosDao= Centros_Dao(this)
+//    private val centroRepository= Centro_Repository(centrosDao)
+//    private val centroUseCase = Centro_UseCase(centroRepository)
+    val centroViewModel: Centro_ViewModel by viewModels()
+    //{ CentroViewModelFactory(centroUseCase) }
     //Binding
 
     private lateinit var binding: ActivityCentrosBinding
@@ -39,5 +40,19 @@ class Centros_Activity : AppCompatActivity() {
             binding.centrosRecyclerView.layoutManager= LinearLayoutManager(this)
             binding.centrosRecyclerView.adapter = Centros_Adapter(it, centroViewModel)
         })
+    }
+
+
+    //Manejo de botones del action bar
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                //Boton para atras
+                val intent = Intent(this, Clientes_Activity::class.java)
+                startActivity(intent)
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

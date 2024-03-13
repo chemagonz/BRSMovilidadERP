@@ -1,13 +1,13 @@
 package com.advantys.brsmovilidaderp.Utils
 
 import android.content.ContentValues
-import android.content.Context
 import android.database.Cursor
 import com.advantys.brsmovilidaderp.Data.DataBase.BD
+import javax.inject.Inject
 
-class BDUtil (context:Context){
+class BDUtil @Inject constructor (private val dbHelper:BD){
 
-    private val dbHelper:BD= BD(context)
+
     fun insert(tabla: String, parametros : ContentValues) {
         val db = dbHelper.openDatabaseWrite()
         db.insert(tabla, null, parametros)
