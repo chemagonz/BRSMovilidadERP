@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/ordenarpor"
+        android:title="Ordenar por...">
+    </item>
+
+    <item android:id="@+id/mostrarclientes"
+        android:title="Mostrar clientes por...">
+    </item>
+    <item android:id="@+id/restaurarclientes"
+        android:title="Restaurar clientes">
+    </item>
+
+    <item android:id="@+id/marcardesmarcar"
+        android:title="Marcar/Desmarcar">
+    </item>
+
+    <item android:id="@+id/desmarcartodos"
+        android:title="Desmarcar todos">
+    </item>
+
+</menu>

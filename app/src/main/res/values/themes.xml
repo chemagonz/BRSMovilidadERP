@@ -8,9 +8,11 @@
 
         <!-- Color de acento para componentes interactivos -->
         <item name="colorAccent">@color/teal</item>
+
     </style>
 
-    <style name="Theme.BRSMovilidadERP" parent="Base.Theme.BRSMovilidadERP" />
+    <style name="Theme.BRSMovilidadERP" parent="Base.Theme.BRSMovilidadERP">
+    </style>
 
     <style name="Theme.BRSMovilidadERP.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -20,4 +22,5 @@
     <style name="Theme.BRSMovilidadERP.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.BRSMovilidadERP.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

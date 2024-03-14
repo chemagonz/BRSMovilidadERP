@@ -8,5 +8,8 @@
 
         <!-- Color de acento para componentes interactivos -->
         <item name="colorAccent">@color/teal</item>
+
+
     </style>
+
 </resources>

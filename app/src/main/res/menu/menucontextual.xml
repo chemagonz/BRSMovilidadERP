@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/ruta"
+        android:title="Ruta"/>
+    <item
+        android:id="@+id/cliente"
+        android:title="Cliente"/>
+    <item
+        android:id="@+id/nombre"
+        android:title="Nombre"/>
+    <item
+        android:id="@+id/secuencia"
+        android:title="Secuencia"/>
+    <item
+        android:id="@+id/ordenpersonalizado"
+        android:title="Orden personalizado"/>
+</menu>
