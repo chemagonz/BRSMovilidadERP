@@ -3,6 +3,28 @@
 
     <item android:id="@+id/ordenarpor"
         android:title="Ordenar por...">
+
+
+        <menu>
+            <item
+                android:id="@+id/ruta"
+                android:title="Ruta">
+
+            </item>
+            <item
+                android:id="@+id/cliente"
+                android:title="Cliente"/>
+            <item
+                android:id="@+id/nombre"
+                android:title="Nombre"/>
+            <item
+                android:id="@+id/secuencia"
+                android:title="Secuencia"/>
+            <item
+                android:id="@+id/ordenpersonalizado"
+                android:title="Orden personalizado"/>
+        </menu>
+
     </item>
 
     <item android:id="@+id/mostrarclientes"
