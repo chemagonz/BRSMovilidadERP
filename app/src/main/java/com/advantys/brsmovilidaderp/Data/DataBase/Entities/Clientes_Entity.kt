@@ -2,6 +2,8 @@ package com.advantys.brsmovilidaderp.Data.DataBase.Entities
 
 import android.database.Cursor
 import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.Clientes_Schema
+import com.advantys.brsmovilidaderp.Utils.esNulo
+import com.advantys.brsmovilidaderp.Utils.getInt
 import java.time.format.DateTimeFormatter
 
 data class Clientes_Entity(
@@ -74,23 +76,37 @@ data class Clientes_Entity(
 
         fun fromCursor(cursor: Cursor): Clientes_Entity {
             var modelo = Clientes_Entity()
+           modelo.nClientes= cursor.getInt(Clientes_Schema.CLIENTE_FIELD, null)
 
-            if(cursor.isNull(cursor.getColumnIndexOrThrow(Clientes_Schema.CLIENTE_FIELD))){
-                    modelo.nClientes = cursor.getInt(cursor.getColumnIndexOrThrow(Clientes_Schema.CLIENTE_FIELD))
-                }
-            else {
-                    modelo.nClientes=null
-            }
-            if(cursor.isNull(cursor.getColumnIndexOrThrow(Clientes_Schema.NOMBRE_FIELD))){
+
+
+            if(!cursor.isNull(cursor.getColumnIndexOrThrow(Clientes_Schema.NOMBRE_FIELD))){
                     modelo.nombre = cursor.getString(cursor.getColumnIndexOrThrow(Clientes_Schema.NOMBRE_FIELD))
-                }else{
+                }
+            else{
                     modelo.nombre=null
             }
-            if(cursor.isNull(cursor.getColumnIndexOrThrow(Clientes_Schema.DIRECCION_FIELD))){
+            if(!cursor.isNull(cursor.getColumnIndexOrThrow(Clientes_Schema.DIRECCION_FIELD))){
                     modelo.direccion = cursor.getString(cursor.getColumnIndexOrThrow(Clientes_Schema.DIRECCION_FIELD))
                 }
-            modelo.codPostal = cursor.getString((cursor.getColumnIndexOrThrow(Clientes_Schema.CODIGOPOSTAL_FIELD)))
-            modelo.provincia = cursor.getString((cursor.getColumnIndexOrThrow(Clientes_Schema.PROVINCIA_FIELD)))
+            else{
+                modelo.direccion = null
+            }
+
+            if(!cursor.isNull(cursor.getColumnIndexOrThrow(Clientes_Schema.CODIGOPOSTAL_FIELD))){
+                modelo.codPostal=   cursor.getString((cursor.getColumnIndexOrThrow(Clientes_Schema.CODIGOPOSTAL_FIELD)))
+            }
+            else{
+                modelo.codPostal= null
+            }
+
+            if(!cursor.isNull(cursor.getColumnIndexOrThrow(Clientes_Schema.PROVINCIA_FIELD))){
+                modelo.provincia = cursor.getString((cursor.getColumnIndexOrThrow(Clientes_Schema.PROVINCIA_FIELD)))
+            }
+            else{
+                modelo.provincia= null
+            }
+            if(!cursor.isNull())
             modelo.poblacion = cursor.getString((cursor.getColumnIndexOrThrow(Clientes_Schema.POBLACION_FIELD)))
             return modelo
         }

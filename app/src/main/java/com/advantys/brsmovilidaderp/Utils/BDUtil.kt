@@ -186,3 +186,21 @@ class BDUtil @Inject constructor (private val dbHelper:BD){
 
 
 }
+
+fun Cursor.esNulo(nombreColumna:String):Boolean{
+    return this.isNull(this.getColumnIndexOrThrow(nombreColumna))
+}
+
+fun Cursor.getInt(nombreColumna: String):Int?{
+    return this.getInt(nombreColumna, null)
+}
+
+fun Cursor.getString(nombreColumna: String): String?{
+    if(this.esNulo(nombreColumna)) return null
+    else return this.getString(this.getColumnIndexOrThrow(nombreColumna))
+}
+
+fun Cursor.getInt(nombreColumna: String, valorDefecto: Int?):Int?{
+    if(this.esNulo(nombreColumna)) return valorDefecto
+    else return this.getInt(this.getColumnIndexOrThrow(nombreColumna))
+}
