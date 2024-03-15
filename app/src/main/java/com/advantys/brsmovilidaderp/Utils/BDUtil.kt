@@ -205,6 +205,7 @@ fun Cursor.getInt(nombreColumna: String, valorDefecto: Int?):Int?{
     else return this.getInt(this.getColumnIndexOrThrow(nombreColumna))
 }
 
-fun Cursor.getString(nombreColumna: String, valorDefecto: Int?):String?{
-
+fun Cursor.getString(nombreColumna: String, valorDefecto: String?):String?{
+if(this.esNulo(nombreColumna)) return valorDefecto
+    else return this.getString(this.getColumnIndexOrThrow(nombreColumna))
 }
