@@ -104,7 +104,7 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
 //                Consulta += " CLIENTES.NCLIENTE = RUTACLIENTES.NCLIENTE AND CLIENTES.NDELEGACION = RUTACLIENTES.NDELEGACION AND (RUTACLIENTES.CTIPORUTA = 'R' OR RUTACLIENTES.CTIPORUTA IS NULL) AND";
 //            }
 //        }
-        sql+= " ${Clientes_Schema.CLIENTE_FIELD} = ${RutaClientes_Schema.RUTACLIENTE_FIELD} AND ${Clientes_Schema.DELEGACION_FIELD} = ${RutaClientes_Schema.DELEGACION_FIELD} AND  (${RutaClientes_Schema.TIPORUTA_FIELD} = 'P' OR ${RutaClientes_Schema.TIPORUTA_FIELD} IS NULL)"
+        sql+= " ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.CLIENTE_FIELD} = ${RutaClientes_Schema.TABLE_NAME}.${Clientes_Schema.CLIENTE_FIELD} AND ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.DELEGACION_FIELD} = ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.DELEGACION_FIELD} AND  (${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.TIPORUTA_FIELD} = 'P' OR ${RutaClientes_Schema.TIPORUTA_FIELD} IS NULL)"
 
 //        if(VarGlobales.ModoVenta.equals("R")) Consulta += " CLIENTES.NCLIENTE = CABPEDIDOS.NCLIENTE AND CLIENTES.NDELEGACION = CABPEDIDOS.NDELEGACION AND";
 //
@@ -118,7 +118,7 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
      fun obtenerConsultaClientes(ordenar: ordenarPor):List<Clientes_Entity?>{
 
 
-       var  sql= "SELECT DISTINCT ${Clientes_Schema.NOMBRE_FIELD}, ${Clientes_Schema.CLIENTE_FIELD} FROM ${Clientes_Schema.TABLE_NAME}, ${RutaClientes_Schema.TABLE_NAME}, ${Rutas_Schema.TABLE_NAME}  "
+       var  sql=  "SELECT DISTINCT ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.NOMBRE_FIELD},${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.CLIENTE_FIELD} FROM ${Clientes_Schema.TABLE_NAME},${RutaClientes_Schema.TABLE_NAME},${Rutas_Schema.TABLE_NAME} "
         sql += ObtenerWhere()
 
 //        sql= " ORDER BY "
@@ -129,7 +129,6 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
 //            ordenarPor.nombre->sql= "${Clientes_Schema.TIENEPEDIDO_FIELD}, ${Clientes_Schema.NOMBRE_FIELD}"
 //            ordenarPor.ordenpersonalizado-> sql= "${Clientes_Schema.TIENEPEDIDO_FIELD}, ${Clientes_Schema.ORDEN_FIELD}"
 //        }
-      sql= " SELECT DISTINCT CLIENTES.CNOMBRE, CLIENTES.NCLIENTE FROM CLIENTES, RUTACLIENTES, RUTAS  WHERE CLIENTES.NCLIENTE = RUTACLIENTES.NCLIENTE  AND CLIENTES.NDELEGACION = RUTACLIENTES.NDELEGACION AND  (RUTACLIENTES.CTIPORUTA = 'P' OR RUTACLIENTES.CTIPORUTA IS NULL)"
         return databaseManager.query(sql){ cursor ->
             Clientes_Entity.fromCursor(cursor)
         }

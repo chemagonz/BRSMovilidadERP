@@ -72,16 +72,14 @@ data class Clientes_Entity(
     var orden: Int?=null) {
 
     companion object{
-        //Completar cuando se pueda
-
         fun fromCursor(cursor: Cursor): Clientes_Entity {
             var modelo = Clientes_Entity()
-            modelo.nClientes = cursor.getInt(Clientes_Schema.CLIENTE_FIELD)
-            modelo.nombre = cursor.getString(Clientes_Schema.NOMBRE_FIELD)
-            modelo.direccion = cursor.getString(Clientes_Schema.DIRECCION_FIELD)
-            modelo.codPostal = cursor.getString(Clientes_Schema.CODIGOPOSTAL_FIELD)
-            modelo.provincia = cursor.getString(Clientes_Schema.PROVINCIA_FIELD)
-            modelo.poblacion = cursor.getString(Clientes_Schema.POBLACION_FIELD)
+            modelo.nClientes = cursor.getInt(Clientes_Schema.CLIENTE_FIELD,null)
+            modelo.nombre = cursor.getString(Clientes_Schema.NOMBRE_FIELD,null)
+            modelo.direccion = cursor.getString(Clientes_Schema.DIRECCION_FIELD,null)
+            modelo.codPostal = cursor.getString(Clientes_Schema.CODIGOPOSTAL_FIELD,null)
+            modelo.provincia = cursor.getString(Clientes_Schema.PROVINCIA_FIELD,null)
+            modelo.poblacion = cursor.getString(Clientes_Schema.POBLACION_FIELD,null)
             return modelo
         }
     }

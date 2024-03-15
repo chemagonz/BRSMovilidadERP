@@ -34,7 +34,7 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     private lateinit var toggle: ActionBarDrawerToggle
 
     private val clientesViewModel: Cliente_ViewModel by viewModels()
-    private var tipoSeleccionado: ordenarPor?= ordenarPor.nombre
+
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -79,7 +79,7 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
 
         //al implementarlo se quita la funcionalidad de los botones del action bar. Mirar
-        clientesViewModel.onCreate()
+        clientesViewModel.obtenerConsultaClientes()
         clientesViewModel.ClientesModel.observe(this, Observer {
             binding.recyclerviewClientes.layoutManager = LinearLayoutManager(this)
             binding.recyclerviewClientes.adapter = Clientes_Adapter(it, clientesViewModel)
@@ -133,27 +133,26 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        return when(item.itemId){
+        when(item.itemId){
             R.id.ruta->{
-                tipoSeleccionado= ordenarPor.ruta
-                if(tipoSeleccionado !=null){
-                    clientesViewModel.obtenerConsultaClientes(tipoSeleccionado!!)
-                }
-               true
+                clientesViewModel.obtenerConsultaClientes(ordenarPor.ruta)
+                true
             }
-
             R.id.cliente->{
+                clientesViewModel.obtenerConsultaClientes(ordenarPor.cliente)
                 true
             }
-
             R.id.nombre->{
+              clientesViewModel.obtenerConsultaClientes(ordenarPor.nombre)
                 true
+            }
+            R.id.secuencia->{
+               clientesViewModel.obtenerConsultaClientes(ordenarPor.secuencia)
             }
             R.id.ordenpersonalizado->{
+                clientesViewModel.obtenerConsultaClientes(ordenarPor.ordenpersonalizado)
                 true
             }
-
             else->false
         }
         if (toggle.onOptionsItemSelected(item)) {

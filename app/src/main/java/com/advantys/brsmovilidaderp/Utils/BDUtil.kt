@@ -1,5 +1,6 @@
 package com.advantys.brsmovilidaderp.Utils
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.database.Cursor
 import com.advantys.brsmovilidaderp.Data.DataBase.BD
@@ -187,25 +188,30 @@ class BDUtil @Inject constructor (private val dbHelper:BD){
 
 }
 
-fun Cursor.esNulo(nombreColumna:String):Boolean{
-    return this.isNull(this.getColumnIndexOrThrow(nombreColumna))
+
+@SuppressLint("Range")
+fun Cursor.esNulocolumn(nombreColumna:String):Boolean{
+    return this.isNull(this.getColumnIndex(nombreColumna))
 }
 
 fun Cursor.getInt(nombreColumna: String):Int?{
     return this.getInt(nombreColumna, null)
 }
 
+@SuppressLint("Range")
 fun Cursor.getString(nombreColumna: String): String?{
-    if(this.esNulo(nombreColumna)) return null
-    else return this.getString(this.getColumnIndexOrThrow(nombreColumna))
+    if(this.esNulocolumn(nombreColumna)) return null
+    else return this.getString(this.getColumnIndex(nombreColumna))
 }
 
+@SuppressLint("Range")
 fun Cursor.getInt(nombreColumna: String, valorDefecto: Int?):Int?{
-    if(this.esNulo(nombreColumna)) return valorDefecto
-    else return this.getInt(this.getColumnIndexOrThrow(nombreColumna))
+    if(this.esNulocolumn(nombreColumna)) return valorDefecto
+    else return this.getInt(this.getColumnIndex(nombreColumna))
 }
 
+@SuppressLint("Range")
 fun Cursor.getString(nombreColumna: String, valorDefecto: String?):String?{
-if(this.esNulo(nombreColumna)) return valorDefecto
-    else return this.getString(this.getColumnIndexOrThrow(nombreColumna))
+    if(this.esNulocolumn(nombreColumna)) return valorDefecto
+        else return this.getString(this.getColumnIndex(nombreColumna))
 }
