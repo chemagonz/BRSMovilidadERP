@@ -19,6 +19,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="187dp"
             android:text="T"
+            android:textColor="@color/black"
             android:textAlignment="center"
             android:textSize="18sp" />
 
@@ -29,6 +30,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="6dp"
             android:text="nombreSerie"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
 

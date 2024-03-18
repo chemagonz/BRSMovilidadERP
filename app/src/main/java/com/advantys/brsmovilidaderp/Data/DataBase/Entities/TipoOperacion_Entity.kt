@@ -26,8 +26,6 @@ data class TipoOperacion_Entity(
     var actStkDep: String? = null,
     var actStkPro: String? = null,
     var actStkInc: String? = null) {
-
-
     companion object{
         fun fromCursorA(cursor: Cursor):TipoOperacion_Entity{
             var modelo= TipoOperacion_Entity()

@@ -15,21 +15,17 @@ import javax.inject.Inject
 @HiltViewModel
 class Cliente_ViewModel @Inject constructor(private val ClienteUsecase: Cliente_UseCase): ViewModel() {
     val ClientesModel= MutableLiveData<List<Cliente>>()
-    fun onCreate(){
-        viewModelScope.launch(Dispatchers.Default) {
-            val resultado= ClienteUsecase()
-            if(!resultado.isNullOrEmpty()) ClientesModel.postValue(resultado)
+    fun onCreate(){ viewModelScope.launch(Dispatchers.Default) {
+        val resultado= ClienteUsecase()
+        if(!resultado.isNullOrEmpty()) ClientesModel.postValue(resultado)
         }
     }
-    fun buscarClientes(tipo:columnas, query:String){
-        viewModelScope.launch(Dispatchers.Default) {
+    fun buscarClientes(tipo:columnas=columnas.Nombre, query:String){ viewModelScope.launch(Dispatchers.Default) {
             val resultado= ClienteUsecase(tipo, query)
             if (!resultado.isNullOrEmpty()) ClientesModel.postValue(resultado)
         }
     }
-
-    fun obtenerConsultaClientes(ordenar:ordenarPor=ordenarPor.ruta){
-        viewModelScope.launch(Dispatchers.Default) {
+    fun obtenerConsultaClientes(ordenar:ordenarPor=ordenarPor.ruta){ viewModelScope.launch(Dispatchers.Default) {
             val resultado= ClienteUsecase(ordenar)
             if(!resultado.isNullOrEmpty()) ClientesModel.postValue(resultado)
         }

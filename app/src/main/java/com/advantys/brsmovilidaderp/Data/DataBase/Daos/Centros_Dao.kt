@@ -18,5 +18,4 @@ class Centros_Dao @Inject constructor(private val databaseManager:BDUtil) {
             Centros_Entity.fromCursor(cursor)
         }
     }
-
 }

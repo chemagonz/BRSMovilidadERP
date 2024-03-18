@@ -1,12 +1,12 @@
 package com.advantys.brsmovilidaderp.UI.Views.Centros
 
-import com.advantys.brsmovilidaderp.UI.ViewModels.Centro_ViewModel
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.advantys.brsmovilidaderp.Domain.Models.Centro
 import com.advantys.brsmovilidaderp.R
+import com.advantys.brsmovilidaderp.UI.ViewModels.Centro_ViewModel
 import com.advantys.brsmovilidaderp.databinding.ItemCentrosBinding
 
 
@@ -15,9 +15,7 @@ class Centros_Adapter(private val centrosList: List<Centro?>, private val centro
         val layoutInflater = LayoutInflater.from(parent.context)
         return Centros_ViewHolder(layoutInflater.inflate(R.layout.item_centros, parent, false))
     }
-
     override fun getItemCount(): Int = centrosList.size
-
     override fun onBindViewHolder(holder: Centros_ViewHolder, position: Int) {
         holder.bind(centrosList[position])
         val item = centrosList[position]

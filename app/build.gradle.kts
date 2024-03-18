@@ -58,6 +58,7 @@ dependencies {
     //Dagger
     implementation("com.google.dagger:hilt-android:2.48")
     implementation("androidx.activity:activity:1.8.0")
+    implementation("com.google.firebase:firebase-firestore-ktx:24.10.3")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
 
     //Drawer

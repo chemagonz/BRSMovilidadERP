@@ -19,9 +19,6 @@ data class Series_Entity(
     var tarifa: Int?= null,
     var tipoLinea: String?= null
 ) {
-
-    //Cursor que recorrer todos los campos.
-
     companion object{
         fun fromCursor(cursor: Cursor):Series_Entity{
             var modelo= Series_Entity()
@@ -42,5 +39,4 @@ data class Series_Entity(
             return modelo
         }
     }
-
 }

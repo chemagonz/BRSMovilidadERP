@@ -11,6 +11,9 @@
     <item android:id="@+id/series"
         android:title="SERIES">
     </item>
+    <item android:id="@+id/ajustesAvanzados"
+        android:title="AJUSTES AVANZADOS">
+    </item>
     <item android:id="@+id/acercade"
         android:title="ACERCA DE">
     </item>

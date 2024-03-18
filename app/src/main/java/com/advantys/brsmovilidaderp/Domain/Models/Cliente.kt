@@ -68,6 +68,5 @@ class Cliente (
     var aplicaAzucar:String?= null,
     var orden: Int?=null
 )
-
 fun Clientes_Entity.toDomain()= Cliente(nClientes,delegacion,nombre, razonSocial, direccion, codPostal, poblacion, provincia, NIF, telefono1, telefono2, regimenIva, copiasAlb, copiasFac, categoria, formaPago, tarifa, riesgoConsumo, impoRiesgo, diasRiesgo, docsRiesgo, riesgoImpo, riesgoDias, riesgoDocs, aplicaPromgral, centro, facturaEnvases, aplicaAlcoholes, aplicapVerde, porCDTO, serieAlbaran, facturable, tipoOperacion, facturaInmediata, ultVenta, clienteFiscal, delegacionFiscal, DTOvtacaj, DTOportes, consumoAnt, consumoAct, desviacion, serieFactura, sector, actividad, avisos, estado, lmarcado, cmarcado, aplexcart, tipoEnvaseSemanal, latitud, longitud, pendiente, deuda, ultPedido, pendienteValidar, limiteRiesgo, tiplinenvaut, aplicaManipulacion, correo,aplicaAzucar,orden)
 

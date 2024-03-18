@@ -7,7 +7,6 @@ import javax.inject.Inject
 
 
 class TipoOperacion_Dao @Inject constructor(private val databaseManager:BDUtil){
-
      fun getAll():List<TipoOperacion_Entity?>{
         var sql= "SELECT * FROM ${TipoOperacion_Schema.TABLE_NAME} ORDER BY ${TipoOperacion_Schema.TIPOOPERACION_FIELD} ASC"
          return databaseManager.query(sql) { cursor ->

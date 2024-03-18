@@ -8,15 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.advantys.brsmovilidaderp.Domain.Models.Serie
 import com.advantys.brsmovilidaderp.UI.ViewModels.Serie_ViewModel
+import com.advantys.brsmovilidaderp.Utils.BDUtil
 import com.advantys.brsmovilidaderp.databinding.ActivityDetallesSerieBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DetallesSerie_Activity () : AppCompatActivity() {
-
-//    private val series= Series_Dao(this)
-//    private val seriesR= Serie_Repository(series)
-//    private val serieUse= Serie_UseCase(seriesR)
     private val serieViewModel : Serie_ViewModel by viewModels()
     lateinit var binding: ActivityDetallesSerieBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +29,7 @@ class DetallesSerie_Activity () : AppCompatActivity() {
             }
 
         })
+        BDUtil.KeyboardUtil.esconderTeclado(this)
         //ACTION BAR
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
@@ -53,13 +51,13 @@ class DetallesSerie_Activity () : AppCompatActivity() {
     }
     fun verDetallesSeries(serie: Serie){
         val detalles= StringBuilder()
-        binding.edCodigoSerie.setText(serie.cSeries)
-        binding.edAplicaIVA.setText(serie.aplicaIva)
+        binding.edCodigoSerie.setText( if(serie.cSeries !="0") serie.cSeries else "")
+        binding.edAplicaIVA.setText(if (serie.aplicaIva != "0") serie.aplicaIva else "")
         binding.edNombreSerie.setText(serie.nombre)
-        binding.edUltPedido.setText(serie.ultPedido.toString())
-        binding.edUltAlbaran.setText(serie.ultAlbaran.toString())
-        binding.edUltFactura.setText(serie.ultFactura.toString())
-        binding.edCentroSerie.setText(serie.centro.toString())
+        binding.edUltPedido.setText(if (serie.ultPedido != 0) serie.ultPedido.toString() else "")
+        binding.edUltAlbaran.setText(if (serie.ultAlbaran != 0) serie.ultAlbaran.toString() else "")
+        binding.edUltFactura.setText(if (serie.ultFactura != 0) serie.ultFactura.toString() else "")
+        binding.edCentroSerie.setText(if (serie.centro != 0) serie.centro.toString() else "")
         detalles.append(serie.artServicio).append("\n")
         detalles.append(serie.fabServicio)
         binding.edArtServicioSerie.setText(detalles.toString())

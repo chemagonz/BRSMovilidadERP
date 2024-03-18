@@ -13,7 +13,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object ModuleDagger {
-
     @Singleton
     @Provides
     fun provideBD(@ApplicationContext contexto: Context): BD {

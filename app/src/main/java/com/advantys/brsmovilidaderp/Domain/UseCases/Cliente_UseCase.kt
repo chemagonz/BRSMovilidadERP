@@ -19,7 +19,6 @@ class Cliente_UseCase @Inject constructor(private val repository: Clientes_Repos
     suspend operator fun invoke(tipo:columnas, query:String):List<Cliente>{
         return repository.getFilter(tipo,query)
     }
-
     suspend operator  fun invoke(ordenar: ordenarPor):List<Cliente>{
         return repository.obtenerConsultaCliente(ordenar)
     }

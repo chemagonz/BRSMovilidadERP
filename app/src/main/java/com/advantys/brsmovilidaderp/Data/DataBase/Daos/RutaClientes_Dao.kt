@@ -91,7 +91,6 @@ class RutaClientes_Dao {
 
 
     private fun obtenerConsultaClientes(dias: diasSemana,ordenar: ordenarPor,sql: String, marcado:Boolean, desmarcado: Boolean):String{
-
         var sql=""
         sql= "SELECT DISTINCT ${Clientes_Schema.NOMBRE_FIELD}, ${Clientes_Schema.CLIENTE_FIELD} FROM ${Clientes_Schema.TABLE_NAME}, ${RutaClientes_Schema.TABLE_NAME}, ${Rutas_Schema.TABLE_NAME}"
         ObtenerWhere(dias,marcado, desmarcado)
@@ -106,7 +105,6 @@ class RutaClientes_Dao {
         }
         return sql
     }
-
 }
 //enum class ordenarPor{
 //    ruta,

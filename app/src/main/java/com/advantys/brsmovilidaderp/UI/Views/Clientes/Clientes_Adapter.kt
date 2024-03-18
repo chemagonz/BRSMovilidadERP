@@ -18,7 +18,6 @@ class Clientes_Adapter(val clientesList:List<Cliente?>, private val clienteViewM
     }
 
     override fun getItemCount(): Int = clientesList.size
-
     override fun onBindViewHolder(holder: Clientes_ViewHolder, position: Int) {
 
         holder.bind(clientesList[position])
@@ -27,10 +26,8 @@ class Clientes_Adapter(val clientesList:List<Cliente?>, private val clienteViewM
         holder.binding.codigoCliente.text = item?.numClientes.toString()
     }
 }
-
 class Clientes_ViewHolder(view:View):RecyclerView.ViewHolder(view){
     val binding= ItemClientesprincipalBinding.bind(view)
-
     fun bind(clientesModel: Cliente?) {
         binding.nombreCliente.text = clientesModel?.nombre
         binding.codigoCliente.text = clientesModel?.numClientes.toString()

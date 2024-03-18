@@ -14,20 +14,17 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
             Clientes_Entity.fromCursor(cursor)
         }
     }
-
-    fun getFilter( columna: columnas,tipoConsulta:String?):List<Clientes_Entity?>{
+    fun getFilter(columna: columnas,tipoConsulta:String?):List<Clientes_Entity?>{
         val columnas= when(columna){
             columnas.Nombre-> Clientes_Schema.NOMBRE_FIELD
             columnas.Codigo-> Clientes_Schema.CLIENTE_FIELD
             columnas.todo-> return  getAll()
         }
-
-        var sql= "SELECT * FROM ${Clientes_Schema.TABLE_NAME} WHERE ${columnas} LIKE '%$tipoConsulta%'"
+        var sql= "SELECT * FROM ${Clientes_Schema.TABLE_NAME} WHERE ${columnas} LIKE '$tipoConsulta%'"
         return databaseManager.query(sql){cursor ->
             Clientes_Entity.fromCursor(cursor)
         }
     }
-
     //dias: diasSemana,marcado: Boolean, desmarcado:Boolean PONER EN OBTENER WHERE
     private fun ObtenerWhere():String{
 
@@ -116,8 +113,6 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
 
    // dias: diasSemana,marcado:Boolean, desmarcado: Boolean PONER EN OBTENER CONSULTA CUANDO SE ASGINE
      fun obtenerConsultaClientes(ordenar: ordenarPor):List<Clientes_Entity?>{
-
-
        var  sql=  "SELECT DISTINCT ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.NOMBRE_FIELD},${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.CLIENTE_FIELD} FROM ${Clientes_Schema.TABLE_NAME},${RutaClientes_Schema.TABLE_NAME},${Rutas_Schema.TABLE_NAME} "
         sql += ObtenerWhere()
 
@@ -133,7 +128,6 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
             Clientes_Entity.fromCursor(cursor)
         }
     }
-
 }
 
 //Se implementa una enum class para simplificar mejor la funcion, ya que guardo en una variable dos posibles columnas, asi no tengo que hacer dos veces lo mismo
@@ -149,7 +143,6 @@ enum class ordenarPor{
     secuencia,
     ordenpersonalizado
 }
-
 enum class diasSemana{
     lunes,
     martes,

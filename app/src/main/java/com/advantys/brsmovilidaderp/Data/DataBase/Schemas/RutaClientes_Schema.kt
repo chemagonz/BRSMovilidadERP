@@ -1,7 +1,6 @@
 package com.advantys.brsmovilidaderp.Data.DataBase.Schemas
 
 class RutaClientes_Schema {
-
     companion object {
         const val TABLE_NAME = "RUTACLIENTES"
         const val RUTACLIENTE_FIELD="NCLIENTE"

@@ -70,7 +70,6 @@ data class Clientes_Entity(
     var correo:String?=null,
     var aplicaAzucar:String?= null,
     var orden: Int?=null) {
-
     companion object{
         fun fromCursor(cursor: Cursor): Clientes_Entity {
             var modelo = Clientes_Entity()
@@ -83,5 +82,4 @@ data class Clientes_Entity(
             return modelo
         }
     }
-
 }

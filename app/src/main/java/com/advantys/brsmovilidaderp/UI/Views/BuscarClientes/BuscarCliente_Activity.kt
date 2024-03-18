@@ -17,33 +17,20 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class BuscarCliente_Activity : AppCompatActivity() {
-
-//    private val buscarClientesDao= BuscarClientes_Dao(this)
-//    private val buscarClientesRepository= BuscarClientes_Repository(buscarClientesDao)
-//    private val buscarClientesUseCase= BuscarCliente_UseCase(buscarClientesRepository)
     val buscarClientesVieModel: Cliente_ViewModel by viewModels()
-    //{ BuscarClienteViewModelFactoy(buscarClientesUseCase) }
-    private var tipoSeleccionado:columnas?= columnas.Nombre
-
-
-
-
+    private  lateinit var tipoSeleccionado: columnas
     lateinit var binding: ActivityBuscarClienteBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityBuscarClienteBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
-
         //ACTION BAR
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
             title = "BUSCAR CLIENTE"
             subtitle= "POR NOMBRE"
-
-
+            
         }
         buscarClientesVieModel.onCreate()
         buscarClientesVieModel.ClientesModel.observe(this , Observer {
@@ -94,11 +81,9 @@ class BuscarCliente_Activity : AppCompatActivity() {
                 showPopupMenu()
                 true
             }
-
             else -> super.onOptionsItemSelected(item)
         }
     }
-
     //Ventana para elegir por nombre o por codigo
     private fun showPopupMenu() {
         val popupMenu = PopupMenu(this, findViewById(R.id.busquedaPor))

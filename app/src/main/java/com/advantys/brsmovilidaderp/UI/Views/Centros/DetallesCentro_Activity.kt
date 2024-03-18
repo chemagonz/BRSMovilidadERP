@@ -8,23 +8,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.advantys.brsmovilidaderp.Domain.Models.Centro
 import com.advantys.brsmovilidaderp.UI.ViewModels.Centro_ViewModel
+import com.advantys.brsmovilidaderp.Utils.BDUtil
 import com.advantys.brsmovilidaderp.databinding.ActivityDetallesCentroBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DetallesCentro_Activity (): AppCompatActivity() {
-////    private val centros = Centros_Dao(this)
-//    private val centrosR= Centro_Repository(centros)
-//    private val centroUse= Centro_UseCase(centrosR)
-        val centroViewmodel: Centro_ViewModel by viewModels()
-
-    //BindingView
+    val centroViewmodel: Centro_ViewModel by viewModels()
     lateinit var binding: ActivityDetallesCentroBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetallesCentroBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        BDUtil.KeyboardUtil.esconderTeclado(this)
         val centroC= intent.getIntExtra("numCentro", 0)
         centroViewmodel.onCreateDetalles(centroC)
         centroViewmodel.centroModel.observe(this, Observer{ centro ->
@@ -38,7 +35,6 @@ class DetallesCentro_Activity (): AppCompatActivity() {
             setSubtitle("DETALLES")
         }
     }
-
     //Funcion para manejar botones
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {

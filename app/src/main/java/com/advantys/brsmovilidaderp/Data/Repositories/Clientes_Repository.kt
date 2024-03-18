@@ -9,7 +9,6 @@ import com.advantys.brsmovilidaderp.Domain.Models.toDomain
 import javax.inject.Inject
 
 class Clientes_Repository @Inject constructor(private val ClienteDao: Clientes_Dao) {
-
     suspend fun getAllClientes():List<Cliente>{
         val response: List<Clientes_Entity?> = ClienteDao.getAll()
         return response.filterNotNull().map { it.toDomain() }
@@ -18,11 +17,8 @@ class Clientes_Repository @Inject constructor(private val ClienteDao: Clientes_D
         val response :List<Clientes_Entity?> =ClienteDao.getFilter(columna,tipoConsulta)
         return response.filterNotNull().map { it.toDomain() }
     }
-
     suspend fun obtenerConsultaCliente(ordenar: ordenarPor):List<Cliente>{
         val response : List<Clientes_Entity?> = ClienteDao.obtenerConsultaClientes(ordenar)
         return response.filterNotNull().map { it.toDomain() }
     }
-
-
 }

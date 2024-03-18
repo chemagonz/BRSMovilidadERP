@@ -17,6 +17,7 @@
             android:layout_width="57dp"
             android:layout_height="34dp"
             android:text="T"
+            android:textColor="@color/black"
             android:textAlignment="center"
             android:textSize="18sp" />
 
@@ -27,6 +28,7 @@
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@id/cSerie"
             android:text="nombreSerie"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
 

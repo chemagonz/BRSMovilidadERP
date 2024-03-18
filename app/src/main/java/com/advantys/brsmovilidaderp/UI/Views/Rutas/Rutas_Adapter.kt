@@ -14,26 +14,24 @@ class Rutas_Adapter (private val rutaList: List<Ruta?>, private val rutaViewMode
         val layoutInflater= LayoutInflater.from(parent.context)
         return Rutas_ViewHolder(layoutInflater.inflate(R.layout.item_rutas, parent,false))
     }
-
     override fun getItemCount(): Int = rutaList.size
     override fun onBindViewHolder(holder: Rutas_ViewHolder, position: Int) {
         holder.bind(rutaList[position])
         val item = rutaList[position]
-        val ruta= item?.numRuta
         val valor= item?.lmarcado
-
         holder.binding.nombreRuta.text= item?.nombre
         holder.binding.cRuta.text= item?.numRuta.toString()
         holder.binding.check.isChecked= item?.lmarcado!!
-
-        holder.binding.check.setOnCheckedChangeListener { buttonView, isChecked ->
-                rutaViewModel.cambiarCheck(valor, ruta,isChecked)
+        holder.binding.check.setOnCheckedChangeListener {_, isChecked ->
+            // Obtener la ruta correspondiente al ViewHolder
+            val ruta = rutaList[holder.adapterPosition]
+            // Actualizar el estado del CheckBox en el ViewModel
+            rutaViewModel.cambiarCheck(valor, ruta?.numRuta,isChecked)
         }
     }
 }
 class Rutas_ViewHolder(view: View): RecyclerView.ViewHolder(view){
     val binding = ItemRutasBinding.bind(view)
-
     fun bind(rutasModel:Ruta?){
         binding.nombreRuta.text= rutasModel?.nombre
         binding.cRuta.text= rutasModel?.numRuta.toString()

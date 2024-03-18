@@ -15,14 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class Centros_Activity : AppCompatActivity() {
-    //Region variables
-//    private val centrosDao= Centros_Dao(this)
-//    private val centroRepository= Centro_Repository(centrosDao)
-//    private val centroUseCase = Centro_UseCase(centroRepository)
     val centroViewModel: Centro_ViewModel by viewModels()
-    //{ CentroViewModelFactory(centroUseCase) }
-    //Binding
-
     private lateinit var binding: ActivityCentrosBinding
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,8 +34,6 @@ class Centros_Activity : AppCompatActivity() {
             binding.centrosRecyclerView.adapter = Centros_Adapter(it, centroViewModel)
         })
     }
-
-
     //Manejo de botones del action bar
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {

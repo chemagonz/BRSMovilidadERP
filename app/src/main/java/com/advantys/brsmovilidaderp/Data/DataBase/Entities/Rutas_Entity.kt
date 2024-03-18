@@ -18,12 +18,6 @@ data class Rutas_Entity (
             return modelo
         }
     }
-
-
-
-
-
-
 }
 
 

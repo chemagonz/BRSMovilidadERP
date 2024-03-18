@@ -7,7 +7,5 @@ class Ruta (
     var nombre:String? = null,
     var lmarcado : Boolean? =null,
     var cmarcado:String?= null
-
 )
-
 fun Rutas_Entity.toDomain() = Ruta(nRuta, nombre, lmarcado, cmarcado)

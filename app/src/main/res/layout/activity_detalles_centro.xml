@@ -38,7 +38,7 @@
                     android:clickable="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:text="Codigo"
+                    android:text="Código"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="#000000"
                     android:textSize="15sp">
@@ -53,6 +53,9 @@
                     android:layout_marginRight="5sp"
                     android:inputType="text"
                     android:hint="COD"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:cursorVisible="false"
                     android:textAlignment="center"
                     android:textSize="14dp">
 
@@ -90,6 +93,9 @@
                     android:background="@drawable/plaintextdesign"
                     android:hint="N.I.F"
                     android:inputType="text"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:cursorVisible="false"
                     android:textAlignment="center"
                     android:textSize="14dp"></EditText>
             </LinearLayout>
@@ -119,6 +125,9 @@
                 android:hint="NOMBRE"
                 android:textAlignment="center"
                 android:textSize="14dp"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
                 android:background="@drawable/plaintextdesign">
 
             </EditText>
@@ -146,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10sp"
                 android:paddingStart="85sp"
-                android:text="Direccion"
+                android:text="Dirección"
                 android:textColor="#000000">
 
             </TextView>
@@ -161,6 +170,9 @@
                 android:textAlignment="center"
                 android:maxLines="5"
                 android:minLines="3"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
                 android:scrollbars="vertical" />
 
 
@@ -191,7 +203,7 @@
                 android:clickable="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:text="Telefono"
+                android:text="Teléfono"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#000000"
                 android:textSize="15sp">
@@ -206,6 +218,9 @@
                 android:background="@drawable/plaintextdesign"
                 android:hint="TELF"
                 android:inputType="text"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
                 android:textAlignment="center"
                 android:textSize="14dp">
 
@@ -257,6 +272,9 @@
                     android:background="@drawable/plaintextdesign"
                     android:hint="SERIE"
                     android:inputType="text"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:cursorVisible="false"
                     android:textAlignment="center"
                     android:textSize="14dp">
 
@@ -337,6 +355,9 @@
                     android:hint="VENTA"
                     android:textAlignment="center"
                     android:inputType="text"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:cursorVisible="false"
                     android:textSize="14dp">
 
                 </EditText>

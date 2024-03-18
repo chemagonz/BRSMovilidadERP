@@ -10,9 +10,7 @@ import com.advantys.brsmovilidaderp.UI.ViewModels.Cliente_ViewModel
 import com.advantys.brsmovilidaderp.databinding.ItemClientesBinding
 
 class BuscarClientes_Adapter(val buscarClienteList: List<Cliente?>, private val buscarClienteViewModel: Cliente_ViewModel): RecyclerView.Adapter<BuscarClientes_Adapter.BuscarClientes_ViewHolder>() {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BuscarClientes_ViewHolder {
-
         val layoutInflater = LayoutInflater.from(parent.context)
         return BuscarClientes_ViewHolder(
             layoutInflater.inflate(
@@ -22,7 +20,6 @@ class BuscarClientes_Adapter(val buscarClienteList: List<Cliente?>, private val 
             )
         )
     }
-
     override fun getItemCount(): Int = buscarClienteList.size
     override fun onBindViewHolder(holder: BuscarClientes_ViewHolder, position: Int) {
 
@@ -32,10 +29,8 @@ class BuscarClientes_Adapter(val buscarClienteList: List<Cliente?>, private val 
         holder.binding.codigoCliente.text = item?.numClientes.toString()
         //Realizar seleccionable abajo
     }
-
     class BuscarClientes_ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemClientesBinding.bind(view)
-
         fun bind(buscarClientesModel: Cliente?) {
             binding.nombreCliente.text = buscarClientesModel?.nombre
             binding.codigoCliente.text = buscarClientesModel?.numClientes.toString()

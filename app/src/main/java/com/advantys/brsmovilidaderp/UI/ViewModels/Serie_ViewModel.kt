@@ -18,15 +18,13 @@ class Serie_ViewModel @Inject constructor(private val serieUsecase: Serie_UseCas
     val seriesModel = MutableLiveData<List<Serie>>()
     val serieModel= MutableLiveData<Serie>()
 
-    fun onCreate(){
-        viewModelScope.launch{
+    fun onCreate(){ viewModelScope.launch{
             val resultado = serieUsecase()
             if(!resultado.isNullOrEmpty()) seriesModel.postValue(resultado)
         }
     }
 
-    fun onCreateDetalles(serie: String?){
-        viewModelScope.launch (Dispatchers.Default){
+    fun onCreateDetalles(serie: String?){ viewModelScope.launch (Dispatchers.Default){
             val resultado= serieUsecase(serie)
             if(resultado!=null){
                 serieModel.postValue(resultado)
@@ -39,13 +37,3 @@ class Serie_ViewModel @Inject constructor(private val serieUsecase: Serie_UseCas
         context.startActivity(intent)
     }
 }
-//class SerieViewModelFactory (private val serieUsecase: Serie_UseCase) : ViewModelProvider.Factory {
-//
-//    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-//        if (modelClass.isAssignableFrom(Serie_ViewModel::class.java)) {
-//            @Suppress("UNCHECKED_CAST")
-//            return Serie_ViewModel(serieUsecase) as T
-//        }
-//        throw IllegalArgumentException("Unknown ViewModel class")
-//    }
-//}

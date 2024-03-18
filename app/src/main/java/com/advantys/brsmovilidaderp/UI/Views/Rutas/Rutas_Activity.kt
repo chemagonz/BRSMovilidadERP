@@ -1,11 +1,15 @@
 package com.advantys.brsmovilidaderp.UI.Views.Rutas
 
+
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.CheckBox
+import android.widget.LinearLayout
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,12 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class Rutas_Activity : AppCompatActivity() {
-
-//    private val rutasDao= Rutas_Dao(this)
-//    private val rutaRepository= Ruta_Repository(rutasDao)
-//    private val rutaUsecase= Ruta_UseCase(rutaRepository)
     val rutaViewModel: Ruta_ViewModel by viewModels()
-//    { RutaViewModelFactory(rutaUsecase)  }
 
     private lateinit var binding: ActivityRutasBinding
     @SuppressLint("MissingInflatedId")
@@ -30,7 +29,6 @@ class Rutas_Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityRutasBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         //ACTION BAR
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
@@ -42,20 +40,18 @@ class Rutas_Activity : AppCompatActivity() {
         rutaViewModel.rutasModel.observe(this, Observer {
             binding.rutasRecyclerView.layoutManager = LinearLayoutManager(this)
             binding.rutasRecyclerView.adapter= Rutas_Adapter(it,rutaViewModel)
-            //binding.rutasRecyclerView.addItemDecoration(CustomItemDecoration(0)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       )
-
         })
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
-
     // Manejar las acciones del menu
     @SuppressLint("ResourceType")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.calendario->{
+                mostrarMenuDiasSemana()
                 true
             }
             android.R.id.home -> {
@@ -66,6 +62,31 @@ class Rutas_Activity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+    private fun mostrarMenuDiasSemana() {
+        val diasSemana = arrayOf("Todos","Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo")
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Seleccione los días")
+        val layout = LinearLayout(this)
+        layout.orientation = LinearLayout.VERTICAL
+        layout.setPadding(0, 32, 0, 0)
+
+        for (dia in diasSemana) {
+            val checkBox = CheckBox(this)
+            checkBox.text = dia
+            checkBox.setOnCheckedChangeListener { _, isChecked ->
+                // Aquí puedes manejar la lógica para aplicar los cambios inmediatamente
+                if (isChecked) {
+                    // Código para cuando se selecciona el checkbox
+                } else {
+                    // Código para cuando se deselecciona el checkbox
+                }
+            }
+            layout.addView(checkBox)
+        }
+        builder.setView(layout)
+        val dialog = builder.create()
+        dialog.show()
     }
 }
 

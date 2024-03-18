@@ -5,13 +5,17 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Rect
 import android.os.Bundle
+import android.text.InputType
 import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
+import android.widget.EditText
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -20,30 +24,28 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.advantys.brsmovilidaderp.Data.DataBase.Daos.ordenarPor
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Cliente_ViewModel
+import com.advantys.brsmovilidaderp.UI.Views.AjustesAvanzados.AjustesAvanzados_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Centros.Centros_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Rutas.Rutas_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Series.Series_Activity
 import com.advantys.brsmovilidaderp.databinding.ActivityClientesBinding
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @AndroidEntryPoint
 class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var binding: ActivityClientesBinding
     private lateinit var drawer: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
-
     private val clientesViewModel: Cliente_ViewModel by viewModels()
-
-
-
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityClientesBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-
         //val toolbar: androidx.appcompat.widget.Toolbar = findViewById((R.id.toolbar_main))
        // setSupportActionBar(toolbar)
         drawer = findViewById(R.id.drawerLayout)
@@ -76,18 +78,13 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             }
             true
         }
-
-
         //al implementarlo se quita la funcionalidad de los botones del action bar. Mirar
         clientesViewModel.obtenerConsultaClientes()
         clientesViewModel.ClientesModel.observe(this, Observer {
             binding.recyclerviewClientes.layoutManager = LinearLayoutManager(this)
             binding.recyclerviewClientes.adapter = Clientes_Adapter(it, clientesViewModel)
         })
-
-
     }
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.centros -> {
@@ -95,7 +92,6 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 startActivity(intent)
                 finish()
             }
-
             R.id.rutas -> {
                 val intent = Intent(this, Rutas_Activity::class.java)
                 startActivity(intent)
@@ -107,31 +103,48 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 startActivity(intent)
                 finish()
             }
-
-            R.id.acercade -> {
-//                val intent= Intent(this, AcercaDe_Activity:class.java)
-//                startActivity(intent)
-//                finish()
+            R.id.ajustesAvanzados->{
+                val builder= AlertDialog.Builder(this)
+                builder.setTitle("Inserte contraseña")
+                val input= EditText(this)
+                input.inputType = InputType.TYPE_CLASS_NUMBER
+                builder.setView(input)
+                builder.setPositiveButton("Aceptar") { dialog, which ->
+                    val password= input.text.toString()
+                    if(validatePassword(password)){
+                        val intent= Intent(this, AjustesAvanzados_Activity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                    else{
+                        Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                builder.setNegativeButton("Cancelar"){ dialog, which ->
+                    dialog.cancel()}
+                builder.show()
             }
-
+            R.id.acercade -> {
+            }
         }
         drawer.closeDrawer(GravityCompat.START)
         return true
-
     }
+    private fun validatePassword(password: String): Boolean {
 
-
-
+        val sdf = SimpleDateFormat("ddMMyy", Locale.getDefault())
+        val currentDate = sdf.format(Date())
+      val expectedPassword = "$currentDate${10}"
+      return password == expectedPassword
+    }
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         toggle.syncState()
     }
-
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         toggle.onConfigurationChanged(newConfig)
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.ruta->{
@@ -160,7 +173,6 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         }
         return super.onOptionsItemSelected(item)
     }
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.popup_menu, menu)
         val menuItem = menu.findItem(R.id.ordenar)
@@ -170,9 +182,7 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         }
         return true
     }
-
     private fun showPopupMenu() {
-
         val anchorView = findViewById<View>(R.id.ordenar)
         val popupMenu = PopupMenu(this, anchorView)
         popupMenu.menuInflater.inflate(R.menu.popup_menu, popupMenu.menu)
@@ -201,5 +211,4 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         }
         popupMenu.show()
     }
-
 }

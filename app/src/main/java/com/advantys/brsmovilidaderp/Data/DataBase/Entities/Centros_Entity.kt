@@ -15,18 +15,7 @@ import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.Centros_Schema
      var serie:String? = null,
      var aplicaCargo: Boolean =true,
      var ventaMenorA: Int?= null) {
-
-
-    //Cursor para recorrer los centros disponibles
     companion object{
-//        fun fromCursorA(cursor: Cursor):Centros_Entity{
-//        var modelo= Centros_Entity()
-//
-//        modelo.nombre= cursor.getString(cursor.getColumnIndexOrThrow(Centros_Schema.NOMBRE_FIELD))
-//        return modelo
-
-
-        //cambiar
         fun fromCursor(cursor: Cursor): Centros_Entity{
             var modelo= Centros_Entity()
             modelo.nCentro= cursor.getInt(cursor.getColumnIndexOrThrow(Centros_Schema.CENTRO_FIELD))
