@@ -1,11 +1,12 @@
 package com.advantys.brsmovilidaderp.Domain.UseCases
 
 import com.advantys.brsmovilidaderp.Data.Repositories.Centro_Repository
+import com.advantys.brsmovilidaderp.Data.Repositories.Serie_Repository
 import com.advantys.brsmovilidaderp.Domain.Models.Centro
 import com.advantys.brsmovilidaderp.Domain.Models.Serie
 import javax.inject.Inject
 
-class Centro_UseCase   @Inject constructor (private val repository: Centro_Repository) {
+class Centro_UseCase   @Inject constructor (private val repository: Centro_Repository, private val repositorySerie: Serie_Repository) {
     suspend operator fun invoke(): List<Centro>{
         val centro = repository.getAllCentros()
         return if(centro.isNullOrEmpty())
@@ -18,9 +19,9 @@ class Centro_UseCase   @Inject constructor (private val repository: Centro_Repos
             return centroDet ?: throw NoSuchElementException("Error")
         }?:throw IllegalArgumentException("no puede ser nulo")
     }
-    suspend operator fun invoke(codigo:String?): Serie {
-        codigo?.let {
-            val nombreSerie = repository.getSerieNombre(codigo)
+    suspend operator fun invoke(serie:String?): Serie? {
+        serie?.let {
+            val nombreSerie = repositorySerie.getSerieNombre(serie)
             return nombreSerie ?: throw NoSuchElementException("Error")
         }?:throw IllegalArgumentException("no puede ser nulo")
     }

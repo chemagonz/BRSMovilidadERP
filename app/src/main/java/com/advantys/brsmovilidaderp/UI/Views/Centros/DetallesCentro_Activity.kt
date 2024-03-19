@@ -1,6 +1,5 @@
 package com.advantys.brsmovilidaderp.UI.Views.Centros
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
@@ -26,7 +25,6 @@ class DetallesCentro_Activity (): AppCompatActivity() {
         centroViewmodel.onCreateDetalles(centroC)
         centroViewmodel.centroModel.observe(this, Observer{ centro ->
             centro?.let { verDetallesCentro(centro) }
-
         })
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
@@ -40,8 +38,7 @@ class DetallesCentro_Activity (): AppCompatActivity() {
         when (item.itemId) {
             android.R.id.home -> {
                 //Boton para atras
-                val intent = Intent(this, Centros_Activity::class.java)
-                startActivity(intent)
+                finish()
                 return true
             }
         }
@@ -50,6 +47,7 @@ class DetallesCentro_Activity (): AppCompatActivity() {
     //Funcion para ver los detalles de cada centro, stringbuilder para editText multiline
     private fun verDetallesCentro(centro: Centro) {
         val detalles = StringBuilder()
+
         binding.edCodigoCentro.setText(centro.numCentro.toString())
         binding.edNIFCentros.setText(centro.nif)
         binding.edNombreCentro.setText(centro.nombre)
@@ -60,6 +58,8 @@ class DetallesCentro_Activity (): AppCompatActivity() {
         binding.edCalleCPMunicProvin.setText(detalles.toString())
         binding.edTelefonoCentro.setText(centro.telefono.toString())
         binding.edSerieCentro.setText(centro.serie)
+        //detalles.append(centroViewmodel.onCreateSerie(centro.serie))
+        //binding.edSerieCentro.setText(detalles)
         binding.edVentaMenorA.setText(centro.ventaMenorA.toString())
         binding.checkAplicaCargo.isChecked = centro.aplicaCargo
     }

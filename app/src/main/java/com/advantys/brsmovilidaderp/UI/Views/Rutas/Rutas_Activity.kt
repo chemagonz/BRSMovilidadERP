@@ -2,7 +2,6 @@ package com.advantys.brsmovilidaderp.UI.Views.Rutas
 
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -15,7 +14,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Ruta_ViewModel
-import com.advantys.brsmovilidaderp.UI.Views.Clientes.Clientes_Activity
 import com.advantys.brsmovilidaderp.databinding.ActivityRutasBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -56,8 +54,7 @@ class Rutas_Activity : AppCompatActivity() {
             }
             android.R.id.home -> {
                 //Boton para atras
-                val intent = Intent(this, Clientes_Activity::class.java)
-                startActivity(intent)
+                finish()
                 return true
             }
             else -> super.onOptionsItemSelected(item)
@@ -70,17 +67,11 @@ class Rutas_Activity : AppCompatActivity() {
         val layout = LinearLayout(this)
         layout.orientation = LinearLayout.VERTICAL
         layout.setPadding(0, 32, 0, 0)
-
         for (dia in diasSemana) {
             val checkBox = CheckBox(this)
             checkBox.text = dia
             checkBox.setOnCheckedChangeListener { _, isChecked ->
-                // Aquí puedes manejar la lógica para aplicar los cambios inmediatamente
-                if (isChecked) {
-                    // Código para cuando se selecciona el checkbox
-                } else {
-                    // Código para cuando se deselecciona el checkbox
-                }
+
             }
             layout.addView(checkBox)
         }
@@ -89,6 +80,7 @@ class Rutas_Activity : AppCompatActivity() {
         dialog.show()
     }
 }
+
 
 
 

@@ -1,6 +1,5 @@
 package com.advantys.brsmovilidaderp.UI.Views.Series
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
@@ -42,8 +41,7 @@ class DetallesSerie_Activity () : AppCompatActivity() {
         when (item.itemId) {
             android.R.id.home -> {
                 //Boton para atras
-                val intent = Intent(this, Series_Activity::class.java)
-                startActivity(intent)
+                finish()
                 return true
             }
         }

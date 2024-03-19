@@ -11,26 +11,12 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class TipoOperacion_Activity : AppCompatActivity() {
-
-
-//private val tipoOperacion= TipoOperacion_Dao(this)
-//private val tipoOperacionRepository = TipoOperacion_Repository(tipoOperacion)
-//private val tipoOperacionUseCase= TipoOperacion_UseCase(tipoOperacionRepository)
     val tipoOperacionViewModel: TipoOperacion_ViewModel by viewModels()
-//    { TipoOperacionViewModelFactory(tipoOperacionUseCase) }
-    //{ TipoOperacionViewModelFactory(tipoOperacionUseCase) }
-    //Binding
     private lateinit var binding : ActivityTipoOperacionBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        //Region variables
         super.onCreate(savedInstanceState)
         binding= ActivityTipoOperacionBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-      /* val tipoOperacionList:List<TipoOperacion_Entity?> = tipoOperacion.getAll()
-        initRecyclerView(tipoOperacionList)
-                                            */
         //ACTION BAR
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)

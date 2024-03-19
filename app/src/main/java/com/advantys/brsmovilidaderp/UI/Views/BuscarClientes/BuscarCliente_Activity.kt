@@ -1,6 +1,5 @@
 package com.advantys.brsmovilidaderp.UI.Views.BuscarClientes
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.advantys.brsmovilidaderp.Data.DataBase.Daos.columnas
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Cliente_ViewModel
-import com.advantys.brsmovilidaderp.UI.Views.Clientes.Clientes_Activity
 import com.advantys.brsmovilidaderp.databinding.ActivityBuscarClienteBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -80,8 +78,6 @@ class BuscarCliente_Activity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home->{
-                val intent=Intent(this, Clientes_Activity::class.java)
-                startActivity(intent)
                 finish()
                 true
             }

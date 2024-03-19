@@ -30,6 +30,7 @@ class AjustesAvanzados_Activity : AppCompatActivity() {
                 //Boton para atras
                 val intent = Intent(this, Clientes_Activity::class.java)
                 startActivity(intent)
+                finish()
                 return true
             }
         }

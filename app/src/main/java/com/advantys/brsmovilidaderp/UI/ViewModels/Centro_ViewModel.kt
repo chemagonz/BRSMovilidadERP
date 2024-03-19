@@ -18,7 +18,7 @@ import javax.inject.Inject
 class Centro_ViewModel @Inject constructor(private var centroUsecase: Centro_UseCase): ViewModel() {
     val centrosModel = MutableLiveData<List<Centro>>()
     val centroModel = MutableLiveData<Centro>()
-    val serieModel= MutableLiveData<Serie>()
+    val serieModel= MutableLiveData<Serie?>()
     fun onCreate(){ viewModelScope.launch(Dispatchers.Default ) {
             val resultado = centroUsecase()
             if(!resultado.isNullOrEmpty()) centrosModel.postValue(resultado)
@@ -32,7 +32,15 @@ class Centro_ViewModel @Inject constructor(private var centroUsecase: Centro_Use
             }
         }
     }
-    fun btnDetalle(item: Centro?,context: Context) {
+    fun onCreateSerie(serie: String?){
+        viewModelScope.launch { (Dispatchers.Default)
+            val resultado= centroUsecase(serie)
+            if(resultado!=null){
+                serieModel.postValue(resultado)
+            }
+        }
+    }
+    fun btnDetalle(item: Centro?, context: Context) {
         val intent = Intent(context,DetallesCentro_Activity::class.java)
         intent.putExtra("numCentro", item?.numCentro)
         context.startActivity(intent)

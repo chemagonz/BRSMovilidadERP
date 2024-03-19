@@ -25,7 +25,6 @@ import com.advantys.brsmovilidaderp.Data.DataBase.Daos.ordenarPor
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Cliente_ViewModel
 import com.advantys.brsmovilidaderp.UI.Views.AjustesAvanzados.AjustesAvanzados_Activity
-import com.advantys.brsmovilidaderp.UI.Views.BuscarClientes.BuscarCliente_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Centros.Centros_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Rutas.Rutas_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Series.Series_Activity
@@ -92,18 +91,18 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             R.id.centros -> {
                 val intent = Intent(this, Centros_Activity::class.java)
                 startActivity(intent)
-                finish()
+
             }
             R.id.rutas -> {
                 val intent = Intent(this, Rutas_Activity::class.java)
                 startActivity(intent)
-                finish()
+
             }
 
             R.id.series -> {
                 val intent = Intent(this, Series_Activity::class.java)
                 startActivity(intent)
-                finish()
+
             }
             R.id.ajustesAvanzados->{
                 val builder= AlertDialog.Builder(this)
@@ -116,7 +115,7 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                     if(validatePassword(password)){
                         val intent= Intent(this, AjustesAvanzados_Activity::class.java)
                         startActivity(intent)
-                        finish()
+
                     }
                     else{
                         Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show()
@@ -143,12 +142,6 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.busqueda->{
-                val intent=Intent(this, BuscarCliente_Activity::class.java)
-                startActivity(intent)
-                finish()
-                true
-            }
 
             R.id.ruta->{
                 clientesViewModel.obtenerConsultaClientes(ordenarPor.ruta)
@@ -180,6 +173,7 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_configuracionclientes, menu)
         val menuItem = menu.findItem(R.id.ordenar)
+
         menuItem?.setOnMenuItemClickListener {
             showPopupMenu()
             true
