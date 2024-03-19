@@ -18,15 +18,15 @@ class Rutas_Adapter (private val rutaList: List<Ruta?>, private val rutaViewMode
     override fun onBindViewHolder(holder: Rutas_ViewHolder, position: Int) {
         holder.bind(rutaList[position])
         val item = rutaList[position]
-        val valor= item?.lmarcado
+        holder.binding.check.isChecked= item?.lmarcado?:false
         holder.binding.nombreRuta.text= item?.nombre
         holder.binding.cRuta.text= item?.numRuta.toString()
-        holder.binding.check.isChecked= item?.lmarcado!!
+
         holder.binding.check.setOnCheckedChangeListener {_, isChecked ->
             // Obtener la ruta correspondiente al ViewHolder
             val ruta = rutaList[holder.adapterPosition]
             // Actualizar el estado del CheckBox en el ViewModel
-            rutaViewModel.cambiarCheck(valor, ruta?.numRuta,isChecked)
+            rutaViewModel.cambiarCheck(ruta?.numRuta,isChecked)
         }
     }
 }

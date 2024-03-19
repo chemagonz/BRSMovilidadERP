@@ -142,7 +142,6 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-
             R.id.ruta->{
                 clientesViewModel.obtenerConsultaClientes(ordenarPor.ruta)
                 return true

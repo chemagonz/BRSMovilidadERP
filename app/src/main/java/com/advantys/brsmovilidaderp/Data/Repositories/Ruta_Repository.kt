@@ -11,7 +11,7 @@ class Ruta_Repository @Inject constructor(private val rutasDao: Rutas_Dao) {
         val response: List<Rutas_Entity?> = rutasDao.getAll()
         return response.filterNotNull().map { it.toDomain() }
     }
-    suspend fun getUpdateRutas(valor:Boolean?, ruta:String?){
-        rutasDao.updateCheck(valor, ruta)
+    suspend fun getUpdateRutas(ruta:String?,valor:Boolean?){
+        rutasDao.updateCheck(ruta, valor)
     }
 }

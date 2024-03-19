@@ -12,8 +12,8 @@ class Rutas_Dao @Inject constructor(private val databaseManager: BDUtil) {
             Rutas_Entity.fromCursor(cursor)
         }
     }
-    fun updateCheck(valor:Boolean?, ruta: String?){
+    fun updateCheck(ruta: String?,valor:Boolean?){
         var sql= "UPDATE ${Rutas_Schema.TABLE_NAME} SET  ${Rutas_Schema.LMARCADO_FIELD} ='${valor}' WHERE ${Rutas_Schema.RUTA_FIELD} ='${ruta}'"
-         databaseManager.queryUp(sql)
+         return databaseManager.queryUp(sql)
     }
 }

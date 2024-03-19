@@ -11,9 +11,9 @@ class Ruta_UseCase @Inject constructor(private val repository: Ruta_Repository) 
             listOf<Ruta>()
         } else ruta
     }
-    suspend operator fun invoke(valor: Boolean?, ruta:String?) {
+    suspend operator fun invoke(ruta:String?,valor: Boolean?) {
         ruta?.let {
-            val rutaUp= repository.getUpdateRutas(valor,ruta)
+            val rutaUp= repository.getUpdateRutas(ruta,valor)
             return rutaUp?: throw NoSuchElementException("Error")
         }?:throw IllegalArgumentException("no puede ser nulo")
     }
