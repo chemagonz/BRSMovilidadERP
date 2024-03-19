@@ -20,9 +20,8 @@ class Ruta_ViewModel @Inject constructor(private val rutaUsecase: Ruta_UseCase):
             if(!resultado.isNullOrEmpty()) rutasModel.postValue(resultado)
         }
     }
-
     fun cambiarCheck(valor:Boolean?, ruta:String?, check:Boolean?){ viewModelScope.launch  (Dispatchers.Default){
-            rutaUsecase(check,ruta)
+          val resultado=rutaUsecase(check,ruta)
         }
     }
 }

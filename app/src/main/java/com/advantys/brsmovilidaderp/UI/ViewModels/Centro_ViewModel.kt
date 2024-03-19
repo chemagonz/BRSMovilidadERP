@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.advantys.brsmovilidaderp.Domain.Models.Centro
+import com.advantys.brsmovilidaderp.Domain.Models.Serie
 import com.advantys.brsmovilidaderp.Domain.UseCases.Centro_UseCase
 import com.advantys.brsmovilidaderp.UI.Views.Centros.DetallesCentro_Activity
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,6 +18,7 @@ import javax.inject.Inject
 class Centro_ViewModel @Inject constructor(private var centroUsecase: Centro_UseCase): ViewModel() {
     val centrosModel = MutableLiveData<List<Centro>>()
     val centroModel = MutableLiveData<Centro>()
+    val serieModel= MutableLiveData<Serie>()
     fun onCreate(){ viewModelScope.launch(Dispatchers.Default ) {
             val resultado = centroUsecase()
             if(!resultado.isNullOrEmpty()) centrosModel.postValue(resultado)

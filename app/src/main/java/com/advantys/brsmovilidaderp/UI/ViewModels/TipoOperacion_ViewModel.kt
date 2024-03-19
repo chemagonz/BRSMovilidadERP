@@ -12,7 +12,6 @@ import javax.inject.Inject
 @HiltViewModel
 class TipoOperacion_ViewModel @Inject constructor(private val tipoOperacionUsecase: TipoOperacion_UseCase) : ViewModel() {
     val tipoOperacionModel = MutableLiveData<List<tipoOperacion>>()
-
     fun onCreate(){ viewModelScope.launch {
             val resultado = tipoOperacionUsecase()
             if(!resultado.isNullOrEmpty()) tipoOperacionModel.postValue(resultado)

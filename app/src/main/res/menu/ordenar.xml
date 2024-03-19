@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/busqueda"
+        android:icon="@drawable/search"
+        android:title="buscarclientes"
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.ImageButton"/>
     <item
         android:id="@+id/ordenar"
         android:icon="@drawable/despliegue"
         android:title="Configuración"
         app:showAsAction="always" />
+
 </menu>

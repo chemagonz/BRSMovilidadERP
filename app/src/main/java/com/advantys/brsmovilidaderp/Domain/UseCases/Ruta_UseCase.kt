@@ -11,7 +11,6 @@ class Ruta_UseCase @Inject constructor(private val repository: Ruta_Repository) 
             listOf<Ruta>()
         } else ruta
     }
-
     suspend operator fun invoke(valor: Boolean?, ruta:String?) {
         ruta?.let {
             val rutaUp= repository.getUpdateRutas(valor,ruta)

@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
     fun getAll():List<Clientes_Entity?>{
-        var sql= "SELECT * FROM ${Clientes_Schema.TABLE_NAME} ORDER BY ${Clientes_Schema.CLIENTE_FIELD} DESC"
+        var sql= "SELECT ${Clientes_Schema.CLIENTE_FIELD}, ${Clientes_Schema.NOMBRE_FIELD},${Clientes_Schema.DIRECCION_FIELD}, ${Clientes_Schema.CODIGOPOSTAL_FIELD},${Clientes_Schema.PROVINCIA_FIELD},${Clientes_Schema.POBLACION_FIELD} FROM ${Clientes_Schema.TABLE_NAME} ORDER BY ${Clientes_Schema.CLIENTE_FIELD} DESC"
         return databaseManager.query(sql){ cursor ->
             Clientes_Entity.fromCursor(cursor)
         }

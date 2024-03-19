@@ -24,17 +24,16 @@
             android:exported="false" />
         <activity
             android:name=".UI.Views.Clientes.Clientes_Activity"
-            android:exported="false">
-
-        </activity>
-        <activity
-            android:name=".UI.Views.BuscarClientes.BuscarCliente_Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>                                                                                                               P
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".UI.Views.BuscarClientes.BuscarCliente_Activity"
+            android:exported="false">
         </activity>
         <activity
             android:name=".UI.Views.Rutas.Rutas_Activity"

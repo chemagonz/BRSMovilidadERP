@@ -23,15 +23,14 @@ class Serie_ViewModel @Inject constructor(private val serieUsecase: Serie_UseCas
             if(!resultado.isNullOrEmpty()) seriesModel.postValue(resultado)
         }
     }
-
-    fun onCreateDetalles(serie: String?){ viewModelScope.launch (Dispatchers.Default){
+    fun onCreateDetalles(serie:String?){ viewModelScope.launch (Dispatchers.Default){
             val resultado= serieUsecase(serie)
             if(resultado!=null){
                 serieModel.postValue(resultado)
             }
         }
     }
-    fun btnDetalle(item: Serie?, context: Context){
+    fun btnDetalle(item: Serie?, context:Context){
         val intent = Intent(context, DetallesSerie_Activity::class.java)
         intent.putExtra("cSeries", item?.cSeries)
         context.startActivity(intent)

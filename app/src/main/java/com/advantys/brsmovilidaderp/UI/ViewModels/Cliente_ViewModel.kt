@@ -25,6 +25,7 @@ class Cliente_ViewModel @Inject constructor(private val ClienteUsecase: Cliente_
             if (!resultado.isNullOrEmpty()) ClientesModel.postValue(resultado)
         }
     }
+    //Se inicializa por ordenar ruta, valor predeterminado
     fun obtenerConsultaClientes(ordenar:ordenarPor=ordenarPor.ruta){ viewModelScope.launch(Dispatchers.Default) {
             val resultado= ClienteUsecase(ordenar)
             if(!resultado.isNullOrEmpty()) ClientesModel.postValue(resultado)

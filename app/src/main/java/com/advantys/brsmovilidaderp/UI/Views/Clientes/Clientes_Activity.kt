@@ -25,6 +25,7 @@ import com.advantys.brsmovilidaderp.Data.DataBase.Daos.ordenarPor
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Cliente_ViewModel
 import com.advantys.brsmovilidaderp.UI.Views.AjustesAvanzados.AjustesAvanzados_Activity
+import com.advantys.brsmovilidaderp.UI.Views.BuscarClientes.BuscarCliente_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Centros.Centros_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Rutas.Rutas_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Series.Series_Activity
@@ -59,6 +60,7 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         toggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.title="CLIENTES"
 
         val navigationView: NavigationView = binding.navView
         navigationView.setNavigationItemSelectedListener(this)
@@ -130,13 +132,7 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         drawer.closeDrawer(GravityCompat.START)
         return true
     }
-    private fun validatePassword(password: String): Boolean {
 
-        val sdf = SimpleDateFormat("ddMMyy", Locale.getDefault())
-        val currentDate = sdf.format(Date())
-      val expectedPassword = "$currentDate${10}"
-      return password == expectedPassword
-    }
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         toggle.syncState()
@@ -147,24 +143,32 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
+            R.id.busqueda->{
+                val intent=Intent(this, BuscarCliente_Activity::class.java)
+                startActivity(intent)
+                finish()
+                true
+            }
+
             R.id.ruta->{
                 clientesViewModel.obtenerConsultaClientes(ordenarPor.ruta)
-                true
+                return true
             }
             R.id.cliente->{
                 clientesViewModel.obtenerConsultaClientes(ordenarPor.cliente)
-                true
+                return true
             }
             R.id.nombre->{
               clientesViewModel.obtenerConsultaClientes(ordenarPor.nombre)
-                true
+                return true
             }
             R.id.secuencia->{
                clientesViewModel.obtenerConsultaClientes(ordenarPor.secuencia)
+                return true
             }
             R.id.ordenpersonalizado->{
                 clientesViewModel.obtenerConsultaClientes(ordenarPor.ordenpersonalizado)
-                true
+                return true
             }
             else->false
         }
@@ -174,19 +178,20 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         return super.onOptionsItemSelected(item)
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.popup_menu, menu)
+        menuInflater.inflate(R.menu.menu_configuracionclientes, menu)
         val menuItem = menu.findItem(R.id.ordenar)
         menuItem?.setOnMenuItemClickListener {
             showPopupMenu()
             true
         }
         return true
-    }
-    private fun showPopupMenu() {
-        val anchorView = findViewById<View>(R.id.ordenar)
-        val popupMenu = PopupMenu(this, anchorView)
-        popupMenu.menuInflater.inflate(R.menu.popup_menu, popupMenu.menu)
 
+    }
+
+    private fun showPopupMenu() {
+       val anchorView= findViewById<View>(R.id.ordenar)
+        val popupMenu = PopupMenu(this, anchorView)
+        popupMenu.menuInflater.inflate(R.menu.menu_configuracionclientes, popupMenu.menu)
         popupMenu.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.ordenarpor ->{
@@ -210,5 +215,12 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             }
         }
         popupMenu.show()
+    }
+    //Función para validar contraseña que se tiene que introducir previamente para acceder a la pantalla ajustes avanzados
+    private fun validatePassword(password: String): Boolean {
+        val sdf = SimpleDateFormat("ddMMyy", Locale.getDefault())
+        val currentDate = sdf.format(Date())
+        val expectedPassword = "$currentDate${10}"
+        return password == expectedPassword
     }
 }
