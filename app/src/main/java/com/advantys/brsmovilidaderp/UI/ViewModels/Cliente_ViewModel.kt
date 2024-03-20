@@ -31,8 +31,14 @@ class Cliente_ViewModel @Inject constructor(private val ClienteUsecase: Cliente_
         }
     }}
     fun buscarClientes(tipo:columnas=columnas.Nombre, query:String){ viewModelScope.launch(Dispatchers.Default) {
-            val resultado= ClienteUsecase(tipo, query)
-            if (!resultado.isNullOrEmpty()) ClientesModel.postValue(resultado)
+        viewModelScope.launch(Dispatchers.Default) {
+            val resultado = ClienteUsecase(tipo, query)
+            if (resultado.isEmpty() && query.isNotEmpty()) { // Verificar si la lista está vacía y la consulta no lo está
+                ClientesModel.postValue(emptyList()) // Asignar una lista vacía a ClientesModel
+            } else {
+                ClientesModel.postValue(resultado)
+            }
+        }
         }
     }
     //Se inicializa por ordenar ruta, valor predeterminado

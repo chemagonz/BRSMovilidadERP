@@ -45,7 +45,6 @@ class BuscarClientes_Adapter(val buscarClienteList: List<Cliente?>, private val 
             val direccion= buscarClientesModel?.direccion?: ""
             val provincia= buscarClientesModel?.provincia?: ""
             val poblacion= buscarClientesModel?.poblacion?: ""
-
             val direccionCompleta = "$direccion $provincia $poblacion"
             binding.direccionCompleta.text = direccionCompleta
 
