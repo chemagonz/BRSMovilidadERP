@@ -19,6 +19,11 @@ class Clientes_Repository @Inject constructor(private val ClienteDao: Clientes_D
     }
     suspend fun obtenerConsultaCliente(ordenar: ordenarPor):List<Cliente>{
         val response : List<Clientes_Entity?> = ClienteDao.obtenerConsultaClientes(ordenar)
-        return response.filterNotNull().map { it.toDomain() }
+        if (response.isNullOrEmpty()){
+            return emptyList()
+        }else{
+            return response.filterNotNull().map { it.toDomain() }
+        }
+
     }
 }
