@@ -81,7 +81,7 @@ class BuscarCliente_Activity : AppCompatActivity() {
                 finish()
                 true
             }
-            R.id.busquedaPor -> {
+            R.id.busquedaPor-> {
                 showPopupMenu()
                 true
             }

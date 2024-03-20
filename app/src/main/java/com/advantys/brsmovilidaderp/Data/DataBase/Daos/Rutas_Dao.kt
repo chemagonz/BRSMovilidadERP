@@ -13,7 +13,8 @@ class Rutas_Dao @Inject constructor(private val databaseManager: BDUtil) {
         }
     }
     fun updateCheck(ruta: String?,valor:Boolean?){
-        var sql= "UPDATE ${Rutas_Schema.TABLE_NAME} SET  ${Rutas_Schema.LMARCADO_FIELD} ='${valor}' WHERE ${Rutas_Schema.RUTA_FIELD} ='${ruta}'"
-         return databaseManager.queryUp(sql)
+        val valorConvertido = if (valor == true) 1 else 0
+        var sql= "UPDATE ${Rutas_Schema.TABLE_NAME} SET  ${Rutas_Schema.LMARCADO_FIELD} ='${valorConvertido}' WHERE ${Rutas_Schema.RUTA_FIELD} ='${ruta}'"
+        databaseManager.queryUp(sql)
     }
 }

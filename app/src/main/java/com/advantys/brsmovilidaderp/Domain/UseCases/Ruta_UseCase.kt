@@ -17,4 +17,6 @@ class Ruta_UseCase @Inject constructor(private val repository: Ruta_Repository) 
             return rutaUp?: throw NoSuchElementException("Error")
         }?:throw IllegalArgumentException("no puede ser nulo")
     }
+
+
 }

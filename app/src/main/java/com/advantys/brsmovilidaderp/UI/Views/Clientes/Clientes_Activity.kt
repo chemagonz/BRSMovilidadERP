@@ -25,6 +25,7 @@ import com.advantys.brsmovilidaderp.Data.DataBase.Daos.ordenarPor
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Cliente_ViewModel
 import com.advantys.brsmovilidaderp.UI.Views.AjustesAvanzados.AjustesAvanzados_Activity
+import com.advantys.brsmovilidaderp.UI.Views.BuscarClientes.BuscarCliente_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Centros.Centros_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Rutas.Rutas_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Series.Series_Activity
@@ -169,20 +170,25 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         }
         return super.onOptionsItemSelected(item)
     }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_configuracionclientes, menu)
+        menuInflater.inflate(R.menu.buscar, menu)
         val menuItem = menu.findItem(R.id.ordenar)
-
+        val busquedaItem= menu.findItem(R.id.busqueda)
+        busquedaItem?.setOnMenuItemClickListener {
+            val intent= Intent(this, BuscarCliente_Activity::class.java)
+            startActivity(intent)
+            true
+        }
         menuItem?.setOnMenuItemClickListener {
             showPopupMenu()
             true
         }
-        return true
-
+       return true
     }
-
     private fun showPopupMenu() {
-       val anchorView= findViewById<View>(R.id.ordenar)
+        val anchorView = findViewById<View>(R.id.ordenar)
         val popupMenu = PopupMenu(this, anchorView)
         popupMenu.menuInflater.inflate(R.menu.menu_configuracionclientes, popupMenu.menu)
         popupMenu.setOnMenuItemClickListener { menuItem ->

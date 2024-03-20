@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.advantys.brsmovilidaderp.R
+import com.advantys.brsmovilidaderp.UI.ViewModels.Cliente_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.Ruta_ViewModel
 import com.advantys.brsmovilidaderp.Utils.Utils
 import com.advantys.brsmovilidaderp.databinding.ActivityRutasBinding
@@ -22,6 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class Rutas_Activity : AppCompatActivity() {
     val rutaViewModel: Ruta_ViewModel by viewModels()
+    val clienteViewmodel: Cliente_ViewModel by viewModels()
 
     private lateinit var binding: ActivityRutasBinding
     @SuppressLint("MissingInflatedId")
@@ -55,7 +57,6 @@ class Rutas_Activity : AppCompatActivity() {
                 true
             }
             android.R.id.home -> {
-                //Boton para atras
                 finish()
                 return true
             }
