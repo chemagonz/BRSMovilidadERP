@@ -17,6 +17,16 @@
         android:theme="@style/Theme.BRSMovilidadERP"
         tools:targetApi="31">
         <activity
+            android:name=".UI.Views.Clientes.DetallesClientes_Activity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".UI.ViewModels.AjustesAvanzados_ViewModel"
             android:exported="false" />
         <activity
@@ -25,16 +35,11 @@
         <activity
             android:name=".UI.Views.Clientes.Clientes_Activity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".UI.Views.BuscarClientes.BuscarCliente_Activity"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".UI.Views.Rutas.Rutas_Activity"
             android:exported="false" />

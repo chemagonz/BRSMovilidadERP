@@ -25,7 +25,6 @@ class Centros_Adapter(private val centrosList: List<Centro?>, private val centro
         holder.binding.numCentro.text= item?.numCentro.toString()
         holder.binding.verDetallesButton.setOnClickListener {
                 centroViewModel.btnDetalle(item, holder.itemView.context)
-
         }
     }
 }

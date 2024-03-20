@@ -20,10 +20,13 @@ class Clientes_Adapter(val clientesList:List<Cliente?>, private val clienteViewM
     override fun getItemCount(): Int = clientesList.size
     override fun onBindViewHolder(holder: Clientes_ViewHolder, position: Int) {
 
-        holder.bind(clientesList[position], position==elementoSeleccionado)
+
         val item = clientesList[position]
         holder.binding.nombreCliente.text = item?.nombre
         holder.binding.codigoCliente.text = item?.numClientes.toString()
+        holder.binding.botonDetalles.setOnClickListener {
+            clienteViewModel.btnDetalle(item, holder.itemView.context)
+        }
 
         holder.itemView.setOnClickListener {
             val elementoSeleccionadoAnterior= elementoSeleccionado
@@ -31,6 +34,7 @@ class Clientes_Adapter(val clientesList:List<Cliente?>, private val clienteViewM
             notifyItemChanged(elementoSeleccionadoAnterior)
             notifyItemChanged(elementoSeleccionado)
         }
+        holder.bind(clientesList[position], position==elementoSeleccionado)
 
     }
 }

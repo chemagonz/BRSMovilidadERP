@@ -26,6 +26,15 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
             Clientes_Entity.fromCursor(cursor)
         }
     }
+
+    fun getDetalles(cliente: Int?): Clientes_Entity?{
+        var sql= "SELECT ${Clientes_Schema.CLIENTE_FIELD}, ${Clientes_Schema.NIF_FIELD}, ${Clientes_Schema.NOMBRE_FIELD}, ${Clientes_Schema.RAZON_SOCIAL},${Clientes_Schema.DIRECCION_FIELD},${Clientes_Schema.PROVINCIA_FIELD},${Clientes_Schema.POBLACION_FIELD}, ${Clientes_Schema.CODIGOPOSTAL_FIELD}, ${Clientes_Schema.TELEFONO1_FIELD}, ${Clientes_Schema.TELEFONO2_FIELD} FROM ${Clientes_Schema.TABLE_NAME} WHERE ${Clientes_Schema.CLIENTE_FIELD} = '${cliente}'"
+        return databaseManager.queryDetalles(sql){ cursor ->
+            Clientes_Entity.fromCursor(cursor)
+        }
+    }
+
+
     //dias: diasSemana,marcado: Boolean, desmarcado:Boolean PONER EN OBTENER WHERE
     private fun ObtenerWhere():String{
         var sql = "WHERE"

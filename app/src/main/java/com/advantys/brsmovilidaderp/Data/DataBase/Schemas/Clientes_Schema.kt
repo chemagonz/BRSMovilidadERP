@@ -6,7 +6,7 @@ class Clientes_Schema {
         const val CLIENTE_FIELD="NCLIENTE"
         const val DELEGACION_FIELD= "NDELEGACION"
         const val NOMBRE_FIELD="CNOMBRE"
-        const val RAZON_SOCIAL="CRAZON SOCIAL"
+        const val RAZON_SOCIAL="CRAZONSOCIAL"
         const val DIRECCION_FIELD= "CDIRECCION"
         const val CODIGOPOSTAL_FIELD= "CCODPOSTAL"
         const val POBLACION_FIELD= "CPOBLACION"

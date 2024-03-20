@@ -23,4 +23,10 @@ class Cliente_UseCase @Inject constructor(private val repository: Clientes_Repos
     suspend operator  fun invoke(ordenar: ordenarPor):List<Cliente>{
         return repository.obtenerConsultaCliente(ordenar)
     }
+    suspend operator fun invoke(cliente:Int?): Cliente {
+        cliente?.let {
+            val clienteDet= repository.getDetalles(cliente)
+            return clienteDet ?: throw NoSuchElementException("Error")
+        }?:throw IllegalArgumentException("no puede ser nulo")
+    }
 }

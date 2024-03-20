@@ -32,14 +32,14 @@ class Centro_ViewModel @Inject constructor(private var centroUsecase: Centro_Use
             }
         }
     }
-    fun onCreateSerie(serie: String?){
-        viewModelScope.launch { (Dispatchers.Default)
-            val resultado= centroUsecase(serie)
-            if(resultado!=null){
-                serieModel.postValue(resultado)
-            }
-        }
-    }
+//    fun onCreateSerie(serie: String?){
+//        viewModelScope.launch { (Dispatchers.Default)
+//            val resultado= centroUsecase(serie)
+//            if(resultado!=null){
+//                serieModel.postValue(resultado)
+//            }
+//        }
+//    }
     fun btnDetalle(item: Centro?, context: Context) {
         val intent = Intent(context,DetallesCentro_Activity::class.java)
         intent.putExtra("numCentro", item?.numCentro)

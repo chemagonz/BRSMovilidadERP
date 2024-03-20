@@ -24,6 +24,9 @@ class Clientes_Repository @Inject constructor(private val ClienteDao: Clientes_D
         }else{
             return response.filterNotNull().map { it.toDomain() }
         }
-
+    }
+    suspend fun getDetalles(cliente:Int?):Cliente?{
+        val response: Clientes_Entity? = ClienteDao.getDetalles(cliente)
+        return response?.toDomain()
     }
 }
