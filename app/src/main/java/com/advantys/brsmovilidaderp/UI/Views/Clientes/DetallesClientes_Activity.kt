@@ -1,6 +1,7 @@
 package com.advantys.brsmovilidaderp.UI.Views.Clientes
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -35,6 +36,17 @@ class DetallesClientes_Activity : AppCompatActivity() {
             setSubtitle("DETALLES")
         }
     }
+    //Funcion para manejar botones
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                //Boton para atras
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
     private fun verDetallesCliente(cliente: Cliente) {
         val detalles = StringBuilder()
         binding.edCodigoCliente.setText(cliente.numClientes.toString())
@@ -49,6 +61,5 @@ class DetallesClientes_Activity : AppCompatActivity() {
         binding.edCalleCPMunicProvinClientes.setText(detalles.toString())
         binding.edTelefono1Cliente.setText(cliente.telefono1)
         binding.edTelefono1Cliente.setText(cliente.telefono2)
-
     }
 }

@@ -26,7 +26,6 @@ class Series_Adapter(private val seriesList:List<Serie?>, private val serieViewM
         }
     }
 }
-
 class Series_ViewHolder(view: View): RecyclerView.ViewHolder(view){
     val binding = ItemSeriesBinding.bind(view)
     fun bind(seriesModel: Serie?){
