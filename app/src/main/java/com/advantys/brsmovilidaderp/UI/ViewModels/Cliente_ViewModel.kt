@@ -42,10 +42,16 @@ class Cliente_ViewModel @Inject constructor(private val ClienteUsecase: Cliente_
             ClientesModel.postValue(resultado)
         }
     }
+    fun updateMarcado(cliente:Int?,valor:Boolean?) {
+        viewModelScope.launch(Dispatchers.Default) {
+            ClienteUsecase(cliente,valor)
+        }
+    }
 
     fun btnDetalle(item: Cliente?, context: Context) {
         val intent = Intent(context, DetallesClientes_Activity::class.java)
         intent.putExtra("numClientes", item?.numClientes)
         context.startActivity(intent)
     }
+
 }

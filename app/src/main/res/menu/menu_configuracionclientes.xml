@@ -28,9 +28,19 @@
 
     <item android:id="@+id/mostrarclientes"
         android:title="Mostrar clientes por...">
-    </item>
-    <item android:id="@+id/restaurarclientes"
-        android:title="Restaurar clientes">
+        <menu>
+        <item
+            android:id="@+id/Marcados"
+            android:title="Marcados">
+
+        </item>
+        <item
+            android:id="@+id/Desmarcados"
+            android:title="Desmarcados"/>
+        <item
+            android:id="@+id/Todos"
+            android:title="Todos"/>
+        </menu>
     </item>
 
     <item android:id="@+id/marcardesmarcar"

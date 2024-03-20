@@ -187,6 +187,7 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         }
        return true
     }
+
     private fun showPopupMenu() {
         val anchorView = findViewById<View>(R.id.ordenar)
         val popupMenu = PopupMenu(this, anchorView)
@@ -196,16 +197,18 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 R.id.ordenarpor ->{
                     true
                 }
-                R.id.mostrarclientes ->
-                    true
+                R.id.mostrarclientes ->{
 
-                R.id.restaurarclientes ->
                     true
+                }
+                R.id.marcardesmarcar ->{
+                    Toast.makeText(this, "Clientes desmarcados", Toast.LENGTH_SHORT).show()
+                    true
+                }
 
-                R.id.marcardesmarcar ->
-                    true
 
                 R.id.desmarcartodos ->
+
                     true
 
                 else -> {

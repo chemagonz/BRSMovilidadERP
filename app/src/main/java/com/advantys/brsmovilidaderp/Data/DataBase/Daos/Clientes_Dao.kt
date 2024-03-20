@@ -34,6 +34,11 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
         }
     }
 
+    fun updateMarcado(cliente: Int?,valor:Boolean?){
+        var sql= "UPDATE ${Clientes_Schema.TABLE_NAME} SET  ${Clientes_Schema.LMARCADO_FIELD} ='${valor}'"
+        databaseManager.queryUp(sql)
+    }
+
 
     //dias: diasSemana,marcado: Boolean, desmarcado:Boolean PONER EN OBTENER WHERE
     private fun ObtenerWhere():String{
