@@ -2,10 +2,11 @@ package com.advantys.brsmovilidaderp.Data.Repositories
 
 import com.advantys.brsmovilidaderp.Data.DataBase.Daos.Clientes_Dao
 import com.advantys.brsmovilidaderp.Data.DataBase.Daos.columnas
-import com.advantys.brsmovilidaderp.Data.DataBase.Daos.ordenarPor
 import com.advantys.brsmovilidaderp.Data.DataBase.Entities.Clientes_Entity
 import com.advantys.brsmovilidaderp.Domain.Models.Cliente
 import com.advantys.brsmovilidaderp.Domain.Models.toDomain
+import com.advantys.brsmovilidaderp.Utils.mostrarPor
+import com.advantys.brsmovilidaderp.Utils.ordenarPor
 import javax.inject.Inject
 
 class Clientes_Repository @Inject constructor(private val ClienteDao: Clientes_Dao) {
@@ -17,8 +18,8 @@ class Clientes_Repository @Inject constructor(private val ClienteDao: Clientes_D
         val response :List<Clientes_Entity?> =ClienteDao.getFilter(columna,tipoConsulta)
         return response.filterNotNull().map { it.toDomain() }
     }
-    suspend fun obtenerConsultaCliente(ordenar: ordenarPor):List<Cliente>{
-        val response : List<Clientes_Entity?> = ClienteDao.obtenerConsultaClientes(ordenar)
+    suspend fun obtenerConsultaCliente(ordenar: ordenarPor, mostrarPor: mostrarPor ):List<Cliente>{
+        val response : List<Clientes_Entity?> = ClienteDao.obtenerConsultaClientes(ordenar,mostrarPor)
         if (response.isNullOrEmpty()){
             return emptyList()
         }else{
@@ -29,8 +30,10 @@ class Clientes_Repository @Inject constructor(private val ClienteDao: Clientes_D
         val response: Clientes_Entity? = ClienteDao.getDetalles(cliente)
         return response?.toDomain()
     }
-
-    suspend fun updateMarcado(cliente:Int?,valor:Boolean?){
-        ClienteDao.updateMarcado( cliente,valor)
+    suspend fun updateMarcado(cliente:Int?,valor:Boolean?, delegacion: Int?){
+            ClienteDao.updateMarcado(cliente,valor,delegacion)
+    }
+    suspend fun updateDesmarcado(){
+         ClienteDao.updateDesmarcado()
     }
 }

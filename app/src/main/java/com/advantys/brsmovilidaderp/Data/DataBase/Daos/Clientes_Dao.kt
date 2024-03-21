@@ -6,6 +6,8 @@ import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.RutaClientes_Schema
 import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.Rutas_Schema
 import com.advantys.brsmovilidaderp.Utils.BDUtil
 import com.advantys.brsmovilidaderp.Utils.Utils
+import com.advantys.brsmovilidaderp.Utils.mostrarPor
+import com.advantys.brsmovilidaderp.Utils.ordenarPor
 import javax.inject.Inject
 
 class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
@@ -34,53 +36,66 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
         }
     }
 
-    fun updateMarcado(cliente: Int?,valor:Boolean?){
-        var sql= "UPDATE ${Clientes_Schema.TABLE_NAME} SET  ${Clientes_Schema.LMARCADO_FIELD} ='${valor}'"
+    fun updateMarcado(cliente: Int?, valor:Boolean?, delegacion:Int?){
+        val valorConvertido = if (valor == true) 1 else 0
+        var sql= "UPDATE ${Clientes_Schema.TABLE_NAME} SET  ${Clientes_Schema.LMARCADO_FIELD} ='${valorConvertido}' WHERE ${Clientes_Schema.CLIENTE_FIELD} = '${cliente}' AND ${Clientes_Schema.DELEGACION_FIELD} = '${delegacion}'"
         databaseManager.queryUp(sql)
     }
 
-
+    fun updateDesmarcado(){
+        var sql= "UPDATE ${Clientes_Schema.TABLE_NAME} SET ${Clientes_Schema.LMARCADO_FIELD} = 0"
+        databaseManager.queryUp(sql)
+    }
     //dias: diasSemana,marcado: Boolean, desmarcado:Boolean PONER EN OBTENER WHERE
     private fun ObtenerWhere():String{
-        var sql = "WHERE"
+        var sql = "WHERE "
         try {
-//        if(!marcado && desmarcado){
-//            sql= "${Clientes_Schema.LMARCADO_FIELD} = 0 AND"
+            when(Utils.mostrar){
+                mostrarPor.desmarcado->{
+                    sql+= "${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.LMARCADO_FIELD} = 0 AND "
+                }
+                mostrarPor.marcado->{
+                    sql+= "${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.LMARCADO_FIELD} = 1 AND "
+                }
+                else->false
+            }
+//        if(mostrarPor.marcado && Utils.desmarcado){
+//            sql+= "${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.LMARCADO_FIELD} = 0 AND"
 //
+//       }
+//        if (!Utils.desmarcado && Utils.marcado){
+//            sql += "${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.LMARCADO_FIELD} = 1 AND"
 //        }
-//        if (!desmarcado && marcado){
-//            sql= "${Clientes_Schema.LMARCADO_FIELD} = 1 AND"
-//        }
-            //sql += "${RutaClientes_Schema.RUTA_FIELD} = ${Rutas_Schema.RUTA_FIELD} AND "
-            val dias = Utils.Dias
-            if (dias.todos != true) {
+            sql += "${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.RUTA_FIELD} = ${Rutas_Schema.TABLE_NAME}.${Rutas_Schema.RUTA_FIELD} AND "
+
+            if (Utils.todos != true) {
                 sql += " ("
                 var haydia = false
-                if (dias.lunes == true) {
+                if (Utils.lunes == true) {
                     sql += "${RutaClientes_Schema.DIASEMANA_FIELD} = 'L' OR "
                     haydia = true
                 }
-                if (dias.martes == true) {
+                if (Utils.martes == true) {
                     sql += "${RutaClientes_Schema.DIASEMANA_FIELD} = 'M' OR "
                     haydia = true
                 }
-                if (dias.miercoles == true) {
+                if (Utils.miercoles == true) {
                     sql += "${RutaClientes_Schema.DIASEMANA_FIELD} = 'X' OR "
                     haydia = true
                 }
-                if (dias.jueves == true) {
+                if (Utils.jueves == true) {
                     sql += "${RutaClientes_Schema.DIASEMANA_FIELD} = 'J' OR "
                     haydia = true
                 }
-                if (dias.viernes == true) {
+                if (Utils.viernes == true) {
                     sql += "${RutaClientes_Schema.DIASEMANA_FIELD} = 'V' OR "
                     haydia = true
                 }
-                if (dias.sabado == true) {
+                if (Utils.sabado == true) {
                     sql += "${RutaClientes_Schema.DIASEMANA_FIELD} = 'S' OR "
                     haydia = true
                 }
-                if (dias.domingo == true) {
+                if (Utils.domingo == true) {
                     sql += "${RutaClientes_Schema.DIASEMANA_FIELD} = 'D' OR "
                     haydia = true
                 }
@@ -122,8 +137,10 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
     }
 
    // dias: diasSemana,marcado:Boolean, desmarcado: Boolean PONER EN OBTENER CONSULTA CUANDO SE ASGINE
-     fun obtenerConsultaClientes(ordenar: ordenarPor):List<Clientes_Entity?>{
-       var  sql=  "SELECT DISTINCT ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.NOMBRE_FIELD},${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.CLIENTE_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.RUTA_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.DIASEMANA_FIELD} FROM ${Clientes_Schema.TABLE_NAME},${RutaClientes_Schema.TABLE_NAME},${Rutas_Schema.TABLE_NAME} "
+     fun obtenerConsultaClientes(ordenar: ordenarPor, mostrarPor: mostrarPor):List<Clientes_Entity?>{
+
+       //var  sql=  "SELECT DISTINCT ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.NOMBRE_FIELD},${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.CLIENTE_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.RUTA_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.DIASEMANA_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.LMARCADO_FIELD} FROM ${Clientes_Schema.TABLE_NAME},${RutaClientes_Schema.TABLE_NAME},${Rutas_Schema.TABLE_NAME} "
+       var  sql=  "SELECT DISTINCT ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.NOMBRE_FIELD},${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.CLIENTE_FIELD},${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.LMARCADO_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.DELEGACION_FIELD} FROM ${Clientes_Schema.TABLE_NAME},${RutaClientes_Schema.TABLE_NAME},${Rutas_Schema.TABLE_NAME} "
         sql += ObtenerWhere()
 //        sql= " ORDER BY "
 //        when(ordenar){
@@ -144,13 +161,7 @@ enum class columnas{
     Codigo,
     todo
 }
-enum class ordenarPor{
-    ruta,
-    cliente,
-    nombre,
-    secuencia,
-    ordenpersonalizado
-}
+
 //enum class diasSemana{
 //    lunes,
 //    martes,

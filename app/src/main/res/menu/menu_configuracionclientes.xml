@@ -30,15 +30,15 @@
         android:title="Mostrar clientes por...">
         <menu>
         <item
-            android:id="@+id/Marcados"
+            android:id="@+id/marcados"
             android:title="Marcados">
 
         </item>
         <item
-            android:id="@+id/Desmarcados"
+            android:id="@+id/desmarcados"
             android:title="Desmarcados"/>
         <item
-            android:id="@+id/Todos"
+            android:id="@+id/todos"
             android:title="Todos"/>
         </menu>
     </item>

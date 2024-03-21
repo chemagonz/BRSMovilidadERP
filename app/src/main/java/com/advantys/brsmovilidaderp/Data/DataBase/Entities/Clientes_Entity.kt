@@ -2,6 +2,7 @@ package com.advantys.brsmovilidaderp.Data.DataBase.Entities
 
 import android.database.Cursor
 import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.Clientes_Schema
+import com.advantys.brsmovilidaderp.Utils.getBoolean
 import com.advantys.brsmovilidaderp.Utils.getInt
 import com.advantys.brsmovilidaderp.Utils.getString
 import java.time.format.DateTimeFormatter
@@ -79,6 +80,8 @@ data class Clientes_Entity(
             modelo.codPostal = cursor.getString(Clientes_Schema.CODIGOPOSTAL_FIELD,null)
             modelo.provincia = cursor.getString(Clientes_Schema.PROVINCIA_FIELD,null)
             modelo.poblacion = cursor.getString(Clientes_Schema.POBLACION_FIELD,null)
+            modelo.lmarcado= cursor.getBoolean(Clientes_Schema.LMARCADO_FIELD, null)
+            modelo.delegacion= cursor.getInt(Clientes_Schema.DELEGACION_FIELD,null)
             return modelo
         }
     }

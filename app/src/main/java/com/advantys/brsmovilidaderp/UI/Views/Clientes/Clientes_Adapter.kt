@@ -33,10 +33,14 @@ class Clientes_Adapter(val clientesList:List<Cliente?>, private val clienteViewM
             elementoSeleccionado= holder.adapterPosition
             notifyItemChanged(elementoSeleccionadoAnterior)
             notifyItemChanged(elementoSeleccionado)
+            elementoSeleccionado
         }
         holder.bind(clientesList[position], position==elementoSeleccionado)
-
     }
+       fun getElementoSeleccionado(): Cliente? {
+           return if(elementoSeleccionado!=-1) clientesList[elementoSeleccionado]
+           else null
+       }
 }
 class Clientes_ViewHolder(view:View):RecyclerView.ViewHolder(view){
     val binding= ItemClientesprincipalBinding.bind(view)

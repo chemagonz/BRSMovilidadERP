@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/cobros"
+        android:title="Cobros"
+        android:icon="@drawable/search">
+    </item>
+    <item android:id="@+id/consultar"
+        android:title="Consultar"
+        android:icon="@drawable/search">
+    </item>
+    <item android:id="@+id/Importar"
+        android:title="Importar"
+        android:icon="@drawable/search">
+    </item>
+    <item android:id="@+id/Exportar"
+        android:title="Exportar"
+        android:icon="@drawable/search">
+    </item>
+
+</menu>

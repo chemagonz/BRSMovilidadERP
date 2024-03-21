@@ -21,7 +21,6 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.advantys.brsmovilidaderp.Data.DataBase.Daos.ordenarPor
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Cliente_ViewModel
 import com.advantys.brsmovilidaderp.UI.Views.AjustesAvanzados.AjustesAvanzados_Activity
@@ -29,6 +28,9 @@ import com.advantys.brsmovilidaderp.UI.Views.BuscarClientes.BuscarCliente_Activi
 import com.advantys.brsmovilidaderp.UI.Views.Centros.Centros_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Rutas.Rutas_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Series.Series_Activity
+import com.advantys.brsmovilidaderp.Utils.Utils
+import com.advantys.brsmovilidaderp.Utils.mostrarPor
+import com.advantys.brsmovilidaderp.Utils.ordenarPor
 import com.advantys.brsmovilidaderp.databinding.ActivityClientesBinding
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,6 +43,9 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     private lateinit var binding: ActivityClientesBinding
     private lateinit var drawer: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var adapterCliente: Clientes_Adapter
+
+
     private val clientesViewModel: Cliente_ViewModel by viewModels()
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +54,7 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         setContentView(binding.root)
         //val toolbar: androidx.appcompat.widget.Toolbar = findViewById((R.id.toolbar_main))
        // setSupportActionBar(toolbar)
+        binding.bottomNavigationView.background= null
         drawer = findViewById(R.id.drawerLayout)
         toggle = ActionBarDrawerToggle(
             this,
@@ -81,10 +87,12 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             true
         }
         //al implementarlo se quita la funcionalidad de los botones del action bar. Mirar
-        clientesViewModel.obtenerConsultaClientes()
+        clientesViewModel.obtenerConsultaClientes(ordenarPor.ruta, mostrarPor.todos)
         clientesViewModel.ClientesModel.observe(this, Observer {
+            adapterCliente=  Clientes_Adapter(it, clientesViewModel)
             binding.recyclerviewClientes.layoutManager = LinearLayoutManager(this)
-            binding.recyclerviewClientes.adapter = Clientes_Adapter(it, clientesViewModel)
+            binding.recyclerviewClientes.adapter = adapterCliente
+
         })
     }
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -144,23 +152,43 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.ruta->{
-                clientesViewModel.obtenerConsultaClientes(ordenarPor.ruta)
+               Utils.orderPor= ordenarPor.ruta
+                clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
                 return true
             }
             R.id.cliente->{
-                clientesViewModel.obtenerConsultaClientes(ordenarPor.cliente)
+                Utils.orderPor= ordenarPor.cliente
+                clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
                 return true
             }
             R.id.nombre->{
-              clientesViewModel.obtenerConsultaClientes(ordenarPor.nombre)
+              Utils.orderPor= ordenarPor.nombre
+                clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
                 return true
             }
             R.id.secuencia->{
-               clientesViewModel.obtenerConsultaClientes(ordenarPor.secuencia)
+               Utils.orderPor= ordenarPor.secuencia
+                clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
                 return true
             }
             R.id.ordenpersonalizado->{
-                clientesViewModel.obtenerConsultaClientes(ordenarPor.ordenpersonalizado)
+                Utils.orderPor= ordenarPor.ordenpersonalizado
+                clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
+                return true
+            }
+            R.id.marcados->{
+                Utils.mostrar= mostrarPor.marcado
+                clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
+                return true
+            }
+            R.id.desmarcados->{
+                Utils.mostrar= mostrarPor.desmarcado
+                clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
+                return true
+            }
+            R.id.todos->{
+                Utils.mostrar= mostrarPor.todos
+                clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
                 return true
             }
             else->false
@@ -176,6 +204,9 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         menuInflater.inflate(R.menu.buscar, menu)
         val menuItem = menu.findItem(R.id.ordenar)
         val busquedaItem= menu.findItem(R.id.busqueda)
+        val marcardesmarcarItem= menu.findItem(R.id.marcardesmarcar)
+        val desmarcartodosItem= menu.findItem(R.id.desmarcartodos)
+
         busquedaItem?.setOnMenuItemClickListener {
             val intent= Intent(this, BuscarCliente_Activity::class.java)
             startActivity(intent)
@@ -185,9 +216,17 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             showPopupMenu()
             true
         }
+       marcardesmarcarItem?.setOnMenuItemClickListener {
+           val cliente= adapterCliente.getElementoSeleccionado()
+           clientesViewModel.updateMarcado(cliente?.numClientes,!cliente?.lmarcado!!, cliente?.delegacion)
+           true
+       }
+        desmarcartodosItem?.setOnMenuItemClickListener {
+            clientesViewModel.updateDesmarcado()
+            true
+        }
        return true
     }
-
     private fun showPopupMenu() {
         val anchorView = findViewById<View>(R.id.ordenar)
         val popupMenu = PopupMenu(this, anchorView)
@@ -198,19 +237,13 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                     true
                 }
                 R.id.mostrarclientes ->{
-
                     true
                 }
                 R.id.marcardesmarcar ->{
-                    Toast.makeText(this, "Clientes desmarcados", Toast.LENGTH_SHORT).show()
                     true
                 }
-
-
                 R.id.desmarcartodos ->
-
                     true
-
                 else -> {
                     false
                 }

@@ -6,10 +6,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.advantys.brsmovilidaderp.Data.DataBase.Daos.columnas
-import com.advantys.brsmovilidaderp.Data.DataBase.Daos.ordenarPor
 import com.advantys.brsmovilidaderp.Domain.Models.Cliente
 import com.advantys.brsmovilidaderp.Domain.UseCases.Cliente_UseCase
 import com.advantys.brsmovilidaderp.UI.Views.Clientes.DetallesClientes_Activity
+import com.advantys.brsmovilidaderp.Utils.mostrarPor
+import com.advantys.brsmovilidaderp.Utils.ordenarPor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -42,18 +43,22 @@ class Cliente_ViewModel @Inject constructor(private val ClienteUsecase: Cliente_
         }
     }
     //Se inicializa por ordenar ruta, valor predeterminado
-    fun obtenerConsultaClientes(ordenar:ordenarPor=ordenarPor.ruta){ viewModelScope.launch(Dispatchers.Default) {
-            val resultado= ClienteUsecase(ordenar)
+    fun obtenerConsultaClientes(ordenar: ordenarPor, mostrarPor: mostrarPor){ viewModelScope.launch(Dispatchers.Default) {
+            val resultado= ClienteUsecase(ordenar,mostrarPor)
             //if(!resultado.isNullOrEmpty()) ClientesModel.postValue(resultado)
             ClientesModel.postValue(resultado)
         }
     }
-    fun updateMarcado(cliente:Int?,valor:Boolean?) {
+    fun updateMarcado(cliente:Int?,valor:Boolean?, delegacion: Int?) {
         viewModelScope.launch(Dispatchers.Default) {
-            ClienteUsecase(cliente,valor)
+            ClienteUsecase(cliente,valor,delegacion)
         }
     }
-
+    fun updateDesmarcado() {
+        viewModelScope.launch(Dispatchers.Default) {
+            ClienteUsecase.invokeDesmarcado()
+        }
+    }
     fun btnDetalle(item: Cliente?, context: Context) {
         val intent = Intent(context, DetallesClientes_Activity::class.java)
         intent.putExtra("numClientes", item?.numClientes)

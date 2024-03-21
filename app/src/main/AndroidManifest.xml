@@ -19,8 +19,6 @@
         <activity
             android:name=".UI.Views.Clientes.DetallesClientes_Activity"
             android:exported="true">
-
-
         </activity>
         <activity
             android:name=".UI.ViewModels.AjustesAvanzados_ViewModel"
