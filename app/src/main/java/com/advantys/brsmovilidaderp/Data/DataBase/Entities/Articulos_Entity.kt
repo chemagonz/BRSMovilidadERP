@@ -95,7 +95,6 @@ data class Articulos_Entity(
             modelo.linea = cursor.getString(Articulos_Schema.LINEA_FIELD,null)
             return modelo
         }
-
     }
 }
 

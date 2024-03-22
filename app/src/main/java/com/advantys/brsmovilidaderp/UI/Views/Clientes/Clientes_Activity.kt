@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Cliente_ViewModel
 import com.advantys.brsmovilidaderp.UI.Views.AjustesAvanzados.AjustesAvanzados_Activity
+import com.advantys.brsmovilidaderp.UI.Views.Articulos.Articulos_Activity
 import com.advantys.brsmovilidaderp.UI.Views.BuscarClientes.BuscarCliente_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Centros.Centros_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Rutas.Rutas_Activity
@@ -142,6 +143,10 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 builder.show()
             }
             R.id.acercade -> {
+            }
+            R.id.articulos->{
+                val intent= Intent(this, Articulos_Activity::class.java)
+                startActivity(intent)
             }
         }
         drawer.closeDrawer(GravityCompat.START)
