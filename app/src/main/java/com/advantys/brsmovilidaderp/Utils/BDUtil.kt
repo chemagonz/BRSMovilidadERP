@@ -227,6 +227,17 @@ fun Cursor.getBoolean(nombreColumna: String, valorDefecto: Boolean?): Boolean? {
     }
 }
 @SuppressLint("Range")
+fun Cursor.getFloat(nombreColumna:String, valorDefecto:Float?):Float?{
+    if (this.esNulocolumn(nombreColumna)) return valorDefecto
+    else return this.getFloat(this.getColumnIndex(nombreColumna))
+}
+@SuppressLint("Range")
+fun Cursor.getDouble(nombreColumna:String, valorDefecto:Double?):Double?{
+    if (this.esNulocolumn(nombreColumna)) return valorDefecto
+    else return this.getDouble(this.getColumnIndex(nombreColumna))
+}
+
+@SuppressLint("Range")
 fun Cursor.getDate(nombreColumna: String, valorDefecto: Date?): Date? {
     if (this.esNulocolumn(nombreColumna)) return valorDefecto
     else {
