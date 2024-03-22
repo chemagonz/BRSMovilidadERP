@@ -1,0 +1,46 @@
+package com.advantys.brsmovilidaderp.Domain.Models
+
+import com.advantys.brsmovilidaderp.Data.DataBase.Entities.Articulos_Entity
+
+class Articulo(
+    var fabricante: Short? = null,
+    var articulo: String? = null,
+    var articuloAux: String? = null,
+    var nombre: String? = null,
+    var nombreCorto: String? = null,
+    var tipoIVA: Short? = null,
+    var precoste: Float? = null,
+    var familia: Short? = null,
+    var subfamilia: Short? = null,
+    var formato: Int? = null,
+    var marca: String? = null,
+    var sabor: String? = null,
+    var fabricanteRet: Short? = null,
+    var articuloRet: String? = null,
+    var unidadesCaja: Double? = null,
+    var puntoVerde: Float? = null,
+    var manipulacion: Float? = null,
+    var alcohol: Float? = null,
+    var cajasBulto: Int? = null,
+    var preUltCompra: Float? = null,
+    var peso: Double? = null,
+    var volumen: Double? = null,
+    var suReferencia: String? = null,
+    var tipoCarga: String? = null,
+    var puntosCarga: Float? = null,
+    var porLotes: Boolean? = null,
+    var disponible1: Float? = null,
+    var disponible2: Float? = null,
+    var porLotesSMP: Boolean? = null,
+    var udsCaja: Float? = null,
+    var desdobleDoc: Short? = null,
+    var ventaExCajas: String? = null,
+    var tipoArticulo: String? = null,
+    var centroArt: String? = null,
+    var articuloEst: String? = null,
+    var udsFracERP: Int? = null,
+    var azucar: Float? = null,
+    var pesoAprox: Float? = null,
+    var linea: String? = null
+)
+fun  Articulos_Entity.toDomain() = Articulo(fabricante, articulo, articuloAux, nombre, nombreCorto, tipoIVA, precoste, familia, subfamilia, formato, marca, sabor, fabricanteRet, articuloRet, unidadesCaja, puntoVerde, manipulacion, alcohol, cajasBulto, preUltCompra,peso, volumen, suReferencia, tipoCarga, puntosCarga, porLotes, disponible1, disponible2, porLotesSMP, udsCaja,desdobleDoc, ventaExCajas, tipoArticulo, centroArt, articuloEst, udsFracERP, azucar, pesoAprox, linea)
