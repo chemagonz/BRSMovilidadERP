@@ -21,6 +21,7 @@
             android:exported="false" />
         <activity
             android:name=".UI.Views.BuscarArticulos.BuscarArticulos_Activity"
+            android:theme="@style/Base.Theme.BRSMovilidadERP"
             android:exported="false" />
         <activity
             android:name=".UI.Views.Articulos.Articulos_Activity"

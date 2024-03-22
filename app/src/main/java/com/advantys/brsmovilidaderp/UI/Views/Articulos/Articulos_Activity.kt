@@ -1,12 +1,16 @@
 package com.advantys.brsmovilidaderp.UI.Views.Articulos
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Articulo_ViewModel
+import com.advantys.brsmovilidaderp.UI.Views.BuscarArticulos.BuscarArticulos_Activity
 import com.advantys.brsmovilidaderp.databinding.ActivityArticulosBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,6 +34,18 @@ class Articulos_Activity : AppCompatActivity() {
             binding.articulosRecyclerView.layoutManager= LinearLayoutManager(this)
             binding.articulosRecyclerView.adapter = Articulos_Adapter(it, articulosViewModel)
         })
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.buscar, menu)
+        val busquedaItem= menu?.findItem(R.id.busqueda)
+        busquedaItem?.setOnMenuItemClickListener {
+            val intent= Intent(this, BuscarArticulos_Activity::class.java)
+            startActivity(intent)
+            true
+        }
+        return super.onCreateOptionsMenu(menu)
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {

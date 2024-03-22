@@ -213,7 +213,7 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_configuracionclientes, menu)
-        menuInflater.inflate(R.menu.buscar_clientes, menu)
+        menuInflater.inflate(R.menu.buscar, menu)
         val menuItem = menu.findItem(R.id.ordenar)
         val busquedaItem= menu.findItem(R.id.busqueda)
         val marcardesmarcarItem= menu.findItem(R.id.marcardesmarcar)
