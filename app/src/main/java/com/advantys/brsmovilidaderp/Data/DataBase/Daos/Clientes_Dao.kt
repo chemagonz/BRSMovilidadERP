@@ -115,7 +115,7 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
             } else {
                 sql = sql.substring(0, sql.length - 1)
             }
-//        sql= "${Rutas_Schema.LMARCADO_FIELD} = 1 AND"
+        sql+= " ${Rutas_Schema.TABLE_NAME}.${Rutas_Schema.LMARCADO_FIELD} = 1 AND "
 
 //        // Condiciones por tipo de ruta
 //        if(!VarGlobales.esNuloVacio(VarGlobales.ModoVenta) && VarGlobales.ModoVenta.equals("A"))

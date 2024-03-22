@@ -13,6 +13,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
@@ -44,9 +45,15 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     private lateinit var drawer: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var adapterCliente: Clientes_Adapter
-
-
     private val clientesViewModel: Cliente_ViewModel by viewModels()
+    //VARIABLE PARA ACTUALIZAR PANTALLA MEDIANTE REGISTERACTIVITYRESULT
+
+    private val responseLauncher= registerForActivityResult(StartActivityForResult()){ activityResult->
+
+            if(activityResult.resultCode== RESULT_OK){
+                clientesViewModel.obtenerConsultaClientes(ordenarPor.ruta, mostrarPor.todos)
+            }
+    }
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityClientesBinding.inflate(layoutInflater)
@@ -104,7 +111,7 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             }
             R.id.rutas -> {
                 val intent = Intent(this, Rutas_Activity::class.java)
-                startActivity(intent)
+                responseLauncher.launch(intent)
 
             }
 

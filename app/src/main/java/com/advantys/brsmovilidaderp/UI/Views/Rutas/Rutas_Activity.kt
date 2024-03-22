@@ -58,6 +58,7 @@ class Rutas_Activity : AppCompatActivity() {
                 true
             }
             android.R.id.home -> {
+                setResult(RESULT_OK)
                 finish()
                 return true
             }
@@ -78,13 +79,27 @@ class Rutas_Activity : AppCompatActivity() {
             val dia = buttonView.text.toString()
             when (dia) {
 
-                "Lunes" -> Utils.diasSeleccionados[dias.lunes] = isChecked
-                "Martes" -> Utils.diasSeleccionados[dias.martes] = isChecked
-                "Miércoles" -> Utils.diasSeleccionados [dias.miercoles]= isChecked
-                "Jueves" -> Utils.diasSeleccionados [dias.jueves]= isChecked
-                "Viernes" ->Utils.diasSeleccionados [dias.viernes]= isChecked
-                "Sábado" -> Utils.diasSeleccionados [dias.sabado]= isChecked
-                "Domingo" ->Utils.diasSeleccionados [dias.domingo]= isChecked
+                "Lunes" -> {
+                    Utils.diasSeleccionados[dias.lunes] = isChecked
+                }
+                "Martes" -> {
+                    Utils.diasSeleccionados[dias.martes] = isChecked
+                }
+                "Miércoles" -> {
+                    Utils.diasSeleccionados [dias.miercoles]= isChecked
+                }
+                "Jueves" -> {
+                    Utils.diasSeleccionados [dias.jueves]= isChecked
+                }
+                "Viernes" ->{
+                    Utils.diasSeleccionados [dias.viernes]= isChecked
+                }
+                "Sábado" -> {
+                    Utils.diasSeleccionados [dias.sabado]= isChecked
+                }
+                "Domingo" ->{
+                    Utils.diasSeleccionados [dias.domingo]= isChecked
+                }
                 "Todos" -> {
                    Utils.diasSeleccionados[dias.todos]
                     //Se actualiza los checkbox para cuando se marque o se desmarque Todos.
