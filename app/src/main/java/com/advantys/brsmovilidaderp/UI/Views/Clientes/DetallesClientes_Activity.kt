@@ -53,11 +53,22 @@ class DetallesClientes_Activity : AppCompatActivity() {
         binding.edNIFClientes.setText(if (cliente.NIF!= null)cliente.NIF.toString() else "")
         binding.edNombreClientes.setText(cliente.nombre)
         binding.edRazonSocial.setText(cliente.razonSocial)
-        val direccion = cliente?.direccion ?:""  // Si cliente.direccion es nulo, asigna una cadena vacía
-        detalles.append(if (direccion.isEmpty()) "\"\"" else direccion).append("\n")
-        detalles.append(cliente.provincia).append("\n")
-        detalles.append(cliente.codPostal).append("\n")
-        detalles.append(cliente.poblacion)
+        val direccion = cliente?.direccion // Si cliente.direccion es nulo, asigna una cadena vacía
+        if (direccion != null) {
+            detalles.append(if (direccion.isEmpty()) "" else direccion).append(",\n")
+        }
+        val codpostal= cliente.codPostal
+        if(codpostal!=null){
+            detalles.append(if (codpostal.isEmpty()) "" else codpostal).append(",\n")
+        }
+        val poblacion= cliente.poblacion
+        if(poblacion!=null){
+            detalles.append(if (poblacion.isEmpty()) "" else poblacion).append(",\n")
+        }
+        val provincia= cliente.provincia
+        if(provincia!=null){
+            detalles.append(if (provincia.isEmpty()) "" else provincia).append(",\n")
+        }
         binding.edCalleCPMunicProvinClientes.setText(detalles.toString())
         binding.edTelefono1Cliente.setText(cliente.telefono1)
         binding.edTelefono1Cliente.setText(cliente.telefono2)

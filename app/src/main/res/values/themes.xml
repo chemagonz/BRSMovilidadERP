@@ -19,9 +19,15 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppBottomNavigationStyle" parent="Widget.MaterialComponents.BottomNavigationView">
+        <!-- Color del texto de los ítems -->
+        <item name="android:itemTextAppearance">@color/white</item>
+        <!-- Color del fondo del BottomNavigationView -->
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
     <style name="Theme.BRSMovilidadERP.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.BRSMovilidadERP.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
 
 </resources>

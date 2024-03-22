@@ -23,6 +23,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/colorPrimary"
+            android:layout_gravity="bottom">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavigationView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="16dp"
+                android:background="#00000000"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:itemIconTint="@color/white"
+                app:itemTextColor="@color/white"
+                app:labelVisibilityMode="labeled"
+                app:menu="@menu/bottom_navigation"/>
+
+        </com.google.android.material.bottomappbar.BottomAppBar>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/botonFlotante"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:tint="@color/white"
+            android:backgroundTint="@color/colorPrimary"
+            android:src="@drawable/config"
+            app:layout_anchor="@id/bottomAppBar"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
     <include
         layout="@layout/app_bar_main"
         android:layout_width="match_parent"
@@ -36,36 +72,7 @@
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/menu_clientes"/>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottomAppBar"
-            app:backgroundTint="@color/colorPrimary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom" >
-
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottomNavigationView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="16dp"
-                android:background="#00000000"
-                app:menu="@menu/bottom_nav"/>
-
-        </com.google.android.material.bottomappbar.BottomAppBar>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/botonFlotante"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/search"
-            app:backgroundTint="@color/colorPrimary"
-            app:layout_anchor="@id/bottomAppBar"/>
-        
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

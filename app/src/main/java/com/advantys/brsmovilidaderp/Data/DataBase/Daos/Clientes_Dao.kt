@@ -6,6 +6,7 @@ import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.RutaClientes_Schema
 import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.Rutas_Schema
 import com.advantys.brsmovilidaderp.Utils.BDUtil
 import com.advantys.brsmovilidaderp.Utils.Utils
+import com.advantys.brsmovilidaderp.Utils.dias
 import com.advantys.brsmovilidaderp.Utils.mostrarPor
 import com.advantys.brsmovilidaderp.Utils.ordenarPor
 import javax.inject.Inject
@@ -18,12 +19,18 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
         }
     }
     fun getFilter(columna: columnas,tipoConsulta:String?):List<Clientes_Entity?>{
+        var tipoconsulta = tipoConsulta
         val columnas= when(columna){
-            columnas.Nombre-> Clientes_Schema.NOMBRE_FIELD
-            columnas.Codigo-> Clientes_Schema.CLIENTE_FIELD
+            columnas.Nombre-> {
+                tipoconsulta= "'%${tipoConsulta}%'"
+                Clientes_Schema.NOMBRE_FIELD}
+            columnas.Codigo-> {
+                tipoconsulta= "'${tipoConsulta}%'"
+                Clientes_Schema.CLIENTE_FIELD}
             columnas.todo-> return  getAll()
         }
-        var sql= "SELECT * FROM ${Clientes_Schema.TABLE_NAME} WHERE ${columnas} LIKE '$tipoConsulta%'"
+
+        var sql= "SELECT * FROM ${Clientes_Schema.TABLE_NAME} WHERE ${columnas} LIKE ${tipoconsulta}"
         return databaseManager.query(sql){cursor ->
             Clientes_Entity.fromCursor(cursor)
         }
@@ -68,34 +75,34 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
 //        }
             sql += "${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.RUTA_FIELD} = ${Rutas_Schema.TABLE_NAME}.${Rutas_Schema.RUTA_FIELD} AND "
 
-            if (Utils.todos != true) {
+            if (Utils.diasSeleccionados[dias.todos] != true) {
                 sql += " ("
                 var haydia = false
-                if (Utils.lunes == true) {
+                if (Utils.diasSeleccionados[dias.lunes] == true) {
                     sql += "${RutaClientes_Schema.DIASEMANA_FIELD} = 'L' OR "
                     haydia = true
                 }
-                if (Utils.martes == true) {
+                if (Utils.diasSeleccionados[dias.martes] == true) {
                     sql += "${RutaClientes_Schema.DIASEMANA_FIELD} = 'M' OR "
                     haydia = true
                 }
-                if (Utils.miercoles == true) {
+                if (Utils.diasSeleccionados[dias.miercoles] == true) {
                     sql += "${RutaClientes_Schema.DIASEMANA_FIELD} = 'X' OR "
                     haydia = true
                 }
-                if (Utils.jueves == true) {
+                if (Utils.diasSeleccionados[dias.jueves] == true) {
                     sql += "${RutaClientes_Schema.DIASEMANA_FIELD} = 'J' OR "
                     haydia = true
                 }
-                if (Utils.viernes == true) {
+                if (Utils.diasSeleccionados[dias.viernes] == true) {
                     sql += "${RutaClientes_Schema.DIASEMANA_FIELD} = 'V' OR "
                     haydia = true
                 }
-                if (Utils.sabado == true) {
+                if (Utils.diasSeleccionados[dias.sabado] == true) {
                     sql += "${RutaClientes_Schema.DIASEMANA_FIELD} = 'S' OR "
                     haydia = true
                 }
-                if (Utils.domingo == true) {
+                if (Utils.diasSeleccionados[dias.domingo] == true) {
                     sql += "${RutaClientes_Schema.DIASEMANA_FIELD} = 'D' OR "
                     haydia = true
                 }

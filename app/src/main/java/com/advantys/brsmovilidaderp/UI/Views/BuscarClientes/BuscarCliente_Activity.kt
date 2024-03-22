@@ -41,7 +41,7 @@ class BuscarCliente_Activity : AppCompatActivity() {
     }
     // Configuración del icono de búsqueda
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.configcliente, menu)
+        menuInflater.inflate(R.menu.configuracion_buscarcliente, menu)
 
         val searchItem = menu.findItem(R.id.search)
         val searchView = searchItem.actionView as SearchView
@@ -91,7 +91,7 @@ class BuscarCliente_Activity : AppCompatActivity() {
     //Ventana para elegir por nombre o por codigo
     private fun showPopupMenu() {
         val popupMenu = PopupMenu(this, findViewById(R.id.busquedaPor))
-        popupMenu.menuInflater.inflate(R.menu.busquedaclientes, popupMenu.menu)
+        popupMenu.menuInflater.inflate(R.menu.por_codigo_por_nombre_clientes, popupMenu.menu)
         popupMenu.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nombre -> {
