@@ -37,6 +37,7 @@ class Articulos_Activity : AppCompatActivity() {
     }
 
 
+    //Manejo de boton para la actividad buscar articulos
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.buscar, menu)
         val busquedaItem= menu?.findItem(R.id.busqueda)

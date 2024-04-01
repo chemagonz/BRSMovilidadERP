@@ -11,4 +11,7 @@ class Articulo_UseCase @Inject constructor (private val repository: Articulos_Re
             listOf<Articulo>()
         else articulo
     }
+    suspend operator fun invoke(query:String):List<Articulo>{
+        return repository.getFilter(query)
+    }
 }

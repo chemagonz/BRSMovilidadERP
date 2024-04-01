@@ -13,4 +13,11 @@ class Articulos_Dao @Inject constructor(private val databaseManager: BDUtil) {
             Articulos_Entity.fromCursor(cursor)
         }
     }
+
+    fun getFilter(tipoConsulta: String?):List<Articulos_Entity?>{
+        var sql= "SELECT * FROM ${Articulos_Schema.TABLE_NAME} WHERE ${Articulos_Schema.NOMBRE_FIELD} LIKE '${tipoConsulta}%'"
+        return databaseManager.query(sql){cursor ->
+            Articulos_Entity.fromCursor(cursor)
+        }
+    }
 }

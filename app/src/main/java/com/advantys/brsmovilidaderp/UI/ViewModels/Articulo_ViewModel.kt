@@ -28,4 +28,15 @@ class Articulo_ViewModel @Inject constructor(private var articuloUsecase: Articu
         intent.putExtra("articulo", item?.articulo)
         context.startActivity(intent)
     }
+    fun buscarArticulos(query:String){ viewModelScope.launch(Dispatchers.Default) {
+        viewModelScope.launch(Dispatchers.Default) {
+            val resultado = articuloUsecase(query)
+            if (resultado.isEmpty() && query.isNotEmpty()) { // Verificar si la lista está vacía y la consulta no lo está
+                articulosModel.postValue(emptyList()) // Asignar una lista vacía a ClientesModel
+            } else {
+                articulosModel.postValue(resultado)
+            }
+        }
+    }
+    }
 }

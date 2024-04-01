@@ -1,5 +1,6 @@
 package com.advantys.brsmovilidaderp.UI.ViewModels
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.MutableLiveData
@@ -31,15 +32,16 @@ class Cliente_ViewModel @Inject constructor(private val ClienteUsecase: Cliente_
             clienteModel.postValue(resultado)
         }
     }}
+    @SuppressLint("SuspiciousIndentation")
     fun buscarClientes(tipo:columnas=columnas.Nombre, query:String){ viewModelScope.launch(Dispatchers.Default) {
         viewModelScope.launch(Dispatchers.Default) {
             val resultado = ClienteUsecase(tipo, query)
-            if (resultado.isEmpty() && query.isNotEmpty()) { // Verificar si la lista está vacía y la consulta no lo está
-                ClientesModel.postValue(emptyList()) // Asignar una lista vacía a ClientesModel
-            } else {
-                ClientesModel.postValue(resultado)
+                if (resultado.isEmpty() && query.isNotEmpty()) { // Verificar si la lista está vacía y la consulta no lo está
+                    ClientesModel.postValue(emptyList()) // Asignar una lista vacía a ClientesModel
+                } else {
+                    ClientesModel.postValue(resultado)
+                }
             }
-        }
         }
     }
     //Se inicializa por ordenar ruta, valor predeterminado
