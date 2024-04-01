@@ -16,11 +16,21 @@ import javax.inject.Inject
 @HiltViewModel
 class Articulo_ViewModel @Inject constructor(private var articuloUsecase: Articulo_UseCase): ViewModel() {
     val articulosModel = MutableLiveData<List<Articulo>>()
+    val articuloModel = MutableLiveData<Articulo>()
+
 
     fun onCreate(){
         viewModelScope.launch(Dispatchers.Default) {
             val resultado= articuloUsecase()
             if(!resultado.isNullOrEmpty()) articulosModel.postValue(resultado)
+        }
+    }
+    fun onCreateDetalles(articulo: String?) {
+        viewModelScope.launch(Dispatchers.Default) {
+            val resultado = articuloUsecase.detalles(articulo)
+            if (resultado != null) {
+                articuloModel.postValue(resultado)
+            }
         }
     }
     fun btnDetalles(item: Articulo?, context: Context){

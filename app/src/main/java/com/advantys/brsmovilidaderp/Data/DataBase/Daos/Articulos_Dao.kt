@@ -20,4 +20,11 @@ class Articulos_Dao @Inject constructor(private val databaseManager: BDUtil) {
             Articulos_Entity.fromCursor(cursor)
         }
     }
+
+    fun getDetalles(articulo:String?): Articulos_Entity?{
+        var sql= "SELECT ${Articulos_Schema.ARTICULO_FIELD}, ${Articulos_Schema.UDS_CAJA_FIELD}, ${Articulos_Schema.NOMBRE_FIELD}, ${Articulos_Schema.NOMBRE_CORTO_FIELD}, ${Articulos_Schema.TIPOIVA_FIELD}, ${Articulos_Schema.PRECOSTE_FIELD}, ${Articulos_Schema.PREULT_COMPRA_FIELD},  ${Articulos_Schema.PUNTO_VERDE_FIELD},${Articulos_Schema.ALCOHOL_FIELD}, ${Articulos_Schema.MANIPULACION_FIELD}  FROM ${Articulos_Schema.TABLE_NAME} WHERE ${Articulos_Schema.ARTICULO_FIELD} = '${articulo}'"
+        return  databaseManager.queryDetalles(sql){cursor ->
+            Articulos_Entity.fromCursor(cursor)
+        }
+    }
 }

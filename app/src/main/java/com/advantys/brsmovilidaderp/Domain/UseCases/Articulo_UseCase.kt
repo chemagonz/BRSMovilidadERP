@@ -14,4 +14,10 @@ class Articulo_UseCase @Inject constructor (private val repository: Articulos_Re
     suspend operator fun invoke(query:String):List<Articulo>{
         return repository.getFilter(query)
     }
+    suspend  fun detalles(articulo:String?): Articulo {
+        articulo?.let {
+            val articuloDet= repository.getDetalles(articulo)
+            return articuloDet ?: throw NoSuchElementException("Error")
+        }?:throw IllegalArgumentException("no puede ser nulo")
+    }
 }
