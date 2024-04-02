@@ -20,6 +20,7 @@ class BuscarArticulos_Activity : AppCompatActivity() {
     val buscarArticulosViewModel: Articulo_ViewModel by viewModels()
     var tipoSeleccionado: buscarArticulosPor= buscarArticulosPor.descripcion
     private lateinit var binding: ActivityBuscarArticulosBinding
+    private var searchView: SearchView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityBuscarArticulosBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -98,11 +99,13 @@ class BuscarArticulos_Activity : AppCompatActivity() {
                 R.id.descripcionlarga -> {
                     tipoSeleccionado = buscarArticulosPor.descripcion
                     supportActionBar?.subtitle = "DESCRIPCIÓN"
+                    searchView?.setQuery("", false)
                     true
                 }
                 R.id.codigo -> {
                     tipoSeleccionado = buscarArticulosPor.codigo
                     supportActionBar?.subtitle = "CÓDIGO"
+                    searchView?.setQuery("", false)
                     true
                 }
                 else -> false
@@ -110,5 +113,6 @@ class BuscarArticulos_Activity : AppCompatActivity() {
         }
         popupMenu.show()
     }
+
 }
 

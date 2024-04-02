@@ -6,7 +6,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.advantys.brsmovilidaderp.Domain.Models.Articulo
+import com.advantys.brsmovilidaderp.Domain.Models.TipoIVA
 import com.advantys.brsmovilidaderp.UI.ViewModels.Articulo_ViewModel
+import com.advantys.brsmovilidaderp.UI.ViewModels.TipoIVA_ViewModel
 import com.advantys.brsmovilidaderp.Utils.BDUtil
 import com.advantys.brsmovilidaderp.databinding.ActivityDetallesArticulosBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -14,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DetallesArticulos_Activity : AppCompatActivity() {
     val articuloViewmodel:Articulo_ViewModel by viewModels()
+    val tipoIvaViewModel: TipoIVA_ViewModel by viewModels()
     private lateinit var binding: ActivityDetallesArticulosBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityDetallesArticulosBinding.inflate(layoutInflater)
@@ -33,6 +36,10 @@ class DetallesArticulos_Activity : AppCompatActivity() {
         articuloViewmodel.onCreateDetalles(articuloC, articuloFab)
         articuloViewmodel.articuloModel.observe(this, Observer { articulo ->
             articulo?.let { verDetallesArticulo(articulo)}
+            tipoIvaViewModel.onCreateGetIVA(articulo?.tipoIVA)
+        })
+        tipoIvaViewModel.tipoIVAModel.observe(this, Observer { tipoIVA ->
+            tipoIVA?.let { verDetallesTipoIVA(tipoIVA) }
         })
     }
     //Funcion para manejar botones
@@ -67,5 +74,9 @@ class DetallesArticulos_Activity : AppCompatActivity() {
         binding.edEnvase.setText(detalles.toString())
         binding.edStockCP.setText(articulo.disponible1.toString())
         binding.edStockUK.setText(articulo.disponible2.toString())
+    }
+    private fun verDetallesTipoIVA(tipoIVA: TipoIVA) {
+        binding.edTipoIVA.setText(tipoIVA.porcIVA.toString())
+        binding.edTipoIVAREC.setText(tipoIVA.porCREC.toString())
     }
 }

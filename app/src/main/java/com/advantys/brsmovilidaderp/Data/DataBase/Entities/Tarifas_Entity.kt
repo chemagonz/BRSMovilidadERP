@@ -7,7 +7,7 @@ import com.advantys.brsmovilidaderp.Utils.getFloat
 import com.advantys.brsmovilidaderp.Utils.getShort
 import com.advantys.brsmovilidaderp.Utils.getString
 
-data class Tarfias_Entity(
+data class Tarifas_Entity(
 
     var numTarifa : Short?=null,
     var nombre: String?=null,
@@ -16,8 +16,8 @@ data class Tarfias_Entity(
     var tarblqvta: Boolean? =null
 ) {
     companion object{
-        fun fromCursor(cursor: Cursor): Tarfias_Entity{
-            val modelo= Tarfias_Entity()
+        fun fromCursor(cursor: Cursor): Tarifas_Entity{
+            val modelo= Tarifas_Entity()
             modelo.numTarifa= cursor.getShort(Tarfias_Schema.TARIFA_FIELD,null)
             modelo.nombre= cursor.getString(Tarfias_Schema.NOMBRE_FIELD,null)
             modelo.tarifaAux= cursor.getShort(Tarfias_Schema.TARIFA_AUX_FIELD,null)
