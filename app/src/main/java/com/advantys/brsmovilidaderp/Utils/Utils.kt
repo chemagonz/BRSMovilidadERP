@@ -15,6 +15,7 @@ class Utils {
         )
             var orderPor: ordenarPor= ordenarPor.ruta
             var mostrar: mostrarPor= mostrarPor.todos
+            var buscarArticulo: buscarArticulosPor= buscarArticulosPor.descripcion
          }
 }
 
@@ -39,4 +40,8 @@ enum class mostrarPor{
         marcado,
         desmarcado,
         todos;
+}
+enum class buscarArticulosPor{
+    descripcion,
+    codigo
 }

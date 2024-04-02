@@ -109,6 +109,7 @@ class BDUtil @Inject constructor (private val dbHelper:BD){
         }
     return result
     }
+
     ///region  Utilidades
     fun Any?.esNulo() = this == null
 

@@ -41,7 +41,7 @@ class BuscarCliente_Activity : AppCompatActivity() {
     }
     // Configuración del icono de búsqueda
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.configuracion_buscarcliente, menu)
+        menuInflater.inflate(R.menu.configuracion_buscarfiltrar, menu)
 
         val searchItem = menu.findItem(R.id.search)
         val searchView = searchItem.actionView as SearchView

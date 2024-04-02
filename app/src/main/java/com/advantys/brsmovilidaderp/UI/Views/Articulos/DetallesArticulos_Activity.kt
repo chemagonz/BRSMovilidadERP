@@ -29,7 +29,8 @@ class DetallesArticulos_Activity : AppCompatActivity() {
 
         BDUtil.KeyboardUtil.esconderTeclado(this)
         val articuloC= intent.getStringExtra("articulo")
-        articuloViewmodel.onCreateDetalles(articuloC)
+        val articuloFab= intent.getShortExtra("fabricante", 0)
+        articuloViewmodel.onCreateDetalles(articuloC, articuloFab)
         articuloViewmodel.articuloModel.observe(this, Observer { articulo ->
             articulo?.let { verDetallesArticulo(articulo)}
         })
@@ -46,7 +47,8 @@ class DetallesArticulos_Activity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun verDetallesArticulo(articulo: Articulo) {
+    private fun verDetallesArticulo(articulo: Articulo){
+        val detalles= StringBuilder()
         binding.edCodigoArticulo.setText(articulo.articulo)
         binding.edFCarticulo.setText(articulo.udsCaja.toString())
         binding.edNombreArticulo.setText(articulo.nombre)
@@ -57,5 +59,13 @@ class DetallesArticulos_Activity : AppCompatActivity() {
         binding.edPuntoVerde.setText(articulo.puntoVerde.toString())
         binding.edAlcohol.setText(articulo.alcohol.toString())
         binding.edManipulacion.setText(articulo.manipulacion.toString())
+        val articuloRet= articulo.articuloRet
+        if(articuloRet !=null){
+            detalles.append(if (articuloRet.isEmpty()) "" else "$articuloRet , ")
+        }
+        detalles.append(articulo.fabricanteRet)
+        binding.edEnvase.setText(detalles.toString())
+        binding.edStockCP.setText(articulo.disponible1.toString())
+        binding.edStockUK.setText(articulo.disponible2.toString())
     }
 }

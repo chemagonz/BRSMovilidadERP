@@ -67,6 +67,7 @@ class DetallesClientes_Activity : AppCompatActivity() {
         if(provincia!=null){
             detalles.append(if (provincia.isEmpty()) "" else provincia).append(",\n")
         }
+
         binding.edCalleCPMunicProvinClientes.setText(detalles.toString())
         binding.edTelefono1Cliente.setText(cliente.telefono1)
         binding.edTelefono1Cliente.setText(cliente.telefono2)

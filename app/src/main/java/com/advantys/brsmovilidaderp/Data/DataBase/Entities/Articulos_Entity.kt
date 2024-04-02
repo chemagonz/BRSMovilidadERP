@@ -83,7 +83,7 @@ data class Articulos_Entity(
             modelo.disponible1 = cursor.getFloat(Articulos_Schema.DISPONIBLE1_FIELD,null)
             modelo.disponible2 = cursor.getFloat(Articulos_Schema.DISPONIBLE2_FIELD,null)
             modelo.porLotesSMP = cursor.getBoolean(Articulos_Schema.POR_LOTES_SMP_FIELD,null)
-            modelo.udsCaja = cursor.getFloat(Articulos_Schema.UDS_CAJA_FIELD,null)
+            modelo.udsCaja = cursor.getFloat(Articulos_Schema.UNIDADES_CAJA_FIELD,null)
             modelo.desdobleDoc = cursor.getShort(Articulos_Schema.DESDOBLE_DOC_FIELD,null)
             modelo.ventaExCajas = cursor.getString(Articulos_Schema.VENTA_EX_CAJAS_FIELD,null)
             modelo.tipoArticulo = cursor.getString(Articulos_Schema.TIPO_ARTICULO_FIELD,null)

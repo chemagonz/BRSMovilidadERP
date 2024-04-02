@@ -5,17 +5,20 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Articulo_ViewModel
+import com.advantys.brsmovilidaderp.Utils.buscarArticulosPor
 import com.advantys.brsmovilidaderp.databinding.ActivityBuscarArticulosBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class BuscarArticulos_Activity : AppCompatActivity() {
     val buscarArticulosViewModel: Articulo_ViewModel by viewModels()
+    var tipoSeleccionado: buscarArticulosPor= buscarArticulosPor.descripcion
     private lateinit var binding: ActivityBuscarArticulosBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityBuscarArticulosBinding.inflate(layoutInflater)
@@ -38,9 +41,9 @@ class BuscarArticulos_Activity : AppCompatActivity() {
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.buscar_articulo, menu)
+        menuInflater.inflate(R.menu.filtrar_articulo, menu)
 
-        val searchItem = menu.findItem(R.id.buscarArticulo)
+        val searchItem = menu.findItem(R.id.searchArticulo)
         val searchView = searchItem.actionView as SearchView
         searchView.queryHint = "Buscar articulo"
 
@@ -62,8 +65,8 @@ class BuscarArticulos_Activity : AppCompatActivity() {
             }
             override fun onQueryTextChange(newText: String?): Boolean {
 
-                if (!newText.isNullOrEmpty()) {
-                    buscarArticulosViewModel.buscarArticulos(newText)
+                if (!newText.isNullOrEmpty() && tipoSeleccionado!=null) {
+                    buscarArticulosViewModel.buscarArticulos(tipoSeleccionado!!,newText)
                 }else binding.busquedaArticulosRecyclerView.adapter= BuscarArtictulos_Adapter(emptyList(), buscarArticulosViewModel)
 
                 return false
@@ -78,8 +81,34 @@ class BuscarArticulos_Activity : AppCompatActivity() {
                 finish()
                 true
             }
+            R.id.busquedaArticuloPor ->{
+                showPopupMenu()
+                true
+            }
+
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun showPopupMenu() {
+        val popupMenu = PopupMenu(this, findViewById(R.id.busquedaArticuloPor))
+        popupMenu.menuInflater.inflate(R.menu.articulos_descripcion_codigo, popupMenu.menu)
+        popupMenu.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.descripcionlarga -> {
+                    tipoSeleccionado = buscarArticulosPor.descripcion
+                    supportActionBar?.subtitle = "DESCRIPCIÓN"
+                    true
+                }
+                R.id.codigo -> {
+                    tipoSeleccionado = buscarArticulosPor.codigo
+                    supportActionBar?.subtitle = "CÓDIGO"
+                    true
+                }
+                else -> false
+            }
+        }
+        popupMenu.show()
     }
 }
 

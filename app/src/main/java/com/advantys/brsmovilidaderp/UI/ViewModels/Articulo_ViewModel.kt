@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.advantys.brsmovilidaderp.Domain.Models.Articulo
 import com.advantys.brsmovilidaderp.Domain.UseCases.Articulo_UseCase
 import com.advantys.brsmovilidaderp.UI.Views.Articulos.DetallesArticulos_Activity
+import com.advantys.brsmovilidaderp.Utils.buscarArticulosPor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,9 +26,9 @@ class Articulo_ViewModel @Inject constructor(private var articuloUsecase: Articu
             if(!resultado.isNullOrEmpty()) articulosModel.postValue(resultado)
         }
     }
-    fun onCreateDetalles(articulo: String?) {
+    fun onCreateDetalles(articulo: String?, fabricante:Short?) {
         viewModelScope.launch(Dispatchers.Default) {
-            val resultado = articuloUsecase.detalles(articulo)
+            val resultado = articuloUsecase.detalles(articulo,fabricante)
             if (resultado != null) {
                 articuloModel.postValue(resultado)
             }
@@ -36,11 +37,12 @@ class Articulo_ViewModel @Inject constructor(private var articuloUsecase: Articu
     fun btnDetalles(item: Articulo?, context: Context){
         val intent = Intent(context, DetallesArticulos_Activity::class.java)
         intent.putExtra("articulo", item?.articulo)
+        intent.putExtra("fabricante", item?.fabricante)
         context.startActivity(intent)
     }
-    fun buscarArticulos(query:String){ viewModelScope.launch(Dispatchers.Default) {
+    fun buscarArticulos(columnas: buscarArticulosPor,query:String){ viewModelScope.launch(Dispatchers.Default) {
         viewModelScope.launch(Dispatchers.Default) {
-            val resultado = articuloUsecase(query)
+            val resultado = articuloUsecase(columnas,query)
             if (resultado.isEmpty() && query.isNotEmpty()) { // Verificar si la lista está vacía y la consulta no lo está
                 articulosModel.postValue(emptyList()) // Asignar una lista vacía a ClientesModel
             } else {
