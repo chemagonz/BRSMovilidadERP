@@ -28,7 +28,7 @@
             android:exported="false" />
         <activity
             android:name=".UI.Views.Clientes.DetallesClientes_Activity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".UI.ViewModels.AjustesAvanzados_ViewModel"
             android:exported="false" />

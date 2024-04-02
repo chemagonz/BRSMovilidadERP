@@ -15,12 +15,10 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DetallesClientes_Activity : AppCompatActivity() {
     val clientesViewmodel: Cliente_ViewModel by viewModels()
-
     private lateinit var binding: ActivityDetallesClientesBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityDetallesClientesBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(binding.root)
 
         BDUtil.KeyboardUtil.esconderTeclado(this)
@@ -33,7 +31,7 @@ class DetallesClientes_Activity : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
             title = "CLIENTES"
-            setSubtitle("DETALLES")
+            subtitle= "DETALLES"
         }
     }
     //Funcion para manejar botones

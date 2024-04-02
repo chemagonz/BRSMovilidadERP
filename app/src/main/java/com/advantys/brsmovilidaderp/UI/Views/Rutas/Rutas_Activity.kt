@@ -69,7 +69,7 @@ class Rutas_Activity : AppCompatActivity() {
         //Definir un array para los dias de la semana y el apartado de todos los dias
         val diasSemana = arrayOf("Todos","Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo")
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Seleccione los días")
+        builder.setTitle("Seleccione los días de visita")
         val layout = LinearLayout(this)
         layout.orientation = LinearLayout.VERTICAL
         layout.setPadding(0, 32, 0, 0)
