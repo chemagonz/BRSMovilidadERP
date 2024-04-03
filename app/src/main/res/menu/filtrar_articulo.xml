@@ -13,4 +13,10 @@
         android:icon="@drawable/ic_filtro"
         android:title="Configuración"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/filtrarArticulo"
+        android:icon="@drawable/ic_filtro"
+        android:title="filtrar"
+        app:showAsAction="ifRoom" />
 </menu>

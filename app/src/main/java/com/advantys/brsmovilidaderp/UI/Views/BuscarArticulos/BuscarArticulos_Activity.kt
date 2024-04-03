@@ -1,5 +1,6 @@
 package com.advantys.brsmovilidaderp.UI.Views.BuscarArticulos
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -84,6 +85,11 @@ class BuscarArticulos_Activity : AppCompatActivity() {
             }
             R.id.busquedaArticuloPor ->{
                 showPopupMenu()
+                true
+            }
+            R.id.filtrarArticulo ->{
+                val intent= Intent(this, FiltrarArticulos_Activity::class.java)
+                startActivity(intent)
                 true
             }
 

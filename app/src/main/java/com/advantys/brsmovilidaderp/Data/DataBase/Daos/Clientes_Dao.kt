@@ -169,13 +169,3 @@ enum class columnas{
     todo
 }
 
-//enum class diasSemana{
-//    lunes,
-//    martes,
-//    miercoles,
-//    jueves,
-//    viernes,
-//    sabado,
-//    domingo,
-//    todos
-//}

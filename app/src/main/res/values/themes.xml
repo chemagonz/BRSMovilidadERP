@@ -30,4 +30,8 @@
 
     <style name="Theme.BRSMovilidadERP.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="CustomTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <!-- Ajusta la alineación vertical del hint -->
+    </style>
+
 </resources>
