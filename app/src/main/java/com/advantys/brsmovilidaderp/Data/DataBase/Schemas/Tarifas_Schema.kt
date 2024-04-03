@@ -1,6 +1,6 @@
 package com.advantys.brsmovilidaderp.Data.DataBase.Schemas
 
-class Tarfias_Schema {
+class Tarifas_Schema {
     companion object {
         const val TABLE_NAME = "TARIFAS"
         const val TARIFA_FIELD = "NTARIFA"

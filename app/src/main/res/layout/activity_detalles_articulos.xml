@@ -4,12 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
-    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+        android:fitsSystemWindows="true">
 
         <LinearLayout
             android:id="@+id/LinearLayout1"
@@ -607,12 +606,53 @@
          </LinearLayout>
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="405dp"
-            android:layout_gravity="center"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/card" />
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TARIFAS"
+                android:textStyle="bold"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/black">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PRECIO C/P"
+                android:layout_marginStart="150sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textAlignment="center">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PRECIO U/K"
+                android:textStyle="bold"
+                android:layout_marginStart="20sp"
+                android:textColor="@color/black"
+                android:textAlignment="center">
+            </TextView>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#C5C5C5"/>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewTarifaArticulos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
+
 </ScrollView>

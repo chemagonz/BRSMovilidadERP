@@ -1,7 +1,7 @@
 package com.advantys.brsmovilidaderp.Data.DataBase.Entities
 
 import android.database.Cursor
-import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.Tarfias_Schema
+import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.Tarifas_Schema
 import com.advantys.brsmovilidaderp.Utils.getBoolean
 import com.advantys.brsmovilidaderp.Utils.getFloat
 import com.advantys.brsmovilidaderp.Utils.getShort
@@ -18,11 +18,11 @@ data class Tarifas_Entity(
     companion object{
         fun fromCursor(cursor: Cursor): Tarifas_Entity{
             val modelo= Tarifas_Entity()
-            modelo.numTarifa= cursor.getShort(Tarfias_Schema.TARIFA_FIELD,null)
-            modelo.nombre= cursor.getString(Tarfias_Schema.NOMBRE_FIELD,null)
-            modelo.tarifaAux= cursor.getShort(Tarfias_Schema.TARIFA_AUX_FIELD,null)
-            modelo.porcCargo= cursor.getFloat(Tarfias_Schema.PORC_CARGO_FIELD, null)
-            modelo.tarblqvta= cursor.getBoolean(Tarfias_Schema.TAR_BLQ_VTA_FIELD,null)
+            modelo.numTarifa= cursor.getShort(Tarifas_Schema.TARIFA_FIELD,null)
+            modelo.nombre= cursor.getString(Tarifas_Schema.NOMBRE_FIELD,null)
+            modelo.tarifaAux= cursor.getShort(Tarifas_Schema.TARIFA_AUX_FIELD,null)
+            modelo.porcCargo= cursor.getFloat(Tarifas_Schema.PORC_CARGO_FIELD, null)
+            modelo.tarblqvta= cursor.getBoolean(Tarifas_Schema.TAR_BLQ_VTA_FIELD,null)
             return modelo
         }
     }

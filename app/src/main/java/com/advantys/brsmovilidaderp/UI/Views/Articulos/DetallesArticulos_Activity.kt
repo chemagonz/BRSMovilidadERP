@@ -1,13 +1,18 @@
 package com.advantys.brsmovilidaderp.UI.Views.Articulos
 
+import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.advantys.brsmovilidaderp.Domain.Models.Articulo
 import com.advantys.brsmovilidaderp.Domain.Models.TipoIVA
 import com.advantys.brsmovilidaderp.UI.ViewModels.Articulo_ViewModel
+import com.advantys.brsmovilidaderp.UI.ViewModels.TarifaArticulo_ViewModel
+import com.advantys.brsmovilidaderp.UI.ViewModels.Tarifa_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.TipoIVA_ViewModel
 import com.advantys.brsmovilidaderp.Utils.BDUtil
 import com.advantys.brsmovilidaderp.databinding.ActivityDetallesArticulosBinding
@@ -17,7 +22,10 @@ import dagger.hilt.android.AndroidEntryPoint
 class DetallesArticulos_Activity : AppCompatActivity() {
     val articuloViewmodel:Articulo_ViewModel by viewModels()
     val tipoIvaViewModel: TipoIVA_ViewModel by viewModels()
+    val tarifaArticuloViewmodel: TarifaArticulo_ViewModel by viewModels()
+    val tarifaViewmodel: Tarifa_ViewModel by viewModels()
     private lateinit var binding: ActivityDetallesArticulosBinding
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityDetallesArticulosBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -41,6 +49,19 @@ class DetallesArticulos_Activity : AppCompatActivity() {
         tipoIvaViewModel.tipoIVAModel.observe(this, Observer { tipoIVA ->
             tipoIVA?.let { verDetallesTipoIVA(tipoIVA) }
         })
+
+        tarifaArticuloViewmodel.onCreate(articuloC, articuloFab)
+        tarifaArticuloViewmodel.tarifasArticuloModel.observe(this, Observer {
+            binding.recyclerViewTarifaArticulos.layoutManager= LinearLayoutManager(this)
+            binding.recyclerViewTarifaArticulos.adapter = TarifasArticulo_Adapter(it, tarifaArticuloViewmodel)
+        })
+//        tarifaViewmodel.onCreate(articuloC,articuloFab)
+//        tarifaViewmodel.tarifasModel.observe(this, Observer {
+//            binding.recyclerViewTarifaArticulos.layoutManager= LinearLayoutManager(this)
+//            binding.recyclerViewTarifaArticulos.adapter= Tarifas_Adapter(it, tarifaViewmodel)
+//        })
+
+
     }
     //Funcion para manejar botones
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
