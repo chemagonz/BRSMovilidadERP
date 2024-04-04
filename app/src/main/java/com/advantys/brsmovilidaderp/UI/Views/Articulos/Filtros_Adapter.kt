@@ -1,4 +1,4 @@
-package com.advantys.brsmovilidaderp.UI.Views.BuscarArticulos
+package com.advantys.brsmovilidaderp.UI.Views.Articulos
 
 import android.content.Context
 import android.view.LayoutInflater

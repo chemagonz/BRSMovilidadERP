@@ -47,7 +47,6 @@ class DetallesCentro_Activity (): AppCompatActivity() {
     //Funcion para ver los detalles de cada centro, stringbuilder para editText multiline
     private fun verDetallesCentro(centro: Centro) {
         val detalles = StringBuilder()
-
         binding.edCodigoCentro.setText(centro.numCentro.toString())
         binding.edNIFCentros.setText(centro.nif)
         binding.edNombreCentro.setText(centro.nombre)

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-    tools:context=".UI.Views.BuscarArticulos.FiltrarArticulos_Activity"
+    tools:context=".UI.Views.Articulos.FiltrarArticulos_Activity"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,20 +23,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" >
                     <com.google.android.material.textfield.TextInputLayout
+                        style="@style/CustomTextInputLayout"
                         android:id="@+id/txtFamilia"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="16dp"
-                        android:textAlignment="center"
                         android:hint="Familia"
-                        style="@style/CustomTextInputLayout">
+                        android:paddingTop="5dp"
+                        android:background="@drawable/plaintextdesign"
+                        android:layout_margin="16dp">
 
                         <AutoCompleteTextView
                             android:id="@+id/autocompleteFamilia"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/plaintextdesign"
                             android:inputType="none"
+                            android:layout_weight="1"
                             android:focusable="false"
                             android:cursorVisible="false">
                         </AutoCompleteTextView>
@@ -51,19 +51,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" >
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/txtSubfamilia"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         android:hint="Subfamilia"
+                        android:paddingTop="5dp"
+                        android:background="@drawable/plaintextdesign"
                         style="@style/CustomTextInputLayout">
 
                         <AutoCompleteTextView
                             android:id="@+id/autocompleteSubfamilia"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/plaintextdesign"
-                            android:dropDownHorizontalOffset="8dp"
                             android:inputType="none"
+                            android:layout_weight="1"
                             android:focusable="false"
                             android:cursorVisible="false">
                         </AutoCompleteTextView>
@@ -78,21 +80,24 @@
                     android:layout_height="wrap_content" >
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/txtFormato"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
+                        android:hint="Formato"
+                        android:paddingTop="5dp"
+                        android:background="@drawable/plaintextdesign"
                         style="@style/CustomTextInputLayout">
 
                         <AutoCompleteTextView
                             android:id="@+id/autocompleteFormato"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            style="@style/CustomTextInputLayout"
-                            android:hint="Formato"
-                            android:padding="0dp"
-                            android:inputType="none"
+                            android:cursorVisible="false"
+                            android:layout_weight="1"
                             android:focusable="false"
-                            android:cursorVisible="false">
+                            android:inputType="none">
+
                         </AutoCompleteTextView>
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -105,17 +110,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" >
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/txtMarca"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         android:hint="Marca"
+                        android:paddingTop="5dp"
+                        android:background="@drawable/plaintextdesign"
                         style="@style/CustomTextInputLayout">
 
                         <AutoCompleteTextView
                             android:id="@+id/autocompleteMarca"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/plaintextdesign"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
                             android:inputType="none"
                             android:focusable="false"
                             android:cursorVisible="false">
@@ -131,17 +139,20 @@
                     android:layout_height="wrap_content" >
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/txtSabor"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="16dp"
                             android:hint="Sabor"
+                            android:paddingTop="5dp"
+                            android:background="@drawable/plaintextdesign"
                             style="@style/CustomTextInputLayout">
 
                             <AutoCompleteTextView
                                 android:id="@+id/autocompleteSabor"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="@drawable/plaintextdesign"
+                                android:layout_weight="1"
                                 android:inputType="none"
                                 android:focusable="false"
                                 android:cursorVisible="false">
@@ -151,4 +162,4 @@
                 </LinearLayout>
             </LinearLayout>
     </LinearLayout>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

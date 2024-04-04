@@ -51,4 +51,11 @@ class Articulo_ViewModel @Inject constructor(private var articuloUsecase: Articu
         }
     }
     }
+    fun buscarArticulosFiltro(buscarArticulosPor: buscarArticulosPor, articulo: String?, fabricante: Short?,codfamilia: Short?, codsubfamilia:Short?, codformato:Int?, codmarca:String?, codsabor:String?, tipoConsulta: String?){
+        viewModelScope.launch(Dispatchers.Default) {
+            val resultado= articuloUsecase(buscarArticulosPor, articulo, fabricante, codfamilia, codsubfamilia, codformato, codmarca, codsabor, tipoConsulta)
+            articulosModel.postValue(resultado)
+        }
+    }
+
 }

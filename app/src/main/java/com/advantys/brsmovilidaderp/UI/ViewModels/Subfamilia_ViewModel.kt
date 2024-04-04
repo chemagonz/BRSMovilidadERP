@@ -16,6 +16,7 @@ class Subfamilia_ViewModel @Inject constructor(private var subfamiliaUsecase: Su
 
     fun onCreate(){ viewModelScope.launch(Dispatchers.Default ) {
         val resultado = subfamiliaUsecase()
+
         if(!resultado.isNullOrEmpty()) subfamiliasModel.postValue(resultado)
     }
     }

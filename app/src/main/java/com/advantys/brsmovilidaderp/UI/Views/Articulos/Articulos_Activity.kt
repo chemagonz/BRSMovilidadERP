@@ -6,17 +6,23 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Articulo_ViewModel
-import com.advantys.brsmovilidaderp.UI.Views.BuscarArticulos.BuscarArticulos_Activity
+import com.advantys.brsmovilidaderp.Utils.buscarArticulosPor
 import com.advantys.brsmovilidaderp.databinding.ActivityArticulosBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class Articulos_Activity : AppCompatActivity() {
     val articulosViewModel: Articulo_ViewModel by viewModels()
+    var tipoSeleccionado: buscarArticulosPor = buscarArticulosPor.descripcion
+
+    private var searchView: SearchView? = null
+
     private lateinit var binding: ActivityArticulosBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityArticulosBinding.inflate(layoutInflater)
@@ -29,7 +35,8 @@ class Articulos_Activity : AppCompatActivity() {
             title="ARTÍCULOS"
         }
 
-        articulosViewModel.onCreate()
+
+//        articulosViewModel.buscarArticulosFiltro()
         articulosViewModel.articulosModel.observe(this, Observer {
             binding.articulosRecyclerView.layoutManager= LinearLayoutManager(this)
             binding.articulosRecyclerView.adapter = Articulos_Adapter(it, articulosViewModel)
@@ -38,23 +45,80 @@ class Articulos_Activity : AppCompatActivity() {
 
 
     //Manejo de boton para la actividad buscar articulos
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.buscar, menu)
-        val busquedaItem= menu?.findItem(R.id.busqueda)
-        busquedaItem?.setOnMenuItemClickListener {
-            val intent= Intent(this, BuscarArticulos_Activity::class.java)
-            startActivity(intent)
-            true
-        }
-        return super.onCreateOptionsMenu(menu)
-    }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                finish()
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.filtrar_articulo, menu)
+
+        val searchItem = menu.findItem(R.id.searchArticulo)
+        val searchView = searchItem.actionView as SearchView
+        searchView.queryHint = "Buscar artículo"
+
+        searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
+
+            override fun onMenuItemActionExpand(item: MenuItem): Boolean {
                 return true
             }
+
+            override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
+                articulosViewModel.onCreate()
+                return true
+
+            }
+        })
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                if (!newText.isNullOrEmpty() && tipoSeleccionado!=null) {
+                    articulosViewModel.buscarArticulos(tipoSeleccionado!!,newText)
+                }else binding.articulosRecyclerView.adapter= Articulos_Adapter(emptyList(), articulosViewModel)
+
+                return false
+            }
+        })
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home->{
+                finish()
+                true
+            }
+            R.id.busquedaArticuloPor ->{
+                showPopupMenu()
+                true
+            }
+            R.id.filtrarArticulo ->{
+                val intent= Intent(this, FiltrarArticulos_Activity::class.java)
+                startActivity(intent)
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
+    }
+    private fun showPopupMenu() {
+        val popupMenu = PopupMenu(this, findViewById(R.id.busquedaArticuloPor))
+        popupMenu.menuInflater.inflate(R.menu.articulos_descripcion_codigo, popupMenu.menu)
+        popupMenu.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.descripcionlarga -> {
+                    tipoSeleccionado = buscarArticulosPor.descripcion
+                    supportActionBar?.subtitle = "DESCRIPCIÓN"
+                    searchView?.setQuery("", false)
+                    true
+                }
+                R.id.codigo -> {
+                    tipoSeleccionado = buscarArticulosPor.codigo
+                    supportActionBar?.subtitle = "CÓDIGO"
+                    searchView?.setQuery("", false)
+                    true
+                }
+                else -> false
+            }
+        }
+        popupMenu.show()
     }
 }
