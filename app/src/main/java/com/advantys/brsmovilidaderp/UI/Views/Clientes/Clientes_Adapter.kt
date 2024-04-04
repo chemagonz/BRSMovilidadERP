@@ -38,12 +38,16 @@ class Clientes_Adapter(val clientesList:List<Cliente?>, private val clienteViewM
         }
         holder.bind(clientesList[position], position==elementoSeleccionado)
 
-
+        val cliente = clientesList[position]
         holder.itemView.setOnLongClickListener {
-            val cliente = clientesList[position]
-            clienteViewModel.updateMarcado(cliente?.numClientes, !(cliente?.lmarcado ?: false), cliente?.delegacion)
-            val mensaje = if (cliente?.lmarcado == true) "Cliente marcado" else "Cliente desmarcado"
-            Toast.makeText(holder.itemView.context, mensaje, Toast.LENGTH_SHORT).show()
+            cliente?.let {
+                val nuevoEstado = !it.lmarcado!!
+                clienteViewModel.updateMarcado(it.numClientes, nuevoEstado, it.delegacion)
+                cliente.lmarcado = nuevoEstado
+                notifyItemChanged(position)
+                val mensaje = if (nuevoEstado) "Cliente marcado" else "Cliente desmarcado"
+                Toast.makeText(holder.itemView.context, mensaje, Toast.LENGTH_SHORT).show()
+            }
             true
         }
 
