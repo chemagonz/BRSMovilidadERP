@@ -1,66 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LayoutBuscarClientes"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:foreground="?android:attr/selectableItemBackground"
     android:orientation="vertical"
-    android:clickable="true">
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <!-- RelativeLayout para nombreCliente y codigoCliente -->
-        <RelativeLayout
-            android:layout_width="349dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <!-- TextView para nombreCliente -->
-            <TextView
-                android:id="@+id/nombreCliente"
-                android:layout_width="301dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="7dp"
-                android:layout_marginTop="16dp"
-                android:text="TextView"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <!-- TextView para codigoCliente, debajo de nombreCliente -->
-            <TextView
-                android:id="@+id/codigoCliente"
-                android:layout_width="69dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/nombreCliente"
-                android:layout_marginStart="7dp"
-                android:layout_marginTop="8dp"
-                android:text="TextView"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-        </RelativeLayout>
-
-        <!-- ImageButton a la derecha -->
-        <ImageButton
-            android:id="@+id/botonDetalles"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="20sp"
-            android:background="#00000000"
-            android:paddingLeft="10sp"
-            android:src="@drawable/ic_action_name" />
-
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#C5C5C5"/>
-
-</LinearLayout>
-
-
-
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/nombreCliente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginTop="6dp"
+                    android:text="TextView"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/codigoCliente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/nombreCliente"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginTop="8dp"
+                    android:text="TextView"
+                    android:layout_marginBottom="5sp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+            <ImageButton
+                android:id="@+id/botonDetalles"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20sp"
+                android:background="#00000000"
+                android:paddingLeft="10sp"
+                android:src="@drawable/ic_action_name" />
+        </LinearLayout>
+</androidx.cardview.widget.CardView>

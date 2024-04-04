@@ -102,6 +102,7 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             binding.recyclerviewClientes.adapter = adapterCliente
 
         })
+
     }
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {

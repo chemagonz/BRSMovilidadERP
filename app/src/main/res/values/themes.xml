@@ -1,14 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <!-- Base application theme. -->
     <style name="Base.Theme.BRSMovilidadERP" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="colorPrimary">@color/teal</item>
-
-        <!-- Color de la barra de estado -->
         <item name="android:statusBarColor">@color/teal_dark</item>
-
-        <!-- Color de acento para componentes interactivos -->
         <item name="colorAccent">@color/teal</item>
-
     </style>
 
     <style name="Theme.BRSMovilidadERP" parent="Base.Theme.BRSMovilidadERP">
@@ -20,9 +16,7 @@
     </style>
 
     <style name="AppBottomNavigationStyle" parent="Widget.MaterialComponents.BottomNavigationView">
-        <!-- Color del texto de los ítems -->
         <item name="android:itemTextAppearance">@color/white</item>
-        <!-- Color del fondo del BottomNavigationView -->
         <item name="android:background">@color/colorPrimary</item>
     </style>
 
@@ -31,9 +25,8 @@
     <style name="Theme.BRSMovilidadERP.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="CustomTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
-            <item name="android:textColorHint">@color/black</item>
-             <item name="android:paddingStart">8dp</item>
+        <item name="android:textColorHint">@color/black</item>
+        <item name="android:paddingStart">8dp</item>
     </style>
-
 
 </resources>

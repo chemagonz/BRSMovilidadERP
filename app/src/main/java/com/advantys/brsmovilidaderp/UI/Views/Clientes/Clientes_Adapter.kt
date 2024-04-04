@@ -3,6 +3,7 @@ package com.advantys.brsmovilidaderp.UI.Views.Clientes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.advantys.brsmovilidaderp.Domain.Models.Cliente
 import com.advantys.brsmovilidaderp.R
@@ -36,6 +37,16 @@ class Clientes_Adapter(val clientesList:List<Cliente?>, private val clienteViewM
             elementoSeleccionado
         }
         holder.bind(clientesList[position], position==elementoSeleccionado)
+
+
+        holder.itemView.setOnLongClickListener {
+            val cliente = clientesList[position]
+            clienteViewModel.updateMarcado(cliente?.numClientes, !(cliente?.lmarcado ?: false), cliente?.delegacion)
+            val mensaje = if (cliente?.lmarcado == true) "Cliente marcado" else "Cliente desmarcado"
+            Toast.makeText(holder.itemView.context, mensaje, Toast.LENGTH_SHORT).show()
+            true
+        }
+
     }
        fun getElementoSeleccionado(): Cliente? {
            return if(elementoSeleccionado!=-1) clientesList[elementoSeleccionado]
