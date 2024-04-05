@@ -15,28 +15,48 @@ class Articulos_Dao @Inject constructor(private val databaseManager: BDUtil) {
         }
     }
 
-    fun obtenerWhere(buscar: buscarArticulosPor, articulo: String?, fabricante:Short?, codfamilia:Short?, codsubfamilia:Short?, codformato: Int?, codmarca:String?,codsabor:String?,tipoConsulta: String?): String{
-        var where= " WHERE "
+    fun obtenerWhere(buscar: buscarArticulosPor,codfamilia:Short?, codsubfamilia:Short?, codformato: Int?, codmarca:String?,codsabor:String?,tipoConsulta: String?): String{
+        var where= ""
 
-        when(buscar){
-            buscarArticulosPor.codigo->{
-                where += "${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.ARTICULO_FIELD} LIKE + '${tipoConsulta}%' "
+        when(buscar) {
+            buscarArticulosPor.codigo -> {
+                if (!tipoConsulta.isNullOrEmpty()) {
+                    where += "${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.ARTICULO_FIELD} LIKE  '$tipoConsulta%' "
+                }
             }
-            buscarArticulosPor.descripcion->{
-                where += "${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.NOMBRE_FIELD} LIKE + '%${tipoConsulta}%' "
+            buscarArticulosPor.descripcion -> {
+                if (!tipoConsulta.isNullOrEmpty()) {
+                    where += "${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.NOMBRE_FIELD} LIKE  '%$tipoConsulta%' "
+                }
             }
         }
+//        if(codfamilia?.toInt() != -1)
+//            where += " AND ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.FAMILIA_FIELD} = $codfamilia "
+//        if(codsubfamilia?.toInt() != -1)
+//            where += " AND ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.SUBFAMILIA_FIELD} = $codsubfamilia "
+//        if(codformato?.toInt() != -1)
+//            where += " AND ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.FORMATO_FIELD} = $codformato "
+//        if(!codmarca.equals("") && !codmarca.equals("-1"))
+//            where += " AND ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.MARCA_FIELD} = '${codmarca}' "
+//        if(!codsabor.equals("") && !codsabor.equals("-1"))
+//            where += " AND ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.SABOR_FIELD} = '${codsabor}' "
 
-        if(codfamilia?.toInt() != -1)
+        if (codfamilia?.toInt() != null && codfamilia?.toInt() != -1) {
             where += " AND ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.FAMILIA_FIELD} = $codfamilia "
-        if(codsubfamilia?.toInt() != -1)
+        }
+        if (codsubfamilia?.toInt() != null && codsubfamilia?.toInt() != -1) {
             where += " AND ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.SUBFAMILIA_FIELD} = $codsubfamilia "
-        if(codformato?.toInt() != -1)
+        }
+        if (codformato?.toInt() != null && codformato?.toInt() != -1) {
             where += " AND ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.FORMATO_FIELD} = $codformato "
-        if(!codmarca.equals("") && !codmarca.equals("-1"))
-            where += " AND ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.MARCA_FIELD} = '${codmarca}' "
-        if(!codsabor.equals("") && !codsabor.equals("-1"))
-            where += " AND ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.SABOR_FIELD} = '${codsabor}' "
+        }
+        if (!codmarca.isNullOrEmpty() && codmarca != "-1") {
+            where += " AND ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.MARCA_FIELD} = '$codmarca' "
+        }
+        if (!codsabor.isNullOrEmpty() && codsabor != "-1") {
+            where += " AND ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.SABOR_FIELD} = '$codsabor' "
+        }
+
 
 //        if(articulo != null && fabricante != null){
 //            where += " AND ${Articulos_Schema.ARTICULO_AUX_FIELD} = '${articulo}' OR ${Articulos_Schema.ARTICULO_FIELD} = '${articulo}'"
@@ -46,9 +66,13 @@ class Articulos_Dao @Inject constructor(private val databaseManager: BDUtil) {
         return where
     }
 
-    fun obtenerArticulos(buscar: buscarArticulosPor, articulo: String?, fabricante:Short?, codfamilia:Short?, codsubfamilia:Short?, codformato: Int?, codmarca:String?,codsabor:String?,tipoConsulta: String?):List<Articulos_Entity?>{
-        var sql= " SELECT * FROM ${Articulos_Schema.TABLE_NAME} "
-        sql += obtenerWhere(buscar, articulo, fabricante, codfamilia, codsubfamilia, codformato, codmarca, codsabor, tipoConsulta)
+    fun obtenerArticulos(buscar: buscarArticulosPor, codfamilia:Short?, codsubfamilia:Short?, codformato: Int?, codmarca:String?,codsabor:String?,tipoConsulta: String?):List<Articulos_Entity?>{
+        var sql= " SELECT ${Articulos_Schema.NOMBRE_FIELD}, ${Articulos_Schema.ARTICULO_FIELD} FROM ${Articulos_Schema.TABLE_NAME} "
+        val where= obtenerWhere(buscar, codfamilia, codsubfamilia, codformato, codmarca, codsabor, tipoConsulta)
+       if(!where.isNullOrEmpty()){
+          sql +=  " WHERE $where"
+        }
+
 
         return databaseManager.query(sql){ cursor ->
             Articulos_Entity.fromCursor(cursor)

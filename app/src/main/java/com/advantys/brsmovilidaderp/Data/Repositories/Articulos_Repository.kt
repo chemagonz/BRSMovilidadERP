@@ -22,8 +22,8 @@ class Articulos_Repository @Inject constructor(private val articulosDao: Articul
         return response?.toDomain()
     }
 
-    suspend fun obtenerArticulos(buscarArticulosPor: buscarArticulosPor, articulo: String?, fabricante: Short?,codfamilia: Short?, codsubfamilia:Short?, codformato:Int?, codmarca:String?, codsabor:String?, tipoConsulta: String?):List<Articulo>{
-        val response : List<Articulos_Entity?> = articulosDao.obtenerArticulos(buscarArticulosPor,articulo,fabricante,codfamilia,codsubfamilia,codformato,codmarca,codsabor,tipoConsulta)
+    suspend fun obtenerArticulos(buscarArticulosPor: buscarArticulosPor, codfamilia: Short?, codsubfamilia:Short?, codformato:Int?, codmarca:String?, codsabor:String?, tipoConsulta: String?):List<Articulo>{
+        val response : List<Articulos_Entity?> = articulosDao.obtenerArticulos(buscarArticulosPor,codfamilia,codsubfamilia,codformato,codmarca,codsabor,tipoConsulta)
         return response.filterNotNull().map { it.toDomain() }
     }
 }

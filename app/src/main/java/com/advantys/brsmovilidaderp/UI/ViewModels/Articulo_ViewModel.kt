@@ -51,10 +51,12 @@ class Articulo_ViewModel @Inject constructor(private var articuloUsecase: Articu
         }
     }
     }
-    fun buscarArticulosFiltro(buscarArticulosPor: buscarArticulosPor, articulo: String?, fabricante: Short?,codfamilia: Short?, codsubfamilia:Short?, codformato:Int?, codmarca:String?, codsabor:String?, tipoConsulta: String?){
+    fun buscarArticulosFiltro(buscarArticulosPor: buscarArticulosPor, codfamilia: Short?=null, codsubfamilia:Short?=null, codformato:Int?=null, codmarca:String?=null, codsabor:String?=null, tipoConsulta: String?=null){
         viewModelScope.launch(Dispatchers.Default) {
-            val resultado= articuloUsecase(buscarArticulosPor, articulo, fabricante, codfamilia, codsubfamilia, codformato, codmarca, codsabor, tipoConsulta)
-            articulosModel.postValue(resultado)
+            val resultado= articuloUsecase(buscarArticulosPor, codfamilia, codsubfamilia, codformato, codmarca, codsabor, tipoConsulta)
+            if(!resultado.isNullOrEmpty()){
+                articulosModel.postValue(resultado)
+            }
         }
     }
 

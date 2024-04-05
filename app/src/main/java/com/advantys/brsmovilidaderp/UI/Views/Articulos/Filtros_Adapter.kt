@@ -12,11 +12,13 @@ import com.advantys.brsmovilidaderp.Domain.Models.Formato
 import com.advantys.brsmovilidaderp.Domain.Models.Marca
 import com.advantys.brsmovilidaderp.Domain.Models.Sabor
 import com.advantys.brsmovilidaderp.Domain.Models.Subfamilia
+import com.advantys.brsmovilidaderp.UI.ViewModels.Articulo_ViewModel
 
 class Filtros_Adapter {
 }
-class FamilyAutoComplete_Adapter (context: Context, private val familias: List<Familia?>) :
+class FamilyAutoComplete_Adapter (context: Context, private val familias: List<Familia?>, private val articulosviewModel: Articulo_ViewModel) :
     ArrayAdapter<Familia?>(context, android.R.layout.simple_dropdown_item_1line, familias) {
+
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = convertView ?: LayoutInflater.from(context).inflate(android.R.layout.simple_dropdown_item_1line, parent, false)
@@ -38,7 +40,7 @@ class FamilyAutoComplete_Adapter (context: Context, private val familias: List<F
         }
     }
 }
-class subFamilyAutoComplete_Adapter (context: Context, private val subfamilias: List<Subfamilia?>) :
+class subFamilyAutoComplete_Adapter (context: Context, private val subfamilias: List<Subfamilia?>,private val articulosviewModel: Articulo_ViewModel) :
     ArrayAdapter<Subfamilia?>(context, android.R.layout.simple_dropdown_item_1line, subfamilias) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -61,7 +63,7 @@ class subFamilyAutoComplete_Adapter (context: Context, private val subfamilias: 
         }
     }
 }
-class marcaAutoComplete_Adapter (context: Context, private val marcas: List<Marca?>) :
+class marcaAutoComplete_Adapter (context: Context, private val marcas: List<Marca?>,private val articulosviewModel: Articulo_ViewModel) :
     ArrayAdapter<Marca?>(context, android.R.layout.simple_dropdown_item_1line, marcas) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -85,7 +87,7 @@ class marcaAutoComplete_Adapter (context: Context, private val marcas: List<Marc
     }
 }
 
-class formatoAutoComplete_Adapter (context: Context, private val formatos: List<Formato?>) :
+class formatoAutoComplete_Adapter (context: Context, private val formatos: List<Formato?>,private val articulosviewModel: Articulo_ViewModel) :
     ArrayAdapter<Formato?>(context, android.R.layout.simple_dropdown_item_1line, formatos) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -108,7 +110,7 @@ class formatoAutoComplete_Adapter (context: Context, private val formatos: List<
         }
     }
 }
-class saborAutoComplete_Adapter (context: Context, private val sabores: List<Sabor?>) :
+class saborAutoComplete_Adapter (context: Context, private val sabores: List<Sabor?>,private val articulosviewModel: Articulo_ViewModel) :
     ArrayAdapter<Sabor?>(context, android.R.layout.simple_dropdown_item_1line, sabores) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {

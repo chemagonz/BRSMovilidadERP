@@ -22,8 +22,8 @@ class Articulo_UseCase @Inject constructor (private val repository: Articulos_Re
         }?:throw IllegalArgumentException("no puede ser nulo")
     }
 
-    suspend operator fun invoke(buscarArticulosPor: buscarArticulosPor, articulo: String?, fabricante: Short?,codfamilia: Short?, codsubfamilia:Short?, codformato:Int?, codmarca:String?, codsabor:String?, tipoConsulta: String?): List<Articulo>{
-        val articulo = repository.obtenerArticulos(buscarArticulosPor, articulo, fabricante, codfamilia, codsubfamilia, codformato, codmarca, codsabor, tipoConsulta)
+    suspend operator fun invoke(buscarArticulosPor: buscarArticulosPor, codfamilia: Short?, codsubfamilia:Short?, codformato:Int?, codmarca:String?, codsabor:String?, tipoConsulta: String?): List<Articulo>{
+        val articulo = repository.obtenerArticulos(buscarArticulosPor, codfamilia, codsubfamilia, codformato, codmarca, codsabor, tipoConsulta)
         return if(articulo.isNullOrEmpty())
             listOf<Articulo>()
         else articulo

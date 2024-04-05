@@ -1,5 +1,6 @@
 package com.advantys.brsmovilidaderp.Utils
 
+
 class Utils {
     //Clase dedicada para metodos estaticos, funciones generales, variables generables...
         companion object {
@@ -16,6 +17,8 @@ class Utils {
             var orderPor: ordenarPor= ordenarPor.ruta
             var mostrar: mostrarPor= mostrarPor.todos
             var buscarArticulo: buscarArticulosPor= buscarArticulosPor.descripcion
+
+
          }
 }
 

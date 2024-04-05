@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
@@ -24,6 +25,13 @@ class Articulos_Activity : AppCompatActivity() {
     private var searchView: SearchView? = null
 
     private lateinit var binding: ActivityArticulosBinding
+
+    private val responseLauncher= registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ activityResult->
+
+        if(activityResult.resultCode== RESULT_OK){
+
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityArticulosBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -34,9 +42,7 @@ class Articulos_Activity : AppCompatActivity() {
             setHomeButtonEnabled(true)
             title="ARTÍCULOS"
         }
-
-
-//        articulosViewModel.buscarArticulosFiltro()
+        articulosViewModel.buscarArticulosFiltro(tipoSeleccionado)
         articulosViewModel.articulosModel.observe(this, Observer {
             binding.articulosRecyclerView.layoutManager= LinearLayoutManager(this)
             binding.articulosRecyclerView.adapter = Articulos_Adapter(it, articulosViewModel)
@@ -59,7 +65,7 @@ class Articulos_Activity : AppCompatActivity() {
             }
 
             override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
-                articulosViewModel.onCreate()
+                articulosViewModel.buscarArticulosFiltro(tipoSeleccionado)
                 return true
 
             }
@@ -92,7 +98,7 @@ class Articulos_Activity : AppCompatActivity() {
             }
             R.id.filtrarArticulo ->{
                 val intent= Intent(this, FiltrarArticulos_Activity::class.java)
-                startActivity(intent)
+                responseLauncher.launch(intent)
                 true
             }
 
@@ -101,6 +107,7 @@ class Articulos_Activity : AppCompatActivity() {
     }
     private fun showPopupMenu() {
         val popupMenu = PopupMenu(this, findViewById(R.id.busquedaArticuloPor))
+
         popupMenu.menuInflater.inflate(R.menu.articulos_descripcion_codigo, popupMenu.menu)
         popupMenu.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {

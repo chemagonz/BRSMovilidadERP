@@ -5,6 +5,7 @@ import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.advantys.brsmovilidaderp.UI.ViewModels.Articulo_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.Familia_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.Formato_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.Marca_ViewModel
@@ -16,6 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class FiltrarArticulos_Activity : AppCompatActivity() {
     //Instancias ViewModel
+    private val articulosviewModel: Articulo_ViewModel by viewModels()
     private  val familiaViewModel: Familia_ViewModel by viewModels()
     private val subfamiliaViewmodel: Subfamilia_ViewModel by viewModels()
     private val formatoViewmodel: Formato_ViewModel by viewModels()
@@ -31,6 +33,7 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
     private lateinit var binding: ActivityFiltrarArticulosBinding
     private var familiaSeleccionada: Boolean = false
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityFiltrarArticulosBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -45,7 +48,7 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
 
         //APARTADO FAMILIAS
         familiaViewModel.onCreate()
-        familiaAdapter= FamilyAutoComplete_Adapter(this, mutableListOf())
+        familiaAdapter= FamilyAutoComplete_Adapter(this, mutableListOf(), articulosviewModel)
         binding.autocompleteFamilia.setAdapter(familiaAdapter)
         familiaViewModel.familiasModel.observe(this, Observer{ familias ->
             familiaAdapter.clear()
@@ -56,11 +59,13 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
             binding.autocompleteSubfamilia.isEnabled = true
             val selectedFamilia = familiaAdapter.getItem(position)
             binding.txtFamilia.editText?.setText("${selectedFamilia?.familia} - ${selectedFamilia?.nombre}")
+
         }
+
         //APARTADO SUBFAMILIAS
         binding.autocompleteSubfamilia.isEnabled = false
         subfamiliaViewmodel.onCreate()
-        subfamiliaAdapter= subFamilyAutoComplete_Adapter(this, mutableListOf())
+        subfamiliaAdapter= subFamilyAutoComplete_Adapter(this, mutableListOf(),articulosviewModel)
         binding.autocompleteSubfamilia.setAdapter(subfamiliaAdapter)
         subfamiliaViewmodel.subfamiliasModel.observe(this, Observer{ subfamilias ->
             subfamiliaAdapter.clear()
@@ -69,10 +74,11 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
         binding.autocompleteSubfamilia.setOnItemClickListener { _, _, position, _->
             val selectedSubfamilia= subfamiliaAdapter.getItem(position)
             binding.txtSubfamilia.editText?.setText("${selectedSubfamilia?.subfamilia} - ${selectedSubfamilia?.nombre}")
+
         }
         //APARTADO FORMATOS
         formatoViewmodel.onCreate()
-        formatoAdapter= formatoAutoComplete_Adapter(this, mutableListOf())
+        formatoAdapter= formatoAutoComplete_Adapter(this, mutableListOf(),articulosviewModel)
         binding.autocompleteFormato.setAdapter(formatoAdapter)
         formatoViewmodel.formatosModel.observe(this, Observer{ formato ->
             formatoAdapter.clear()
@@ -84,7 +90,7 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
         }
         //APARTADO MARCAS
         marcaViewmodel.onCreate()
-        marcaAdapter= marcaAutoComplete_Adapter(this, mutableListOf())
+        marcaAdapter= marcaAutoComplete_Adapter(this, mutableListOf(),articulosviewModel)
         binding.autocompleteMarca.setAdapter(marcaAdapter)
         marcaViewmodel.marcasModel.observe(this, Observer{ marca ->
             marcaAdapter.clear()
@@ -96,7 +102,7 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
         }
         //APARTADO SABORES
         saborViewmodel.onCreate()
-        saborAdapter= saborAutoComplete_Adapter(this, mutableListOf())
+        saborAdapter= saborAutoComplete_Adapter(this, mutableListOf(),articulosviewModel)
         binding.autocompleteSabor.setAdapter(saborAdapter)
         saborViewmodel.saboresModel.observe(this, Observer{ sabor ->
             saborAdapter.clear()
@@ -113,10 +119,13 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
         when (item.itemId) {
             android.R.id.home -> {
                 //Boton para atras
+                setResult(RESULT_OK)
                 finish()
                 return true
             }
         }
         return super.onOptionsItemSelected(item)
     }
+
+
 }

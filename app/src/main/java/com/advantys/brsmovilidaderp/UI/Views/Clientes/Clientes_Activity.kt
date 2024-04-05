@@ -57,11 +57,13 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     }
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_BRSMovilidadERP)
         binding = ActivityClientesBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         //val toolbar: androidx.appcompat.widget.Toolbar = findViewById((R.id.toolbar_main))
        // setSupportActionBar(toolbar)
+
         binding.bottomNavigationView.background= null
         drawer = findViewById(R.id.drawerLayout)
         toggle = ActionBarDrawerToggle(
@@ -114,7 +116,6 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             R.id.rutas -> {
                 val intent = Intent(this, Rutas_Activity::class.java)
                 responseLauncher.launch(intent)
-
             }
 
             R.id.series -> {
