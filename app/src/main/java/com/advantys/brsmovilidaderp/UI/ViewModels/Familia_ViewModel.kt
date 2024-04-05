@@ -13,9 +13,10 @@ import javax.inject.Inject
 @HiltViewModel
 class Familia_ViewModel @Inject constructor(private var familiaUsecase: Familia_UseCase): ViewModel()  {
     val familiasModel = MutableLiveData<List<Familia>>()
-    fun onCreate(){ viewModelScope.launch(Dispatchers.Default ) {
-        val resultado = familiaUsecase()
-        if(!resultado.isNullOrEmpty()) familiasModel.postValue(resultado)
+    fun onCreate(){
+        viewModelScope.launch(Dispatchers.Default ) {
+            val resultado = familiaUsecase()
+            if(!resultado.isNullOrEmpty()) familiasModel.postValue(resultado)
         }
     }
 }

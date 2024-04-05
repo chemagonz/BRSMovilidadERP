@@ -2,9 +2,12 @@ package com.advantys.brsmovilidaderp.UI.Views.Articulos
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.advantys.brsmovilidaderp.Domain.Models.Familia
 import com.advantys.brsmovilidaderp.UI.ViewModels.Articulo_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.Familia_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.Formato_ViewModel
@@ -48,18 +51,16 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
 
         //APARTADO FAMILIAS
         familiaViewModel.onCreate()
-        familiaAdapter= FamilyAutoComplete_Adapter(this, mutableListOf(), articulosviewModel)
-        binding.autocompleteFamilia.setAdapter(familiaAdapter)
         familiaViewModel.familiasModel.observe(this, Observer{ familias ->
-            familiaAdapter.clear()
-            familiaAdapter.addAll(familias)
+            binding.autocompleteFamilia.setAdapter(ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, familias))
         })
-        binding.autocompleteFamilia.setOnItemClickListener { _, _, position, _ ->
-            familiaSeleccionada= true
-            binding.autocompleteSubfamilia.isEnabled = true
-            val selectedFamilia = familiaAdapter.getItem(position)
-            binding.txtFamilia.editText?.setText("${selectedFamilia?.familia} - ${selectedFamilia?.nombre}")
-
+        binding.autocompleteFamilia.setOnItemClickListener { parent, view, position, id ->
+            val elementoSeleccionado = parent.getItemAtPosition(position) as Familia
+            Toast.makeText(
+                applicationContext,
+                "Código: ${elementoSeleccionado.familia}, Nombre: ${elementoSeleccionado.nombre}",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
         //APARTADO SUBFAMILIAS
