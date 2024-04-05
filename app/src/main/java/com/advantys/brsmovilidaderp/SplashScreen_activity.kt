@@ -2,7 +2,7 @@ package com.advantys.brsmovilidaderp
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
+import android.os.CountDownTimer
 import androidx.appcompat.app.AppCompatActivity
 import com.advantys.brsmovilidaderp.UI.Views.Clientes.Clientes_Activity
 import com.advantys.brsmovilidaderp.databinding.ActivitySplashScreenBinding
@@ -10,19 +10,25 @@ import com.advantys.brsmovilidaderp.databinding.ActivitySplashScreenBinding
 class SplashScreen_activity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashScreenBinding
 
-    private val SPLASH_TIME: Long = 1000
+    private val SPLASH_TIME: Long = 500
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding= ActivitySplashScreenBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
+        binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //Modificar versión de la aplicación
 
-        binding.txtVersion.setText("Version 1.0")
+        // Modificar versión de la aplicación
+        binding.txtVersion.text = "Version 1.0"
 
-        Handler().postDelayed({
-            startActivity(Intent( this, Clientes_Activity::class.java))
-            finish()
-        }, SPLASH_TIME
-        )
+        // CountDownTimer para iniciar la actividad después del tiempo de espera
+        object : CountDownTimer(SPLASH_TIME, SPLASH_TIME) {
+            override fun onTick(millisUntilFinished: Long) {
+                // No se usa en este caso
+            }
+            override fun onFinish() {
+                startActivity(Intent(this@SplashScreen_activity, Clientes_Activity::class.java))
+                finish()
+            }
+        }.start()
     }
 }
