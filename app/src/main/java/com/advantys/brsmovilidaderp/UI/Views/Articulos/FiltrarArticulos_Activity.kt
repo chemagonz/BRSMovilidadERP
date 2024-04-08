@@ -1,5 +1,6 @@
 package com.advantys.brsmovilidaderp.UI.Views.Articulos
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ArrayAdapter
@@ -8,6 +9,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.advantys.brsmovilidaderp.Domain.Models.Familia
+import com.advantys.brsmovilidaderp.Domain.Models.Formato
+import com.advantys.brsmovilidaderp.Domain.Models.Marca
+import com.advantys.brsmovilidaderp.Domain.Models.Sabor
+import com.advantys.brsmovilidaderp.Domain.Models.Subfamilia
 import com.advantys.brsmovilidaderp.UI.ViewModels.Articulo_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.Familia_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.Formato_ViewModel
@@ -27,14 +32,15 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
     private val marcaViewmodel: Marca_ViewModel by viewModels()
     private val saborViewmodel: Sabor_ViewModel by viewModels()
     //Instancias Adaptadores
-    private lateinit var familiaAdapter: FamilyAutoComplete_Adapter
-    private lateinit var subfamiliaAdapter: subFamilyAutoComplete_Adapter
-    private lateinit var formatoAdapter: formatoAutoComplete_Adapter
-    private lateinit var marcaAdapter: marcaAutoComplete_Adapter
-    private lateinit var saborAdapter: saborAutoComplete_Adapter
 
     private lateinit var binding: ActivityFiltrarArticulosBinding
-    private var familiaSeleccionada: Boolean = false
+
+    private var familiaID: Short? = -1
+    private var subfamiliaID: Short? = -1
+    private var formatoID: Int? = -1
+    private var marcaID: String? = null
+    private var saborID: String? = null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,57 +67,69 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
                 "Código: ${elementoSeleccionado.familia}, Nombre: ${elementoSeleccionado.nombre}",
                 Toast.LENGTH_SHORT
             ).show()
+            familiaID= elementoSeleccionado.familia
+
         }
 
         //APARTADO SUBFAMILIAS
-        binding.autocompleteSubfamilia.isEnabled = false
         subfamiliaViewmodel.onCreate()
-        subfamiliaAdapter= subFamilyAutoComplete_Adapter(this, mutableListOf(),articulosviewModel)
-        binding.autocompleteSubfamilia.setAdapter(subfamiliaAdapter)
         subfamiliaViewmodel.subfamiliasModel.observe(this, Observer{ subfamilias ->
-            subfamiliaAdapter.clear()
-            subfamiliaAdapter.addAll(subfamilias)
+            binding.autocompleteSubfamilia.setAdapter(ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, subfamilias))
         })
-        binding.autocompleteSubfamilia.setOnItemClickListener { _, _, position, _->
-            val selectedSubfamilia= subfamiliaAdapter.getItem(position)
-            binding.txtSubfamilia.editText?.setText("${selectedSubfamilia?.subfamilia} - ${selectedSubfamilia?.nombre}")
+        binding.autocompleteSubfamilia.setOnItemClickListener { parent, view, position, id ->
+            val elementoSeleccionado = parent.getItemAtPosition(position) as Subfamilia
+            Toast.makeText(
+                applicationContext,
+                "Código: ${elementoSeleccionado.subfamilia}, Nombre: ${elementoSeleccionado.nombre}",
+                Toast.LENGTH_SHORT
+            ).show()
 
+            subfamiliaID= elementoSeleccionado.subfamilia
         }
         //APARTADO FORMATOS
         formatoViewmodel.onCreate()
-        formatoAdapter= formatoAutoComplete_Adapter(this, mutableListOf(),articulosviewModel)
-        binding.autocompleteFormato.setAdapter(formatoAdapter)
         formatoViewmodel.formatosModel.observe(this, Observer{ formato ->
-            formatoAdapter.clear()
-            formatoAdapter.addAll(formato)
+            binding.autocompleteFormato.setAdapter(ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, formato))
         })
-        binding.autocompleteFormato.setOnItemClickListener { _, _, position, _->
-            val selectedFormato= formatoAdapter.getItem(position)
-            binding.txtFormato.editText?.setText("${selectedFormato?.formato} - ${selectedFormato?.nombre}")
+        binding.autocompleteFormato.setOnItemClickListener { parent, view, position, id ->
+            val elementoSeleccionado = parent.getItemAtPosition(position) as Formato
+            Toast.makeText(
+                applicationContext,
+                "Código: ${elementoSeleccionado.formato}, Nombre: ${elementoSeleccionado.nombre}",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            formatoID= elementoSeleccionado.formato
         }
         //APARTADO MARCAS
         marcaViewmodel.onCreate()
-        marcaAdapter= marcaAutoComplete_Adapter(this, mutableListOf(),articulosviewModel)
-        binding.autocompleteMarca.setAdapter(marcaAdapter)
         marcaViewmodel.marcasModel.observe(this, Observer{ marca ->
-            marcaAdapter.clear()
-            marcaAdapter.addAll(marca)
+            binding.autocompleteMarca.setAdapter(ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, marca))
         })
-        binding.autocompleteMarca.setOnItemClickListener { _, _, position, _->
-            val selectedMarca= marcaAdapter.getItem(position)
-            binding.txtMarca.editText?.setText("${selectedMarca?.marca} - ${selectedMarca?.nombre}")
+        binding.autocompleteMarca.setOnItemClickListener { parent, view, position, id ->
+            val elementoSeleccionado = parent.getItemAtPosition(position) as Marca
+            Toast.makeText(
+                applicationContext,
+                "Código: ${elementoSeleccionado.marca}, Nombre: ${elementoSeleccionado.nombre}",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            marcaID= elementoSeleccionado.marca
         }
         //APARTADO SABORES
         saborViewmodel.onCreate()
-        saborAdapter= saborAutoComplete_Adapter(this, mutableListOf(),articulosviewModel)
-        binding.autocompleteSabor.setAdapter(saborAdapter)
         saborViewmodel.saboresModel.observe(this, Observer{ sabor ->
-            saborAdapter.clear()
-            saborAdapter.addAll(sabor)
+            binding.autocompleteSabor.setAdapter(ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, sabor))
         })
-        binding.autocompleteSabor.setOnItemClickListener { _, _, position, _->
-            val selectedSabor= saborAdapter.getItem(position)
-            binding.txtSabor.editText?.setText("${selectedSabor?.sabor} - ${selectedSabor?.nombre}")
+        binding.autocompleteSabor.setOnItemClickListener { parent, view, position, id ->
+            val elementoSeleccionado = parent.getItemAtPosition(position) as Sabor
+            Toast.makeText(
+                applicationContext,
+                "Código: ${elementoSeleccionado.sabor}, Nombre: ${elementoSeleccionado.nombre}",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            saborID = elementoSeleccionado.sabor
         }
     }
 
@@ -119,6 +137,12 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
+                val intent = Intent()
+                intent.putExtra("familia", familiaID)
+                intent.putExtra("subfamilia", subfamiliaID)
+                intent.putExtra("formato", formatoID)
+                intent.putExtra("marca", marcaID)
+                intent.putExtra("sabor", saborID)
                 //Boton para atras
                 setResult(RESULT_OK)
                 finish()

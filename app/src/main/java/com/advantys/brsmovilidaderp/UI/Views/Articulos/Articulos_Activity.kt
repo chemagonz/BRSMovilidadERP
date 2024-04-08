@@ -29,7 +29,12 @@ class Articulos_Activity : AppCompatActivity() {
     private val responseLauncher= registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ activityResult->
 
         if(activityResult.resultCode== RESULT_OK){
-
+            val familia = activityResult.data?.getShortExtra("familia", 0)
+            val subfamilia = activityResult.data?.getShortExtra("subfamilia",0)
+            val formato = activityResult.data?.getIntExtra("formato",0)
+            val marca = activityResult.data?.getStringExtra("marca")
+            val sabor =activityResult.data?.getStringExtra("sabor")
+            articulosViewModel.buscarArticulosFiltro(buscarArticulosPor.descripcion, familia,subfamilia,formato,marca,sabor)
         }
     }
     override fun onCreate(savedInstanceState: Bundle?) {

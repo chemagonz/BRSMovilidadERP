@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class Tarifa_UseCase@Inject constructor(private val repository: Tarifas_Repository) {
 
-    suspend operator fun invoke(tarifas:Short?): List<Tarifa>{
+    suspend operator fun invoke(tarifas:String?): List<Tarifa>{
         val tarifa = repository.getNombreTarifa(tarifas)
         return if(tarifa.isNullOrEmpty())
             listOf<Tarifa>()

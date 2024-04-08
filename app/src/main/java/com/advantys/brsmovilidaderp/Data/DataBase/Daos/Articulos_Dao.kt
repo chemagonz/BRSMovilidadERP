@@ -42,7 +42,7 @@ class Articulos_Dao @Inject constructor(private val databaseManager: BDUtil) {
 //            where += " AND ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.SABOR_FIELD} = '${codsabor}' "
 
         if (codfamilia?.toInt() != null && codfamilia?.toInt() != -1) {
-            where += " AND ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.FAMILIA_FIELD} = $codfamilia "
+            where += "  ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.FAMILIA_FIELD} = $codfamilia "
         }
         if (codsubfamilia?.toInt() != null && codsubfamilia?.toInt() != -1) {
             where += " AND ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.SUBFAMILIA_FIELD} = $codsubfamilia "

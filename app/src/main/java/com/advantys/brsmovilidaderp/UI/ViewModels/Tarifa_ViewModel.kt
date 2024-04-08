@@ -1,5 +1,6 @@
 package com.advantys.brsmovilidaderp.UI.ViewModels
 
+import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,10 +14,15 @@ import javax.inject.Inject
 @HiltViewModel
 class Tarifa_ViewModel @Inject constructor(private val tarifa_UseCase: Tarifa_UseCase) : ViewModel() {
     val tarifasModel= MutableLiveData<List<Tarifa>>()
-    fun onCreate(tarifa:Short?){
+    fun onCreate(tarifa:String?){
         viewModelScope.launch(Dispatchers.Default) {
             val resultado= tarifa_UseCase(tarifa)
             if(!resultado.isNullOrEmpty()) tarifasModel.postValue(resultado)
         }
+    }
+
+    fun GetNombre(item: Tarifa?){
+        val intent= Intent()
+        intent.putExtra("nombre", item?.nombre)
     }
 }

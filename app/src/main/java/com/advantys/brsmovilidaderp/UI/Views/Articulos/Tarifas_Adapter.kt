@@ -21,6 +21,7 @@ class Tarifas_Adapter(private val tarifaList:List<Tarifa?>, private val tarifaVi
         holder.bind(tarifaList[position])
         val item= tarifaList[position]
         holder.binding.nombreTarifa.text= item?.nombre
+
     }
 }
 

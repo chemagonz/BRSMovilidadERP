@@ -61,6 +61,11 @@ class DetallesArticulos_Activity : AppCompatActivity() {
 //            binding.recyclerViewTarifaArticulos.adapter= Tarifas_Adapter(it, tarifaViewmodel)
 //        })
 
+//        tarifaViewmodel.onCreate()
+        val nombreTarifa= intent.getStringExtra("nombre")
+        tarifaViewmodel.onCreate(nombreTarifa)
+
+
 
     }
     //Funcion para manejar botones
@@ -100,4 +105,5 @@ class DetallesArticulos_Activity : AppCompatActivity() {
         binding.edTipoIVA.setText(tipoIVA.porcIVA.toString())
         binding.edTipoIVAREC.setText(tipoIVA.porCREC.toString())
     }
+
 }
