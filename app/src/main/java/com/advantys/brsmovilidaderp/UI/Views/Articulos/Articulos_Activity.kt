@@ -23,18 +23,23 @@ class Articulos_Activity : AppCompatActivity() {
     var tipoSeleccionado: buscarArticulosPor = buscarArticulosPor.descripcion
 
     private var searchView: SearchView? = null
+    private var familiaID: Short? = null
+    private var subfamiliaID: Short? = null
+    private var formatoID: Int? = null
+    private var marcaID: String? = null
+    private var saborID: String? = null
 
     private lateinit var binding: ActivityArticulosBinding
 
     private val responseLauncher= registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ activityResult->
 
         if(activityResult.resultCode== RESULT_OK){
-            val familia = activityResult.data?.getShortExtra("familia", 0)
-            val subfamilia = activityResult.data?.getShortExtra("subfamilia",0)
-            val formato = activityResult.data?.getIntExtra("formato",0)
-            val marca = activityResult.data?.getStringExtra("marca")
-            val sabor =activityResult.data?.getStringExtra("sabor")
-            articulosViewModel.buscarArticulosFiltro(buscarArticulosPor.descripcion, familia,subfamilia,formato,marca,sabor)
+            familiaID= activityResult.data?.getShortExtra("familia", -1)
+            subfamiliaID= activityResult.data?.getShortExtra("subfamilia",-1)
+            formatoID = activityResult.data?.getIntExtra("formato",-1)
+            marcaID= activityResult.data?.getStringExtra("marca")
+            saborID =activityResult.data?.getStringExtra("sabor")
+            articulosViewModel.buscarArticulosFiltro(buscarArticulosPor.descripcion,familiaID,subfamiliaID,formatoID,marcaID,saborID)
         }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,7 +87,7 @@ class Articulos_Activity : AppCompatActivity() {
             override fun onQueryTextChange(newText: String?): Boolean {
 
                 if (!newText.isNullOrEmpty() && tipoSeleccionado!=null) {
-                    articulosViewModel.buscarArticulos(tipoSeleccionado!!,newText)
+                    articulosViewModel.buscarArticulosFiltro(tipoSeleccionado!!,familiaID,subfamiliaID, formatoID,marcaID,saborID,newText)
                 }else binding.articulosRecyclerView.adapter= Articulos_Adapter(emptyList(), articulosViewModel)
 
                 return false

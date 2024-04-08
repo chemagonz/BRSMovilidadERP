@@ -29,7 +29,6 @@
                         android:layout_height="wrap_content"
                         android:hint="Familia"
                         android:paddingTop="5dp"
-                        android:background="@drawable/plaintextdesign"
                         android:layout_margin="16dp">
 
                         <AutoCompleteTextView
@@ -39,7 +38,8 @@
                             android:inputType="none"
                             android:layout_weight="1"
                             android:focusable="false"
-                            android:cursorVisible="false">
+                            android:cursorVisible="false"
+                            style="@style/CustomTextInputLayout">
                         </AutoCompleteTextView>
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -57,7 +57,6 @@
                         android:layout_margin="16dp"
                         android:hint="Subfamilia"
                         android:paddingTop="5dp"
-                        android:background="@drawable/plaintextdesign"
                         style="@style/CustomTextInputLayout">
 
                         <AutoCompleteTextView
@@ -67,7 +66,8 @@
                             android:inputType="none"
                             android:layout_weight="1"
                             android:focusable="false"
-                            android:cursorVisible="false">
+                            android:cursorVisible="false"
+                            style="@style/CustomTextInputLayout">
                         </AutoCompleteTextView>
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -86,7 +86,6 @@
                         android:layout_margin="16dp"
                         android:hint="Formato"
                         android:paddingTop="5dp"
-                        android:background="@drawable/plaintextdesign"
                         style="@style/CustomTextInputLayout">
 
                         <AutoCompleteTextView
@@ -96,7 +95,8 @@
                             android:cursorVisible="false"
                             android:layout_weight="1"
                             android:focusable="false"
-                            android:inputType="none">
+                            android:inputType="none"
+                            style="@style/CustomTextInputLayout">
 
                         </AutoCompleteTextView>
 
@@ -116,7 +116,6 @@
                         android:layout_margin="16dp"
                         android:hint="Marca"
                         android:paddingTop="5dp"
-                        android:background="@drawable/plaintextdesign"
                         style="@style/CustomTextInputLayout">
 
                         <AutoCompleteTextView
@@ -126,7 +125,8 @@
                             android:layout_weight="1"
                             android:inputType="none"
                             android:focusable="false"
-                            android:cursorVisible="false">
+                            android:cursorVisible="false"
+                            style="@style/CustomTextInputLayout">
                         </AutoCompleteTextView>
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -145,7 +145,6 @@
                             android:layout_margin="16dp"
                             android:hint="Sabor"
                             android:paddingTop="5dp"
-                            android:background="@drawable/plaintextdesign"
                             style="@style/CustomTextInputLayout">
 
                             <AutoCompleteTextView
@@ -155,7 +154,8 @@
                                 android:layout_weight="1"
                                 android:inputType="none"
                                 android:focusable="false"
-                                android:cursorVisible="false">
+                                android:cursorVisible="false"
+                                style="@style/CustomTextInputLayout">
                             </AutoCompleteTextView>
 
                         </com.google.android.material.textfield.TextInputLayout>

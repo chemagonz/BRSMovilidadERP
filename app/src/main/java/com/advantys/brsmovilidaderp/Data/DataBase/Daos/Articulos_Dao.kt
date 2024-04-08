@@ -21,12 +21,12 @@ class Articulos_Dao @Inject constructor(private val databaseManager: BDUtil) {
         when(buscar) {
             buscarArticulosPor.codigo -> {
                 if (!tipoConsulta.isNullOrEmpty()) {
-                    where += "${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.ARTICULO_FIELD} LIKE  '$tipoConsulta%' "
+                    where += "${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.ARTICULO_FIELD} LIKE  '$tipoConsulta%'  "
                 }
             }
             buscarArticulosPor.descripcion -> {
                 if (!tipoConsulta.isNullOrEmpty()) {
-                    where += "${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.NOMBRE_FIELD} LIKE  '%$tipoConsulta%' "
+                    where += "${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.NOMBRE_FIELD} LIKE  '%$tipoConsulta%'  "
                 }
             }
         }

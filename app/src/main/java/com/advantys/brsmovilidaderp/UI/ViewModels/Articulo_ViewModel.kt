@@ -56,6 +56,8 @@ class Articulo_ViewModel @Inject constructor(private var articuloUsecase: Articu
             val resultado= articuloUsecase(buscarArticulosPor, codfamilia, codsubfamilia, codformato, codmarca, codsabor, tipoConsulta)
             if(!resultado.isNullOrEmpty()){
                 articulosModel.postValue(resultado)
+            }else{
+                articulosModel.postValue(emptyList())
             }
         }
     }

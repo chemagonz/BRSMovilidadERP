@@ -1,7 +1,10 @@
 package com.advantys.brsmovilidaderp.UI.Views.Articulos
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -13,6 +16,7 @@ import com.advantys.brsmovilidaderp.Domain.Models.Formato
 import com.advantys.brsmovilidaderp.Domain.Models.Marca
 import com.advantys.brsmovilidaderp.Domain.Models.Sabor
 import com.advantys.brsmovilidaderp.Domain.Models.Subfamilia
+import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Articulo_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.Familia_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.Formato_ViewModel
@@ -33,21 +37,23 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
     private val saborViewmodel: Sabor_ViewModel by viewModels()
     //Instancias Adaptadores
 
+    private lateinit var sharedPreferences: SharedPreferences
     private lateinit var binding: ActivityFiltrarArticulosBinding
 
-    private var familiaID: Short? = -1
-    private var subfamiliaID: Short? = -1
-    private var formatoID: Int? = -1
+    private var familiaID: Short? = null
+    private var subfamiliaID: Short? = null
+    private var formatoID: Int? = null
     private var marcaID: String? = null
     private var saborID: String? = null
-
-
+    //Instancias para guardar item
+    private val SHARED_PREFS_KEY = "FiltrarArticulosPrefs"
+    private val KEY_SELECTED_ITEM = "selectedItem"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityFiltrarArticulosBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        sharedPreferences = getSharedPreferences(SHARED_PREFS_KEY, Context.MODE_PRIVATE)
         //ACTION BAR
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
@@ -59,6 +65,12 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
         familiaViewModel.onCreate()
         familiaViewModel.familiasModel.observe(this, Observer{ familias ->
             binding.autocompleteFamilia.setAdapter(ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, familias))
+
+            val selectedItem = sharedPreferences.getString(KEY_SELECTED_ITEM, "")
+            val position = familias.indexOfFirst { it.nombre == selectedItem }
+            if (position != -1) {
+                binding.autocompleteFamilia.setText(selectedItem, false)
+            }
         })
         binding.autocompleteFamilia.setOnItemClickListener { parent, view, position, id ->
             val elementoSeleccionado = parent.getItemAtPosition(position) as Familia
@@ -68,7 +80,7 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
             familiaID= elementoSeleccionado.familia
-
+            elementoSeleccionado.nombre?.let { saveSelectedItem(it) }
         }
 
         //APARTADO SUBFAMILIAS
@@ -83,7 +95,6 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
                 "Código: ${elementoSeleccionado.subfamilia}, Nombre: ${elementoSeleccionado.nombre}",
                 Toast.LENGTH_SHORT
             ).show()
-
             subfamiliaID= elementoSeleccionado.subfamilia
         }
         //APARTADO FORMATOS
@@ -98,7 +109,6 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
                 "Código: ${elementoSeleccionado.formato}, Nombre: ${elementoSeleccionado.nombre}",
                 Toast.LENGTH_SHORT
             ).show()
-
             formatoID= elementoSeleccionado.formato
         }
         //APARTADO MARCAS
@@ -113,7 +123,6 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
                 "Código: ${elementoSeleccionado.marca}, Nombre: ${elementoSeleccionado.nombre}",
                 Toast.LENGTH_SHORT
             ).show()
-
             marcaID= elementoSeleccionado.marca
         }
         //APARTADO SABORES
@@ -128,11 +137,22 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
                 "Código: ${elementoSeleccionado.sabor}, Nombre: ${elementoSeleccionado.nombre}",
                 Toast.LENGTH_SHORT
             ).show()
-
             saborID = elementoSeleccionado.sabor
         }
     }
-
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.borrar_filtro, menu)
+        val borrarItem= menu.findItem(R.id.borrar_filtro)
+        borrarItem?.setOnMenuItemClickListener {
+           true
+        }
+    return true
+    }
+    private fun saveSelectedItem(selectedItem: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString(KEY_SELECTED_ITEM, selectedItem)
+        editor.apply()
+    }
     //Funcion para manejar botones
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -144,13 +164,11 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
                 intent.putExtra("marca", marcaID)
                 intent.putExtra("sabor", saborID)
                 //Boton para atras
-                setResult(RESULT_OK)
+                setResult(RESULT_OK, intent)
                 finish()
                 return true
             }
         }
         return super.onOptionsItemSelected(item)
     }
-
-
 }
