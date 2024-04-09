@@ -8,6 +8,8 @@ import android.os.Build
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
 import com.advantys.brsmovilidaderp.Data.DataBase.BD
+import com.advantys.brsmovilidaderp.Data.DataBase.Entities.Configuracion_Entity
+import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.Configuracion_Schema
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -177,6 +179,29 @@ class BDUtil @Inject constructor (private val dbHelper:BD){
     fun cerrar(cursor: Cursor, db: BD){
         db.cerrarConexion();
 
+    }
+    private fun CrearBBDD():Boolean{
+        var result= false
+        //FUNCIÓN VACÍA POR AHORA
+        return result
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun basedeDatosCorrupta(): List<Configuracion_Entity?> {
+        var sql= "SELECT ${Configuracion_Schema.TERMINAL_FIELD} FROM ${Configuracion_Schema.TABLE_NAME} "
+        return query(sql) { cursor ->
+                Configuracion_Entity.fromCursor(cursor)
+            }
+        }
+
+    fun actualizarBD():Boolean{
+        var result= true
+        var query = ArrayList<String>()
+        query.add("")
+        query.add("")
+        query.add("")
+        query.add("")
+
+        return result
     }
     //Funcion para ocultar teclado
     object KeyboardUtil {
