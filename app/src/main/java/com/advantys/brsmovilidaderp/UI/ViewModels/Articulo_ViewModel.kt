@@ -61,5 +61,4 @@ class Articulo_ViewModel @Inject constructor(private var articuloUsecase: Articu
             }
         }
     }
-
 }

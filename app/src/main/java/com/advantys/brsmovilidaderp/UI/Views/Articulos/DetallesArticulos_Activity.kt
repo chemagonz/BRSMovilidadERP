@@ -64,9 +64,6 @@ class DetallesArticulos_Activity : AppCompatActivity() {
 //        tarifaViewmodel.onCreate()
         val nombreTarifa= intent.getStringExtra("nombre")
         tarifaViewmodel.onCreate(nombreTarifa)
-
-
-
     }
     //Funcion para manejar botones
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -25,6 +25,7 @@ class Articulos_Adapter(private val articulosList: List<Articulo?>, private val 
         holder.binding.botonDetalles.setOnClickListener {
             articulosViewModel.btnDetalles(item, holder.itemView.context)
         }
+
     }
 }
 

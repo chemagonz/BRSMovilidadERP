@@ -1,6 +1,7 @@
 package com.advantys.brsmovilidaderp.UI.Views.Articulos
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -31,6 +32,14 @@ class Articulos_Activity : AppCompatActivity() {
 
     private lateinit var binding: ActivityArticulosBinding
 
+    private lateinit var sharedPreferences: SharedPreferences
+    private val SHARED_PREFS_KEY = "FiltrarArticulosPrefs"
+    private val KEY_SELECTED_FAMILIA = "Familia"
+    private val KEY_SELECTED_SUBFAMILIA = "Subfamilia"
+    private val KEY_SELECTED_FORMATO = "Formato"
+    private val KEY_SELECTED_MARCA = "Marca"
+    private val KEY_SELECTED_SABOR = "Sabor"
+
     private val responseLauncher= registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ activityResult->
 
         if(activityResult.resultCode== RESULT_OK){
@@ -40,26 +49,24 @@ class Articulos_Activity : AppCompatActivity() {
             marcaID= activityResult.data?.getStringExtra("marca")
             saborID =activityResult.data?.getStringExtra("sabor")
             articulosViewModel.buscarArticulosFiltro(buscarArticulosPor.descripcion,familiaID,subfamiliaID,formatoID,marcaID,saborID)
-        }
+        }else articulosViewModel.buscarArticulosFiltro(tipoSeleccionado)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityArticulosBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setHomeButtonEnabled(true)
             title="ARTÍCULOS"
         }
+        sharedPreferences = getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE)
         articulosViewModel.buscarArticulosFiltro(tipoSeleccionado)
         articulosViewModel.articulosModel.observe(this, Observer {
             binding.articulosRecyclerView.layoutManager= LinearLayoutManager(this)
             binding.articulosRecyclerView.adapter = Articulos_Adapter(it, articulosViewModel)
         })
     }
-
-
     //Manejo de boton para la actividad buscar articulos
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.filtrar_articulo, menu)
@@ -95,10 +102,10 @@ class Articulos_Activity : AppCompatActivity() {
         })
         return super.onCreateOptionsMenu(menu)
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home->{
+                cleanFiltros()
                 finish()
                 true
             }
@@ -111,7 +118,6 @@ class Articulos_Activity : AppCompatActivity() {
                 responseLauncher.launch(intent)
                 true
             }
-
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -137,5 +143,14 @@ class Articulos_Activity : AppCompatActivity() {
             }
         }
         popupMenu.show()
+    }
+    private fun cleanFiltros() {
+        val editor = sharedPreferences.edit()
+        editor.remove(KEY_SELECTED_FAMILIA)
+        editor.remove(KEY_SELECTED_SUBFAMILIA)
+        editor.remove(KEY_SELECTED_FORMATO)
+        editor.remove(KEY_SELECTED_MARCA)
+        editor.remove(KEY_SELECTED_SABOR)
+        editor.apply()
     }
 }

@@ -35,10 +35,8 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
     private val formatoViewmodel: Formato_ViewModel by viewModels()
     private val marcaViewmodel: Marca_ViewModel by viewModels()
     private val saborViewmodel: Sabor_ViewModel by viewModels()
-    //Instancias Adaptadores
-
-    private lateinit var sharedPreferences: SharedPreferences
     private lateinit var binding: ActivityFiltrarArticulosBinding
+    //Instancias Adaptadores
 
     private var familiaID: Short? = null
     private var subfamiliaID: Short? = null
@@ -46,13 +44,19 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
     private var marcaID: String? = null
     private var saborID: String? = null
     //Instancias para guardar item
+    private lateinit var sharedPreferences: SharedPreferences
     private val SHARED_PREFS_KEY = "FiltrarArticulosPrefs"
-    private val KEY_SELECTED_ITEM = "selectedItem"
+    private val KEY_SELECTED_FAMILIA = "Familia"
+    private val KEY_SELECTED_SUBFAMILIA = "Subfamilia"
+    private val KEY_SELECTED_FORMATO = "Formato"
+    private val KEY_SELECTED_MARCA = "Marca"
+    private val KEY_SELECTED_SABOR = "Sabor"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityFiltrarArticulosBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
         sharedPreferences = getSharedPreferences(SHARED_PREFS_KEY, Context.MODE_PRIVATE)
         //ACTION BAR
         supportActionBar?.apply {
@@ -65,11 +69,11 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
         familiaViewModel.onCreate()
         familiaViewModel.familiasModel.observe(this, Observer{ familias ->
             binding.autocompleteFamilia.setAdapter(ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, familias))
-
-            val selectedItem = sharedPreferences.getString(KEY_SELECTED_ITEM, "")
+            val selectedItem = sharedPreferences.getString(KEY_SELECTED_FAMILIA, "")
             val position = familias.indexOfFirst { it.nombre == selectedItem }
             if (position != -1) {
                 binding.autocompleteFamilia.setText(selectedItem, false)
+                familiaID= familias[position].familia
             }
         })
         binding.autocompleteFamilia.setOnItemClickListener { parent, view, position, id ->
@@ -80,13 +84,19 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
             familiaID= elementoSeleccionado.familia
-            elementoSeleccionado.nombre?.let { saveSelectedItem(it) }
+            elementoSeleccionado.nombre?.let { saveSelectedItem(it, KEY_SELECTED_FAMILIA) }
         }
 
         //APARTADO SUBFAMILIAS
         subfamiliaViewmodel.onCreate()
         subfamiliaViewmodel.subfamiliasModel.observe(this, Observer{ subfamilias ->
             binding.autocompleteSubfamilia.setAdapter(ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, subfamilias))
+            val selectedItem = sharedPreferences.getString(KEY_SELECTED_SUBFAMILIA, "")
+            val position = subfamilias.indexOfFirst { it.nombre == selectedItem }
+            if (position != -1) {
+                binding.autocompleteSubfamilia.setText(selectedItem, false)
+                subfamiliaID= subfamilias[position].subfamilia
+            }
         })
         binding.autocompleteSubfamilia.setOnItemClickListener { parent, view, position, id ->
             val elementoSeleccionado = parent.getItemAtPosition(position) as Subfamilia
@@ -96,11 +106,18 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
             subfamiliaID= elementoSeleccionado.subfamilia
+            elementoSeleccionado.nombre?.let { saveSelectedItem(it,KEY_SELECTED_SUBFAMILIA) }
         }
         //APARTADO FORMATOS
         formatoViewmodel.onCreate()
         formatoViewmodel.formatosModel.observe(this, Observer{ formato ->
             binding.autocompleteFormato.setAdapter(ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, formato))
+            val selectedItem = sharedPreferences.getString(KEY_SELECTED_FORMATO, "")
+            val position = formato.indexOfFirst { it.nombre == selectedItem }
+            if (position != -1) {
+                binding.autocompleteFormato.setText(selectedItem, false)
+                formatoID= formato[position].formato
+            }
         })
         binding.autocompleteFormato.setOnItemClickListener { parent, view, position, id ->
             val elementoSeleccionado = parent.getItemAtPosition(position) as Formato
@@ -110,11 +127,18 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
             formatoID= elementoSeleccionado.formato
+            elementoSeleccionado.nombre?.let { saveSelectedItem(it, KEY_SELECTED_FORMATO) }
         }
         //APARTADO MARCAS
         marcaViewmodel.onCreate()
         marcaViewmodel.marcasModel.observe(this, Observer{ marca ->
             binding.autocompleteMarca.setAdapter(ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, marca))
+            val selectedItem = sharedPreferences.getString(KEY_SELECTED_MARCA, "")
+            val position = marca.indexOfFirst { it.nombre == selectedItem }
+            if (position != -1) {
+                binding.autocompleteMarca.setText(selectedItem, false)
+                marcaID= marca[position].marca
+            }
         })
         binding.autocompleteMarca.setOnItemClickListener { parent, view, position, id ->
             val elementoSeleccionado = parent.getItemAtPosition(position) as Marca
@@ -124,11 +148,18 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
             marcaID= elementoSeleccionado.marca
+            elementoSeleccionado.nombre?.let { saveSelectedItem(it, KEY_SELECTED_MARCA) }
         }
         //APARTADO SABORES
         saborViewmodel.onCreate()
         saborViewmodel.saboresModel.observe(this, Observer{ sabor ->
             binding.autocompleteSabor.setAdapter(ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, sabor))
+            val selectedItem = sharedPreferences.getString(KEY_SELECTED_SABOR, "")
+            val position = sabor.indexOfFirst { it.nombre == selectedItem }
+            if (position != -1) {
+                binding.autocompleteSabor.setText(selectedItem, false)
+                saborID= sabor[position].sabor
+            }
         })
         binding.autocompleteSabor.setOnItemClickListener { parent, view, position, id ->
             val elementoSeleccionado = parent.getItemAtPosition(position) as Sabor
@@ -138,33 +169,66 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
             saborID = elementoSeleccionado.sabor
+            elementoSeleccionado.nombre?.let { saveSelectedItem(it, KEY_SELECTED_SABOR) }
         }
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.borrar_filtro, menu)
         val borrarItem= menu.findItem(R.id.borrar_filtro)
         borrarItem?.setOnMenuItemClickListener {
+            clearSelectedItem()
            true
         }
     return true
     }
-    private fun saveSelectedItem(selectedItem: String) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_CANCELED) {
+            binding.autocompleteFamilia.setText("", false)
+            binding.autocompleteSubfamilia.setText("", false)
+            binding.autocompleteFormato.setText("", false)
+            binding.autocompleteMarca.setText("", false)
+            binding.autocompleteSabor.setText("", false)
+        }
+    }
+    //Funcion para guardar items en los autocomplete.
+    private fun saveSelectedItem(selectedItem: String, key:String) {
         val editor = sharedPreferences.edit()
-        editor.putString(KEY_SELECTED_ITEM, selectedItem)
+        editor.putString(key, selectedItem)
         editor.apply()
+    }
+    //Funcion para borrar items guardados en los autocomplete.
+    fun clearSelectedItem(){
+        val editor = sharedPreferences.edit()
+        editor.remove(KEY_SELECTED_FAMILIA)
+        editor.remove(KEY_SELECTED_SUBFAMILIA)
+        editor.remove(KEY_SELECTED_FORMATO)
+        editor.remove(KEY_SELECTED_MARCA)
+        editor.remove(KEY_SELECTED_SABOR)
+        editor.apply()
+        binding.autocompleteFamilia.setText("", false)
+        binding.autocompleteSubfamilia.setText("", false)
+        binding.autocompleteFormato.setText("", false)
+        binding.autocompleteMarca.setText("", false)
+        binding.autocompleteSabor.setText("", false)
+        Toast.makeText(this, "Filtros borrados correctamente", Toast.LENGTH_SHORT).show()
     }
     //Funcion para manejar botones
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                val intent = Intent()
-                intent.putExtra("familia", familiaID)
-                intent.putExtra("subfamilia", subfamiliaID)
-                intent.putExtra("formato", formatoID)
-                intent.putExtra("marca", marcaID)
-                intent.putExtra("sabor", saborID)
+                if(binding.autocompleteFamilia.text.isEmpty() && binding.autocompleteSubfamilia.text.isEmpty() && binding.autocompleteFormato.text.isEmpty() && binding.autocompleteMarca.text.isEmpty() && binding.autocompleteSabor.text.isEmpty() ) {
+                    setResult(RESULT_CANCELED)
+                }else{
+                    val intent = Intent()
+                    intent.putExtra("familia", familiaID)
+                    intent.putExtra("subfamilia", subfamiliaID)
+                    intent.putExtra("formato", formatoID)
+                    intent.putExtra("marca", marcaID)
+                    intent.putExtra("sabor", saborID)
+                    setResult(RESULT_OK,intent)
+                }
                 //Boton para atras
-                setResult(RESULT_OK, intent)
                 finish()
                 return true
             }
