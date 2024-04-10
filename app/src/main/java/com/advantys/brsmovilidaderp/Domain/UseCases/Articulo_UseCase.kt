@@ -12,7 +12,7 @@ class Articulo_UseCase @Inject constructor (private val repository: Articulos_Re
             listOf<Articulo>()
         else articulo
     }
-    suspend operator fun invoke(columnas: buscarArticulosPor,query:String):List<Articulo>{
+    suspend operator fun invoke(columnas: buscarArticulosPor, query:String):List<Articulo>{
         return repository.getFilter(columnas, query)
     }
     suspend  fun detalles(articulo:String?, fabricante:Short?): Articulo {

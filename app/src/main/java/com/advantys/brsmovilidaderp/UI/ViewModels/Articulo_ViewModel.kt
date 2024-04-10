@@ -40,7 +40,7 @@ class Articulo_ViewModel @Inject constructor(private var articuloUsecase: Articu
         intent.putExtra("fabricante", item?.fabricante)
         context.startActivity(intent)
     }
-    fun buscarArticulos(columnas: buscarArticulosPor,query:String){ viewModelScope.launch(Dispatchers.Default) {
+    fun buscarArticulos(columnas: buscarArticulosPor, query:String){ viewModelScope.launch(Dispatchers.Default) {
         viewModelScope.launch(Dispatchers.Default) {
             val resultado = articuloUsecase(columnas,query)
             if (resultado.isEmpty() && query.isNotEmpty()) { // Verificar si la lista está vacía y la consulta no lo está

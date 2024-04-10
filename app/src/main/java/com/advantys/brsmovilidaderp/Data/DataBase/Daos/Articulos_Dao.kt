@@ -15,7 +15,7 @@ class Articulos_Dao @Inject constructor(private val databaseManager: BDUtil) {
         }
     }
 
-    fun obtenerWhere(buscar: buscarArticulosPor,codfamilia:Short?, codsubfamilia:Short?, codformato: Int?, codmarca:String?,codsabor:String?,tipoConsulta: String?): String{
+    fun obtenerWhere(buscar: buscarArticulosPor, codfamilia:Short?, codsubfamilia:Short?, codformato: Int?, codmarca:String?, codsabor:String?, tipoConsulta: String?): String{
         var where= ""
 
         when(buscar) {
@@ -66,7 +66,7 @@ class Articulos_Dao @Inject constructor(private val databaseManager: BDUtil) {
         return where
     }
 
-    fun obtenerArticulos(buscar: buscarArticulosPor, codfamilia:Short?, codsubfamilia:Short?, codformato: Int?, codmarca:String?,codsabor:String?,tipoConsulta: String?):List<Articulos_Entity?>{
+    fun obtenerArticulos(buscar: buscarArticulosPor, codfamilia:Short?, codsubfamilia:Short?, codformato: Int?, codmarca:String?, codsabor:String?, tipoConsulta: String?):List<Articulos_Entity?>{
         var sql= " SELECT ${Articulos_Schema.NOMBRE_FIELD}, ${Articulos_Schema.ARTICULO_FIELD} FROM ${Articulos_Schema.TABLE_NAME} "
         val where= obtenerWhere(buscar, codfamilia, codsubfamilia, codformato, codmarca, codsabor, tipoConsulta)
        if(!where.isNullOrEmpty()){

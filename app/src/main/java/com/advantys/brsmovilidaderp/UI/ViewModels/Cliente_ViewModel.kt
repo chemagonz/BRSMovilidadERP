@@ -21,7 +21,8 @@ import javax.inject.Inject
 class Cliente_ViewModel @Inject constructor(private val ClienteUsecase: Cliente_UseCase): ViewModel() {
     val ClientesModel= MutableLiveData<List<Cliente>>()
     val clienteModel= MutableLiveData<Cliente?>()
-    fun onCreate(){ viewModelScope.launch(Dispatchers.Default) {
+    fun onCreate(){
+        viewModelScope.launch(Dispatchers.Default) {
         val resultado= ClienteUsecase()
         if(!resultado.isNullOrEmpty()) ClientesModel.postValue(resultado)
         }

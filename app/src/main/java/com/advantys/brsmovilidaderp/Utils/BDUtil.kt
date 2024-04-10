@@ -36,9 +36,9 @@ class BDUtil @Inject constructor (private val dbHelper:BD){
             update(tabla, parametros, where)
         else insert(tabla, parametros)
     }
-    fun delete(tabla: String, where: String) {
+    fun delete(tabla: String) {
         val db = dbHelper.openDatabaseWrite()
-        db.delete(tabla, where, null)
+        db.delete(tabla,null,null)
         db.close()
     }
     fun deleteTabla(tabla: String) {
@@ -86,6 +86,17 @@ class BDUtil @Inject constructor (private val dbHelper:BD){
         return lista
     }
     fun queryUp(sql:String){
+        val db = dbHelper.openDatabaseWrite()
+        try{
+            db.execSQL(sql)
+        }catch (e:Exception){
+            e.printStackTrace()
+        }finally{
+            db.close()
+        }
+    }
+
+    fun queryInsert(sql:String){
         val db = dbHelper.openDatabaseWrite()
         try{
             db.execSQL(sql)

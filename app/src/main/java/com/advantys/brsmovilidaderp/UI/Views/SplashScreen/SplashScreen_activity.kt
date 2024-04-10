@@ -1,4 +1,4 @@
-package com.advantys.brsmovilidaderp
+package com.advantys.brsmovilidaderp.UI.Views.SplashScreen
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -9,9 +9,13 @@ import android.os.Bundle
 import android.os.Environment.getExternalStorageDirectory
 import android.os.Handler
 import android.os.Looper
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.advantys.brsmovilidaderp.Data.DataBase.Entities.Licencia_Entity
+import com.advantys.brsmovilidaderp.UI.ViewModels.Licencia_ViewModel
 import com.advantys.brsmovilidaderp.UI.Views.Clientes.Clientes_Activity
+import com.advantys.brsmovilidaderp.UI.Views.Licencia.Licencia_Activity
 import com.advantys.brsmovilidaderp.Utils.BDUtil
 import com.advantys.brsmovilidaderp.Utils.BackupUtil
 import com.advantys.brsmovilidaderp.Utils.PermisosUtils
@@ -26,6 +30,8 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class SplashScreen_activity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashScreenBinding
+    val licenciaViewmodel: Licencia_ViewModel by viewModels()
+
 
     @Inject lateinit var bdUtil: BDUtil
     @RequiresApi(Build.VERSION_CODES.O)
@@ -45,7 +51,7 @@ class SplashScreen_activity : AppCompatActivity() {
             } else {
                 continuarDespuesPermisos()
             }
-        }, 50)
+        }, 500)
     }
     //Si no tiene los permisos, salta aviso para permitir o denegar.
     @RequiresApi(Build.VERSION_CODES.O)
@@ -84,6 +90,9 @@ class SplashScreen_activity : AppCompatActivity() {
                     GuardarLicenciaEnXML()
                     EntrarAlPrograma()
                 }
+                else{
+                    entrarLicenciaActivity()
+                }
             }
         }
     }
@@ -96,8 +105,13 @@ class SplashScreen_activity : AppCompatActivity() {
         if (!File(Utils.Ruta + "Update").exists()) File(Utils.Ruta + "Update").mkdir()
     }
     private fun ComprobarLicencia():Boolean{
-        var ok= true
+        var ok= false
+//        ok= true
+        return ok
+    }
 
+    private fun ValidarLicencia(licencia: Licencia_Entity): Boolean{
+        var ok= false
         return ok
     }
     private fun GuardarLicenciaEnXML(){
@@ -128,6 +142,11 @@ class SplashScreen_activity : AppCompatActivity() {
         }
 
         return ok
+    }
+    private fun entrarLicenciaActivity(){
+        val intent= Intent(this, Licencia_Activity::class.java)
+        startActivity(intent)
+        finish()
     }
     private fun mostrarDialogoBDNoDisponible(){
         val builder = AlertDialog.Builder(this)

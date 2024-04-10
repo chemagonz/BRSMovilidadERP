@@ -21,9 +21,9 @@ class Utils {
             dias.domingo to false,
             dias.todos to false
         )
-            var orderPor: ordenarPor= ordenarPor.ruta
-            var mostrar: mostrarPor= mostrarPor.todos
-            var buscarArticulo: buscarArticulosPor= buscarArticulosPor.descripcion
+            var orderPor: ordenarPor = ordenarPor.ruta
+            var mostrar: mostrarPor = mostrarPor.todos
+            var buscarArticulo: buscarArticulosPor = buscarArticulosPor.descripcion
             var Ruta= Environment.getExternalStorageDirectory().path+ "/BRSAndroid/"
             var FechaHoy: Date? = null
             var YaCargado = false
