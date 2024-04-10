@@ -34,6 +34,7 @@ class SplashScreen_activity : AppCompatActivity() {
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         // Modificar versión de la aplicación
         binding.txtVersion.text = "Version 1.0"
         //Verificar permisos
@@ -60,6 +61,7 @@ class SplashScreen_activity : AppCompatActivity() {
     }
     @RequiresApi(Build.VERSION_CODES.O)
     private fun continuarDespuesPermisos(){
+
         val file= File(Utils.Ruta, "BRSAndroid.db")
         if(!file.exists()) {
             GenerarBBDD()
@@ -94,7 +96,7 @@ class SplashScreen_activity : AppCompatActivity() {
         if (!File(Utils.Ruta + "Update").exists()) File(Utils.Ruta + "Update").mkdir()
     }
     private fun ComprobarLicencia():Boolean{
-        var ok= false
+        var ok= true
 
         return ok
     }
@@ -120,9 +122,11 @@ class SplashScreen_activity : AppCompatActivity() {
            File(getExternalStorageDirectory().path + "/BRSAndroid/").mkdir()
 
         val filea = File(Utils.Ruta, "BRSAndroid.db")
-        if(!filea.exists())
+        if(!filea.exists()){
             mostrarDialogoBDNoDisponible()
             ok= false
+        }
+
         return ok
     }
     private fun mostrarDialogoBDNoDisponible(){

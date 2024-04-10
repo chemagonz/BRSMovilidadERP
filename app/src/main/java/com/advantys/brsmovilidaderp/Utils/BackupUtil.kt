@@ -43,12 +43,6 @@ class BackupUtil {
         const val IMP_EXISTENCIAS_FIN = 23
         const val BORRADO_INVENTARIO = 24
 
-        //endregion
-
-        //region Métodos
-
-        //endregion
-        //region Métodos
         fun crearBackup(tipoCopia: Int) {
             try {
                 val formatoDia = SimpleDateFormat("dd-MM-yyyy")
@@ -117,7 +111,6 @@ class BackupUtil {
                 e.printStackTrace()
             }
         }
-
         private fun tipoCopia(tipoCopia: Int): String {
             return when (tipoCopia) {
                 INICIO -> "Inicio"
@@ -148,8 +141,5 @@ class BackupUtil {
                 else -> ""
             }
         }
-
-
     }
-
 }
