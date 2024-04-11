@@ -9,11 +9,9 @@ import android.os.Bundle
 import android.os.Environment.getExternalStorageDirectory
 import android.os.Handler
 import android.os.Looper
-import androidx.activity.viewModels
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.advantys.brsmovilidaderp.Data.DataBase.Entities.Licencia_Entity
-import com.advantys.brsmovilidaderp.UI.ViewModels.Licencia_ViewModel
 import com.advantys.brsmovilidaderp.UI.Views.Clientes.Clientes_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Licencia.Licencia_Activity
 import com.advantys.brsmovilidaderp.Utils.BDUtil
@@ -30,10 +28,14 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class SplashScreen_activity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashScreenBinding
-    val licenciaViewmodel: Licencia_ViewModel by viewModels()
-
-
     @Inject lateinit var bdUtil: BDUtil
+
+    private val responseLauncher= registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ activityResult->
+
+        if(activityResult.resultCode== RESULT_OK){
+           EntrarAlPrograma()
+        }
+    }
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +45,7 @@ class SplashScreen_activity : AppCompatActivity() {
 
         // Modificar versión de la aplicación
         binding.txtVersion.text = "Version 1.0"
+
         //Verificar permisos
         Handler(Looper.getMainLooper()).postDelayed({
             // Verificar permisos
@@ -53,102 +56,122 @@ class SplashScreen_activity : AppCompatActivity() {
             }
         }, 500)
     }
+
     //Si no tiene los permisos, salta aviso para permitir o denegar.
     @RequiresApi(Build.VERSION_CODES.O)
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PermisosUtils.REQUEST_STORAGE_PERMISSION) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-               continuarDespuesPermisos()
+                continuarDespuesPermisos()
             } else {
                 mostrarDialogoPermisosDenegados()
             }
         }
     }
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun continuarDespuesPermisos(){
 
-        val file= File(Utils.Ruta, "BRSAndroid.db")
-        if(!file.exists()) {
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun continuarDespuesPermisos() {
+
+        val file = File(Utils.Ruta, "BRSAndroid.db")
+        if (!file.exists()) {
             GenerarBBDD()
         } else {
-            if(bdUtil.basedeDatosCorrupta().isNotEmpty())
+            if (bdUtil.basedeDatosCorrupta().isNotEmpty())
                 ProcesoInicio()
         }
     }
 
-    private fun ProcesoInicio(){
+    private fun ProcesoInicio() {
         //Si la ruta y base de datos son correctas
-        if(ObtenerRuta()){
-            Utils.FechaHoy= Date()
+        if (ObtenerRuta()) {
+            Utils.FechaHoy = Date()
             CrearCarpetasExportacion()
             //Si la ruta y base de datos son correctas
-            if(ObtenerRuta()){
+            if (ObtenerRuta()) {
                 CrearCarpetasExportacion()
                 bdUtil.actualizarBD()
-                if(ComprobarLicencia()){
+                if (ComprobarLicencia()) {
                     GuardarLicenciaEnXML()
                     EntrarAlPrograma()
-                }
-                else{
+                } else {
                     entrarLicenciaActivity()
                 }
             }
         }
     }
+
     //Función para generar la base de datos
     private fun GenerarBBDD() {
         File(Utils.Ruta + "BRSAndroid.db").delete()
     }
+
     private fun CrearCarpetasExportacion() {
         if (!File(Utils.Ruta + "Exportar").exists()) File(Utils.Ruta + "Exportar").mkdir()
         if (!File(Utils.Ruta + "Update").exists()) File(Utils.Ruta + "Update").mkdir()
     }
-    private fun ComprobarLicencia():Boolean{
-        var ok= false
-//        ok= true
+
+    private fun ComprobarLicencia(): Boolean {
+        var ok = true
+//        var licencia = Licencia_Entity()
+//        licencia = splashViewmodel.ObtenerLicencia()
+//        if (ValidarLicencia(licencia))
+//            ok = true
+
         return ok
     }
 
-    private fun ValidarLicencia(licencia: Licencia_Entity): Boolean{
-        var ok= false
-        return ok
-    }
-    private fun GuardarLicenciaEnXML(){
+//    private fun ValidarLicencia(licencia: Licencia_Entity): Boolean {
+//        var ok = false
+//        if (licencia != null) {
+//            splashViewmodel.verificarLicencia(licencia)
+//            ok = true
+//        }
+//        return ok
+//    }
+
+    private fun GuardarLicenciaEnXML() {
     }
 
-    private fun EntrarAlPrograma(){
+    private fun EntrarAlPrograma() {
         //idUtil.escribirIDPreferencias
-        Utils.YaCargado= true
+        Utils.YaCargado = true
         //ComprobarConfiguracion
         BackupUtil.crearBackup(BackupUtil.INICIO)
         val intent = Intent(this, Clientes_Activity::class.java)
         startActivity(intent)
         finish()
     }
+
     //Comprobar si existe carpetas de la aplicación y su base de datos
     @SuppressLint("SuspiciousIndentation")
-    private fun ObtenerRuta():Boolean{
-        var ok: Boolean= true
+    private fun ObtenerRuta(): Boolean {
+        var ok: Boolean = true
         //Se comprueba la ruta de la aplicación
         val file = File(getExternalStorageDirectory().path + "/BRSAndroid")
-        if(!file.exists())
-           File(getExternalStorageDirectory().path + "/BRSAndroid/").mkdir()
+        if (!file.exists())
+            File(getExternalStorageDirectory().path + "/BRSAndroid/").mkdir()
 
         val filea = File(Utils.Ruta, "BRSAndroid.db")
-        if(!filea.exists()){
+        if (!filea.exists()) {
             mostrarDialogoBDNoDisponible()
-            ok= false
+            ok = false
         }
 
         return ok
     }
-    private fun entrarLicenciaActivity(){
-        val intent= Intent(this, Licencia_Activity::class.java)
-        startActivity(intent)
+
+    private fun entrarLicenciaActivity() {
+        val intent = Intent(this, Licencia_Activity::class.java)
+        responseLauncher.launch(intent)
         finish()
     }
-    private fun mostrarDialogoBDNoDisponible(){
+
+    private fun mostrarDialogoBDNoDisponible() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Base de datos no encontrada")
             .setPositiveButton("Aceptar") { dialog, which ->
@@ -160,6 +183,7 @@ class SplashScreen_activity : AppCompatActivity() {
             .setCancelable(false)
             .show()
     }
+
     private fun mostrarDialogoPermisosDenegados() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Permisos denegados")
@@ -173,4 +197,6 @@ class SplashScreen_activity : AppCompatActivity() {
             .setCancelable(false)
             .show()
     }
+
+
 }

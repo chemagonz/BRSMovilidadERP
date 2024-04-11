@@ -1,21 +1,22 @@
 package com.advantys.brsmovilidaderp.UI.Views.Licencia
 
+import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.os.Bundle
+import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import com.advantys.brsmovilidaderp.Data.DataBase.Entities.Licencia_Entity
-import com.advantys.brsmovilidaderp.Domain.Models.Licencia
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Licencia_ViewModel
 import com.advantys.brsmovilidaderp.databinding.ActivityLicenciaBinding
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class Licencia_Activity : AppCompatActivity() {
@@ -33,22 +34,19 @@ class Licencia_Activity : AppCompatActivity() {
             title= "LICENCIA"
         }
         licenciaViewmodel.getLicencia()
-        licenciaViewmodel.licenciaModel.observe(this, Observer { licencia ->
-            mostrarCamposLicencia(licencia)
-        })
 
         configurarEditTextConPaddingMaximo(binding.identificadorClienteLicencia, 6)
-        configurarEditTextConPaddingMaximo(binding.identificadorLicencia, 4 )
+        configurarEditTextConPaddingMaximo(binding.numLicencia, 4 )
+        obtenerCodigo()
+        configurarEditTextConPaddingMaximo(binding.licenciaLicencia1, 8, binding.licenciaLicencia2)
+        configurarEditTextConPaddingMaximo(binding.licenciaLicencia2, 4, null)
     }
 
-    private fun mostrarCamposLicencia(licencia: Licencia?){
-        binding.identificadorIDENDISP.setText(licencia?.idenDisp)
-    }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.aceptar_licencia, menu)
         val aceptarItem= menu.findItem(R.id.aceptar_licencia)
         aceptarItem?.setOnMenuItemClickListener {
-            //aceptarLicencia()
+            aceptarLicencia()
             true
         }
         return true
@@ -83,29 +81,83 @@ class Licencia_Activity : AppCompatActivity() {
             }
         })
     }
-    private  fun aceptar(): Boolean {
+    @SuppressLint("HardwareIds")
+    fun obtenerCodigo() {
+        val androidId: String? = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
+        binding.identificadorIDENDISP.setText(androidId)
+    }
+    @SuppressLint("HardwareIds")
+    private  fun aceptarLicencia(){
 
+        val licencia= Licencia_Entity()
+        val androidId: String? = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
+        licencia.idenDisp= binding.identificadorIDENDISP.setText(androidId).toString()
+        licencia.cliente= binding.identificadorClienteLicencia.text.toString()
+        licencia.numLicencia= binding.numLicencia.text.toString()
+        licencia.idenProg= licencia.cliente + licencia.numLicencia + binding.identificadorIDENDISP.text.toString() + "ILC9TJWQBO9C54WCKAZV0H1P5OWAFR0QXPMDUOAH"
+        val licenciaConcatenada= binding.licenciaLicencia1.text.toString().uppercase() + "-" + binding.licenciaLicencia2.text.toString().uppercase()
+        licencia.licencia= licenciaConcatenada
 
-            val clienteLicencia = binding.identificadorClienteLicencia.text
-            val identificadorLicencia = binding.identificadorLicencia.text
-            val identificadorIDENDISP = binding.identificadorIDENDISP.text
-            val equipoLicencia = binding.equipoLicencia.text
-            val licencia1 = binding.licenciaLicencia1.text
-            val licencia2 = binding.licenciaLicencia2.text
-            val licenciaConcatenada = "${licencia1} - ${licencia2}"
-            val idenProg =
-                "${clienteLicencia} + ${identificadorLicencia} + ${identificadorIDENDISP} + 'ILC9TJWQBO9C54WCKAZV0H1P5OWAFR0QXPMDUOAH'"
+        if(binding.identificadorClienteLicencia.text.toString().isEmpty() || binding.numLicencia.text.toString().isEmpty() || binding.equipoLicencia.text.toString().isEmpty() || (binding.licenciaLicencia1.text.toString().isEmpty() && binding.licenciaLicencia2.text.toString().isEmpty()))
+            mostrarDialogoDatosIncorrectos()
 
-            val licencia = Licencia_Entity()
-
-            if (clienteLicencia.isEmpty() || identificadorLicencia.isEmpty() || identificadorIDENDISP.isEmpty() || equipoLicencia.isEmpty() || licencia1.isEmpty() || licencia2.isEmpty() || idenProg.isEmpty()) {
-
-                Toast.makeText(this, "Todos los campos deben estar rellenos", Toast.LENGTH_SHORT)
-                    .show()
-                return false
-            }
-            return true
+        if(licenciaViewmodel.aceptar(licencia)) {
+            setResult(RESULT_OK)
+            finish();
         }
+    }
+
+    private fun mostrarDialogoDatosIncorrectos() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("No se pudo insertar licencia")
+            .setMessage("Para continuar, debe de rellenar todos los campos.")
+            .setPositiveButton("Aceptar") { dialog, which ->
+
+            }
+            .setCancelable(false)
+            .show()
+    }
+
+    //Este dialogo se llamaria en la clase licencia viewmodel
+//    private fun mostrarDialogoLicenciaNoValida() {
+//        val builder = AlertDialog.Builder(this)
+//        builder.setTitle("Licencia no válida")
+//            .setMessage("Para continuar, inserte una licencia correcta")
+//            .setPositiveButton("Aceptar") { dialog, which ->
+//            }
+//            .setCancelable(false)
+//            .show()
+//    }
+
+    private fun configurarEditTextConPaddingMaximo(editText: EditText, maximo: Int, siguienteEditText: EditText?) {
+        editText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(editable: Editable?) {
+                editable?.let {
+                    val texto = it.toString()
+                    if (texto.length > maximo) {
+                        // Si el texto supera el límite, mueve hasta 4 caracteres al siguiente EditText si está disponible
+                        siguienteEditText?.let { siguiente ->
+                            val textoRestante = texto.substring(maximo)
+                            editText.setText(texto.substring(0, maximo))
+                            if (textoRestante.length > 4) {
+                                siguiente.setText(textoRestante.substring(4))
+                                editText.setSelection(maximo)
+                            } else {
+                                siguiente.setText(textoRestante)
+                                siguiente.setSelection(textoRestante.length)
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    }
 }
 
 
