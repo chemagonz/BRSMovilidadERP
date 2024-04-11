@@ -17,6 +17,15 @@
         android:theme="@style/Theme.BRSMovilidadERP"
         tools:targetApi="31">
         <activity
+            android:name=".UI.Views.Importar.Importar_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".UI.Views.BorrarVentas.BorrarDatos_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".UI.Views.Exportar.Exportar_Activity"
+            android:exported="false" />
+        <activity
             android:name=".UI.Views.Licencia.Licencia_Activity"
             android:exported="false" />
         <activity
@@ -49,7 +58,7 @@
             android:exported="false" />
         <activity
             android:name=".UI.Views.Clientes.Clientes_Activity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".UI.Views.BuscarClientes.BuscarCliente_Activity"
             android:exported="false" />

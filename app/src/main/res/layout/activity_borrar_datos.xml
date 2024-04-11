@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <Button
+                android:id="@+id/borrarpreventaID_compactar"
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:text="Compactar Base de datos"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:background="@color/teal"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp"
+                android:text="Seleccionar los datos a borrar"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- Checkboxes -->
+
+            <CheckBox
+                android:id="@+id/borrar_cobros"
+                android:layout_width="390dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Cobros"
+
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <CheckBox
+                android:id="@+id/borrar_Pedidos"
+                android:layout_width="390dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Pedidos"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <CheckBox
+                android:id="@+id/borrar_incidencias"
+                android:layout_width="390dp"
+                android:layout_height="wrap_content"
+                android:text="Incidencias"
+                android:layout_gravity="center"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <CheckBox
+                android:id="@+id/borrar_hojadeCarga"
+                android:layout_width="390dp"
+                android:layout_height="wrap_content"
+                android:text="Hoja de carga"
+                android:layout_gravity="center"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <CheckBox
+                android:id="@+id/borrar_movimientosAlmacen"
+                android:layout_width="390dp"
+                android:layout_height="wrap_content"
+                android:text="Movimientos de almacén"
+                android:layout_gravity="center"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:id="@+id/borrarpreventaID_seleccioneFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Borrar pedidos/albaranes hasta"
+                android:layout_gravity="center"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/borrarpreventaID_hasta"
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:layout_marginBottom="16dp"
+                android:hint="Seleccionar fecha"
+                android:inputType="date"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

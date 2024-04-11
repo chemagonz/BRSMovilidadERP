@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="Exportación de ficheros"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" >
+
+            </TextView>
+
+            <CheckBox
+                android:id="@+id/f_exportacionID_chk_pendientes"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:visibility="gone" >
+
+            </CheckBox>
+
+            <CheckBox
+                android:id="@+id/checkExportarVentas"
+                android:layout_width="390dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:checked="false"
+                android:text="Exportar ventas"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+            <CheckBox
+                android:id="@+id/checkExportarCobros"
+                android:layout_width="390dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Exportar cobros"
+                android:textColor="#000000"
+                android:textSize="15sp" >
+
+            </CheckBox>
+
+            <RadioGroup
+                android:id="@+id/radioGroupRed_IP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center" >
+
+                <RadioButton
+                    android:id="@+id/redExterna_radiobutton"
+                    android:layout_width="390dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="Red externa"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+
+                <RadioButton
+                    android:id="@+id/redInterna_radiobutton"
+                    android:layout_width="390dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Red interna"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+
+                <RadioButton
+                    android:id="@+id/ipAlternativa_radiobutton"
+                    android:layout_width="390dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="IP alternativa"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/layoutFTPalternativo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:gravity="center">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Servidor FTP alternativo"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/edServidorFTPalternativo"
+                    android:layout_width="380dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:layout_marginHorizontal="30dp"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:maxLines="1" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Puerto FTP alternativo"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/edPuertoFTPalternativo"
+                    android:layout_width="380dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+</LinearLayout>

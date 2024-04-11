@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/f_importacionID_lb_importacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:layout_marginBottom="10dp"
+                android:text="Importación de ficheros"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" >
+
+            </TextView>
+
+            <RadioGroup
+                android:id="@+id/f_importacionID_radiogroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center" >
+
+                <RadioButton
+                    android:id="@+id/impoRedExterna_radiobutton"
+                    android:layout_width="390dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Red externa"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    android:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/impRedInterna_radiobutton"
+                    android:layout_width="390dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Red interna"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+
+                <RadioButton
+                    android:id="@+id/impIPalternativa_radiobutton"
+                    android:layout_width="390dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="IP alternativa"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/layoutimpFTPalternativo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Servidor FTP alternativo"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/edImpServidorFTP"
+                    android:layout_width="380dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:layout_marginHorizontal="30dp"
+                    android:gravity="left"
+                    android:singleLine="true"
+                    android:maxLines="1" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Puerto FTP alternativo"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/edImpPuertoFTP"
+                    android:layout_width="380dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="left"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+</LinearLayout>

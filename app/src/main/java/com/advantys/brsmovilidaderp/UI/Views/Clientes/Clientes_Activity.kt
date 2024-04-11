@@ -26,8 +26,11 @@ import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Cliente_ViewModel
 import com.advantys.brsmovilidaderp.UI.Views.AjustesAvanzados.AjustesAvanzados_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Articulos.Articulos_Activity
+import com.advantys.brsmovilidaderp.UI.Views.BorrarVentas.BorrarDatos_Activity
 import com.advantys.brsmovilidaderp.UI.Views.BuscarClientes.BuscarCliente_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Centros.Centros_Activity
+import com.advantys.brsmovilidaderp.UI.Views.Exportar.Exportar_Activity
+import com.advantys.brsmovilidaderp.UI.Views.Importar.Importar_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Rutas.Rutas_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Series.Series_Activity
 import com.advantys.brsmovilidaderp.Utils.Utils
@@ -63,7 +66,7 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         setContentView(binding.root)
         //val toolbar: androidx.appcompat.widget.Toolbar = findViewById((R.id.toolbar_main))
        // setSupportActionBar(toolbar)
-
+        funcionBottomNavigationView()
         binding.bottomNavigationView.background= null
         drawer = findViewById(R.id.drawerLayout)
         toggle = ActionBarDrawerToggle(
@@ -122,6 +125,10 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 val intent = Intent(this, Series_Activity::class.java)
                 startActivity(intent)
 
+            }
+            R.id.borrar_datos->{
+                val intent = Intent(this, BorrarDatos_Activity::class.java)
+                startActivity(intent)
             }
             R.id.ajustesAvanzados->{
                 val builder= AlertDialog.Builder(this)
@@ -271,5 +278,22 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         val currentDate = sdf.format(Date())
         val expectedPassword = "$currentDate${10}"
         return password == expectedPassword
+    }
+
+    private fun funcionBottomNavigationView() {
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.Importar -> {
+                    startActivity(Intent(this, Importar_Activity::class.java))
+                    finish()
+                    true
+                }
+                R.id.Exportar -> {
+                    startActivity(Intent(this, Exportar_Activity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
     }
 }
