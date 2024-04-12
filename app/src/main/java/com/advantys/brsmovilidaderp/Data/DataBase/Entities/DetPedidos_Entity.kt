@@ -74,7 +74,7 @@ data class DetPedidos_Entity (
             modelo.porcdto1 = cursor.getFloat(DetPedidos_Schema.PORCDTO1_FIELD,null)
             modelo.impdto1uni = cursor.getFloat(DetPedidos_Schema.IMPDTO1UNI_FIELD,null)
             modelo.impdto1 = cursor.getFloat(DetPedidos_Schema.IMPDTO1_FIELD,null)
-            modelo.tipodescuento = cursor.getString(DetPedidos_Schema.TIPODESCUENTO_FIELD))
+            modelo.tipodescuento = cursor.getString(DetPedidos_Schema.TIPODESCUENTO_FIELD,null)
             modelo.porcdto2 = cursor.getFloat(DetPedidos_Schema.PORCDTO2_FIELD,null)
             modelo.impdto2uni = cursor.getFloat(DetPedidos_Schema.IMPDTO2UNI_FIELD,null)
             modelo.impdto2 = cursor.getFloat(DetPedidos_Schema.IMPDTO2_FIELD,null)
