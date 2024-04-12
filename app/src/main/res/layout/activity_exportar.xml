@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/Theme.BRSMovilidadERPprueba"
     android:orientation="vertical" >
 
         <LinearLayout
@@ -23,19 +24,6 @@
                 android:textStyle="bold" >
 
             </TextView>
-
-            <CheckBox
-                android:id="@+id/f_exportacionID_chk_pendientes"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:textColor="#000000"
-                android:textSize="15sp"
-                android:visibility="gone" >
-
-            </CheckBox>
 
             <CheckBox
                 android:id="@+id/checkExportarVentas"
@@ -119,6 +107,7 @@
                     android:textSize="14sp"
                     android:layout_marginHorizontal="30dp"
                     android:gravity="center"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:singleLine="true"
                     android:maxLines="1" />
 

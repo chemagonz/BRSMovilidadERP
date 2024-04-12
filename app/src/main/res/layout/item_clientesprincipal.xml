@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
+    android:theme="@style/Theme.BRSMovilidadERPprueba"
     android:foreground="?android:attr/selectableItemBackground"
     android:orientation="vertical"
     app:cardCornerRadius="8dp"
@@ -25,7 +26,7 @@
                     android:layout_marginStart="7dp"
                     android:layout_marginTop="6dp"
                     android:text="TextView"
-                    android:textColor="@color/black"
+                    android:textColor="@color/colorAdvantysApp1"
                     android:textSize="14sp"
                     android:textStyle="bold" />
                 <TextView
@@ -37,9 +38,9 @@
                     android:layout_marginTop="8dp"
                     android:text="TextView"
                     android:layout_marginBottom="5sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/colorAdvantysApp1"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    />
             </RelativeLayout>
             <ImageButton
                 android:id="@+id/botonDetalles"
@@ -48,6 +49,6 @@
                 android:layout_marginEnd="20sp"
                 android:background="#00000000"
                 android:paddingLeft="10sp"
-                android:src="@drawable/ic_action_name" />
+                android:src="@drawable/flecha" />
         </LinearLayout>
 </androidx.cardview.widget.CardView>

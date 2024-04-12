@@ -5,24 +5,26 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="160dp"
-    android:background="@color/teal_dark"
     android:clickable="true"
     android:focusable="true"
+    android:background="@color/colorAdvantysApp5"
     android:foreground="?attr/selectableItemBackgroundBorderless"
     android:layout_gravity="top"
     android:padding="16dp"
+
     >
 
     <ImageView
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@drawable/logo"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        android:text="BRSMovilidadERP"
+        android:paddingTop="20dp"
+        android:text="AdvantysERP"
+        android:textStyle="bold"
         android:textColor="#FFFFFF"/>
 
 </LinearLayout>

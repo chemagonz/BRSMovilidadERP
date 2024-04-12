@@ -9,6 +9,7 @@
     tools:openDrawer="left"
     android:touchscreenBlocksFocus="true"
     android:fitsSystemWindows="false"
+    android:theme="@style/Theme.BRSMovilidadERPprueba"
     tools:context=".UI.Views.Clientes.Clientes_Activity">
      <androidx.recyclerview.widget.RecyclerView
          android:id="@+id/recyclerviewClientes"
@@ -27,7 +28,8 @@
             android:id="@+id/bottomAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:backgroundTint="@color/colorPrimary"
+            style="@style/AppBottomNavigationStyle"
+            app:backgroundTint="@color/colorAdvantysApp1"
             android:layout_gravity="bottom">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -49,7 +51,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:tint="@color/white"
-            android:backgroundTint="@color/colorPrimary"
             android:src="@drawable/config"
             app:layout_anchor="@id/bottomAppBar"/>
 
@@ -67,8 +68,4 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/menu_clientes"/>
-
-
-
-
 </androidx.drawerlayout.widget.DrawerLayout>

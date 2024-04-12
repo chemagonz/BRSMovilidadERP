@@ -63,7 +63,7 @@ class Clientes_ViewHolder(view:View):RecyclerView.ViewHolder(view){
         binding.nombreCliente.text = clientesModel?.nombre
         binding.codigoCliente.text = clientesModel?.numClientes.toString()
 
-        if(seleccionado) itemView.setBackgroundColor(itemView.context.getColor(android.R.color.darker_gray))
+        if(seleccionado) itemView.setBackgroundColor(itemView.context.getColor(R.color.colorAdvantysApp6))
         else itemView.setBackgroundColor(itemView.context.getColor(android.R.color.white))
     }
 }
