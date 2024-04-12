@@ -7,7 +7,6 @@ import com.advantys.brsmovilidaderp.Domain.Models.toDomain
 import javax.inject.Inject
 
 class Familias_Repository @Inject constructor(private val familiasDao: Familias_Dao) {
-
     suspend fun getAll():List<Familia>{
         val response: List<Familias_Entity?> = familiasDao.getAll()
         return response.filterNotNull().map { it.toDomain() }

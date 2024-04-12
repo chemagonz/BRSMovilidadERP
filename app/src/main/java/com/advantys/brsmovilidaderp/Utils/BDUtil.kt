@@ -41,11 +41,13 @@ class BDUtil @Inject constructor (private val dbHelper:BD){
         db.delete(tabla,null,null)
         db.close()
     }
-    fun deleteTabla(tabla: String) {
+    fun delete(tabla: String, where: String) {
         val db = dbHelper.openDatabaseWrite()
-        db.delete(tabla, null, null)
+        db.delete(tabla,  where, null)
         db.close()
     }
+
+
     fun existe(tabla: String, where: String): Boolean {
         val db = dbHelper.openDatabaseRead()
         val selectQuery = "SELECT COUNT(*) FROM ${tabla} WHERE ${where}"
