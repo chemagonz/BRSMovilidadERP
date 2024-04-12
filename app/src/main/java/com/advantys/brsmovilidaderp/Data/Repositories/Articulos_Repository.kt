@@ -4,7 +4,7 @@ import com.advantys.brsmovilidaderp.Data.DataBase.Daos.Articulos_Dao
 import com.advantys.brsmovilidaderp.Data.DataBase.Entities.Articulos_Entity
 import com.advantys.brsmovilidaderp.Domain.Models.Articulo
 import com.advantys.brsmovilidaderp.Domain.Models.toDomain
-import com.advantys.brsmovilidaderp.Utils.buscarArticulosPor
+import com.advantys.brsmovilidaderp.Utils.EnumUtil.BuscarArticulosPor
 import javax.inject.Inject
 
 class Articulos_Repository @Inject constructor(private val articulosDao: Articulos_Dao){
@@ -13,7 +13,7 @@ class Articulos_Repository @Inject constructor(private val articulosDao: Articul
         val response: List<Articulos_Entity?> = articulosDao.getAll()
         return response.filterNotNull().map { it.toDomain() }
     }
-    suspend fun getFilter(columna: buscarArticulosPor, tipoConsulta: String?):List<Articulo>{
+    suspend fun getFilter(columna: BuscarArticulosPor, tipoConsulta: String?):List<Articulo>{
         val response :List<Articulos_Entity?> =articulosDao.getFilter(columna,tipoConsulta)
         return response.filterNotNull().map { it.toDomain() }
     }
@@ -22,7 +22,7 @@ class Articulos_Repository @Inject constructor(private val articulosDao: Articul
         return response?.toDomain()
     }
 
-    suspend fun obtenerArticulos(buscarArticulosPor: buscarArticulosPor, codfamilia: Short?, codsubfamilia:Short?, codformato:Int?, codmarca:String?, codsabor:String?, tipoConsulta: String?):List<Articulo>{
+    suspend fun obtenerArticulos(buscarArticulosPor: BuscarArticulosPor, codfamilia: Short?, codsubfamilia:Short?, codformato:Int?, codmarca:String?, codsabor:String?, tipoConsulta: String?):List<Articulo>{
         val response : List<Articulos_Entity?> = articulosDao.obtenerArticulos(buscarArticulosPor,codfamilia,codsubfamilia,codformato,codmarca,codsabor,tipoConsulta)
         return response.filterNotNull().map { it.toDomain() }
     }

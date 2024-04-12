@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.advantys.brsmovilidaderp.Domain.Models.Articulo
 import com.advantys.brsmovilidaderp.Domain.UseCases.Articulo_UseCase
 import com.advantys.brsmovilidaderp.UI.Views.Articulos.DetallesArticulos_Activity
-import com.advantys.brsmovilidaderp.Utils.buscarArticulosPor
+import com.advantys.brsmovilidaderp.Utils.EnumUtil.BuscarArticulosPor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,7 +40,7 @@ class Articulo_ViewModel @Inject constructor(private var articuloUsecase: Articu
         intent.putExtra("fabricante", item?.fabricante)
         context.startActivity(intent)
     }
-    fun buscarArticulos(columnas: buscarArticulosPor, query:String){ viewModelScope.launch(Dispatchers.Default) {
+    fun buscarArticulos(columnas: BuscarArticulosPor, query:String){ viewModelScope.launch(Dispatchers.Default) {
         viewModelScope.launch(Dispatchers.Default) {
             val resultado = articuloUsecase(columnas,query)
             if (resultado.isEmpty() && query.isNotEmpty()) { // Verificar si la lista está vacía y la consulta no lo está
@@ -51,7 +51,7 @@ class Articulo_ViewModel @Inject constructor(private var articuloUsecase: Articu
         }
     }
     }
-    fun buscarArticulosFiltro(buscarArticulosPor: buscarArticulosPor, codfamilia: Short?=null, codsubfamilia:Short?=null, codformato:Int?=null, codmarca:String?=null, codsabor:String?=null, tipoConsulta: String?=null){
+    fun buscarArticulosFiltro(buscarArticulosPor: BuscarArticulosPor, codfamilia: Short?=null, codsubfamilia:Short?=null, codformato:Int?=null, codmarca:String?=null, codsabor:String?=null, tipoConsulta: String?=null){
         viewModelScope.launch(Dispatchers.Default) {
             val resultado= articuloUsecase(buscarArticulosPor, codfamilia, codsubfamilia, codformato, codmarca, codsabor, tipoConsulta)
             if(!resultado.isNullOrEmpty()){

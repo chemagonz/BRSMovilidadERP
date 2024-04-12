@@ -14,14 +14,14 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Articulo_ViewModel
-import com.advantys.brsmovilidaderp.Utils.buscarArticulosPor
+import com.advantys.brsmovilidaderp.Utils.EnumUtil.BuscarArticulosPor
 import com.advantys.brsmovilidaderp.databinding.ActivityArticulosBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class Articulos_Activity : AppCompatActivity() {
     val articulosViewModel: Articulo_ViewModel by viewModels()
-    var tipoSeleccionado: buscarArticulosPor = buscarArticulosPor.descripcion
+    var tipoSeleccionado: BuscarArticulosPor = BuscarArticulosPor.descripcion
 
     private var searchView: SearchView? = null
     private var familiaID: Short? = null
@@ -48,7 +48,7 @@ class Articulos_Activity : AppCompatActivity() {
             formatoID = activityResult.data?.getIntExtra("formato",-1)
             marcaID= activityResult.data?.getStringExtra("marca")
             saborID =activityResult.data?.getStringExtra("sabor")
-            articulosViewModel.buscarArticulosFiltro(buscarArticulosPor.descripcion,familiaID,subfamiliaID,formatoID,marcaID,saborID)
+            articulosViewModel.buscarArticulosFiltro(BuscarArticulosPor.descripcion,familiaID,subfamiliaID,formatoID,marcaID,saborID)
         }else articulosViewModel.buscarArticulosFiltro(tipoSeleccionado)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -128,13 +128,13 @@ class Articulos_Activity : AppCompatActivity() {
         popupMenu.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.descripcionlarga -> {
-                    tipoSeleccionado = buscarArticulosPor.descripcion
+                    tipoSeleccionado = BuscarArticulosPor.descripcion
                     supportActionBar?.subtitle = "DESCRIPCIÓN"
                     searchView?.setQuery("", false)
                     true
                 }
                 R.id.codigo -> {
-                    tipoSeleccionado = buscarArticulosPor.codigo
+                    tipoSeleccionado = BuscarArticulosPor.codigo
                     supportActionBar?.subtitle = "CÓDIGO"
                     searchView?.setQuery("", false)
                     true

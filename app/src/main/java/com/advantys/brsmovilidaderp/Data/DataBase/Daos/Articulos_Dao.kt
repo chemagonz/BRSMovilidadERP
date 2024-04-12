@@ -3,7 +3,7 @@ package com.advantys.brsmovilidaderp.Data.DataBase.Daos
 import com.advantys.brsmovilidaderp.Data.DataBase.Entities.Articulos_Entity
 import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.Articulos_Schema
 import com.advantys.brsmovilidaderp.Utils.BDUtil
-import com.advantys.brsmovilidaderp.Utils.buscarArticulosPor
+import com.advantys.brsmovilidaderp.Utils.EnumUtil.BuscarArticulosPor
 import javax.inject.Inject
 
 class Articulos_Dao @Inject constructor(private val databaseManager: BDUtil) {
@@ -15,16 +15,16 @@ class Articulos_Dao @Inject constructor(private val databaseManager: BDUtil) {
         }
     }
 
-    fun obtenerWhere(buscar: buscarArticulosPor, codfamilia:Short?, codsubfamilia:Short?, codformato: Int?, codmarca:String?, codsabor:String?, tipoConsulta: String?): String{
+    fun obtenerWhere(buscar: BuscarArticulosPor, codfamilia:Short?, codsubfamilia:Short?, codformato: Int?, codmarca:String?, codsabor:String?, tipoConsulta: String?): String{
         var where= ""
 
         when(buscar) {
-            buscarArticulosPor.codigo -> {
+            BuscarArticulosPor.codigo -> {
                 if (!tipoConsulta.isNullOrEmpty()) {
                     where += "${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.ARTICULO_FIELD} LIKE  '$tipoConsulta%'  "
                 }
             }
-            buscarArticulosPor.descripcion -> {
+            BuscarArticulosPor.descripcion -> {
                 if (!tipoConsulta.isNullOrEmpty()) {
                     where += "${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.NOMBRE_FIELD}   LIKE  '%$tipoConsulta%'  "
                 }
@@ -66,7 +66,7 @@ class Articulos_Dao @Inject constructor(private val databaseManager: BDUtil) {
         return where
     }
 
-    fun obtenerArticulos(buscar: buscarArticulosPor, codfamilia:Short?, codsubfamilia:Short?, codformato: Int?, codmarca:String?, codsabor:String?, tipoConsulta: String?):List<Articulos_Entity?>{
+    fun obtenerArticulos(buscar: BuscarArticulosPor, codfamilia:Short?, codsubfamilia:Short?, codformato: Int?, codmarca:String?, codsabor:String?, tipoConsulta: String?):List<Articulos_Entity?>{
         var sql= " SELECT ${Articulos_Schema.NOMBRE_FIELD}, ${Articulos_Schema.ARTICULO_FIELD} FROM ${Articulos_Schema.TABLE_NAME} "
         val where= obtenerWhere(buscar, codfamilia, codsubfamilia, codformato, codmarca, codsabor, tipoConsulta)
        if(!where.isNullOrEmpty()){
@@ -79,16 +79,16 @@ class Articulos_Dao @Inject constructor(private val databaseManager: BDUtil) {
         }
     }
 
-    fun getFilter(columna: buscarArticulosPor, tipoConsulta: String?):List<Articulos_Entity?>{
+    fun getFilter(columna: BuscarArticulosPor, tipoConsulta: String?):List<Articulos_Entity?>{
 
 
         var tipoconsulta= tipoConsulta
         val columnas= when(columna){
-            buscarArticulosPor.descripcion->{
+            BuscarArticulosPor.descripcion->{
                 tipoconsulta= "'%${tipoConsulta}%'"
                 Articulos_Schema.NOMBRE_FIELD
             }
-            buscarArticulosPor.codigo->{
+            BuscarArticulosPor.codigo->{
                 tipoconsulta="'${tipoConsulta}%'"
                 Articulos_Schema.ARTICULO_FIELD
             }

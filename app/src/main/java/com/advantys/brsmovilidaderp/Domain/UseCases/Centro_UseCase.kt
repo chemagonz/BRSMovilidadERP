@@ -8,14 +8,13 @@ import javax.inject.Inject
 
 class Centro_UseCase   @Inject constructor (private val repository: Centro_Repository, private val repositorySerie: Serie_Repository) {
     suspend operator fun invoke(): List<Centro>{
-        val centro = repository.getAllCentros()
-        return if(centro.isNullOrEmpty())
-            listOf<Centro>()
+        val centro = repository.getCentros()
+        return if(centro.isNullOrEmpty()) listOf<Centro>()
         else centro
     }
-    suspend operator fun invoke(centro:Int?):Centro{
+    suspend operator fun invoke(centro: Int?): Centro{
         centro?.let {
-            val centroDet= repository.getAllDetalles(centro)
+            val centroDet = repository.getCentro(centro)
             return centroDet ?: throw NoSuchElementException("Error")
         }?:throw IllegalArgumentException("no puede ser nulo")
     }

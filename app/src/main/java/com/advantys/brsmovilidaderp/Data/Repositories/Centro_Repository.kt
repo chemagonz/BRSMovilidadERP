@@ -7,12 +7,12 @@ import com.advantys.brsmovilidaderp.Domain.Models.toDomain
 import javax.inject.Inject
 
 class Centro_Repository @Inject constructor(private val centroDao: Centros_Dao) {
-    suspend fun getAllCentros():List<Centro>{
-        val response: List<Centros_Entity?> = centroDao.getAll()
+    suspend fun getCentros():List<Centro>{
+        val response: List<Centros_Entity?> = centroDao.getCentros()
         return response.filterNotNull().map { it.toDomain() }
     }
-    suspend fun getAllDetalles(centro: Int?):Centro?{
-        val response : Centros_Entity?= centroDao.getAllDetalles(centro)
+    suspend fun getCentro(centro: Int?):Centro?{
+        val response: Centros_Entity? = centroDao.getCentro(centro)
         return response?.toDomain()
     }
 

@@ -6,9 +6,7 @@ import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.RutaClientes_Schema
 import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.Rutas_Schema
 import com.advantys.brsmovilidaderp.Utils.BDUtil
 import com.advantys.brsmovilidaderp.Utils.Utils
-import com.advantys.brsmovilidaderp.Utils.dias
-import com.advantys.brsmovilidaderp.Utils.mostrarPor
-import com.advantys.brsmovilidaderp.Utils.ordenarPor
+import com.advantys.brsmovilidaderp.Utils.EnumUtil.*
 import javax.inject.Inject
 
 class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
@@ -58,10 +56,10 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
         var sql = "WHERE "
         try {
             when(Utils.mostrar){
-                mostrarPor.desmarcado->{
+                MostrarPor.desmarcado->{
                     sql+= "${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.LMARCADO_FIELD} = 0 AND "
                 }
-                mostrarPor.marcado->{
+                MostrarPor.marcado->{
                     sql+= "${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.LMARCADO_FIELD} = 1 AND "
                 }
                 else->false
@@ -75,34 +73,34 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
 //        }
             sql += "${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.RUTA_FIELD} = ${Rutas_Schema.TABLE_NAME}.${Rutas_Schema.RUTA_FIELD} AND "
 
-            if (Utils.diasSeleccionados[dias.todos] != true) {
+            if (Utils.diasSeleccionados[Dias.todos] != true) {
                 sql += " ("
                 var haydia = false
-                if (Utils.diasSeleccionados[dias.lunes] == true) {
+                if (Utils.diasSeleccionados[Dias.lunes] == true) {
                     sql += "${RutaClientes_Schema.DIASEMANA_FIELD} = 'L' OR "
                     haydia = true
                 }
-                if (Utils.diasSeleccionados[dias.martes] == true) {
+                if (Utils.diasSeleccionados[Dias.martes] == true) {
                     sql += "${RutaClientes_Schema.DIASEMANA_FIELD} = 'M' OR "
                     haydia = true
                 }
-                if (Utils.diasSeleccionados[dias.miercoles] == true) {
+                if (Utils.diasSeleccionados[Dias.miercoles] == true) {
                     sql += "${RutaClientes_Schema.DIASEMANA_FIELD} = 'X' OR "
                     haydia = true
                 }
-                if (Utils.diasSeleccionados[dias.jueves] == true) {
+                if (Utils.diasSeleccionados[Dias.jueves] == true) {
                     sql += "${RutaClientes_Schema.DIASEMANA_FIELD} = 'J' OR "
                     haydia = true
                 }
-                if (Utils.diasSeleccionados[dias.viernes] == true) {
+                if (Utils.diasSeleccionados[Dias.viernes] == true) {
                     sql += "${RutaClientes_Schema.DIASEMANA_FIELD} = 'V' OR "
                     haydia = true
                 }
-                if (Utils.diasSeleccionados[dias.sabado] == true) {
+                if (Utils.diasSeleccionados[Dias.sabado] == true) {
                     sql += "${RutaClientes_Schema.DIASEMANA_FIELD} = 'S' OR "
                     haydia = true
                 }
-                if (Utils.diasSeleccionados[dias.domingo] == true) {
+                if (Utils.diasSeleccionados[Dias.domingo] == true) {
                     sql += "${RutaClientes_Schema.DIASEMANA_FIELD} = 'D' OR "
                     haydia = true
                 }
@@ -144,7 +142,7 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
     }
 
    // dias: diasSemana,marcado:Boolean, desmarcado: Boolean PONER EN OBTENER CONSULTA CUANDO SE ASGINE
-     fun obtenerConsultaClientes(ordenar: ordenarPor, mostrarPor: mostrarPor):List<Clientes_Entity?>{
+     fun obtenerConsultaClientes(ordenar: OrdenarPor, mostrarPor: MostrarPor):List<Clientes_Entity?>{
 
        //var  sql=  "SELECT DISTINCT ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.NOMBRE_FIELD},${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.CLIENTE_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.RUTA_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.DIASEMANA_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.LMARCADO_FIELD} FROM ${Clientes_Schema.TABLE_NAME},${RutaClientes_Schema.TABLE_NAME},${Rutas_Schema.TABLE_NAME} "
        var  sql=  "SELECT DISTINCT ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.NOMBRE_FIELD},${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.CLIENTE_FIELD},${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.LMARCADO_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.DELEGACION_FIELD} FROM ${Clientes_Schema.TABLE_NAME},${RutaClientes_Schema.TABLE_NAME},${Rutas_Schema.TABLE_NAME} "

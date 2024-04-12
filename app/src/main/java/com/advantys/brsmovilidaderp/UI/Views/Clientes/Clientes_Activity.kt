@@ -34,8 +34,8 @@ import com.advantys.brsmovilidaderp.UI.Views.Importar.Importar_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Rutas.Rutas_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Series.Series_Activity
 import com.advantys.brsmovilidaderp.Utils.Utils
-import com.advantys.brsmovilidaderp.Utils.mostrarPor
-import com.advantys.brsmovilidaderp.Utils.ordenarPor
+import com.advantys.brsmovilidaderp.Utils.EnumUtil.MostrarPor
+import com.advantys.brsmovilidaderp.Utils.EnumUtil.OrdenarPor
 import com.advantys.brsmovilidaderp.databinding.ActivityClientesBinding
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -55,7 +55,7 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     private val responseLauncher= registerForActivityResult(StartActivityForResult()){ activityResult->
 
             if(activityResult.resultCode== RESULT_OK){
-                clientesViewModel.obtenerConsultaClientes(ordenarPor.ruta, mostrarPor.todos)
+                clientesViewModel.obtenerConsultaClientes(OrdenarPor.ruta, MostrarPor.todos)
             }
     }
     @SuppressLint("ClickableViewAccessibility")
@@ -100,7 +100,7 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             true
         }
         //al implementarlo se quita la funcionalidad de los botones del action bar. Mirar
-        clientesViewModel.obtenerConsultaClientes(ordenarPor.ruta, mostrarPor.todos)
+        clientesViewModel.obtenerConsultaClientes(OrdenarPor.ruta, MostrarPor.todos)
         clientesViewModel.ClientesModel.observe(this, Observer {
             adapterCliente=  Clientes_Adapter(it, clientesViewModel)
             binding.recyclerviewClientes.layoutManager = LinearLayoutManager(this)
@@ -173,42 +173,42 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.ruta->{
-               Utils.orderPor= ordenarPor.ruta
+               Utils.orderPor= OrdenarPor.ruta
                 clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
                 return true
             }
             R.id.cliente->{
-                Utils.orderPor= ordenarPor.cliente
+                Utils.orderPor= OrdenarPor.cliente
                 clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
                 return true
             }
             R.id.nombre->{
-              Utils.orderPor= ordenarPor.nombre
+              Utils.orderPor= OrdenarPor.nombre
                 clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
                 return true
             }
             R.id.secuencia->{
-               Utils.orderPor= ordenarPor.secuencia
+               Utils.orderPor= OrdenarPor.secuencia
                 clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
                 return true
             }
             R.id.ordenpersonalizado->{
-                Utils.orderPor= ordenarPor.ordenpersonalizado
+                Utils.orderPor= OrdenarPor.ordenpersonalizado
                 clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
                 return true
             }
             R.id.marcados->{
-                Utils.mostrar= mostrarPor.marcado
+                Utils.mostrar= MostrarPor.marcado
                 clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
                 return true
             }
             R.id.desmarcados->{
-                Utils.mostrar= mostrarPor.desmarcado
+                Utils.mostrar= MostrarPor.desmarcado
                 clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
                 return true
             }
             R.id.todos->{
-                Utils.mostrar= mostrarPor.todos
+                Utils.mostrar= MostrarPor.todos
                 clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
                 return true
             }

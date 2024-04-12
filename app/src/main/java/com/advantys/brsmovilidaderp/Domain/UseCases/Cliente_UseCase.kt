@@ -3,8 +3,8 @@ package com.advantys.brsmovilidaderp.Domain.UseCases
 import com.advantys.brsmovilidaderp.Data.DataBase.Daos.columnas
 import com.advantys.brsmovilidaderp.Data.Repositories.Clientes_Repository
 import com.advantys.brsmovilidaderp.Domain.Models.Cliente
-import com.advantys.brsmovilidaderp.Utils.mostrarPor
-import com.advantys.brsmovilidaderp.Utils.ordenarPor
+import com.advantys.brsmovilidaderp.Utils.EnumUtil.OrdenarPor
+import com.advantys.brsmovilidaderp.Utils.EnumUtil.MostrarPor
 import javax.inject.Inject
 
 class Cliente_UseCase @Inject constructor(private val repository: Clientes_Repository) {
@@ -21,7 +21,7 @@ class Cliente_UseCase @Inject constructor(private val repository: Clientes_Repos
         return repository.getFilter(tipo,query)
     }
     //Funcion para ordenar clientes segun la elección.(ruta,secuencia, nombre,cliente, ordenpersonalizado...)
-    suspend operator  fun invoke(ordenar: ordenarPor, mostrarPor: mostrarPor):List<Cliente>{
+    suspend operator  fun invoke(ordenar: OrdenarPor, mostrarPor: MostrarPor):List<Cliente>{
         return repository.obtenerConsultaCliente(ordenar, mostrarPor)
     }
     suspend operator fun invoke(cliente:Int?): Cliente {

@@ -10,8 +10,7 @@ import com.advantys.brsmovilidaderp.Data.DataBase.Daos.columnas
 import com.advantys.brsmovilidaderp.Domain.Models.Cliente
 import com.advantys.brsmovilidaderp.Domain.UseCases.Cliente_UseCase
 import com.advantys.brsmovilidaderp.UI.Views.Clientes.DetallesClientes_Activity
-import com.advantys.brsmovilidaderp.Utils.mostrarPor
-import com.advantys.brsmovilidaderp.Utils.ordenarPor
+import com.advantys.brsmovilidaderp.Utils.EnumUtil.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -46,7 +45,7 @@ class Cliente_ViewModel @Inject constructor(private val ClienteUsecase: Cliente_
         }
     }
     //Se inicializa por ordenar ruta, valor predeterminado
-    fun obtenerConsultaClientes(ordenar: ordenarPor, mostrarPor: mostrarPor){ viewModelScope.launch(Dispatchers.Default) {
+    fun obtenerConsultaClientes(ordenar: OrdenarPor, mostrarPor: MostrarPor){ viewModelScope.launch(Dispatchers.Default) {
             val resultado= ClienteUsecase(ordenar,mostrarPor)
             //if(!resultado.isNullOrEmpty()) ClientesModel.postValue(resultado)
             ClientesModel.postValue(resultado)

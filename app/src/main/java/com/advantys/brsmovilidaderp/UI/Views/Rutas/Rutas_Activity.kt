@@ -17,7 +17,7 @@ import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Cliente_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.Ruta_ViewModel
 import com.advantys.brsmovilidaderp.Utils.Utils
-import com.advantys.brsmovilidaderp.Utils.dias
+import com.advantys.brsmovilidaderp.Utils.EnumUtil.Dias
 import com.advantys.brsmovilidaderp.databinding.ActivityRutasBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -80,28 +80,28 @@ class Rutas_Activity : AppCompatActivity() {
             when (dia) {
 
                 "Lunes" -> {
-                    Utils.diasSeleccionados[dias.lunes] = isChecked
+                    Utils.diasSeleccionados[Dias.lunes] = isChecked
                 }
                 "Martes" -> {
-                    Utils.diasSeleccionados[dias.martes] = isChecked
+                    Utils.diasSeleccionados[Dias.martes] = isChecked
                 }
                 "Miércoles" -> {
-                    Utils.diasSeleccionados [dias.miercoles]= isChecked
+                    Utils.diasSeleccionados [Dias.miercoles]= isChecked
                 }
                 "Jueves" -> {
-                    Utils.diasSeleccionados [dias.jueves]= isChecked
+                    Utils.diasSeleccionados [Dias.jueves]= isChecked
                 }
                 "Viernes" ->{
-                    Utils.diasSeleccionados [dias.viernes]= isChecked
+                    Utils.diasSeleccionados [Dias.viernes]= isChecked
                 }
                 "Sábado" -> {
-                    Utils.diasSeleccionados [dias.sabado]= isChecked
+                    Utils.diasSeleccionados [Dias.sabado]= isChecked
                 }
                 "Domingo" ->{
-                    Utils.diasSeleccionados [dias.domingo]= isChecked
+                    Utils.diasSeleccionados [Dias.domingo]= isChecked
                 }
                 "Todos" -> {
-                   Utils.diasSeleccionados[dias.todos]
+                   Utils.diasSeleccionados[Dias.todos]
                     //Se actualiza los checkbox para cuando se marque o se desmarque Todos.
                     for (i in 1 until layout.childCount) {
                         val checkbox = layout.getChildAt(i) as CheckBox
@@ -117,17 +117,17 @@ class Rutas_Activity : AppCompatActivity() {
 
             // Configurar el estado inicial de los checkboxes
             when (dia) {
-                "Lunes" -> checkBox.isChecked = Utils.diasSeleccionados[dias.lunes] ?: false
-                "Martes" -> checkBox.isChecked = Utils.diasSeleccionados[dias.martes] ?: false
-                "Miércoles" -> checkBox.isChecked = Utils.diasSeleccionados[dias.miercoles] ?: false
-                "Jueves" -> checkBox.isChecked = Utils.diasSeleccionados[dias.jueves] ?: false
-                "Viernes" -> checkBox.isChecked = Utils.diasSeleccionados[dias.viernes] ?: false
-                "Sábado" -> checkBox.isChecked = Utils.diasSeleccionados[dias.sabado] ?: false
-                "Domingo" -> checkBox.isChecked = Utils.diasSeleccionados[dias.domingo] ?: false
+                "Lunes" -> checkBox.isChecked = Utils.diasSeleccionados[Dias.lunes] ?: false
+                "Martes" -> checkBox.isChecked = Utils.diasSeleccionados[Dias.martes] ?: false
+                "Miércoles" -> checkBox.isChecked = Utils.diasSeleccionados[Dias.miercoles] ?: false
+                "Jueves" -> checkBox.isChecked = Utils.diasSeleccionados[Dias.jueves] ?: false
+                "Viernes" -> checkBox.isChecked = Utils.diasSeleccionados[Dias.viernes] ?: false
+                "Sábado" -> checkBox.isChecked = Utils.diasSeleccionados[Dias.sabado] ?: false
+                "Domingo" -> checkBox.isChecked = Utils.diasSeleccionados[Dias.domingo] ?: false
                 "Todos" -> {
                     // Verificar si todos los días están marcados
-                    val todosChecked = Utils.diasSeleccionados[dias.lunes]== true && Utils.diasSeleccionados[dias.martes] == true && Utils.diasSeleccionados[dias.miercoles] == true &&
-                            Utils.diasSeleccionados[dias.jueves] == true && Utils.diasSeleccionados[dias.viernes] == true && Utils.diasSeleccionados[dias.sabado] == true && Utils.diasSeleccionados[dias.domingo] == true
+                    val todosChecked = Utils.diasSeleccionados[Dias.lunes]== true && Utils.diasSeleccionados[Dias.martes] == true && Utils.diasSeleccionados[Dias.miercoles] == true &&
+                            Utils.diasSeleccionados[Dias.jueves] == true && Utils.diasSeleccionados[Dias.viernes] == true && Utils.diasSeleccionados[Dias.sabado] == true && Utils.diasSeleccionados[Dias.domingo] == true
                     checkBox.isChecked = todosChecked
                 }
             }
