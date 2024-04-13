@@ -15,9 +15,12 @@
     <color name="transparente">#00000000</color>
     <color name="plaintext">#f0f0f0</color>
 
+    <color name="atencion">#FFAA00</color>
+    <color name="informacion">#008BF8</color>
+    <color name="error">#FF0101</color>
+    <color name="ok">#2D7530</color>
 
-
-
-
+    <color name="oscuro">#888888</color>
+    <color name="gris">#CCCCCC</color>
 
 </resources>

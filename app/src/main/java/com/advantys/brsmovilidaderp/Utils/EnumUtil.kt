@@ -27,4 +27,11 @@ class EnumUtil {
         descripcion,
         codigo
     }
+
+    enum class TipoAlerta{
+        ok,
+        error,
+        informacion,
+        advertencia
+    }
 }

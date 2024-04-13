@@ -23,12 +23,13 @@ class Utils {
                 Dias.domingo to false,
                 Dias.todos to false
             )
-                var orderPor: OrdenarPor = OrdenarPor.ruta
-                var mostrar: MostrarPor = MostrarPor.todos
-                var buscarArticulo: BuscarArticulosPor = BuscarArticulosPor.descripcion
-                var Ruta= Environment.getExternalStorageDirectory().path+ "/BRSAndroid/"
-                var FechaHoy: Date? = null
-                var YaCargado = false
+
+            var orderPor: OrdenarPor = OrdenarPor.ruta
+            var mostrar: MostrarPor = MostrarPor.todos
+            var buscarArticulo: BuscarArticulosPor = BuscarArticulosPor.descripcion
+            var Ruta= Environment.getExternalStorageDirectory().path+ "/BRSAndroid/"
+            var FechaHoy: Date? = null
+            var YaCargado = false
 
             fun fechaValida(date: String?, dateFormat: String?): Boolean {
                 val sdf: DateFormat = SimpleDateFormat(dateFormat)

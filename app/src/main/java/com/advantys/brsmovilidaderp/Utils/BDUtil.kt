@@ -126,7 +126,7 @@ class BDUtil @Inject constructor (private val dbHelper:BD){
     }
 
     ///region  Utilidades
-    fun Any?.esNulo() = this == null
+    //fun Any?.esNulo() = this == null
 
     fun Cursor.cerrar(){
         if(!this.esNulo()) this.close()
