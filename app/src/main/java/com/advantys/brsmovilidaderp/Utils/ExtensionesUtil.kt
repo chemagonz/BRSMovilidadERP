@@ -10,6 +10,10 @@ import com.advantys.brsmovilidaderp.R
 import com.google.android.material.snackbar.Snackbar
 import com.advantys.brsmovilidaderp.Utils.EnumUtil.TipoAlerta
 import com.advantys.brsmovilidaderp.databinding.SnackbarBinding
+import java.io.File
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Date
 
     //region Any
     fun Any?.esNulo() = this == null
@@ -45,6 +49,52 @@ import com.advantys.brsmovilidaderp.databinding.SnackbarBinding
             TipoAlerta.error -> this.mostrarSnackbarPersonalizado(mensaje, R.drawable.error, R.color.white, R.color.error)
             TipoAlerta.informacion -> this.mostrarSnackbarPersonalizado(mensaje, R.drawable.informacion, R.color.white, R.color.informacion)
             TipoAlerta.advertencia -> this.mostrarSnackbarPersonalizado(mensaje, R.drawable.advertencia,R.color.white, R.color.atencion)
+        }
+    }
+
+    //endregion
+
+    //region File
+
+    fun File.eliminarRecursivo(ruta: File): Boolean{
+        if (ruta.exists()) return ruta.deleteRecursively()
+        else return false;
+    }
+
+    fun File.crearDirectorio(ruta: File): Boolean{
+        if (!ruta.exists()) return ruta.mkdirs()
+        else return false;
+    }
+
+    fun File.eliminarArchivo(): Boolean{
+        if(this.exists()) return this.delete()
+        else return false;
+    }
+
+    fun File.escribirTXT(contenido: String) {
+        bufferedWriter().use { out ->
+            out.write(contenido)
+        }
+    }
+
+    fun File.obtenerArchivosEnDirectorio(): List<File> {
+        if (!exists() || !isDirectory) return emptyList()
+        return listFiles()?.toList() ?: emptyList()
+    }
+
+    fun File.obtenerFechaModificacion() = Date(lastModified())
+
+    fun File.obtenerArchivosPorFechaModificacion(): List<File> {
+        if (!exists() || !isDirectory) return emptyList()
+        else return listFiles()?.sortedByDescending { it.lastModified() } ?: emptyList()
+    }
+
+    fun File.escribirCSV(contenido: List<List<String>>, separador: String = ",") {
+        bufferedWriter().use { out ->
+            contenido.forEach { fila ->
+                out.write(fila.joinToString(separador))
+                out.newLine()
+            }
         }
     }
 
