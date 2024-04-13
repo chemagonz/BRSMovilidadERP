@@ -11,8 +11,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.advantys.brsmovilidaderp.Utils.EnumUtil.TipoAlerta
 import com.advantys.brsmovilidaderp.databinding.SnackbarBinding
 import java.io.File
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.Date
 
     //region Any
@@ -33,7 +31,7 @@ import java.util.Date
         if(icono.esNulo()) binding.imgImagen.visibility = View.GONE
         else binding.imgImagen.setImageResource(icono!!)
 
-        var gradiente = binding.layoutRoot.background as GradientDrawable
+        val gradiente = binding.layoutRoot.background as GradientDrawable
         if(!colorFondo.esNulo()) gradiente.setColor(ContextCompat.getColor(this, colorFondo))
 
         snackBar.apply {
@@ -57,18 +55,18 @@ import java.util.Date
     //region File
 
     fun File.eliminarRecursivo(ruta: File): Boolean{
-        if (ruta.exists()) return ruta.deleteRecursively()
-        else return false;
+        return if (ruta.exists()) ruta.deleteRecursively()
+        else false;
     }
 
     fun File.crearDirectorio(ruta: File): Boolean{
-        if (!ruta.exists()) return ruta.mkdirs()
-        else return false;
+        return if (!ruta.exists()) ruta.mkdirs()
+        else false;
     }
 
     fun File.eliminarArchivo(): Boolean{
-        if(this.exists()) return this.delete()
-        else return false;
+        return if(this.exists()) this.delete()
+        else false;
     }
 
     fun File.escribirTXT(contenido: String) {
@@ -85,8 +83,8 @@ import java.util.Date
     fun File.obtenerFechaModificacion() = Date(lastModified())
 
     fun File.obtenerArchivosPorFechaModificacion(): List<File> {
-        if (!exists() || !isDirectory) return emptyList()
-        else return listFiles()?.sortedByDescending { it.lastModified() } ?: emptyList()
+        return if (!exists() || !isDirectory) emptyList()
+        else listFiles()?.sortedByDescending { it.lastModified() } ?: emptyList()
     }
 
     fun File.escribirCSV(contenido: List<List<String>>, separador: String = ",") {
