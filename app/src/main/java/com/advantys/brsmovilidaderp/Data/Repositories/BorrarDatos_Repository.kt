@@ -23,4 +23,7 @@ class BorrarDatos_Repository  @Inject constructor(private val borrardatosDao: Bo
     suspend fun borrarRegistrosSueltos(){
         borrardatosDao.borrarRegistrosSueltos()
     }
+    suspend fun comprobarDatosPendientes(fecha:String): IntArray? {
+        return  borrardatosDao.comprobarDatosPendientes(fecha)
+    }
 }

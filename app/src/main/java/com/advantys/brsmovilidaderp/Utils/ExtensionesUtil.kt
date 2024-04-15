@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import com.advantys.brsmovilidaderp.R
 import com.google.android.material.snackbar.Snackbar
-import com.advantys.brsmovilidaderp.Utils.EnumUtil.TipoAlerta
+
 import com.advantys.brsmovilidaderp.databinding.SnackbarBinding
 import java.io.File
 import java.util.Date

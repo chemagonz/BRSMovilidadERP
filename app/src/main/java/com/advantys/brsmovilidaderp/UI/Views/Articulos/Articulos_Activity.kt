@@ -14,7 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Articulo_ViewModel
-import com.advantys.brsmovilidaderp.Utils.EnumUtil.BuscarArticulosPor
+import com.advantys.brsmovilidaderp.Utils.BuscarArticulosPor
 import com.advantys.brsmovilidaderp.databinding.ActivityArticulosBinding
 import dagger.hilt.android.AndroidEntryPoint
 

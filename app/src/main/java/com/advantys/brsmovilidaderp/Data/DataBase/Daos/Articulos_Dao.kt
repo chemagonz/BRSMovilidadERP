@@ -3,7 +3,7 @@ package com.advantys.brsmovilidaderp.Data.DataBase.Daos
 import com.advantys.brsmovilidaderp.Data.DataBase.Entities.Articulos_Entity
 import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.Articulos_Schema
 import com.advantys.brsmovilidaderp.Utils.BDUtil
-import com.advantys.brsmovilidaderp.Utils.EnumUtil.BuscarArticulosPor
+import com.advantys.brsmovilidaderp.Utils.BuscarArticulosPor
 import javax.inject.Inject
 
 class Articulos_Dao @Inject constructor(private val databaseManager: BDUtil) {

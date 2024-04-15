@@ -47,4 +47,12 @@
         <!-- Color de acento -->
         <item name="colorAccent">@color/colorAdvantysApp3</item>
     </style>
+
+    <style name= "customOutlineText" parent= "Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:colorPrimaryDark">@color/colorAdvantysApp2</item>
+    </style>
+
+    <style name= "editText" parent="Theme.MaterialComponents.Light.NoActionBar">
+
+    </style>
 </resources>

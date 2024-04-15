@@ -22,20 +22,20 @@ class BDUtil @Inject constructor (private val dbHelper:BD){
         db.insert(tabla, null, parametros)
         db.close()
     }
-    fun insertIfNotExists(tabla: String, parametros : ContentValues, where: String) {
-        if(!existe(tabla, where))
-            insert(tabla, parametros)
-    }
+//    fun insertIfNotExists(tabla: String, parametros : ContentValues, where: String) {
+//        if(!existe(tabla, where))
+//            insert(tabla, parametros)
+//    }
     fun update(tabla: String, parametros : ContentValues, where: String) {
         val db = dbHelper.openDatabaseWrite()
         db.update(tabla, parametros, where, null)
         db.close()
     }
-    fun upsert(tabla: String, parametros : ContentValues, where: String) {
-        if(existe(tabla, where))
-            update(tabla, parametros, where)
-        else insert(tabla, parametros)
-    }
+//    fun upsert(tabla: String, parametros : ContentValues, where: String) {
+//        if(existe(tabla, where))
+//            update(tabla, parametros, where)
+//        else insert(tabla, parametros)
+//    }
     fun delete(tabla: String) {
         val db = dbHelper.openDatabaseWrite()
         db.delete(tabla,null,null)
@@ -48,7 +48,7 @@ class BDUtil @Inject constructor (private val dbHelper:BD){
     }
 
 
-    fun existe(tabla: String, where: String): Boolean {
+    fun existe(tabla: Array<String?>, where: Array<String?>): Boolean {
         val db = dbHelper.openDatabaseRead()
         val selectQuery = "SELECT COUNT(*) FROM ${tabla} WHERE ${where}"
         val cursor = db.rawQuery(selectQuery, null)

@@ -10,7 +10,8 @@ import com.advantys.brsmovilidaderp.Data.DataBase.Daos.columnas
 import com.advantys.brsmovilidaderp.Domain.Models.Cliente
 import com.advantys.brsmovilidaderp.Domain.UseCases.Cliente_UseCase
 import com.advantys.brsmovilidaderp.UI.Views.Clientes.DetallesClientes_Activity
-import com.advantys.brsmovilidaderp.Utils.EnumUtil.*
+import com.advantys.brsmovilidaderp.Utils.MostrarPor
+import com.advantys.brsmovilidaderp.Utils.OrdenarPor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

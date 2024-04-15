@@ -26,7 +26,7 @@
                     android:layout_marginStart="7dp"
                     android:layout_marginTop="6dp"
                     android:text="TextView"
-                    android:textColor="@color/colorAdvantysApp1"
+                    android:textColor="@color/colorAdvantysApp7"
                     android:textSize="14sp"
                     android:textStyle="bold" />
                 <TextView

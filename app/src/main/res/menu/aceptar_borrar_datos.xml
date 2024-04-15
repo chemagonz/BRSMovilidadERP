@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/aceptar_licencia"
+        android:id="@+id/aceptar_borrarDatos"
         android:icon="@drawable/aceptar"
-        android:title="Aceptar"
+        android:title="Borrar datos"
         app:showAsAction="always"/>
 </menu>

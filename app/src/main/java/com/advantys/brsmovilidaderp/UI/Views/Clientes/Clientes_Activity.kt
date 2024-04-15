@@ -33,9 +33,10 @@ import com.advantys.brsmovilidaderp.UI.Views.Exportar.Exportar_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Importar.Importar_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Rutas.Rutas_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Series.Series_Activity
-import com.advantys.brsmovilidaderp.Utils.Utils
-import com.advantys.brsmovilidaderp.Utils.EnumUtil.MostrarPor
-import com.advantys.brsmovilidaderp.Utils.EnumUtil.OrdenarPor
+import com.advantys.brsmovilidaderp.Utils.MostrarPor
+import com.advantys.brsmovilidaderp.Utils.OrdenarPor
+import com.advantys.brsmovilidaderp.Utils.mostrar
+import com.advantys.brsmovilidaderp.Utils.orderPor
 import com.advantys.brsmovilidaderp.databinding.ActivityClientesBinding
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -173,43 +174,43 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.ruta->{
-               Utils.orderPor= OrdenarPor.ruta
-                clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
+               orderPor= OrdenarPor.ruta
+                clientesViewModel.obtenerConsultaClientes(orderPor, mostrar)
                 return true
             }
             R.id.cliente->{
-                Utils.orderPor= OrdenarPor.cliente
-                clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
+                orderPor= OrdenarPor.cliente
+                clientesViewModel.obtenerConsultaClientes(orderPor, mostrar)
                 return true
             }
             R.id.nombre->{
-              Utils.orderPor= OrdenarPor.nombre
-                clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
+              orderPor= OrdenarPor.nombre
+                clientesViewModel.obtenerConsultaClientes(orderPor, mostrar)
                 return true
             }
             R.id.secuencia->{
-               Utils.orderPor= OrdenarPor.secuencia
-                clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
+               orderPor= OrdenarPor.secuencia
+                clientesViewModel.obtenerConsultaClientes(orderPor, mostrar)
                 return true
             }
             R.id.ordenpersonalizado->{
-                Utils.orderPor= OrdenarPor.ordenpersonalizado
-                clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
+                orderPor= OrdenarPor.ordenpersonalizado
+                clientesViewModel.obtenerConsultaClientes(orderPor, mostrar)
                 return true
             }
             R.id.marcados->{
-                Utils.mostrar= MostrarPor.marcado
-                clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
+                mostrar= MostrarPor.marcado
+                clientesViewModel.obtenerConsultaClientes(orderPor, mostrar)
                 return true
             }
             R.id.desmarcados->{
-                Utils.mostrar= MostrarPor.desmarcado
-                clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
+                mostrar= MostrarPor.desmarcado
+                clientesViewModel.obtenerConsultaClientes(orderPor, mostrar)
                 return true
             }
             R.id.todos->{
-                Utils.mostrar= MostrarPor.todos
-                clientesViewModel.obtenerConsultaClientes(Utils.orderPor, Utils.mostrar)
+                mostrar= MostrarPor.todos
+                clientesViewModel.obtenerConsultaClientes(orderPor, mostrar)
                 return true
             }
             else->false

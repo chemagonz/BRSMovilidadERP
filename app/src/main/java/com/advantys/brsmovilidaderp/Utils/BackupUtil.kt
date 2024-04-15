@@ -49,7 +49,7 @@ class BackupUtil {
                 val formatoHora = SimpleDateFormat("HH:mm:ss")
                 val fecha: String = formatoDia.format(Calendar.getInstance().getTime())
                 val hora: String = formatoHora.format(Calendar.getInstance().getTime())
-                val directorioBackups: File = File(Utils.Ruta + "/Backups")
+                val directorioBackups: File = File(Ruta + "/Backups")
                 val directorioDia = File("$directorioBackups/$fecha")
                 var existeBackups = true
                 var existeDia = true
@@ -61,7 +61,7 @@ class BackupUtil {
                             ":",
                             "."
                         ) + ".db"
-                    val bdoriginal: File = File(Utils.Ruta + "/BRSAndroid.db")
+                    val bdoriginal: File = File(Ruta + "/BRSAndroid.db")
                     val backup = File(directorioDia.toString() + nombreBackup)
                     try {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) Files.copy(bdoriginal.toPath(), backup.toPath()) else {
@@ -93,16 +93,16 @@ class BackupUtil {
                 c.add(Calendar.DATE, -10)
                 val fechaAnterior: Date = c.getTime()
                 var fechaFile: Date? = null
-                val directorioBackups: File = File(Utils.Ruta + "/Backups")
+                val directorioBackups: File = File(Ruta + "/Backups")
                 val files = directorioBackups.listFiles()
                 for (f in files) {
                     try {
-                        if (Utils.fechaValida(f.getName(), "dd-MM-yyyy")) {
+                        if (fechaValida(f.getName(), "dd-MM-yyyy")) {
                             fechaFile = formatoDia.parse(f.getName())
                             if (fechaAnterior.after(fechaFile)) {
-                                Utils.eliminarFicheros(File(directorioBackups.toString() + "/" + f.getName()))
+                                eliminarFicheros(File(directorioBackups.toString() + "/" + f.getName()))
                             }
-                        } else Utils.eliminarFicheros(File(directorioBackups.toString() + "/" + f.getName()))
+                        } else eliminarFicheros(File(directorioBackups.toString() + "/" + f.getName()))
                     } catch (e: ParseException) {
                         e.printStackTrace()
                     }

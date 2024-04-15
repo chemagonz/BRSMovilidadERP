@@ -16,8 +16,10 @@ import com.advantys.brsmovilidaderp.UI.Views.Clientes.Clientes_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Licencia.Licencia_Activity
 import com.advantys.brsmovilidaderp.Utils.BDUtil
 import com.advantys.brsmovilidaderp.Utils.BackupUtil
+import com.advantys.brsmovilidaderp.Utils.FechaHoy
 import com.advantys.brsmovilidaderp.Utils.PermisosUtils
-import com.advantys.brsmovilidaderp.Utils.Utils
+import com.advantys.brsmovilidaderp.Utils.Ruta
+import com.advantys.brsmovilidaderp.Utils.YaCargado
 import com.advantys.brsmovilidaderp.databinding.ActivitySplashScreenBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
@@ -77,7 +79,7 @@ class SplashScreen_activity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun continuarDespuesPermisos() {
 
-        val file = File(Utils.Ruta, "BRSAndroid.db")
+        val file = File(Ruta, "BRSAndroid.db")
         if (!file.exists()) {
             GenerarBBDD()
         } else {
@@ -89,7 +91,7 @@ class SplashScreen_activity : AppCompatActivity() {
     private fun ProcesoInicio() {
         //Si la ruta y base de datos son correctas
         if (ObtenerRuta()) {
-            Utils.FechaHoy = Date()
+            FechaHoy = Date()
             CrearCarpetasExportacion()
             //Si la ruta y base de datos son correctas
             if (ObtenerRuta()) {
@@ -107,12 +109,12 @@ class SplashScreen_activity : AppCompatActivity() {
 
     //Función para generar la base de datos
     private fun GenerarBBDD() {
-        File(Utils.Ruta + "BRSAndroid.db").delete()
+        File(Ruta + "BRSAndroid.db").delete()
     }
 
     private fun CrearCarpetasExportacion() {
-        if (!File(Utils.Ruta + "Exportar").exists()) File(Utils.Ruta + "Exportar").mkdir()
-        if (!File(Utils.Ruta + "Update").exists()) File(Utils.Ruta + "Update").mkdir()
+        if (!File(Ruta + "Exportar").exists()) File(Ruta + "Exportar").mkdir()
+        if (!File(Ruta + "Update").exists()) File(Ruta + "Update").mkdir()
     }
 
     private fun ComprobarLicencia(): Boolean {
@@ -139,7 +141,7 @@ class SplashScreen_activity : AppCompatActivity() {
 
     private fun EntrarAlPrograma() {
         //idUtil.escribirIDPreferencias
-        Utils.YaCargado = true
+        YaCargado = true
         //ComprobarConfiguracion
         BackupUtil.crearBackup(BackupUtil.INICIO)
         val intent = Intent(this, Clientes_Activity::class.java)
@@ -156,7 +158,7 @@ class SplashScreen_activity : AppCompatActivity() {
         if (!file.exists())
             File(getExternalStorageDirectory().path + "/BRSAndroid/").mkdir()
 
-        val filea = File(Utils.Ruta, "BRSAndroid.db")
+        val filea = File(Ruta, "BRSAndroid.db")
         if (!filea.exists()) {
             mostrarDialogoBDNoDisponible()
             ok = false

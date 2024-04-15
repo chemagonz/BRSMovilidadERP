@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.advantys.brsmovilidaderp.Domain.Models.Articulo
 import com.advantys.brsmovilidaderp.Domain.UseCases.Articulo_UseCase
 import com.advantys.brsmovilidaderp.UI.Views.Articulos.DetallesArticulos_Activity
-import com.advantys.brsmovilidaderp.Utils.EnumUtil.BuscarArticulosPor
+import com.advantys.brsmovilidaderp.Utils.BuscarArticulosPor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

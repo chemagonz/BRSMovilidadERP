@@ -39,4 +39,8 @@ class BorrarDatos_ViewModel @Inject constructor(private var borrarDatosUsecase: 
            borrarDatosUsecase.borrarRegistrosSueltos()
        }
     }
+
+    fun comprobarDatosPendientes(fecha:String):IntArray?{
+         return comprobarDatosPendientes(fecha)
+    }
 }

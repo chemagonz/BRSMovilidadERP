@@ -49,4 +49,18 @@ class BorrarDatos_Dao @Inject constructor(private val databaseManager: BDUtil){
         databaseManager.delete(sql,where)
     }
 
+    fun comprobarDatosPendientes(fecha: String): IntArray?{
+        val tabla = arrayOfNulls<String>(3)
+        val where = arrayOfNulls<String>(3)
+        tabla[1]= " SELECT COUNT (*) FROM ${CabPedidos_Schema.TABLE_NAME} WHERE ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.ENVIADO_FIELD} = 0 AND ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.IMPORTADO_FIELD} = 0 AND ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.DPREVENTA_FIELD} < '$fecha'"
+        tabla[2]= " SELECT COUNT(*) FROM ${Visitas_Schema.TABLE_NAME} WHERE ${Visitas_Schema.ENVIADO_FIELD} = 0"
+        tabla[3]= " SELECT COUNT(*) FROM ${Cobros_Schema.TABLE_NAME} WHERE ${Cobros_Schema.ENVIADO_FIELD} = 0 AND ${Cobros_Schema.FECHA_FIELD} < '$fecha'"
+        where[1]= " WHERE ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.ENVIADO_FIELD} = 0 AND ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.IMPORTADO_FIELD} = 0 AND ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.DPREVENTA_FIELD} < '$fecha'"
+        where[2]= " WHERE ${Visitas_Schema.ENVIADO_FIELD} = 0"
+        where[3]= " WHERE ${Cobros_Schema.ENVIADO_FIELD} = 0 AND ${Cobros_Schema.FECHA_FIELD} < '$fecha'"
+
+        databaseManager.existe(tabla,where)
+        return null
+    }
+
 }

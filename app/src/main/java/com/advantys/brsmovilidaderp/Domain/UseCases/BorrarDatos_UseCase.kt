@@ -23,4 +23,7 @@ class BorrarDatos_UseCase @Inject constructor(private val repository: BorrarDato
     suspend fun borrarRegistrosSueltos(){
         repository.borrarRegistrosSueltos()
     }
+    suspend fun comprobarDatosPendientes(fecha:String):IntArray?{
+        return repository.comprobarDatosPendientes(fecha)
+    }
 }

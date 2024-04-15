@@ -3,8 +3,8 @@ package com.advantys.brsmovilidaderp.Domain.UseCases
 import com.advantys.brsmovilidaderp.Data.DataBase.Daos.columnas
 import com.advantys.brsmovilidaderp.Data.Repositories.Clientes_Repository
 import com.advantys.brsmovilidaderp.Domain.Models.Cliente
-import com.advantys.brsmovilidaderp.Utils.EnumUtil.OrdenarPor
-import com.advantys.brsmovilidaderp.Utils.EnumUtil.MostrarPor
+import com.advantys.brsmovilidaderp.Utils.MostrarPor
+import com.advantys.brsmovilidaderp.Utils.OrdenarPor
 import javax.inject.Inject
 
 class Cliente_UseCase @Inject constructor(private val repository: Clientes_Repository) {

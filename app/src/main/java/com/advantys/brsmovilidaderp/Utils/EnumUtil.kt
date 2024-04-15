@@ -1,7 +1,6 @@
 package com.advantys.brsmovilidaderp.Utils
 
-class EnumUtil {
-    enum class Dias{
+enum class Dias{
         lunes,
         martes,
         miercoles,
@@ -10,28 +9,27 @@ class EnumUtil {
         sabado,
         domingo,
         todos
-    }
-    enum class OrdenarPor{
+}
+enum class OrdenarPor{
         ruta,
         cliente,
         nombre,
         secuencia,
         ordenpersonalizado
-    }
-    enum class MostrarPor{
+}
+enum class MostrarPor{
         marcado,
         desmarcado,
         todos;
-    }
-    enum class BuscarArticulosPor{
+}
+enum class BuscarArticulosPor{
         descripcion,
         codigo
-    }
+}
 
-    enum class TipoAlerta{
+enum class TipoAlerta{
         ok,
         error,
         informacion,
         advertencia
-    }
 }

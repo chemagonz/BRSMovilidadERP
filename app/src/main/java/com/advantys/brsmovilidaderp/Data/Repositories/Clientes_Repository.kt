@@ -5,8 +5,9 @@ import com.advantys.brsmovilidaderp.Data.DataBase.Daos.columnas
 import com.advantys.brsmovilidaderp.Data.DataBase.Entities.Clientes_Entity
 import com.advantys.brsmovilidaderp.Domain.Models.Cliente
 import com.advantys.brsmovilidaderp.Domain.Models.toDomain
-import com.advantys.brsmovilidaderp.Utils.EnumUtil.MostrarPor
-import com.advantys.brsmovilidaderp.Utils.EnumUtil.OrdenarPor
+import com.advantys.brsmovilidaderp.Utils.MostrarPor
+import com.advantys.brsmovilidaderp.Utils.OrdenarPor
+
 import javax.inject.Inject
 
 class Clientes_Repository @Inject constructor(private val ClienteDao: Clientes_Dao) {

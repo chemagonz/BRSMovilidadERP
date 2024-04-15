@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
+    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
     android:orientation="vertical">
 
     <ScrollView
@@ -26,7 +28,7 @@
                 android:text="Compactar Base de datos"
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                android:background="@color/teal"
+                android:backgroundTint="@color/colorAdvantysApp6"
                 android:layout_gravity="center"
                 android:layout_marginBottom="16dp" />
 
@@ -38,6 +40,7 @@
                 android:text="Seleccionar los datos a borrar"
                 android:textColor="@color/black"
                 android:textSize="18sp"
+
                 android:textStyle="bold" />
 
             <!-- Checkboxes -->
@@ -48,7 +51,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Cobros"
-
                 android:textColor="@android:color/black"
                 android:textSize="15sp" />
 
@@ -99,17 +101,27 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
-
-            <EditText
-                android:id="@+id/borrarpreventaID_hasta"
-                android:layout_width="380dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textAlignment="center"
-                android:layout_marginBottom="16dp"
                 android:hint="Seleccionar fecha"
-                android:inputType="date"
-                android:textSize="15sp" />
+                app:boxBackgroundColor="@color/colorAdvantysApp4"
+                style="@style/customOutlineText">
+
+                <EditText
+                    android:id="@+id/edborrarPedidos"
+                    android:layout_width="342dp"
+                    android:layout_height="47dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="16dp"
+                    android:inputType="date"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
     </ScrollView>

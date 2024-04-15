@@ -3,6 +3,7 @@ package com.advantys.brsmovilidaderp.UI.Views.Clientes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.advantys.brsmovilidaderp.Domain.Models.Cliente
@@ -46,7 +47,7 @@ class Clientes_Adapter(val clientesList:List<Cliente?>, private val clienteViewM
                 cliente.lmarcado = nuevoEstado
                 notifyItemChanged(position)
                 val mensaje = if (nuevoEstado) "Cliente marcado" else "Cliente desmarcado"
-                Toast.makeText(holder.itemView.context, mensaje, Toast.LENGTH_SHORT).show()
+                mostrarToast(holder.itemView, mensaje)
             }
             true
         }
@@ -56,6 +57,17 @@ class Clientes_Adapter(val clientesList:List<Cliente?>, private val clienteViewM
            return if(elementoSeleccionado!=-1) clientesList[elementoSeleccionado]
            else null
        }
+    private fun mostrarToast(view: View, mensaje: String) {
+        val inflater = view.context.getSystemService(LayoutInflater::class.java)
+        val layout: View = inflater.inflate(R.layout.toast_design, view.findViewById(R.id.custom_toast_container))
+
+        layout.findViewById<TextView>(R.id.textToast).text = mensaje
+
+        val toast = Toast(view.context)
+        toast.duration = Toast.LENGTH_SHORT
+        toast.view = layout
+        toast.show()
+    }
 }
 class Clientes_ViewHolder(view:View):RecyclerView.ViewHolder(view){
     val binding= ItemClientesprincipalBinding.bind(view)

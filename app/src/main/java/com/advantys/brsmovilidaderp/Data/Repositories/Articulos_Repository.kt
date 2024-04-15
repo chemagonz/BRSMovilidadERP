@@ -4,7 +4,7 @@ import com.advantys.brsmovilidaderp.Data.DataBase.Daos.Articulos_Dao
 import com.advantys.brsmovilidaderp.Data.DataBase.Entities.Articulos_Entity
 import com.advantys.brsmovilidaderp.Domain.Models.Articulo
 import com.advantys.brsmovilidaderp.Domain.Models.toDomain
-import com.advantys.brsmovilidaderp.Utils.EnumUtil.BuscarArticulosPor
+import com.advantys.brsmovilidaderp.Utils.BuscarArticulosPor
 import javax.inject.Inject
 
 class Articulos_Repository @Inject constructor(private val articulosDao: Articulos_Dao){
