@@ -15,11 +15,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.advantys.brsmovilidaderp.UI.Views.Clientes.Clientes_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Licencia.Licencia_Activity
 import com.advantys.brsmovilidaderp.Utils.BDUtil
-import com.advantys.brsmovilidaderp.Utils.BackupUtil
 import com.advantys.brsmovilidaderp.Utils.FechaHoy
+import com.advantys.brsmovilidaderp.Utils.INICIO
 import com.advantys.brsmovilidaderp.Utils.PermisosUtils
 import com.advantys.brsmovilidaderp.Utils.Ruta
 import com.advantys.brsmovilidaderp.Utils.YaCargado
+import com.advantys.brsmovilidaderp.Utils.crearBackup
 import com.advantys.brsmovilidaderp.databinding.ActivitySplashScreenBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
@@ -143,7 +144,7 @@ class SplashScreen_activity : AppCompatActivity() {
         //idUtil.escribirIDPreferencias
         YaCargado = true
         //ComprobarConfiguracion
-        BackupUtil.crearBackup(BackupUtil.INICIO)
+        crearBackup(INICIO)
         val intent = Intent(this, Clientes_Activity::class.java)
         startActivity(intent)
         finish()
