@@ -5,25 +5,37 @@ import javax.inject.Inject
 
 class BorrarDatos_Repository  @Inject constructor(private val borrardatosDao: BorrarDatos_Dao)  {
 
-    suspend fun borrarCobros(fecha:String){
-        borrardatosDao.borrarCobros(fecha)
+    suspend fun borrarCobros(fecha:String):Boolean{
+       return borrardatosDao.borrarCobros(fecha)
     }
-    suspend fun borrarCargaCero(){
-        borrardatosDao.borrarCargaCero()
+    suspend fun borrarCargaCero():Boolean{
+        return borrardatosDao.borrarCargaCero()
     }
-    suspend fun borrarVisitas(){
-        borrardatosDao.borrarVisitas()
+    suspend fun borrarVisitas():Boolean{
+       return borrardatosDao.borrarVisitas()
     }
-    suspend fun borrarHojaCarga(){
-        borrardatosDao.borrarHojaCarga()
+    suspend fun borrarHojaCarga():Boolean{
+       return borrardatosDao.borrarHojaCarga()
     }
-    suspend fun borrarVentas(fecha:String){
-        borrardatosDao.borrarVentas(fecha)
+    suspend fun borrarVentasDetPedidos(fecha:String):Boolean{
+        return borrardatosDao.borrarVentasDetPedidos(fecha)
     }
-    suspend fun borrarRegistrosSueltos(){
-        borrardatosDao.borrarRegistrosSueltos()
+    suspend fun borrarVentasCabPedidos(fecha:String):Boolean{
+        return borrardatosDao.borrarVentasCabPedidos(fecha)
     }
-    suspend fun comprobarDatosPendientes(fecha:String): IntArray? {
-        return  borrardatosDao.comprobarDatosPendientes(fecha)
+    suspend fun borrarRegistrosSueltos():Boolean{
+       return borrardatosDao.borrarRegistrosSueltos()
+    }
+    suspend fun comprobarDatosPendientesCabPedidos(fecha:String): Int? {
+        return  borrardatosDao.comprobarDatosPendientesCabPedidos(fecha)
+    }
+    suspend fun comprobarDatosPendientesVisitas(fecha:String): Int? {
+        return  borrardatosDao.comprobarDatosPendientesVisitas(fecha)
+    }
+    suspend fun comprobarDatosPendientesCobros(fecha:String): Int? {
+        return  borrardatosDao.comprobarDatosPendientesCobros(fecha)
+    }
+    suspend fun compactarBD(){
+      return borrardatosDao.compactarBD()
     }
 }

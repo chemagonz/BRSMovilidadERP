@@ -12,55 +12,62 @@ class BorrarDatos_Dao @Inject constructor(private val databaseManager: BDUtil){
 
     // ESTA CLASE SE VA A COMPONER POR LAS DIFERENTES CONSULTAS DE: CABPEDIDO, COBROS, DETHOJAS, DETPEDIDOS, VISITAS
 
-    fun borrarCobros(fecha:String){
+    fun borrarCobros(fecha:String):Boolean{
         val sql= " DELETE FROM ${Cobros_Schema.TABLE_NAME} "
         val where= " WHERE ${Cobros_Schema.TABLE_NAME}.${Cobros_Schema.FECHA_FIELD} < '${fecha}' "
-        databaseManager.delete(sql,where)
+       return  databaseManager.delete(sql,where)
     }
 
-    fun borrarCargaCero(){
+    fun borrarCargaCero():Boolean{
         val sql= " DELETE FROM ${DetHojas_Schema.TABLE_NAME} "
         val where= " WHERE ${DetHojas_Schema.TABLE_NAME}.${DetHojas_Schema.CARGA1_FIELD} = 0 "
-        databaseManager.delete(sql,where)
+        return databaseManager.delete(sql,where)
     }
 
-    fun borrarVisitas(){
+    fun borrarVisitas():Boolean{
         val sql= " DELETE FROM ${Visitas_Schema.TABLE_NAME}"
-        databaseManager.delete(sql)
+        return databaseManager.delete(sql)
     }
 
-    fun borrarHojaCarga(){
+    fun borrarHojaCarga():Boolean{
         val sql= " DELETE FROM ${DetHojas_Schema.TABLE_NAME} "
-        databaseManager.delete(sql)
+        return databaseManager.delete(sql)
     }
 
-    fun borrarVentas(fecha:String){
-        val sql1= " DELETE FROM ${DetPedidos_Schema.TABLE_NAME} "
-        val where1= " WHERE ${DetPedidos_Schema.TABLE_NAME}.${DetPedidos_Schema.SERIE_FIELD} || ' ' || ${DetPedidos_Schema.TABLE_NAME}.${DetPedidos_Schema.PEDIDO_FIELD} IN (SELECT  ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.SERIE_FIELD} || ' ' || ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.PEDIDO_FIELD} FROM ${CabPedidos_Schema.TABLE_NAME} WHERE ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.DPREVENTA_FIELD} < '${fecha}'"
-        val sql2= " DELETE FROM ${CabPedidos_Schema.TABLE_NAME} "
-        val where2= " WHERE ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.DPREVENTA_FIELD} < '${fecha}'"
-        databaseManager.delete(sql1,where1)
-        databaseManager.delete(sql2,where2)
+    fun borrarVentasDetPedidos(fecha:String):Boolean{
+        val sql= " DELETE FROM ${DetPedidos_Schema.TABLE_NAME} "
+        val where= " WHERE ${DetPedidos_Schema.TABLE_NAME}.${DetPedidos_Schema.SERIE_FIELD} || ' ' || ${DetPedidos_Schema.TABLE_NAME}.${DetPedidos_Schema.PEDIDO_FIELD} IN (SELECT  ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.SERIE_FIELD} || ' ' || ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.PEDIDO_FIELD} FROM ${CabPedidos_Schema.TABLE_NAME} WHERE ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.DPREVENTA_FIELD} < '${fecha}'"
+        return  databaseManager.delete(sql,where)
     }
-
-    fun borrarRegistrosSueltos(){
+    fun borrarVentasCabPedidos(fecha:String):Boolean{
+        val sql= " DELETE FROM ${CabPedidos_Schema.TABLE_NAME} "
+        val where= " WHERE ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.DPREVENTA_FIELD} < '${fecha}'"
+        return databaseManager.delete(sql,where)
+    }
+    fun borrarRegistrosSueltos():Boolean{
         val sql= " DELETE FROM ${DetPedidos_Schema.TABLE_NAME} "
         val where= " WHERE ${DetPedidos_Schema.TABLE_NAME}.${DetPedidos_Schema.SERIE_FIELD} || ' ' || ${DetPedidos_Schema.TABLE_NAME}.${DetPedidos_Schema.PEDIDO_FIELD} NOT IN (SELECT  ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.SERIE_FIELD} || ' ' || ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.PEDIDO_FIELD} FROM ${CabPedidos_Schema.TABLE_NAME} "
-        databaseManager.delete(sql,where)
+       return databaseManager.delete(sql,where)
     }
 
-    fun comprobarDatosPendientes(fecha: String): IntArray?{
-        val tabla = arrayOfNulls<String>(3)
-        val where = arrayOfNulls<String>(3)
-        tabla[1]= " SELECT COUNT (*) FROM ${CabPedidos_Schema.TABLE_NAME} WHERE ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.ENVIADO_FIELD} = 0 AND ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.IMPORTADO_FIELD} = 0 AND ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.DPREVENTA_FIELD} < '$fecha'"
-        tabla[2]= " SELECT COUNT(*) FROM ${Visitas_Schema.TABLE_NAME} WHERE ${Visitas_Schema.ENVIADO_FIELD} = 0"
-        tabla[3]= " SELECT COUNT(*) FROM ${Cobros_Schema.TABLE_NAME} WHERE ${Cobros_Schema.ENVIADO_FIELD} = 0 AND ${Cobros_Schema.FECHA_FIELD} < '$fecha'"
-        where[1]= " WHERE ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.ENVIADO_FIELD} = 0 AND ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.IMPORTADO_FIELD} = 0 AND ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.DPREVENTA_FIELD} < '$fecha'"
-        where[2]= " WHERE ${Visitas_Schema.ENVIADO_FIELD} = 0"
-        where[3]= " WHERE ${Cobros_Schema.ENVIADO_FIELD} = 0 AND ${Cobros_Schema.FECHA_FIELD} < '$fecha'"
+    fun comprobarDatosPendientesCabPedidos(fecha: String): Int{
+       val sql= CabPedidos_Schema.TABLE_NAME
+       val where= " ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.ENVIADO_FIELD} = 0 AND ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.IMPORTADO_FIELD} = 0 AND ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.DPREVENTA_FIELD} < '$fecha'"
+       return databaseManager.existeInt(sql,where)
 
-        databaseManager.existe(tabla,where)
-        return null
     }
-
+    fun comprobarDatosPendientesVisitas(fecha:String): Int {
+        val sql=Visitas_Schema.TABLE_NAME
+        val where= " ${Visitas_Schema.ENVIADO_FIELD} = 0"
+        return databaseManager.existeInt(sql, where)
+    }
+    fun comprobarDatosPendientesCobros(fecha:String):Int{
+        val sql=Cobros_Schema.TABLE_NAME
+        val where= "  ${Cobros_Schema.ENVIADO_FIELD} = 0 AND ${Cobros_Schema.FECHA_FIELD} < '$fecha'"
+        return databaseManager.existeInt(sql, where)
+    }
+    fun compactarBD(){
+        val sql= "VACUUM"
+        databaseManager.queryInsert(sql)
+    }
 }
