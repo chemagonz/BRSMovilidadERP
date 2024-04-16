@@ -39,17 +39,21 @@
         <item name="colorPrimaryVariant">@color/colorAdvantysApp1</item>
         <!-- Colores secundarios -->
         <item name="colorSecondary">@color/colorAdvantysApp3</item>
+        <item name="checkboxStyle">@color/colorAdvantysApp6</item>
+
+
         <item name="colorSecondaryVariant">@color/colorAdvantysApp2</item>
         <!-- Color de fondo de la barra de navegación -->
         <item name="android:navigationBarColor">@color/colorAdvantysApp1</item>
         <!-- Color de fondo de la barra de estado -->
         <item name="android:statusBarColor">@color/colorAdvantysApp1</item>
         <!-- Color de acento -->
-        <item name="colorAccent">@color/colorAdvantysApp3</item>
+<!--        <item name="colorAccent">@color/colorAdvantysApp6</item>-->
+
     </style>
 
-    <style name= "customOutlineText" parent= "Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="android:colorPrimaryDark">@color/colorAdvantysApp2</item>
+    <style name= "customOutlineText" parent= "Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="colorPrimary">@color/colorAdvantysApp3</item>
     </style>
 
     <style name= "editText" parent="Theme.MaterialComponents.Light.NoActionBar">

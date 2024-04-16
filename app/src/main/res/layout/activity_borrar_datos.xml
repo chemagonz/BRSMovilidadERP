@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
-    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+    android:theme="@style/Theme.BRSMovilidadERPprueba"
     android:orientation="vertical">
 
     <ScrollView
@@ -101,26 +101,25 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
+
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/customOutlineText"
+                android:layout_width="347dp"
+                android:layout_height="52dp"
                 android:layout_gravity="center"
-                android:hint="Seleccionar fecha"
-                app:boxBackgroundColor="@color/colorAdvantysApp4"
-                style="@style/customOutlineText">
+                android:hint="  Seleccionar fecha"
+                app:boxBackgroundColor="@color/colorAdvantysApp4">
 
                 <EditText
                     android:id="@+id/edborrarPedidos"
                     android:layout_width="342dp"
-                    android:layout_height="47dp"
+                    android:layout_height="43dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="16dp"
                     android:inputType="date"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
-
-
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>

@@ -36,19 +36,31 @@ class BDUtil @Inject constructor (private val dbHelper:BD){
 //            update(tabla, parametros, where)
 //        else insert(tabla, parametros)
 //    }
-    fun delete(tabla: String) {
-        val db = dbHelper.openDatabaseWrite()
-        db.delete(tabla,null,null)
-        db.close()
+    fun delete(tabla: String):Boolean {
+        try {
+            val db = dbHelper.openDatabaseWrite()
+            db.delete(tabla, null, null)
+            db.close()
+            return true
+        }catch (e:Exception){
+            e.printStackTrace()
+            return false
+        }
     }
-    fun delete(tabla: String, where: String) {
-        val db = dbHelper.openDatabaseWrite()
-        db.delete(tabla,  where, null)
-        db.close()
+    fun delete(tabla: String, where: String) :Boolean{
+        try {
+            val db = dbHelper.openDatabaseWrite()
+            db.delete(tabla, where, null)
+            db.close()
+            return true
+        }catch (e:Exception){
+            e.printStackTrace()
+            return false
+        }
     }
 
 
-    fun existe(tabla: Array<String?>, where: Array<String?>): Boolean {
+    fun existe(tabla: String, where: String): Boolean {
         val db = dbHelper.openDatabaseRead()
         val selectQuery = "SELECT COUNT(*) FROM ${tabla} WHERE ${where}"
         val cursor = db.rawQuery(selectQuery, null)
@@ -67,6 +79,27 @@ class BDUtil @Inject constructor (private val dbHelper:BD){
 
         return resultado
     }
+
+    fun existeInt(tabla: String, where: String): Int {
+        val db = dbHelper.openDatabaseRead()
+        val selectQuery = " SELECT COUNT(*)  FROM $tabla WHERE $where "
+        val cursor = db.rawQuery(selectQuery, null)
+        var count = 0
+
+        try {
+            if (cursor.moveToFirst()) {
+                count = cursor.getInt(0)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            cursor.close()
+            db.close()
+        }
+
+        return count
+    }
+
     //Funcion generica para mostrar una lista    04/03/2024
     fun <T> query(sql: String, fromCursor: (cursor: Cursor) -> T): List<T>{
         val db = dbHelper.openDatabaseRead()
@@ -105,7 +138,7 @@ class BDUtil @Inject constructor (private val dbHelper:BD){
         }catch (e:Exception){
             e.printStackTrace()
         }finally{
-            db.close()
+            db.close();
         }
     }
     fun <T> queryDetalles(sql:String, fromCursor:(cursor:Cursor)->T):T?{

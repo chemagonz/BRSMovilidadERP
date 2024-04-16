@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UI.Views.Articulos.FiltrarArticulos_Activity"
+    android:theme="@style/Theme.BRSMovilidadERPprueba"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
