@@ -33,27 +33,27 @@
         <item name="windowNoTitle">true</item>
     </style>
     <!-- Estilo base de la aplicación PRUEBA -->
-    <style name="Theme.BRSMovilidadERPprueba" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.BRSMovilidadERPprueba" parent="Theme.MaterialComponents.Light">
         <!-- Colores primarios -->
         <item name="colorPrimary">@color/colorAdvantysApp1</item>
         <item name="colorPrimaryVariant">@color/colorAdvantysApp1</item>
         <!-- Colores secundarios -->
-        <item name="colorSecondary">@color/colorAdvantysApp3</item>
-        <item name="checkboxStyle">@color/colorAdvantysApp6</item>
-
-
+        <item name="colorControlNormal">@color/colorAdvantysApp6</item>
         <item name="colorSecondaryVariant">@color/colorAdvantysApp2</item>
         <!-- Color de fondo de la barra de navegación -->
         <item name="android:navigationBarColor">@color/colorAdvantysApp1</item>
         <!-- Color de fondo de la barra de estado -->
         <item name="android:statusBarColor">@color/colorAdvantysApp1</item>
-        <!-- Color de acento -->
-<!--        <item name="colorAccent">@color/colorAdvantysApp6</item>-->
+        <item name="colorControlActivated">@color/colorAdvantysApp3</item>
 
     </style>
 
     <style name= "customOutlineText" parent= "Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-        <item name="colorPrimary">@color/colorAdvantysApp3</item>
+        <!-- Color cuando no está presionado -->
+        <item name="boxBackgroundColor">@color/plaintext</item>
+        <item name="boxStrokeColor">@color/colorAdvantysApp3</item>
+        <item name="colorControlActivated">@color/colorAdvantysApp2</item>
+
     </style>
 
     <style name= "editText" parent="Theme.MaterialComponents.Light.NoActionBar">

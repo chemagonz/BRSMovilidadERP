@@ -1,63 +1,56 @@
 package com.advantys.brsmovilidaderp.UI.Views.Configuracion
 
 import android.os.Bundle
+import android.transition.TransitionManager
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.databinding.ActivityConfiguracionBinding
+
 
 class Configuracion_Activity : AppCompatActivity() {
     private lateinit var binding: ActivityConfiguracionBinding
+    private val layoutPairs = mutableListOf<Pair<View, View>>()
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding= ActivityConfiguracionBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
+        binding = ActivityConfiguracionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //Variables para los expandibles
-        val exFechas= binding.expandable
-        val exExportacion= binding.expandableExportacionDeFicheros
-        val exVentas= binding.expandableVentas
-        val exBusqueda= binding.expandableBusquedas
-        var gExportacion= 0
-        var gFechas= 0
-        var gVentas= 0
-        var gBusquedas=0
+        setupLayoutPairs(
+            binding.layoutFechas to binding.hiddenLayout,
+            binding.layoutExportacion to binding.hiddenlayoutExportacion,
+            binding.layoutVentas to binding.hiddenlayoutVentas,
+            binding.layoutBusquedas to binding.hiddenLayoutBusqueda,
+            binding.layoutBusquedasArt to binding.hiddenLayoutBusquedaArt,
+            binding.layoutOrdenArtVentas to binding.hiddenLayoutOrdenArtVentas,
+            binding.layoutOrdenArt to binding.hiddenLayoutOrdenArt,
+            binding.layoutOtros to binding.hiddenLayoutOtros,
+            binding.layoutParametrosImp to binding.hiddenLayoutParametrosImp,
+            binding.layoutOpcionesImp to binding.hiddenLayouOpcionesImp
+        )
+    }
 
-        //Eventos click de los expandibles
-        exFechas.setOnClickListener{
-            if(gFechas==0){
-                gFechas=1
-                exFechas.expand()
-            }else{
-                gFechas=0
-                exFechas.collapse()
+    private fun setupLayoutPairs(vararg pairs: Pair<View, View>) {
+        layoutPairs.addAll(pairs)
+        layoutPairs.forEach { (layout, hiddenLayout) ->
+            layout.setOnClickListener {
+                val isExpanded = hiddenLayout.visibility == View.VISIBLE
+                TransitionManager.beginDelayedTransition(binding.root as ViewGroup)
+                layout.isSelected = !isExpanded
+                toggleVisibility(hiddenLayout, !isExpanded)
+                toggleArrow(!isExpanded)
             }
         }
-        exExportacion.setOnClickListener{
-            if(gExportacion==0){
-                gExportacion=1
-                exExportacion.expand()
-            }else{
-                gExportacion=0
-                exExportacion.collapse()
-            }
-        }
-        exVentas.setOnClickListener{
-            if(gVentas==0){
-                gVentas=1
-                exVentas.expand()
-            }else{
-                gVentas=0
-                exVentas.collapse()
-            }
-        }
-        exBusqueda.setOnClickListener{
-            if(gBusquedas==0){
-                gBusquedas=1
-                exBusqueda.expand()
-            }else{
-                gBusquedas=0
-                exBusqueda.collapse()
-            }
-        }
+    }
 
+    private fun toggleVisibility(hiddenLayout: View, expand: Boolean) {
+        hiddenLayout.visibility = if (expand) View.VISIBLE else View.GONE
+    }
+
+    private fun toggleArrow(expand: Boolean) {
+        val drawableRes = if (expand) R.drawable.expandable_flecha2 else R.drawable.expandable_flecha
+        binding.flechaCardview.setImageDrawable(ContextCompat.getDrawable(this, drawableRes))
     }
 }

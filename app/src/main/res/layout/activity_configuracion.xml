@@ -1,0 +1,2091 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadeScrollbars="false"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layoutFechas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+               android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/fechasid"
+                    android:layout_width="107dp"
+                    android:layout_height="32dp"
+                    android:paddingStart="10dp"
+                    android:text="Fechas"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="10dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="25dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <ImageView
+                    android:id="@+id/flechaCardview"
+                    android:layout_width="49dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="230dp"
+                    android:layout_weight="1"
+                    android:scaleType="center"
+                    android:src="@drawable/expandable_flecha" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/hiddenLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/toast_background"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_marginBottom="10dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView_preventa"
+                        android:layout_width="287dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Preventa"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/editText_preventa"
+                                android:layout_width="150dp"
+                                android:layout_height="46dp"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true"
+                                android:gravity="center"
+                                android:inputType="date"
+                                android:maxLength="28"
+                                android:textSize="16sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <!-- Servicio Diurno -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView_servicio_diurno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Servicio Diurno"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/customOutlineText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/editText_servicio_diurno"
+                        android:layout_width="150dp"
+                        android:layout_height="46dp"
+                        android:layout_weight="1"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:gravity="center"
+                        android:inputType="date"
+                        android:maxLength="13"
+                        android:textSize="16sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <!-- Servicio Tarde -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView_servicio_tarde"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Servicio Tarde"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/customOutlineText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/editText_servicio_tarde"
+                        android:layout_width="150dp"
+                        android:layout_height="46dp"
+                        android:layout_weight="1"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:gravity="center"
+                        android:inputType="date"
+                        android:maxLength="13"
+                        android:textSize="16sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <!-- Servicio Nocturno -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView_servicio_nocturno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Servicio Nocturno"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/customOutlineText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/editText_servicio_nocturno"
+                        android:layout_width="150dp"
+                        android:layout_height="46dp"
+                        android:layout_weight="1"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:gravity="center"
+                        android:inputType="date"
+                        android:maxLength="13"
+                        android:textSize="16sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutExportacion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/exportacionid"
+                    android:layout_width="337dp"
+                    android:layout_height="32dp"
+                    android:layout_marginBottom="10dp"
+                    android:paddingStart="10dp"
+                    android:layout_weight="1"
+                    android:text="Exportación de ficheros"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="25dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="49dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:scaleType="center"
+                    android:layout_weight="1"
+                    android:src="@drawable/expandable_flecha" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/hiddenlayoutExportacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/toast_background"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_marginBottom="10dp"
+
+               >
+
+
+                <LinearLayout
+                    android:id="@+id/linearLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.009">
+
+
+                    <CheckBox
+                        android:id="@+id/checkBoxSoloPendientes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Solo pendientes" />
+                    <CheckBox
+                        android:id="@+id/checkBoxExportarCobros"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Exportar cobros" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layoutVentas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/ventasid"
+                    android:layout_width="337dp"
+                    android:layout_height="32dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:paddingStart="10dp"
+                    android:text="Ventas"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="25dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="49dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:scaleType="center"
+                    android:layout_weight="1"
+                    android:src="@drawable/expandable_flecha" />
+
+            </LinearLayout>
+        <LinearLayout
+            android:id="@+id/hiddenlayoutVentas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/toast_background"
+            android:orientation="vertical"
+            android:padding="5dp"
+            android:layout_marginBottom="20dp"
+            >
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+             >
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:text="Serie por defecto"
+                    android:textSize="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.502"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                   />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="44dp"
+
+                    android:paddingRight="5dp"
+                    android:text="Pedido"
+                    android:textColor="#333333"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <Button
+                    android:id="@+id/btn_borrarpedidopordefecto"
+                    android:layout_width="0dp"
+                    android:layout_height="39dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="Borrar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout"
+                    style="@style/customOutlineText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_borrarpedidopordefecto"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView2"
+                    app:layout_constraintTop_toBottomOf="@+id/textView">
+
+                    <EditText
+                        android:id="@+id/edPedidoSerieporDefecto"
+                        android:layout_width="150dp"
+                        android:layout_height="46dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:focusable="false"
+                        android:focusableInTouchMode="true"
+                        android:gravity="center_vertical"
+                        android:maxLength="28"
+                        android:paddingTop="0dp"
+                        android:paddingBottom="1dp"
+                        android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="92dp"
+                    android:paddingRight="5dp"
+                    android:text="Albarán"
+                    android:textColor="#333333"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btn_borrarAlbaranpordefecto"
+                    android:layout_width="0dp"
+                    android:layout_height="39dp"
+                    android:layout_marginTop="68dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="Borrar"
+                    app:layout_constraintBottom_toBottomOf="@+id/textInputLayout2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout2"
+                    style="@style/customOutlineText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_borrarAlbaranpordefecto"
+                    app:layout_constraintStart_toEndOf="@+id/textView3"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+
+                    <EditText
+                        android:id="@+id/edAlbaranSerieporDefecto"
+                        android:layout_width="150dp"
+                        android:layout_height="46dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:focusableInTouchMode="true"
+                        android:gravity="center_vertical"
+                        android:maxLength="28"
+                        android:paddingTop="0dp"
+                        android:paddingBottom="1dp"
+                        android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <CheckBox
+                    android:id="@+id/checkConfirmarRecogidaEnvases"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Confirmar recogida de envases"
+                    android:textSize="16sp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+
+                <CheckBox
+                    android:id="@+id/checkMostrarPromocionesVentasPrevias"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="left"
+                    android:text="Mostrar líneas de promoción y regalo en ventas previas"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkConfirmarRecogidaEnvases" />
+
+                <CheckBox
+                    android:id="@+id/checkRepartoFinSemana"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="left"
+                    android:text="Reparto en fin de semana"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkMostrarPromocionesVentasPrevias" />
+
+                <CheckBox
+                    android:id="@+id/checkFechaRutaCliente"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="left"
+                    android:text="Obtener fecha de reparto de la ruta del cliente"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkRepartoFinSemana" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:text="-- Días de servicio a partir de la preventa --"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.506"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkFechaRutaCliente" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Diurno"
+                        android:textColor="@color/black"
+                        android:layout_marginEnd="3dp"
+                        android:textSize="16sp" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayout3"
+                        style="@style/customOutlineText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+
+                    <EditText
+                        android:id="@+id/eddiasdiurno"
+                        android:layout_width="match_parent"
+                        android:layout_height="47dp"
+                        android:layout_gravity="center"
+                        android:inputType="number"
+                        android:maxLength="1"
+                        android:maxLines="1"
+                        android:padding="5dp"
+                        android:textSize="16sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:text="Tarde"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:textSize="16sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayout4"
+                        style="@style/customOutlineText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/eddiastarde"
+                        android:layout_width="match_parent"
+                        android:layout_height="47dp"
+                        android:inputType="number"
+                        android:padding="5dp"
+                        android:maxLength="1"
+                        android:maxLines="1"
+                        android:layout_marginStart="4dp"
+
+                        android:textSize="16sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="7dp"
+                        android:text="Nocturno"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayout5"
+                        style="@style/customOutlineText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/eddiasnocturno"
+                            android:layout_width="match_parent"
+                            android:layout_height="47dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="2dp"
+                            android:inputType="number"
+                            android:maxLength="1"
+                            android:maxLines="1"
+                            android:padding="5dp"
+                            android:textSize="16sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/checkConfirmarPromocion"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="left"
+                    android:text="Confirmar promoción"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout10" />
+
+                <CheckBox
+                    android:id="@+id/checkProponerVenta"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="left"
+                    android:text="Proponer '1' como cantidad de venta"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkConfirmarPromocion" />
+
+                <CheckBox
+                    android:id="@+id/checkNoPermitirCero"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="left"
+                    android:text="No permitir cantidad de artículo '0'"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkProponerVenta" />
+
+                <CheckBox
+                    android:id="@+id/checkSoloVenderPiezas"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="left"
+                    android:text="Solo vender piezas si FC = 0"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkNoPermitirCero" />
+
+                <CheckBox
+                    android:id="@+id/checkArticuloCodNum"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="left"
+                    android:text="Artículo es código númerico"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkSoloVenderPiezas" />
+
+                <CheckBox
+                    android:id="@+id/edCambiarACajas"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="left"
+                    android:text="Convertir a cajas"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkArticuloCodNum" />
+
+                <CheckBox
+                    android:id="@+id/edNoAplicarDesdoble"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="left"
+                    android:text="No aplicar desdoble con el centro del artículo"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edCambiarACajas" />
+
+                <CheckBox
+                    android:id="@+id/edMostrarNombresArticulosEnPromociones"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="left"
+                    android:text="Mostrar nombres de artículos en pantalla de promociones"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edNoAplicarDesdoble" />
+
+                <CheckBox
+                    android:id="@+id/edMostrarDescripcionPromociones"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="left"
+                    android:text="Mostrar descripción de las promociones"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edMostrarNombresArticulosEnPromociones" />
+
+                <CheckBox
+                    android:id="@+id/checkOcultarPendientesCobro"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="left"
+                    android:text="Ocultar deuda en lista de clientes"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edMostrarDescripcionPromociones" />
+
+                <CheckBox
+                    android:id="@+id/checkPerimitirVentaInferiorMinimo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="left"
+                    android:text="Permitir venta tras mostrar aviso de venta inferior al mínimo"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkOcultarPendientesCobro" />
+
+                <CheckBox
+                    android:id="@+id/checkNoMostrarAvisoMinimo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="left"
+                    android:text="No mostrar aviso cuando el precio de venta es inferior al mínimo"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkPerimitirVentaInferiorMinimo" />
+
+                <CheckBox
+                    android:id="@+id/checkMostrarLimpiarProm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="left"
+                    android:text='Mostrar botón "limpiar promoción"'
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkNoMostrarAvisoMinimo" />
+
+                <CheckBox
+                    android:id="@+id/checkavisaLineaProm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="left"
+                    android:text="Aviso linea con promoción"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkMostrarLimpiarProm" />
+
+                <CheckBox
+                    android:id="@+id/checkavisaPromPart"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Aviso de promociones disponibles al iniciar la venta"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkavisaLineaProm" />
+
+                <CheckBox
+                    android:id="@+id/checknombreCortoPromoMulti"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="left"
+                    android:text="Mostrar el nombre corto del artículo en las promociones multiples"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkavisaPromPart" />
+
+                <CheckBox
+                    android:id="@+id/checkprecioHistorico"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="left"
+                    android:text="Respetar el precio histórico cuando se realice una venta previa"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checknombreCortoPromoMulti" />
+
+                <CheckBox
+                    android:id="@+id/checklotesAuto"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginTop="4dp"
+                    android:text="Agregar lotes automáticamente"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkprecioHistorico" />
+
+                <CheckBox
+                    android:id="@+id/checkbloqUndCarga"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginTop="4dp"
+                    android:text="Bloquear unidades en carga"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checklotesAuto" />
+
+                <CheckBox
+                    android:id="@+id/checkimprimirCobros"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginTop="4dp"
+                    android:text="Preguntar se si desea imprimir el cobro al finalizar una venta"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkbloqUndCarga" />
+
+                <CheckBox
+                    android:id="@+id/checknoDecimales"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginTop="4dp"
+                    android:text="No usar decimales en las ventas"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkimprimirCobros" />
+
+                <CheckBox
+                    android:id="@+id/checkmensajeMinimoUltVenta"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginTop="4dp"
+                    android:text="Mostrar mensaje cuando el precio de venta es inferior al precio de la últ. venta"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checknoDecimales" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layoutBusquedas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/busquedasid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_marginBottom="10dp"
+                    android:paddingStart="10dp"
+                    android:layout_weight="1"
+                    android:text="Búsquedas"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="25dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="49dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="202dp"
+                    android:scaleType="center"
+                    android:layout_weight="1"
+                    android:src="@drawable/expandable_flecha" />
+            </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/hiddenLayoutBusqueda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/toast_background"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"
+           >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <CheckBox
+                    android:id="@+id/checkRestaurarClientedespBusqueda"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_weight="1"
+                    android:text="Restaurar clientes despues de una búsqueda"
+                    android:textSize="16sp"
+                    android:layout_gravity="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <CheckBox
+                    android:id="@+id/checkMostrarpoblacionBusqueda"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Mostrar población en búsqueda clientes"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkRestaurarClientedespBusqueda" />
+
+                <CheckBox
+                    android:id="@+id/checkmostrarDireccionBusquedaCliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Mostrar dirección en búsqueda clientes"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkMostrarpoblacionBusqueda" />
+
+                <CheckBox
+                    android:id="@+id/checkBuscarComparandocomienzostxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Buscar comparando comienzos del texto"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkmostrarDireccionBusquedaCliente" />
+
+
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:id="@+id/layoutBusquedasArt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/busquedasArtid"
+                    android:layout_width="291dp"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:paddingStart="10dp"
+                    android:layout_weight="1"
+                    android:text="Búsquedas por artículos por defecto"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="49dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:scaleType="center"
+                    android:src="@drawable/expandable_flecha" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/hiddenLayoutBusquedaArt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="vertical"
+                android:animateLayoutChanges="true"
+                android:padding="5dp"
+                android:layout_weight="1"
+                android:layout_marginBottom="20dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <CheckBox
+                        android:id="@+id/checkMostrarcodigoArticulo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="Mostrar código por articulo"
+                        android:layout_weight="1"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioGroup
+                        android:id="@+id/radiogroupbusquedapordefecto"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_span="3"
+                        android:checkedButton="@+id/rdbOne"
+                        android:gravity="left"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/checkMostrarcodigoArticulo">
+
+                        <RadioButton
+                            android:id="@+id/radioBtndescripcioncorta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:text="Desc. Corta"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/radioBtndescripcionlarga"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Desc. Larga"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/radioBtncodigo"
+                            android:layout_width="113dp"
+                            android:layout_height="wrap_content"
+                            android:text="Código"
+                            android:textSize="16sp" />
+                    </RadioGroup>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutOrdenArtVentas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/ordenArtidVentas"
+                    android:layout_width="291dp"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:paddingStart="10dp"
+                    android:layout_weight="1"
+                    android:text="Orden de artículos en ventas previas"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="49dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:scaleType="center"
+                    android:src="@drawable/expandable_flecha" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/hiddenLayoutOrdenArtVentas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:animateLayoutChanges="true"
+                android:padding="5dp"
+                android:layout_marginBottom="20dp"
+
+                >
+
+                <Button
+                    android:id="@+id/btn_restablecerOrdenVentas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="52dp"
+                    android:text="Restablecer orden"
+                    android:layout_gravity="center"
+                    />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center">
+
+                        <CheckBox
+                            android:id="@+id/checkFechaOrdenVentas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fecha"
+                            android:textSize="16sp"
+
+                            />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/edFechaOrdenVentas"
+                            android:layout_width="50dp"
+                            android:layout_height="38dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="57dp"
+                            android:padding="5dp"
+                            android:inputType="text"
+                            />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/checkCodigoOrdenVentas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:text="Código"
+                            android:textSize="16sp" />
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/edCodigoOrdenVentas"
+                            android:layout_width="50dp"
+                            android:layout_height="38dp"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginEnd="8dp"
+                            android:padding="5dp"
+                            android:inputType="text" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center">
+
+                        <CheckBox
+                            android:id="@+id/checkDescOrdenVentas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                                android:text="Descripción"
+                            android:textSize="16sp"
+                            />
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/edDescOrdenVentas"
+                            android:layout_width="50dp"
+                            android:layout_height="38dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="16dp"
+                            android:padding="5dp"
+                            android:inputType="text"
+                            />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center">
+
+                        <CheckBox
+                            android:id="@+id/checkFamiliaOrdenVentas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Familia"
+                            android:textSize="16sp"
+                            />
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/edFamiliaOrdenVentas"
+                            android:layout_width="50dp"
+                            android:layout_height="38dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="48dp"
+                            android:padding="5dp"
+                            android:inputType="text"
+                            />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center">
+
+                        <CheckBox
+                            android:id="@+id/checkSubfamiliaOrdenVentas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Subfamilia"
+                            android:textSize="16sp"
+                            />
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/edSubfamiliaOrdenVentas"
+                            android:layout_width="50dp"
+                            android:layout_height="38dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="24dp"
+                            android:padding="5dp"
+                            android:inputType="text"
+                            />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center">
+
+                        <CheckBox
+                            android:id="@+id/checkFabOrdenVentas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fabricante"
+                            android:textSize="16sp"
+                            />
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/edFabOrdenVentas"
+                            android:layout_width="50dp"
+                            android:layout_height="38dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="24dp"
+                            android:padding="5dp"
+                            android:inputType="text"
+                            />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layoutOrdenArt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/ordenArtid"
+                    android:layout_width="291dp"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:paddingStart="10dp"
+                    android:layout_weight="1"
+                    android:text="Orden de artículos"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="49dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:scaleType="center"
+                    android:src="@drawable/expandable_flecha" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/hiddenLayoutOrdenArt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:animateLayoutChanges="true"
+                android:padding="5dp"
+                android:layout_marginBottom="20dp"
+
+                >
+
+
+                <Button
+                    android:id="@+id/btn_restablecerOrdenArt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="52dp"
+                    android:text="Restablecer orden"
+                    android:layout_gravity="center"
+                    />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/checkCodigoOrdenArt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:text="Código"
+                            android:textSize="16sp" />
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/edCodigoOrdenArt"
+                                android:layout_width="50dp"
+                                android:layout_height="38dp"
+                                android:layout_marginStart="50dp"
+                                android:layout_marginEnd="8dp"
+                                android:padding="5dp"
+                                android:inputType="text" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center">
+
+                        <CheckBox
+                            android:id="@+id/checkDescOrdenArt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Descripción"
+                            android:textSize="16sp"
+                            />
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/edDescOrdenArt"
+                                android:layout_width="50dp"
+                                android:layout_height="38dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginStart="16dp"
+                                android:padding="5dp"
+                                android:inputType="text"
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center">
+
+                        <CheckBox
+                            android:id="@+id/checkFamiliaOrdenArt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Familia"
+                            android:textSize="16sp"
+                            />
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/colorAdvantysApp2">
+                            <EditText
+                                android:id="@+id/edFamiliaOrdenArt"
+                                android:layout_width="50dp"
+                                android:layout_height="38dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginStart="48dp"
+                                android:padding="5dp"
+                                android:inputType="text"
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center">
+
+                        <CheckBox
+                            android:id="@+id/checkSubfamiliaOrdenArt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Subfamilia"
+                            android:textSize="16sp"
+                            />
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/colorAdvantysApp2">
+                            <EditText
+                                android:id="@+id/edSubfamiliaOrdenArt"
+                                android:layout_width="50dp"
+                                android:layout_height="38dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginStart="24dp"
+                                android:padding="5dp"
+                                android:inputType="text"
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center">
+
+                        <CheckBox
+                            android:id="@+id/checkFabOrdenArt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fabricante"
+                            android:textSize="16sp"
+                            />
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/colorAdvantysApp2">
+                            <EditText
+                                android:id="@+id/edFabOrdenArt"
+                                android:layout_width="50dp"
+                                android:layout_height="38dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginStart="24dp"
+                                android:padding="5dp"
+                                android:inputType="text"
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layoutOtros"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+              >
+
+                <TextView
+                    android:id="@+id/Otrosid"
+                    android:layout_width="140dp"
+                    android:layout_height="32dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:paddingStart="10dp"
+                    android:text="Otros"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="25dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="49dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="202dp"
+                    android:scaleType="center"
+                    android:layout_weight="1"
+                    android:src="@drawable/expandable_flecha" />
+            </LinearLayout>
+        <LinearLayout
+            android:id="@+id/hiddenLayoutOtros"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+           android:background="@drawable/toast_background"
+            android:animateLayoutChanges="true"
+            android:padding="5dp"
+            android:layout_marginBottom="20dp"
+            >
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <CheckBox
+                    android:id="@+id/checkGuardarConfigRutas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Guardar configuración de rutas"
+                    android:textSize="16sp"
+                    android:focusable="true"
+                    android:layout_weight="1"
+                 />
+                <CheckBox
+                    android:id="@+id/checkImagenesDelCatalogoFab"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_weight="1"
+                    android:text="Imágenes del catálogo incluyen fabricante"
+                    android:textSize="16sp"
+                    android:layout_gravity="center"
+                />
+
+                <CheckBox
+                    android:id="@+id/checkActivarVibracion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Activar vibración"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                   />
+
+                <CheckBox
+                    android:id="@+id/checkdatosextraDetClientes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Datos extra en detalles de cliente"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutParametrosImp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+              >
+
+                <TextView
+                    android:id="@+id/parametrosImpid"
+                    android:layout_width="291dp"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:paddingStart="10dp"
+                    android:layout_weight="1"
+                    android:text="Parametros de impresión"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="49dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:scaleType="center"
+                    android:src="@drawable/expandable_flecha" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/hiddenLayoutParametrosImp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="vertical"
+                android:animateLayoutChanges="true"
+                android:padding="5dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Longitud página"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"/>
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:focusable="true"
+                            android:backgroundTint="@color/colorAdvantysApp2">
+                            <EditText
+                                android:id="@+id/edLongPagina"
+                                android:layout_width="match_parent"
+                                android:layout_height="47dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginStart="5dp"
+                                android:padding="5dp"
+                                android:inputType="text"
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ajuste página"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"/>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/colorAdvantysApp2">
+                            <EditText
+                                android:id="@+id/edAjusPagina"
+                                android:layout_width="match_parent"
+                                android:layout_height="47dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginStart="5dp"
+                                android:padding="5dp"
+                                android:inputType="text"
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Marg. superior"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"/>
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/colorAdvantysApp2">
+                            <EditText
+                                android:id="@+id/edMargenSupPagina"
+                                android:layout_width="match_parent"
+                                android:layout_height="47dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginStart="15dp"
+                                android:padding="5dp"
+                                android:inputType="text"
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Marg. inferior"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"/>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/colorAdvantysApp2">
+                            <EditText
+                                android:id="@+id/edMargInfPagina"
+                                android:layout_width="match_parent"
+                                android:layout_height="47dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginStart="8dp"
+                                android:padding="5dp"
+                                android:inputType="text"
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Marg. izquierda"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"/>
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/colorAdvantysApp2">
+                            <EditText
+                                android:id="@+id/edMargIzqPagina"
+                                android:layout_width="match_parent"
+                                android:layout_height="47dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginStart="8dp"
+                                android:padding="5dp"
+                                android:inputType="text"
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <CheckBox
+                            android:id="@+id/checkNoImprimirCentro"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:text="No imprimir centro"/>
+
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutOpcionesImp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/opcionesImpid"
+                    android:layout_width="291dp"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:paddingStart="10dp"
+                    android:layout_weight="1"
+                    android:text="Opciones de impresión"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="49dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:scaleType="center"
+                    android:src="@drawable/expandable_flecha" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/hiddenLayouOpcionesImp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:animateLayoutChanges="true"
+                android:padding="5dp"
+                android:layout_marginBottom="20dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_weight="1">
+
+                    <CheckBox
+                        android:id="@+id/checkAgruparEnvases"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Agrupar envases"
+                        android:textSize="16sp"
+                        android:layout_weight="1"
+                        />
+                    <CheckBox
+                        android:id="@+id/checkIncluirImpEspecialesPrecio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Incluir impuestos especiales en precio"
+                        android:textSize="16sp"
+
+                        />
+
+                    <CheckBox
+                        android:id="@+id/checkImprimirporUSB"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Imprimir por USB"
+                        android:textSize="16sp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        />
+
+                    <LinearLayout
+                        android:id="@+id/LinearLayout05"
+                        android:layout_marginTop="10sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/txtInformeVentas"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Informe de ventas"
+                            android:paddingTop="5dp"
+                            style="@style/CustomTextInputLayout">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/autocompleteFormatoInformeVentas"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="none"
+                                android:layout_weight="1"
+                                android:focusable="false"
+                                android:cursorVisible="false"
+                                >
+                            </AutoCompleteTextView>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/LinearLayout06"
+                        android:layout_marginTop="10sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/txtReciboCobros"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Recibo de cobros"
+                            android:paddingTop="5dp"
+                            style="@style/CustomTextInputLayout">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/autocompleteFormatoReciboCobros"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="none"
+                                android:layout_weight="1"
+                                android:focusable="false"
+                                android:cursorVisible="false"
+                                >
+                            </AutoCompleteTextView>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nota al pie"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            />
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/colorAdvantysApp2">
+                            <EditText
+                                android:id="@+id/edNotaPie"
+                                android:layout_width="match_parent"
+                                android:layout_height="38dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginStart="24dp"
+                                android:ems="10"
+                                android:inputType="text"
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nota comercial"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            />
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/colorAdvantysApp2">
+                            <EditText
+                                android:id="@+id/edNombreComercial"
+                                android:layout_width="match_parent"
+                                android:layout_height="38dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginStart="10dp"
+                                android:ems="10"
+                                android:inputType="text"
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
