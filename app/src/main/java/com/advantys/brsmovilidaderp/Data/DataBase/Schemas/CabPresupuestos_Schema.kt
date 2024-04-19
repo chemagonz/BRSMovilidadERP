@@ -1,0 +1,37 @@
+package com.advantys.brsmovilidaderp.Data.DataBase.Schemas
+
+class CabPresupuestos_Schema {
+    companion object {
+        const val TABLE_NAME = "CABPRESUPUESTOS"
+        const val SERIE_FIELD = "CSERIE"
+        const val PRESUPUESTO_FIELD = "NPRESUPUESTO"
+        const val CENTRO_FIELD = "NCENTRO"
+        const val CLIENTE_FIELD = "NCLIENTE"
+        const val DELEGACION_FIELD = "NDELEGACION"
+        const val CLIENTEFISCAL_FIELD = "NCLIENTEFISCAL"
+        const val DELEGACIONFISCAL_FIELD = "NDELEGACIONFISCAL"
+        const val FORMAPAGO_FIELD = "NFORMAPAGO"
+        const val FECHA_FIELD = "DFECHA"
+        const val RUTAVENTA_FIELD = "CRUTAVENTA"
+        const val SECUVENTA_FIELD = "CSECUVENTA"
+        const val RUTAREPARTO_FIELD = "CRUTAREPARTO"
+        const val SECUREPARTO_FIELD = "CSECUREPARTO"
+        const val PORCDTO_FIELD = "NPORCDTO"
+        const val FACTURABLE_FIELD = "CFACTURABLE"
+        const val TIPOOPERACION_FIELD = "NTIPOOPERACION"
+        const val TOTALPRESUPUESTO_FIELD = "NTOTALPRESUPUESTO"
+        const val ENVIADO_FIELD = "LENVIADO"
+        const val TIPOREPARTO_FIELD = "CTIPOREPARTO"
+        const val APLDTOPOR_FIELD = "LAPLDTOPOR"
+        const val FABRICANTE_FIELD = "NFABRICANTE"
+        const val PREVENTA_FIELD = "NPREVENTA"
+        const val SERIEPEDIDO_FIELD = "CSERIEPEDIDO"
+        const val PEDIDO_FIELD = "NPEDIDO"
+        const val FECHAPEDIDO_FIELD = "DFECHAPEDIDO"
+        const val NOTAS_FIELD = "CNOTAS"
+        const val IMPRESO_FIELD = "LIMPRESO"
+        const val IMPORTADO_FIELD = "LIMPORTADO"
+        const val EJERCICIO_FIELD = "NEJERCICIO"
+        const val EJERPEDIDO_FIELD = "NEJERPEDIDO"
+    }
+}
