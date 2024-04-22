@@ -32,7 +32,7 @@ class Promociones_Schema {
         const val DESCRIPCION_FIELD = "CDESCRIPCION"
         const val MULTIPLE_FIELD = "CMULTIPLE"
         const val CENTRO_FIELD = "NCENTRO"
-        const val RUPO_FIELD = "GRUPO"
+        const val GRUPO_FIELD = "GRUPO"
         const val TIPOUNIDAD_FIELD = "CTIPOUNIDAD"
         const val OBLIGATORIA_FIELD = "NOBLIGATORIA"
         const val APLRAP_FIELD = "NAPLRAP"
