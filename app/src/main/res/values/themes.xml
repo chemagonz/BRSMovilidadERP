@@ -33,24 +33,18 @@
         <item name="windowNoTitle">true</item>
     </style>
     <!-- Estilo base de la aplicación PRUEBA -->
-    <style name="Theme.BRSMovilidadERPprueba" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="Theme.BRSMovilidadERPprueba" parent="Theme.MaterialComponents.Light">
         <!-- Colores primarios -->
         <item name="colorPrimary">@color/colorAdvantysApp1</item>
         <item name="colorPrimaryVariant">@color/colorAdvantysApp1</item>
-        <item name="buttonIconTint">@color/colorAdvantysApp3</item>
-
         <!-- Colores secundarios -->
         <item name="colorControlNormal">@color/colorAdvantysApp6</item>
-        <item name="colorSecondaryVariant">@color/colorAdvantysApp3</item>
+        <item name="colorSecondaryVariant">@color/colorAdvantysApp2</item>
         <!-- Color de fondo de la barra de navegación -->
         <item name="android:navigationBarColor">@color/colorAdvantysApp1</item>
         <!-- Color de fondo de la barra de estado -->
         <item name="android:statusBarColor">@color/colorAdvantysApp1</item>
         <item name="colorControlActivated">@color/colorAdvantysApp3</item>
-        <item name="colorAccent">@color/colorAdvantysApp4</item>
-
-        <!-- Color del botón flotante -->
-        <item name="materialButtonStyle">@style/Widget.MaterialComponents.Button.OutlinedButton</item>
 
     </style>
 
