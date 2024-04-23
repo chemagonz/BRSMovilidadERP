@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:theme="@style/Theme.BRSMovilidadERPprueba"
     android:orientation="vertical" >
 
@@ -29,7 +30,7 @@
                 android:id="@+id/checkExportarVentas"
                 android:layout_width="390dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:checked="false"
                 android:text="Exportar ventas"
                 android:textColor="#000000"
@@ -85,9 +86,9 @@
             <LinearLayout
                 android:id="@+id/layoutFTPalternativo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="60dp"
                 android:gravity="center">
 
 
@@ -99,18 +100,20 @@
                     android:text="Servidor FTP alternativo"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/customOutlineText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
 
-                <EditText
-                    android:id="@+id/edServidorFTPalternativo"
-                    android:layout_width="380dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:layout_marginHorizontal="30dp"
-                    android:gravity="center"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:singleLine="true"
-                    android:maxLines="1" />
-
+                    <EditText
+                        android:id="@+id/edServidorFTPalternativo"
+                        android:layout_width="380dp"
+                        android:layout_height="37dp"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -120,17 +123,21 @@
                     android:text="Puerto FTP alternativo"
                     android:textColor="#000000"
                     android:textSize="16sp" />
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/customOutlineText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
 
                 <EditText
                     android:id="@+id/edPuertoFTPalternativo"
                     android:layout_width="380dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="30dp"
+                    android:layout_height="37dp"
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
