@@ -3,103 +3,123 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:theme="@style/Theme.BRSMovilidadERPprueba"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
     android:layout_height="match_parent">
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="0.8"
-        android:background="#eaeaea"
-        android:orientation="vertical" >
 
-        <ImageView
-            android:id="@+id/iconoAdvantys"
-            android:layout_width="135dp"
-            android:layout_height="126dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/logo" />
-        <LinearLayout
-            android:id="@+id/linearLayout7"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <ImageView
+        android:id="@+id/iconoAdvantys"
+        android:layout_width="135dp"
+        android:layout_height="126dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/logo" />
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical">
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Identificador"
+            android:layout_marginBottom="20dp"
+            android:textColor="#000000"
+            android:textSize="15sp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="Identificador"
-                android:layout_marginBottom="20dp"
-                android:textColor="#000000"
-                android:textSize="15sp" />
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingTop="6dp">
 
             <LinearLayout
-                android:id="@+id/linearLayout1"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:paddingTop="6dp">
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/linearLayout2"
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/customOutlineText"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content">
 
                     <EditText
                         android:id="@+id/identificadorClienteLicencia"
                         android:layout_width="109dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
-                        android:theme="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                         android:inputType="number"
                         android:maxLength="6"
                         android:textColor="#000000"
                         android:paddingStart="5dp"
                         android:textSize="14sp"
-                        tools:ignore="RtlSymmetry" />
-                </LinearLayout>
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/linearLayout8"
+            <LinearLayout
+                android:id="@+id/linearLayout8"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/customOutlineText"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content">
 
                     <EditText
                         android:id="@+id/numLicencia"
                         android:layout_width="75dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/plaintextdesign"
                         android:inputType="number"
                         android:maxLength="4"
                         android:textColor="#000000"
                         android:paddingStart="5dp"
                         android:textSize="14dp" />
-                </LinearLayout>
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/linearLayout9"
-                    android:layout_width="155dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/linearLayout9"
+                android:layout_width="155dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/customOutlineText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
                     <EditText
                         android:id="@+id/identificadorIDENDISP"
                         android:layout_width="136dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/plaintextdesign"
                         android:maxLength="50"
                         android:textColor="#000000"
                         android:inputType="text"
@@ -108,104 +128,121 @@
                         android:cursorVisible="false"
                         android:paddingStart="5dp"
                         android:textSize="14dp" />
-                </LinearLayout>
-
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center">
+
             <LinearLayout
-                android:id="@+id/linearLayout6"
-                android:layout_width="match_parent"
+                android:id="@+id/linearLayout3"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center">
+                android:layout_marginRight="20dp"
+                android:orientation="vertical" >
 
-                <LinearLayout
-                    android:id="@+id/linearLayout3"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginRight="20dp"
-                    android:orientation="vertical" >
+                    android:text="Terminal"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="#000000"
+                    android:textSize="15sp" >
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Terminal"
-                        android:layout_marginBottom="10dp"
-                        android:textColor="#000000"
-                        android:textSize="15sp" >
+                </TextView>
 
-                    </TextView>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/customOutlineText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
                     <EditText
                         android:id="@+id/equipoLicencia"
                         android:layout_width="66dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/plaintextdesign"
                         android:inputType="number"
                         android:maxLength="2"
                         android:paddingStart="5dp"
                         android:textSize="14dp" />
-                </LinearLayout>
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="225dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Licencia"
+                    android:textColor="#000000"
+                    android:textSize="15sp">
+
+                </TextView>
 
                 <LinearLayout
-                    android:id="@+id/linearLayout4"
-                    android:layout_width="225dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center">
 
-                    <TextView
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/customOutlineText"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="Licencia"
-                        android:textColor="#000000"
-                        android:textSize="15sp">
-
-                    </TextView>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center">
+                        android:layout_height="wrap_content">
 
                         <EditText
                             android:id="@+id/licencia_licencia1"
                             android:layout_width="120dp"
                             android:layout_height="40dp"
                             android:paddingStart="5dp"
-                            android:background="@drawable/plaintextdesign"
-                            android:textSize="14dp">
+                            android:textSize="14dp"
+                            android:isScrollContainer="false">
 
                         </EditText>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                        <TextView
-                            android:id="@+id/textView3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:text=" - "
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textColor="#000000" />
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:text=" - "
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="#000000" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/customOutlineText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
                         <EditText
                             android:id="@+id/licencia_licencia2"
                             android:layout_width="72dp"
                             android:layout_height="40dp"
-                            android:background="@drawable/plaintextdesign"
                             android:maxLength="4"
                             android:paddingStart="5dp"
                             android:textSize="14dp" />
-
-                    </LinearLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
+
+             </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
+    </ScrollView>
 </LinearLayout>
