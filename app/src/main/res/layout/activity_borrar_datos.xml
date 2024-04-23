@@ -28,8 +28,8 @@
                 android:text="Compactar Base de datos"
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                android:backgroundTint="@color/colorAdvantysApp6"
                 android:layout_gravity="center"
+                android:backgroundTint="@color/colorAdvantysApp2"
                 android:layout_marginBottom="16dp" />
 
             <TextView
@@ -51,7 +51,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Cobros"
-                android:textColor="@android:color/black"
                 android:textSize="15sp" />
 
             <CheckBox
@@ -60,7 +59,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Pedidos"
-                android:textColor="@android:color/black"
                 android:textSize="15sp" />
 
             <CheckBox
@@ -69,7 +67,6 @@
                 android:layout_height="wrap_content"
                 android:text="Incidencias"
                 android:layout_gravity="center"
-                android:textColor="@android:color/black"
                 android:textSize="15sp" />
 
             <CheckBox
@@ -78,7 +75,6 @@
                 android:layout_height="wrap_content"
                 android:text="Hoja de carga"
                 android:layout_gravity="center"
-                android:textColor="@android:color/black"
                 android:textSize="15sp" />
 
             <CheckBox
@@ -87,7 +83,6 @@
                 android:layout_height="wrap_content"
                 android:text="Movimientos de almacén"
                 android:layout_gravity="center"
-                android:textColor="@android:color/black"
                 android:textSize="15sp"
                 android:layout_marginBottom="16dp" />
 
@@ -117,6 +112,8 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="16dp"
                     android:inputType="date"
+                    android:clickable="false"
+                    android:focusable="false"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
