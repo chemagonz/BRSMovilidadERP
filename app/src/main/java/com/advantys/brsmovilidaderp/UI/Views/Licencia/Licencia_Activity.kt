@@ -33,7 +33,7 @@ class Licencia_Activity : AppCompatActivity() {
             setHomeButtonEnabled(true)
             title= "LICENCIA"
         }
-        licenciaViewmodel.getLicencia()
+        //licenciaViewmodel.getLicencia() modificar este codigo, ya que no esta devolviendo nada
 
         configurarEditTextConPaddingMaximo(binding.identificadorClienteLicencia, 6)
         configurarEditTextConPaddingMaximo(binding.numLicencia, 4 )

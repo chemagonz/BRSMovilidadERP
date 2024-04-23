@@ -30,10 +30,10 @@ class Licencia_Dao  @Inject constructor(private val databaseManager: BDUtil){
     }
 
     //OBTENER LICENCIA
-    fun getLicencia(): Licencia_Entity?{
-        val sql= "SELECT * FROM ${Licencia_Schema.TABLE_NAME} WHERE ${Licencia_Schema.IDENPROG_FIELD} = ? "
-        return databaseManager.queryDetalles(sql) { cursor ->
-            Licencia_Entity.fromCursor(cursor)
-        }
-    }
+//    fun getLicencia(): Licencia_Entity?{
+//        val sql= "SELECT * FROM ${Licencia_Schema.TABLE_NAME} WHERE ${Licencia_Schema.IDENPROG_FIELD} = ? "
+//        return databaseManager.queryDetalles(sql) { cursor ->
+//            Licencia_Entity.fromCursor(cursor)
+//        }
+//    }
 }

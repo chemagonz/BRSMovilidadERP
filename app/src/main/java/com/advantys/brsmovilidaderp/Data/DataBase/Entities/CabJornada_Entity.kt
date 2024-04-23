@@ -41,4 +41,3 @@ class CabJornada_Entity (
         }
     }
 }
-Y aquí tienes la clase CabjornadaSch

@@ -1,7 +1,6 @@
 package com.advantys.brsmovilidaderp.UI.Views.BorrarVentas
 
 import android.annotation.SuppressLint
-import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -10,11 +9,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.BorrarDatos_ViewModel
 import com.advantys.brsmovilidaderp.databinding.ActivityBorrarDatosBinding
+import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
+import java.util.Locale
 
 @AndroidEntryPoint
 class BorrarDatos_Activity : AppCompatActivity() , CoroutineScope by MainScope(){
@@ -32,8 +34,10 @@ class BorrarDatos_Activity : AppCompatActivity() , CoroutineScope by MainScope()
             setHomeButtonEnabled(true)
             title = "BORRAR DATOS"
         }
+
+        obtenerFechaActual()
         binding.edborrarPedidos.setOnClickListener {
-            datePicker()
+           selectorDeFecha()
         }
         binding.borrarpreventaIDCompactar.setOnClickListener {
             borrarDatosviewModel.compactarBaseDeDatos(this@BorrarDatos_Activity)
@@ -60,20 +64,45 @@ class BorrarDatos_Activity : AppCompatActivity() , CoroutineScope by MainScope()
         }
         return super.onOptionsItemSelected(item)
     }
-    private fun datePicker() {
-        val year = 2024
-        val month = 0
-        val day = 1
+    private fun selectorDeFecha() {
+        val defaultLocale = Locale.getDefault()
 
-        val datePickerDialog = DatePickerDialog(
-            this,
-            { view, year1, monthOfYear, dayOfMonth ->
-                val dateChoice = (dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year1)
-                binding.edborrarPedidos.setText(dateChoice)
-                //temp = dateChoice
-            }, year, month, day
-        )
-        datePickerDialog.show()
+        val spanishLocale = Locale("es", "ES")
+        Locale.setDefault(spanishLocale)
+
+        val builder = MaterialDatePicker.Builder.datePicker()
+            .setInputMode(MaterialDatePicker.INPUT_MODE_TEXT)
+            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+            .setTitleText("Selecciona una fecha")
+        val picker = builder.build()
+
+        picker.addOnPositiveButtonClickListener { dateInMillis ->
+            val calendar = Calendar.getInstance()
+            calendar.timeInMillis = dateInMillis
+
+            val anio = calendar.get(Calendar.YEAR)
+            val mes = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, spanishLocale)
+            val dia = calendar.get(Calendar.DAY_OF_MONTH)
+
+            val eleccionDeFecha = "${dia}/$mes/$anio"
+            val textoFinal = "$eleccionDeFecha"
+            binding.edborrarPedidos.setText(textoFinal)
+
+            Locale.setDefault(defaultLocale)
+        }
+        picker.show(supportFragmentManager, picker.toString())
+    }
+    fun obtenerFechaActual(){
+        val spanishLocale = Locale("es", "ES")
+        Locale.setDefault(spanishLocale)
+        // Obtener la fecha actual
+        val fechaActual = Calendar.getInstance()
+        val anioActual = fechaActual.get(Calendar.YEAR)
+        val mesActual = fechaActual.getDisplayName(Calendar.MONTH, Calendar.LONG, spanishLocale)
+        val diaActual = fechaActual.get(Calendar.DAY_OF_MONTH)
+        // Establecer el texto predeterminado en el EditText
+        val textoPredeterminado = "$diaActual de $mesActual de $anioActual"
+        binding.edborrarPedidos.setText(textoPredeterminado)
     }
 }
 

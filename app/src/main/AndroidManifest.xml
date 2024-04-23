@@ -10,21 +10,15 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.BRSMovilidadERPprueba"
         tools:targetApi="31">
         <activity
             android:name=".UI.Views.Configuracion.Configuracion_Activity"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
         </activity>
         <activity
             android:name=".UI.Views.Fechas.Fechas_Activity"
@@ -40,7 +34,8 @@
             android:exported="false" />
         <activity
             android:name=".UI.Views.Licencia.Licencia_Activity"
-            android:exported="false" />
+            android:exported="false">
+        </activity>
         <activity
             android:name=".UI.Views.SplashScreen.SplashScreen_activity"
             android:exported="true"
@@ -67,7 +62,13 @@
             android:exported="false" />
         <activity
             android:name=".UI.Views.Clientes.Clientes_Activity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".UI.Views.BuscarClientes.BuscarCliente_Activity"
             android:exported="false" />

@@ -17,12 +17,12 @@ import javax.inject.Inject
 class Licencia_ViewModel @Inject constructor(private var licenciaUsecase: Licencia_UseCase): ViewModel() {
 val licenciaModel= MutableLiveData<Licencia?>()
 
-    fun getLicencia(){
-        viewModelScope.launch(Dispatchers.Default) {
-            val resultado= licenciaUsecase()
-            if(resultado != null) licenciaModel.postValue(resultado)
-        }
-    }
+//    fun getLicencia(){
+//        viewModelScope.launch(Dispatchers.Default) {
+//            val resultado= licenciaUsecase()
+//            if(resultado != null) licenciaModel.postValue(resultado)
+//        }
+//    }
     fun insertLicencia(licencia: Licencia_Entity): Boolean {
         viewModelScope.launch(Dispatchers.Default) {
             licenciaUsecase.insertLicencia(licencia)
