@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:theme="@style/Theme.BRSMovilidadERPprueba"
     android:orientation="vertical" >
 
 
@@ -31,6 +33,7 @@
                 android:id="@+id/f_importacionID_radiogroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
                 android:gravity="center" >
 
                 <RadioButton
@@ -68,7 +71,7 @@
                 android:id="@+id/layoutimpFTPalternativo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="60dp"
                 android:orientation="vertical"
                 android:gravity="center">
 
@@ -80,17 +83,20 @@
                     android:text="Servidor FTP alternativo"
                     android:textColor="#000000"
                     android:textSize="16sp" />
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/customOutlineText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
 
                 <EditText
                     android:id="@+id/edImpServidorFTP"
                     android:layout_width="380dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="37dp"
                     android:textSize="14sp"
-                    android:layout_marginHorizontal="30dp"
-                    android:gravity="left"
+                    android:gravity="center"
                     android:singleLine="true"
                     android:maxLines="1" />
-
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -100,17 +106,20 @@
                     android:text="Puerto FTP alternativo"
                     android:textColor="#000000"
                     android:textSize="16sp" />
-
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/customOutlineText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
                 <EditText
                     android:id="@+id/edImpPuertoFTP"
                     android:layout_width="380dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="30dp"
+                    android:layout_height="37dp"
                     android:layout_marginBottom="10dp"
-                    android:gravity="left"
+                    android:gravity="center"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
