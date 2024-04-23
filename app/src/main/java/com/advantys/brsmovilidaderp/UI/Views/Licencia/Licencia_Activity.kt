@@ -114,16 +114,16 @@ class Licencia_Activity : AppCompatActivity() {
     private fun inicializarHandlerLicencia() {
         binding.licenciaLicencia1.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                // No necesitas hacer nada aquí
+
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                // No necesitas hacer nada aquí
+
             }
 
             override fun afterTextChanged(s: Editable?) {
                 s?.let {
-                    // Si la longitud actual es igual a 8, cambia el foco al siguiente EditText
+
                     if (it.length == 8) {
                         binding.licenciaLicencia1.clearFocus()
                         binding.licenciaLicencia2.requestFocus()
