@@ -34,13 +34,7 @@
             android:exported="false" />
         <activity
             android:name=".UI.Views.Licencia.Licencia_Activity"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
         </activity>
         <activity
             android:name=".UI.Views.SplashScreen.SplashScreen_activity"
@@ -69,7 +63,11 @@
         <activity
             android:name=".UI.Views.Clientes.Clientes_Activity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".UI.Views.BuscarClientes.BuscarCliente_Activity"
