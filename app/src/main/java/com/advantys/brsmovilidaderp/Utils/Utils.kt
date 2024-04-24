@@ -1,11 +1,6 @@
 package com.advantys.brsmovilidaderp.Utils
 
-import android.app.AlertDialog
-import android.content.Context
 import android.os.Environment
-import android.view.Gravity
-import android.widget.ProgressBar
-
 import java.io.File
 import java.text.DateFormat
 import java.text.ParseException
@@ -65,33 +60,9 @@ fun formatofecha(date: Date?): String {
     }
     return fecha
 }
- fun showProgressDialog(context: Context, message: String): AlertDialog {
-    val progressBar = ProgressBar(context)
-    progressBar.isIndeterminate = false
 
-    val dialogBuilder = AlertDialog.Builder(context)
-    dialogBuilder.setView(progressBar)
-    dialogBuilder.setMessage(message)
-    dialogBuilder.setCancelable(false)
 
-    val dialog = dialogBuilder.create()
-    dialog.window?.setGravity(Gravity.CENTER)
 
-    return dialog.apply {
-        show()
-    }
-}
-fun showOkDialog(context: Context, message: String): AlertDialog {
-    val dialogBuilder = AlertDialog.Builder(context)
-    dialogBuilder.setMessage(message)
-    dialogBuilder.setPositiveButton("OK") { dialog, which ->
-        dialog.dismiss()
-    }
-    val dialog = dialogBuilder.create()
-    dialog.show()
-
-    return dialog
-}
 
 
 

@@ -11,9 +11,14 @@ import android.view.View
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.advantys.brsmovilidaderp.Data.DataBase.Entities.Licencia_Entity
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Licencia_ViewModel
+import com.advantys.brsmovilidaderp.Utils.Respuesta
+import com.advantys.brsmovilidaderp.Utils.TipoAlerta
+import com.advantys.brsmovilidaderp.Utils.mostrarSnackbar
+import com.advantys.brsmovilidaderp.Utils.showProgressDialog
 import com.advantys.brsmovilidaderp.databinding.ActivityLicenciaBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,9 +38,22 @@ class Licencia_Activity : AppCompatActivity() {
             setHomeButtonEnabled(true)
             title = "LICENCIA"
         }
+
         obtenerCodigo()
         inicializarHandlerLicencia()
-        //licenciaViewmodel.getLicencia() modificar este codigo, ya que no esta devolviendo nada
+        licenciaViewmodel.respuestaDialogo.observe(this,  Observer { respuesta ->
+                showProgressDialog(respuesta.mensaje,1000)
+
+        })
+
+        licenciaViewmodel.respuesta.observe(this,  Observer { respuesta ->
+            when (respuesta.tipo) {
+                Respuesta.Tipo.OK -> mostrarSnackbar(respuesta.mensaje, TipoAlerta.ok)
+                Respuesta.Tipo.ERROR -> mostrarSnackbar(respuesta.mensaje, TipoAlerta.error)
+                else -> Unit
+            }
+        })
+
         binding.identificadorClienteLicencia.onFocusChangeListener = createOnFocusChangeListener(6)
         binding.numLicencia.onFocusChangeListener = createOnFocusChangeListener(4)
         binding.equipoLicencia.onFocusChangeListener = createOnFocusChangeListener(2)
@@ -60,7 +78,7 @@ class Licencia_Activity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    @SuppressLint("HardwareIds")
+
     fun obtenerCodigo() {
         val androidId: String? =
             Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
@@ -71,13 +89,9 @@ class Licencia_Activity : AppCompatActivity() {
     private fun aceptarLicencia() {
 
         val licencia = Licencia_Entity()
-        val androidId: String? =
-            Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
-        licencia.idenDisp = binding.identificadorIDENDISP.setText(androidId).toString()
         licencia.cliente = binding.identificadorClienteLicencia.text.toString()
         licencia.numLicencia = binding.numLicencia.text.toString()
-        licencia.idenProg =
-            licencia.cliente + licencia.numLicencia + binding.identificadorIDENDISP.text.toString() + "ILC9TJWQBO9C54WCKAZV0H1P5OWAFR0QXPMDUOAH"
+        licencia.idenProg = licencia.cliente + licencia.numLicencia + binding.identificadorIDENDISP.text.toString() + "ILC9TJWQBO9C54WCKAZV0H1P5OWAFR0QXPMDUOAH"
         val licenciaConcatenada = binding.licenciaLicencia1.text.toString()
             .uppercase() + "-" + binding.licenciaLicencia2.text.toString().uppercase()
         licencia.licencia = licenciaConcatenada
@@ -87,13 +101,13 @@ class Licencia_Activity : AppCompatActivity() {
                 .isEmpty() || binding.equipoLicencia.text.toString()
                 .isEmpty() || (binding.licenciaLicencia1.text.toString()
                 .isEmpty() && binding.licenciaLicencia2.text.toString().isEmpty())
-        )
-        // mostrarDialogoDatosIncorrectos()
-
-            if (licenciaViewmodel.aceptar(licencia)) {
-                setResult(RESULT_OK)
-                finish();
-            }
+        ){
+          mostrarSnackbar("Los campos no deben estar vacíos", TipoAlerta.advertencia)
+        }
+        else{
+            licenciaViewmodel.aceptar(licencia)
+            setResult(RESULT_OK)
+        }
     }
 
     //Funcion para rellenar ceros
@@ -114,11 +128,9 @@ class Licencia_Activity : AppCompatActivity() {
     private fun inicializarHandlerLicencia() {
         binding.licenciaLicencia1.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                // No necesitas hacer nada aquí
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                // No necesitas hacer nada aquí
             }
 
             override fun afterTextChanged(s: Editable?) {

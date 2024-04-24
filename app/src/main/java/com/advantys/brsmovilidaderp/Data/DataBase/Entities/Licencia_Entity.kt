@@ -1,5 +1,6 @@
 package com.advantys.brsmovilidaderp.Data.DataBase.Entities
 
+import android.content.ContentValues
 import android.database.Cursor
 import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.Licencia_Schema
 import com.advantys.brsmovilidaderp.Domain.Models.Licencia
@@ -22,8 +23,22 @@ data class Licencia_Entity(
             modelo.numLicencia=cursor.getString(Licencia_Schema.NUMLICENCIA_FIELD,null)
             return modelo
         }
+
+    }
+
+    fun toContentValues(): ContentValues {
+        val values= ContentValues()
+
+        values.put(Licencia_Schema.IDENDISP_FIELD, idenDisp)
+        values.put(Licencia_Schema.IDENPROG_FIELD, idenProg)
+        values.put(Licencia_Schema.LICENCIA_FIELD, licencia)
+        values.put(Licencia_Schema.CLIENTE_FIELD, cliente)
+        values.put(Licencia_Schema.NUMLICENCIA_FIELD, numLicencia)
+
+        return values
     }
 }
+
 
 fun Licencia.toEntity() = Licencia_Entity(idenDisp, idenProg, licencia, cliente, numLicencia)
 

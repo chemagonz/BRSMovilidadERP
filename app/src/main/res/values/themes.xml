@@ -33,7 +33,7 @@
         <item name="windowNoTitle">true</item>
     </style>
     <!-- Estilo base de la aplicación PRUEBA -->
-    <style name="Theme.BRSMovilidadERPprueba" parent="Theme.MaterialComponents.Light">
+    <style name="Theme.BRSMovilidadERPprueba" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Colores primarios -->
         <item name="colorPrimary">@color/colorAdvantysApp1</item>
         <item name="colorPrimaryVariant">@color/colorAdvantysApp1</item>

@@ -10,8 +10,8 @@ class Licencia_Repository @Inject constructor(private val licenciaDao: Licencia_
 //        val response:  Licencia_Entity?= licenciaDao.getLicencia()
 //        return response?.toDomain()
 //    }
-    suspend fun insertLicencia(licencia: Licencia_Entity){
-         licenciaDao.insertLicencia(licencia)
+    suspend fun insertLicencia(licencia: Licencia_Entity) : Boolean{
+        return licenciaDao.insertLicencia(licencia)
     }
     suspend fun deleteLicencia(){
         licenciaDao.borrarLicenciaSiexiste()

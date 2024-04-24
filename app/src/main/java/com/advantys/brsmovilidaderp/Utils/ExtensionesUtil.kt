@@ -1,19 +1,24 @@
 package com.advantys.brsmovilidaderp.Utils
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
+import android.os.Handler
+import android.os.Looper
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.core.content.ContextCompat
 import com.advantys.brsmovilidaderp.R
-import com.google.android.material.snackbar.Snackbar
-
 import com.advantys.brsmovilidaderp.databinding.SnackbarBinding
+import com.google.android.material.snackbar.Snackbar
 import java.io.File
 import java.util.Date
 
-    //region Any
+//region Any
     fun Any?.esNulo() = this == null
     //endregion
 
@@ -49,6 +54,41 @@ import java.util.Date
             TipoAlerta.advertencia -> this.mostrarSnackbarPersonalizado(mensaje, R.drawable.advertencia,R.color.white, R.color.atencion)
         }
     }
+    fun Activity.showProgressDialog(message: String, delayMillis: Long): AlertDialog {
+        val progressBar = ProgressBar(this)
+        progressBar.isIndeterminate = false
+
+        val dialogBuilder = AlertDialog.Builder(this)
+        dialogBuilder.setView(progressBar)
+        dialogBuilder.setMessage(message)
+        dialogBuilder.setCancelable(false)
+
+        val dialog = dialogBuilder.create()
+        dialog.window?.setGravity(Gravity.CENTER)
+
+        dialog.show()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            if (dialog.isShowing) {
+                dialog.dismiss()
+            }
+        }, delayMillis)
+
+        return dialog
+    }
+    fun showOkDialog(context: Context, message: String): AlertDialog {
+        val dialogBuilder = AlertDialog.Builder(context)
+        dialogBuilder.setMessage(message)
+        dialogBuilder.setPositiveButton("OK") { dialog, which ->
+            dialog.dismiss()
+        }
+        val dialog = dialogBuilder.create()
+        dialog.show()
+
+        return dialog
+    }
+
+
 
     //endregion
 
