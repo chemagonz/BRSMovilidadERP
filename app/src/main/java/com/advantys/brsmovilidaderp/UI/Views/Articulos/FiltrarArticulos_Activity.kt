@@ -23,6 +23,8 @@ import com.advantys.brsmovilidaderp.UI.ViewModels.Formato_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.Marca_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.Sabor_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.Subfamilia_ViewModel
+import com.advantys.brsmovilidaderp.Utils.TipoAlerta
+import com.advantys.brsmovilidaderp.Utils.mostrarSnackbar
 import com.advantys.brsmovilidaderp.databinding.ActivityFiltrarArticulosBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -52,6 +54,8 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
     private val KEY_SELECTED_MARCA = "Marca"
     private val KEY_SELECTED_SABOR = "Sabor"
 
+    private var familiaSeleccionada = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityFiltrarArticulosBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -74,6 +78,8 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
             if (position != -1) {
                 binding.autocompleteFamilia.setText(selectedItem, false)
                 familiaID= familias[position].familia
+                binding.autocompleteSubfamilia.isEnabled = true
+                binding.txtSubfamilia.isEnabled = true
             }
         })
         binding.autocompleteFamilia.setOnItemClickListener { parent, view, position, id ->
@@ -83,8 +89,12 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
                 "Código: ${elementoSeleccionado.familia}, Nombre: ${elementoSeleccionado.nombre}",
                 Toast.LENGTH_SHORT
             ).show()
-            familiaID= elementoSeleccionado.familia
+            familiaID = elementoSeleccionado.familia
             elementoSeleccionado.nombre?.let { saveSelectedItem(it, KEY_SELECTED_FAMILIA) }
+            familiaSeleccionada = true
+            binding.autocompleteSubfamilia.isEnabled = true
+            binding.txtSubfamilia.isEnabled =  true
+
         }
 
         //APARTADO SUBFAMILIAS
@@ -98,6 +108,8 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
                 subfamiliaID= subfamilias[position].subfamilia
             }
         })
+        binding.txtSubfamilia.isEnabled = false
+        binding.autocompleteSubfamilia.isEnabled = false
         binding.autocompleteSubfamilia.setOnItemClickListener { parent, view, position, id ->
             val elementoSeleccionado = parent.getItemAtPosition(position) as Subfamilia
             Toast.makeText(
@@ -211,7 +223,11 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
         binding.autocompleteFormato.setText("", false)
         binding.autocompleteMarca.setText("", false)
         binding.autocompleteSabor.setText("", false)
-        Toast.makeText(this, "Filtros borrados correctamente", Toast.LENGTH_SHORT).show()
+        if (binding.autocompleteFamilia.text.isEmpty()) {
+            binding.autocompleteSubfamilia.isEnabled = false
+            binding.txtSubfamilia.isEnabled = false
+        }
+       mostrarSnackbar("Filtros borrados correctamente", TipoAlerta.ok)
     }
     //Funcion para manejar botones
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -235,4 +251,5 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
 }

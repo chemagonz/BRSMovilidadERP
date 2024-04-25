@@ -18,18 +18,20 @@ class Articulos_Dao @Inject constructor(private val databaseManager: BDUtil) {
     fun obtenerWhere(buscar: BuscarArticulosPor, codfamilia:Short?, codsubfamilia:Short?, codformato: Int?, codmarca:String?, codsabor:String?, tipoConsulta: String?): String{
         var where= ""
 
-        when(buscar) {
-            BuscarArticulosPor.codigo -> {
-                if (!tipoConsulta.isNullOrEmpty()) {
-                    where += "${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.ARTICULO_FIELD} LIKE  '$tipoConsulta%'  "
+        var condicion = false
+        if (!tipoConsulta.isNullOrEmpty()) {
+            when (buscar) {
+                BuscarArticulosPor.codigo -> {
+                    where += "${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.ARTICULO_FIELD} LIKE '$tipoConsulta%'"
+                    condicion = true
                 }
-            }
-            BuscarArticulosPor.descripcion -> {
-                if (!tipoConsulta.isNullOrEmpty()) {
-                    where += "${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.NOMBRE_FIELD}   LIKE  '%$tipoConsulta%'  "
+                BuscarArticulosPor.descripcion -> {
+                    where += "${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.NOMBRE_FIELD} LIKE '%$tipoConsulta%'"
+                    condicion = true
                 }
             }
         }
+
 //        if(codfamilia?.toInt() != -1)
 //            where += " AND ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.FAMILIA_FIELD} = $codfamilia "
 //        if(codsubfamilia?.toInt() != -1)
@@ -41,21 +43,42 @@ class Articulos_Dao @Inject constructor(private val databaseManager: BDUtil) {
 //        if(!codsabor.equals("") && !codsabor.equals("-1"))
 //            where += " AND ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.SABOR_FIELD} = '${codsabor}' "
 
-        if (codfamilia?.toInt() != null && codfamilia?.toInt() != -1) {
-            where += "${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.FAMILIA_FIELD} = $codfamilia "
+        fun hayCondicion(condition: String) {
+            if (condicion) {
+                where += " AND $condition"
+            } else {
+                where += " $condition"
+                condicion = true
+            }
         }
-        if (codsubfamilia?.toInt() != null && codsubfamilia?.toInt() != -1) {
-            where += " AND ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.SUBFAMILIA_FIELD} = $codsubfamilia "
+
+        codfamilia?.let {
+            if (it.toInt() != -1) {
+                hayCondicion("${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.FAMILIA_FIELD} = $it")
+            }
         }
-        if (codformato?.toInt() != null && codformato?.toInt() != -1) {
-            where += " AND ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.FORMATO_FIELD} = $codformato "
+        codsubfamilia?.let {
+            if (it.toInt() != -1) {
+                hayCondicion("${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.SUBFAMILIA_FIELD} = $it")
+            }
         }
-        if (!codmarca.isNullOrEmpty() && codmarca != "-1") {
-            where += " AND ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.MARCA_FIELD} = '$codmarca' "
+        codformato?.let {
+            if (it != -1) {
+                hayCondicion("${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.FORMATO_FIELD} = $it")
+            }
         }
-        if (!codsabor.isNullOrEmpty() && codsabor != "-1") {
-            where += " AND ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.SABOR_FIELD} = '$codsabor' "
+        codmarca?.let {
+            if (it != "-1") {
+                hayCondicion("${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.MARCA_FIELD} = '$it'")
+            }
         }
+        codsabor?.let {
+            if (it != "-1") {
+                hayCondicion("${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.SABOR_FIELD} = '$it'")
+            }
+        }
+
+
 
 
 //        if(articulo != null && fabricante != null){
