@@ -7,9 +7,11 @@ import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Handler
 import android.os.Looper
+import android.text.InputType
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ProgressBar
 import androidx.core.content.ContextCompat
 import com.advantys.brsmovilidaderp.R
@@ -78,6 +80,34 @@ import java.util.Date
 
         return dialog
     }
+
+    fun Activity.passwordDialogo(message: String, onPasswordEntered: (String) -> Unit): AlertDialog{
+        val input = EditText(this)
+        input.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
+        input.hint = " Contraseña"
+
+        val dialogBuilder = AlertDialog.Builder(this)
+        dialogBuilder.setView(input)
+        dialogBuilder.setMessage(message)
+        dialogBuilder.setCancelable(false)
+
+        dialogBuilder.setPositiveButton("Aceptar") { dialog, which ->
+            val password = input.text.toString()
+            onPasswordEntered(password)
+        }
+
+        dialogBuilder.setNegativeButton("Cancelar") { dialog, which ->
+            dialog.dismiss()
+        }
+
+        val dialog = dialogBuilder.create()
+        dialog.window?.setGravity(Gravity.CENTER)
+
+        dialog.show()
+
+        return dialog
+    }
+
     fun Activity.showOkDialog(context: Context, message: String): AlertDialog {
         val dialogBuilder = AlertDialog.Builder(context)
         dialogBuilder.setMessage(message)

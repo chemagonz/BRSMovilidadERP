@@ -5,18 +5,14 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Rect
 import android.os.Bundle
-import android.text.InputType
 import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
-import android.widget.EditText
 import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -39,12 +35,10 @@ import com.advantys.brsmovilidaderp.Utils.TipoAlerta
 import com.advantys.brsmovilidaderp.Utils.mostrar
 import com.advantys.brsmovilidaderp.Utils.mostrarSnackbar
 import com.advantys.brsmovilidaderp.Utils.orderPor
+import com.advantys.brsmovilidaderp.Utils.passwordDialogo
 import com.advantys.brsmovilidaderp.databinding.ActivityClientesBinding
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 @AndroidEntryPoint
 class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -134,25 +128,14 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 startActivity(intent)
             }
             R.id.ajustesAvanzados->{
-                val builder= AlertDialog.Builder(this)
-                builder.setTitle("Inserte contraseña")
-                val input= EditText(this)
-                input.inputType = InputType.TYPE_CLASS_NUMBER
-                builder.setView(input)
-                builder.setPositiveButton("Aceptar") { dialog, which ->
-                    val password= input.text.toString()
-                    if(validatePassword(password)){
-                        val intent= Intent(this, AjustesAvanzados_Activity::class.java)
+                passwordDialogo("Inserte la contraseña para entrar") { password ->
+                    if (clientesViewModel.validarPassword(password)) {
+                        val intent = Intent(this, AjustesAvanzados_Activity::class.java)
                         startActivity(intent)
-
-                    }
-                    else{
-                        Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show()
+                    } else {
+                        mostrarSnackbar( "Contraseña incorrecta", TipoAlerta.error)
                     }
                 }
-                builder.setNegativeButton("Cancelar"){ dialog, which ->
-                    dialog.cancel()}
-                builder.show()
             }
             R.id.acercade -> {
             }
@@ -278,13 +261,6 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             }
         }
         popupMenu.show()
-    }
-    //Función para validar contraseña que se tiene que introducir previamente para acceder a la pantalla ajustes avanzados
-    private fun validatePassword(password: String): Boolean {
-        val sdf = SimpleDateFormat("ddMMyy", Locale.getDefault())
-        val currentDate = sdf.format(Date())
-        val expectedPassword = "$currentDate${10}"
-        return password == expectedPassword
     }
 
     private fun funcionBottomNavigationView() {
