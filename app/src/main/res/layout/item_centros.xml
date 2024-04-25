@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="4dp"
-    app:cardCornerRadius="8dp"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    android:theme="@style/Theme.BRSMovilidadERPprueba">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -34,12 +34,11 @@
 
         <ImageButton
             android:id="@+id/verDetallesButton"
-            android:layout_width="wrap_content"
-            android:layout_height="31dp"
+            android:layout_width="17dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="10dp"
             android:background="#00000000"
             android:onClick="verDetalles"
             android:padding="16dp"

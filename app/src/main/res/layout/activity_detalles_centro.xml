@@ -1,33 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:fitsSystemWindows="true"
     android:theme="@style/Theme.BRSMovilidadERPprueba"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="vertical"
+   >
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
 
     <LinearLayout
         android:id="@+id/LinearLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="#FFFFFF"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/linearLayout1"
-            android:layout_width="411dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_weight="0"
             android:paddingLeft="6dp"
             android:paddingRight="5dp"
-            android:weightSum="1">
+            >
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginStart="70sp"
+                android:layout_marginStart="35sp"
                 android:orientation="vertical">
 
                 <TextView
@@ -45,28 +53,30 @@
                     android:textSize="15sp">
 
                 </TextView>
+
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/customOutlineText"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent">
-                <EditText
-                    android:id="@+id/edCodigoCentro"
-                    android:layout_width="65dp"
-                    android:layout_height="33dp"
-                    android:layout_marginRight="5sp"
-                    android:inputType="text"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:cursorVisible="false"
-                    android:textAlignment="center"
-                    android:textSize="14dp">
-                </EditText>
+
+                    <EditText
+                        android:id="@+id/edCodigoCentro"
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+                        android:layout_marginRight="5sp"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:inputType="text"
+                        android:textAlignment="center"
+                        android:textSize="18dp" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginEnd="35sp"
                 android:orientation="vertical">
 
 
@@ -74,41 +84,44 @@
                     android:id="@+id/txtNIFCentros"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAlignment="textStart"
                     android:layout_marginBottom="10sp"
                     android:clickable="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:paddingLeft="30dp"
                     android:text="N.I.F"
+                    android:textAlignment="textStart"
                     android:textColor="#000000"
                     android:textSize="15sp">
 
                 </TextView>
+
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/customOutlineText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                <EditText
-                    android:id="@+id/edNIFCentros"
-                    android:layout_width="150dp"
-                    android:layout_height="33dp"
-                    android:layout_gravity="center"
-                    android:inputType="text"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:cursorVisible="false"
-                    android:textAlignment="center"
-                    android:textSize="14dp"></EditText>
+
+                    <EditText
+                        android:id="@+id/edNIFCentros"
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:inputType="text"
+                        android:textAlignment="center"
+                        android:textSize="18dp"></EditText>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="411dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10sp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -117,25 +130,28 @@
                 android:text="Nombre"
                 android:textColor="#000000"
                 android:layout_marginBottom="10sp"
-                android:paddingStart="85sp">
+                android:paddingStart="47sp"
+                android:textSize="15sp">
 
             </TextView>
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/customOutlineText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_marginEnd="40sp">
 
                 <EditText
                     android:id="@+id/edNombreCentro"
-                    android:layout_width="250dp"
-                    android:layout_height="37dp"
-                    android:layout_marginStart="75sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="40sp"
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:textAlignment="center"
-                    android:textSize="14dp"></EditText>
+                    android:textSize="18dp" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
@@ -153,26 +169,31 @@
         <LinearLayout
             android:layout_width="411dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10sp"
-                android:paddingStart="85sp"
+                android:paddingStart="47sp"
                 android:text="Dirección"
-                android:textColor="#000000">
+                android:textColor="#000000"
+                android:textSize="15sp">
 
             </TextView>
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/customOutlineText"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="40sp">
             <EditText
                 android:id="@+id/edCalleCPMunicProvin"
-                android:layout_width="248dp"
+                android:layout_width="match_parent"
                 android:layout_height="93dp"
-                android:layout_marginStart="75sp"
+                android:layout_weight="1"
+                android:layout_marginStart="40sp"
                 android:inputType="textMultiLine"
                 android:textAlignment="center"
                 android:maxLines="5"
@@ -180,7 +201,8 @@
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:cursorVisible="false"
-                android:scrollbars="vertical" />
+                android:scrollbars="vertical"
+                android:textSize="18dp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
@@ -199,13 +221,13 @@
 
         <LinearLayout
             android:layout_width="411dp"
-            android:layout_height="69dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="80sp"
+                android:layout_marginStart="47sp"
                 android:layout_marginBottom="10sp"
                 android:clickable="false"
                 android:focusable="false"
@@ -218,19 +240,21 @@
             </TextView>
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/customOutlineText"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="40sp">
             <EditText
                 android:id="@+id/edTelefonoCentro"
-                android:layout_width="247dp"
-                android:layout_height="33dp"
-                android:layout_marginStart="75sp"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:layout_marginStart="40sp"
                 android:inputType="text"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:cursorVisible="false"
                 android:textAlignment="center"
-                android:textSize="14dp">
+                android:textSize="18dp">
             </EditText>
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
@@ -240,7 +264,7 @@
             android:layout_height="2dp"
             android:layout_weight="0"
             android:layout_marginBottom="6dp"
-            android:layout_marginTop="10sp"
+            android:layout_marginTop="15sp"
             android:background="@color/colorAdvantysApp3"
             android:orientation="vertical" >
 
@@ -248,13 +272,13 @@
 
         <LinearLayout
             android:layout_width="411dp"
-            android:layout_height="69dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="75sp"
+                android:layout_marginStart="47sp"
                 android:layout_marginBottom="10sp"
                 android:clickable="false"
                 android:focusable="false"
@@ -273,19 +297,21 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/customOutlineText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="40sp">
                 <EditText
                     android:id="@+id/edSerieCentro"
-                    android:layout_width="247dp"
-                    android:layout_height="33dp"
-                    android:layout_marginStart="75sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="40sp"
                     android:inputType="text"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:cursorVisible="false"
                     android:textAlignment="center"
-                    android:textSize="14dp">
+                    android:textSize="18dp">
                 </EditText>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -297,7 +323,7 @@
             android:layout_height="2dp"
             android:layout_weight="0"
             android:layout_marginBottom="6dp"
-            android:layout_marginTop="10sp"
+            android:layout_marginTop="15sp"
             android:background="@color/colorAdvantysApp3"
             android:orientation="vertical" >
 
@@ -306,8 +332,9 @@
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="411dp"
-            android:layout_height="83dp"
-            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20sp"
             android:layout_weight="0"
             android:paddingLeft="6dp"
             android:paddingRight="5dp"
@@ -341,7 +368,7 @@
                     android:id="@+id/txtVentaMenorA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
+                    android:layout_marginStart="5sp"
                     android:layout_marginBottom="10sp"
                     android:clickable="false"
                     android:focusable="false"
@@ -356,23 +383,26 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/customOutlineText"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
-                <EditText
-                    android:id="@+id/edVentaMenorA"
-                    android:layout_width="90dp"
-                    android:layout_height="33dp"
-                    android:layout_marginStart="30sp"
-                    android:layout_marginRight="12sp"
-                    android:textAlignment="center"
-                    android:inputType="text"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:cursorVisible="false"
-                    android:textSize="14dp">
-                </EditText>
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="40sp">
+
+                    <EditText
+                        android:id="@+id/edVentaMenorA"
+                        android:layout_width="107dp"
+                        android:layout_height="46dp"
+                        android:layout_marginStart="30sp"
+                        android:layout_marginRight="12sp"
+                        android:layout_weight="1"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:inputType="text"
+                        android:textAlignment="center"
+                        android:textSize="18dp"></EditText>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
+</ScrollView>
 </LinearLayout>
