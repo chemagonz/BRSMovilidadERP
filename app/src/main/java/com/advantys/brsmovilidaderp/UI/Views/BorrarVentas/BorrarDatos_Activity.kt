@@ -6,8 +6,10 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.BorrarDatos_ViewModel
+import com.advantys.brsmovilidaderp.Utils.showProgressDialog
 import com.advantys.brsmovilidaderp.databinding.ActivityBorrarDatosBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,12 +38,19 @@ class BorrarDatos_Activity : AppCompatActivity() , CoroutineScope by MainScope()
         }
 
         obtenerFechaActual()
+
         binding.edborrarPedidos.setOnClickListener {
            selectorDeFecha()
         }
+
         binding.borrarpreventaIDCompactar.setOnClickListener {
             borrarDatosviewModel.compactarBaseDeDatos(this@BorrarDatos_Activity)
         }
+
+        borrarDatosviewModel.respuestaDialogo.observe(this,  Observer { respuesta ->
+            showProgressDialog(respuesta.mensaje,1000)
+        })
+
     }
     @SuppressLint("SimpleDateFormat")
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -59,6 +68,7 @@ class BorrarDatos_Activity : AppCompatActivity() , CoroutineScope by MainScope()
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
+                finish()
                 return true
             }
         }
