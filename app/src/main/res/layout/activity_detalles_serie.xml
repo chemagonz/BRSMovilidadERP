@@ -3,310 +3,353 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:theme="@style/Theme.BRSMovilidadERPprueba"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
+
+
+    <LinearLayout
+        android:id="@+id/LinearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/LinearLayout1"
+            android:id="@+id/linearLayout1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#FFFFFF"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_weight="0"
+
+            android:weightSum="1">
 
             <LinearLayout
-                android:id="@+id/linearLayout1"
-                android:layout_width="411dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_weight="0"
-                android:paddingLeft="6dp"
-                android:paddingRight="5dp"
-                android:weightSum="1">
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="35sp"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="83dp"
-                    android:layout_height="69dp"
-                    android:layout_marginStart="70sp"
-                    android:orientation="vertical">
+                <TextView
+                    android:id="@+id/txtCodigoSerie"
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginBottom="10sp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:text="Código"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#000000"
+                    android:textSize="15sp">
 
-                    <TextView
-                        android:id="@+id/txtCodigoSerie"
-                        android:layout_width="85dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5sp"
-                        android:layout_marginBottom="10sp"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:text="Código"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:textColor="#000000"
-                        android:textSize="15sp">
+                </TextView>
 
-                    </TextView>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/customOutlineText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
 
                     <EditText
                         android:id="@+id/edCodigoSerie"
                         android:layout_width="65dp"
-                        android:layout_height="33dp"
-                        android:background="@drawable/plaintextdesign"
+                        android:layout_height="46dp"
                         android:layout_marginRight="5sp"
-                        android:inputType="text"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
                         android:cursorVisible="false"
-                        android:textAlignment="center"
-                        android:textSize="14dp">
-
-                    </EditText>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="70sp"
-                    android:orientation="vertical">
-
-
-                    <TextView
-                        android:id="@+id/f_seriesdetalleID_lb_aplicaiva"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="10sp"
-                        android:clickable="false"
                         android:focusable="false"
                         android:focusableInTouchMode="false"
-                        android:paddingLeft="30dp"
-                        android:text="Aplica I.V.A"
-                        android:textColor="#000000"
-                        android:textSize="15sp">
+                        android:inputType="text"
+                        android:textAlignment="center"
+                        android:textSize="18dp"></EditText>
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
 
-                    </TextView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="35sp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/f_seriesdetalleID_lb_aplicaiva"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginBottom="10sp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:paddingLeft="30dp"
+                    android:text="Aplica I.V.A"
+                    android:textColor="#000000"
+                    android:textSize="15sp">
+
+                </TextView>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/customOutlineText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="185dp">
 
                     <EditText
                         android:id="@+id/edAplicaIVA"
-                        android:layout_width="52dp"
-                        android:layout_height="33dp"
+                        android:layout_width="65dp"
+                        android:layout_height="46dp"
                         android:layout_gravity="center"
-                        android:layout_marginStart="17sp"
-                        android:background="@drawable/plaintextdesign"
-                        android:inputType="text"
+
+                        android:cursorVisible="false"
                         android:focusable="false"
                         android:focusableInTouchMode="false"
-                        android:cursorVisible="false"
+                        android:inputType="text"
                         android:textAlignment="center"
-                        android:textSize="14dp"></EditText>
-                </LinearLayout>
+                        android:textSize="18dp" />
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
+        </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="411dp"
-                android:layout_height="65dp"
-                android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nombre"
-                    android:textColor="#000000"
-                    android:layout_marginBottom="10sp"
-                    android:paddingStart="85sp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre"
+                android:textColor="#000000"
+                android:layout_marginBottom="10sp"
+                android:paddingStart="40sp">
 
-                </TextView>
+            </TextView>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/customOutlineText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="35sp">
 
                 <EditText
                     android:id="@+id/edNombreSerie"
-                    android:layout_width="250dp"
-                    android:layout_height="33dp"
-                    android:layout_marginStart="75sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="35sp"
                     android:textAlignment="center"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:cursorVisible="false"
-                    android:textSize="14dp"
-                    android:background="@drawable/plaintextdesign">
+                    android:textSize="18dp">
 
                 </EditText>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
 
-            </LinearLayout>
+        <LinearLayout
+            android:id="@+id/separador4"
+            android:layout_width="280dp"
+            android:layout_height="2dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorAdvantysApp3"
+            android:orientation="vertical" >
 
-            <LinearLayout
-                android:id="@+id/separador4"
-                android:layout_width="280dp"
-                android:layout_height="2dp"
-                android:layout_marginBottom="6dp"
-                android:layout_marginTop="6dp"
-                android:background="@color/teal"
-                android:orientation="vertical" >
+        </LinearLayout>
 
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="411dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginBottom="10sp"
+                android:paddingStart="40sp"
+                android:text="Último pedido"
+                android:textColor="#000000">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10sp"
-                    android:paddingStart="85sp"
-                    android:text="Último pedido"
-                    android:textColor="#000000">
+            </TextView>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/customOutlineText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="35sp">
 
-                </TextView>
 
                 <EditText
                     android:id="@+id/edUltPedido"
-                    android:layout_width="250dp"
-                    android:layout_height="33dp"
-                    android:layout_marginStart="75sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="35sp"
                     android:layout_marginBottom="10sp"
-                    android:textSize="14dp"
+                    android:textSize="18dp"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:cursorVisible="false"
-                    android:textAlignment="center"
-                    android:background="@drawable/plaintextdesign">
+                    android:textAlignment="center">
 
                 </EditText>
+            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:paddingStart="40sp"
+                android:text="Último albaran"
+                android:textColor="#000000">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10sp"
-                    android:paddingStart="85sp"
-                    android:text="Último albaran"
-                    android:textColor="#000000">
-
-                </TextView>
+            </TextView>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/customOutlineText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="35sp">
 
                 <EditText
                     android:id="@+id/edUltAlbaran"
-                    android:layout_width="250dp"
-                    android:layout_height="33dp"
-                    android:layout_marginStart="75sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="35sp"
                     android:layout_marginBottom="10sp"
-                    android:textSize="14dp"
+                    android:textSize="18dp"
                     android:textAlignment="center"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:cursorVisible="false"
-                    android:background="@drawable/plaintextdesign">
-
+                    android:cursorVisible="false">
                 </EditText>
+            </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10sp"
-                    android:paddingStart="85sp"
-                    android:text="Última factura"
-                    android:textColor="#000000">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:paddingStart="40sp"
+                android:text="Última factura"
+                android:textColor="#000000">
 
-                </TextView>
-
+            </TextView>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/customOutlineText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="35sp">
                 <EditText
                     android:id="@+id/edUltFactura"
-                    android:layout_width="250dp"
-                    android:layout_height="33dp"
-                    android:layout_marginStart="75sp"
-                    android:textSize="14dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="35sp"
+                    android:textSize="18dp"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:cursorVisible="false"
-                    android:textAlignment="center"
-                    android:background="@drawable/plaintextdesign">
+                    android:textAlignment="center">
 
                 </EditText>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
 
-            </LinearLayout>
+        <LinearLayout
+            android:id="@+id/separador2"
+            android:layout_width="280dp"
+            android:layout_height="2dp"
+            android:layout_weight="0"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="10sp"
+            android:background="@color/colorAdvantysApp3"
+            android:orientation="vertical" >
 
-            <LinearLayout
-                android:id="@+id/separador2"
-                android:layout_width="280dp"
-                android:layout_height="2dp"
-                android:layout_weight="0"
-                android:layout_marginBottom="6dp"
-                android:layout_marginTop="10sp"
-                android:background="@color/teal"
-                android:orientation="vertical" >
+        </LinearLayout>
 
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="411dp"
-                android:layout_height="69dp"
-                android:orientation="vertical">
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40sp"
+                android:layout_marginBottom="10sp"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:text="Centro"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#000000"
+                android:textSize="15sp">
 
-                <TextView
-                    android:layout_width="85dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="80sp"
-                    android:layout_marginBottom="10sp"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:text="Centro"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="#000000"
-                    android:textSize="15sp">
+            </TextView>
 
-                </TextView>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/customOutlineText"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="35sp">
+            <EditText
+                android:id="@+id/edCentroSerie"
+                android:layout_width="65dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="35sp"
+                android:inputType="text"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:textAlignment="center"
+                android:textSize="18dp">
 
-                <EditText
-                    android:id="@+id/edCentroSerie"
-                    android:layout_width="65dp"
-                    android:layout_height="33dp"
-                    android:layout_marginStart="75sp"
-                    android:background="@drawable/plaintextdesign"
-                    android:inputType="text"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:cursorVisible="false"
-                    android:textAlignment="center"
-                    android:textSize="14dp">
+            </EditText>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
 
-                </EditText>
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="411dp"
-                android:layout_height="69dp"
-                android:orientation="vertical">
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40sp"
+                android:layout_marginBottom="10sp"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:text="Art. Servicio"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#000000"
+                android:textSize="15sp">
 
-                <TextView
-                    android:layout_width="85dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="75sp"
-                    android:layout_marginBottom="10sp"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:text="Art. Servicio"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="#000000"
-                    android:textSize="15sp">
+            </TextView>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/customOutlineText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="35sp">
+            <EditText
+                android:id="@+id/edArtServicioSerie"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginStart="35sp"
+                android:inputType="text"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:textAlignment="center"
+                android:textSize="18dp">
 
-                </TextView>
-
-                <EditText
-                    android:id="@+id/edArtServicioSerie"
-                    android:layout_width="249dp"
-                    android:layout_height="33dp"
-                    android:layout_marginStart="75sp"
-                    android:background="@drawable/plaintextdesign"
-                    android:inputType="text"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:cursorVisible="false"
-                    android:textAlignment="center"
-                    android:textSize="14dp">
-
-                </EditText>
-            </LinearLayout>
+            </EditText>
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
     </LinearLayout>
+</ScrollView>
+</LinearLayout>
