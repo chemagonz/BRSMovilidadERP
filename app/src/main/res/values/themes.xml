@@ -36,10 +36,13 @@
     <style name="Theme.BRSMovilidadERPprueba" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Colores primarios -->
         <item name="colorPrimary">@color/colorAdvantysApp1</item>
-        <item name="colorPrimaryVariant">@color/colorAdvantysApp1</item>
+        <item name="colorPrimaryVariant">@color/colorAdvantysApp5</item>
         <!-- Colores secundarios -->
-        <item name="colorControlNormal">@color/colorAdvantysApp6</item>
-        <item name="colorSecondaryVariant">@color/colorAdvantysApp2</item>
+        <item name="colorControlNormal">@color/colorAdvantysApp2</item>
+        <item name="colorSecondary">@color/colorAdvantysApp3</item>
+
+
+        <item name="colorSecondaryVariant">#70673F</item>
         <!-- Color de fondo de la barra de navegación -->
         <item name="android:navigationBarColor">@color/colorAdvantysApp1</item>
         <!-- Color de fondo de la barra de estado -->

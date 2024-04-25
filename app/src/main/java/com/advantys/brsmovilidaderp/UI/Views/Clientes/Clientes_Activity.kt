@@ -35,7 +35,9 @@ import com.advantys.brsmovilidaderp.UI.Views.Rutas.Rutas_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Series.Series_Activity
 import com.advantys.brsmovilidaderp.Utils.MostrarPor
 import com.advantys.brsmovilidaderp.Utils.OrdenarPor
+import com.advantys.brsmovilidaderp.Utils.TipoAlerta
 import com.advantys.brsmovilidaderp.Utils.mostrar
+import com.advantys.brsmovilidaderp.Utils.mostrarSnackbar
 import com.advantys.brsmovilidaderp.Utils.orderPor
 import com.advantys.brsmovilidaderp.databinding.ActivityClientesBinding
 import com.google.android.material.navigation.NavigationView
@@ -239,8 +241,12 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             true
         }
        marcardesmarcarItem?.setOnMenuItemClickListener {
-           val cliente= adapterCliente.getElementoSeleccionado()
-           clientesViewModel.updateMarcado(cliente?.numClientes,!cliente?.lmarcado!!, cliente?.delegacion)
+           val clienteSeleccionado = adapterCliente.getElementoSeleccionado()
+           if (clienteSeleccionado != null) {
+               clientesViewModel.updateMarcado(clienteSeleccionado.numClientes, !clienteSeleccionado.lmarcado!!, clienteSeleccionado.delegacion)
+           } else {
+               mostrarSnackbar("No se ha seleccionado ningún cliente", TipoAlerta.informacion)
+           }
            true
        }
         desmarcartodosItem?.setOnMenuItemClickListener {

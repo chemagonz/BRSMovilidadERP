@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:theme="@style/Theme.BRSMovilidadERPprueba"
     tools:context=".UI.Views.BuscarClientes.BuscarCliente_Activity">
 
@@ -21,7 +22,6 @@
         android:id="@+id/botonFlotante"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
         android:clickable="true"
         android:src="@drawable/config"
         app:layout_constraintBottom_toBottomOf="parent"

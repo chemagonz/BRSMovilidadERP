@@ -38,7 +38,7 @@
                     android:layout_marginTop="8dp"
                     android:text="TextView"
                     android:layout_marginBottom="5sp"
-                    android:textColor="@color/colorAdvantysApp1"
+                    android:textColor="@color/black"
                     android:textSize="14sp"
                     />
             </RelativeLayout>
@@ -49,6 +49,6 @@
                 android:layout_marginEnd="20sp"
                 android:background="#00000000"
                 android:paddingLeft="10sp"
-                android:src="@drawable/flecha" />
+                android:src="@drawable/ic_action_name" />
         </LinearLayout>
 </androidx.cardview.widget.CardView>

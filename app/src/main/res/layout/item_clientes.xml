@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="70dp"
     android:layout_margin="4dp"
+    android:theme="@style/Theme.BRSMovilidadERPprueba"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:orientation="vertical"

@@ -15,6 +15,8 @@ import androidx.core.content.ContextCompat
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.databinding.SnackbarBinding
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.util.Date
 
@@ -76,7 +78,7 @@ import java.util.Date
 
         return dialog
     }
-    fun showOkDialog(context: Context, message: String): AlertDialog {
+    fun Activity.showOkDialog(context: Context, message: String): AlertDialog {
         val dialogBuilder = AlertDialog.Builder(context)
         dialogBuilder.setMessage(message)
         dialogBuilder.setPositiveButton("OK") { dialog, which ->
@@ -88,7 +90,11 @@ import java.util.Date
         return dialog
     }
 
-
+    private suspend fun Activity.publishProgress(dialogo: AlertDialog, message: String) {
+        withContext(Dispatchers.Main) {
+            dialogo.setMessage(message)
+        }
+    }
 
     //endregion
 
