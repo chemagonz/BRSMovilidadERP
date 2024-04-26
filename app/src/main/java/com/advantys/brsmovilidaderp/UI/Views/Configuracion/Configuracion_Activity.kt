@@ -2,6 +2,7 @@ package com.advantys.brsmovilidaderp.UI.Views.Configuracion
 
 import android.os.Bundle
 import android.transition.TransitionManager
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
@@ -30,6 +31,21 @@ class Configuracion_Activity : AppCompatActivity() {
             binding.layoutParametrosImp to binding.hiddenLayoutParametrosImp,
             binding.layoutOpcionesImp to binding.hiddenLayouOpcionesImp
         )
+
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeButtonEnabled(true)
+            title = "CONFIGURACIÓN"
+        }
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun setupLayoutPairs(vararg pairs: Pair<View, View>) {

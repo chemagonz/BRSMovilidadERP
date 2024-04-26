@@ -25,6 +25,7 @@ import com.advantys.brsmovilidaderp.UI.Views.Articulos.Articulos_Activity
 import com.advantys.brsmovilidaderp.UI.Views.BorrarVentas.BorrarDatos_Activity
 import com.advantys.brsmovilidaderp.UI.Views.BuscarClientes.BuscarCliente_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Centros.Centros_Activity
+import com.advantys.brsmovilidaderp.UI.Views.Configuracion.Configuracion_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Exportar.Exportar_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Importar.Importar_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Rutas.Rutas_Activity
@@ -141,6 +142,10 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             }
             R.id.articulos->{
                 val intent= Intent(this, Articulos_Activity::class.java)
+                startActivity(intent)
+            }
+            R.id.config -> {
+                val intent= Intent(this, Configuracion_Activity::class.java)
                 startActivity(intent)
             }
         }
