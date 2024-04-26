@@ -1,19 +1,20 @@
 package com.advantys.brsmovilidaderp.UI.ViewModels
 
-import android.app.AlertDialog
 import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.advantys.brsmovilidaderp.Domain.UseCases.BorrarDatos_UseCase
 import com.advantys.brsmovilidaderp.Utils.BORRADO
+import com.advantys.brsmovilidaderp.Utils.Respuesta
 import com.advantys.brsmovilidaderp.Utils.Ruta
 import com.advantys.brsmovilidaderp.Utils.borrarBackups
 import com.advantys.brsmovilidaderp.Utils.crearBackup
-import com.advantys.brsmovilidaderp.Utils.showOkDialog
-import com.advantys.brsmovilidaderp.Utils.showProgressDialog
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -24,82 +25,26 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BorrarDatos_ViewModel @Inject constructor(private var borrarDatosUsecase: BorrarDatos_UseCase): ViewModel() {
+    private var _respuesta = MutableLiveData<Respuesta>()
+    private var _respuestaDialogo = MutableLiveData<Respuesta>()
+    val respuesta : LiveData<Respuesta> get() = _respuesta
+    val respuestaDialogo : LiveData<Respuesta> get() = _respuestaDialogo
 
-    fun borrarCobros(fecha:String):Boolean{
+    fun comprobarDatosCorrutina(fecha: String,  borrarPedidosChecked: Boolean, borrarCobrosChecked:Boolean, borrarIncidenciasChecked:Boolean, borrarHojaDeCargaChecked:Boolean){
         viewModelScope.launch(Dispatchers.Default) {
-            borrarDatosUsecase.borrarCobros(fecha)
+            comprobarDatos(fecha, borrarPedidosChecked,borrarCobrosChecked,borrarIncidenciasChecked,borrarHojaDeCargaChecked)
         }
-        return true
-    }
-    fun borrarCargaCero():Boolean{
-        viewModelScope.launch(Dispatchers.Default) {
-            borrarDatosUsecase.borrarCargaCero()
-        }
-        return true
-    }
-    fun borrarVisitas():Boolean{
-        viewModelScope.launch(Dispatchers.Default) {
-            borrarDatosUsecase.borrarVisitas()
-        }
-        return true
-    }
-    fun borrarHojaCarga():Boolean{
-        viewModelScope.launch(Dispatchers.Default) {
-            borrarDatosUsecase.borrarHojaCarga()
-        }
-        return true
-    }
-    fun borrarVentasDetPedidos(fecha:String):Boolean{
-        viewModelScope.launch(Dispatchers.Default) {
-            borrarDatosUsecase.borrarVentasDetPedidos(fecha)
-        }
-        return true
-    }
-    fun borrarVentasCabPedidos(fecha:String):Boolean{
-        viewModelScope.launch(Dispatchers.Default) {
-            borrarDatosUsecase.borrarVentasCabPedidos(fecha)
-        }
-        return true
-    }
-   fun borrarRegistrosSueltos():Boolean{
-       viewModelScope.launch(Dispatchers.Default) {
-           borrarDatosUsecase.borrarRegistrosSueltos()
-       }
-       return true
-    }
-    suspend fun comprobarDatosPendientesCabPedidos(fecha: String): Int {
-        return withContext(Dispatchers.Default) {
-            borrarDatosUsecase.comprobarDatosPendientesCabPedidos(fecha) ?: 0
-        }
-    }
-    suspend fun comprobarDatosPendientesVisitas(fecha: String): Int {
-        return withContext(Dispatchers.Default) {
-            borrarDatosUsecase.comprobarDatosPendientesVisitas(fecha) ?: 0
-        }
-    }
-    suspend fun comprobarDatosPendientesCobros(fecha: String): Int {
-        return withContext(Dispatchers.Default) {
-            borrarDatosUsecase.comprobarDatosPendientesCobros(fecha) ?: 0
-        }
-    }
-   suspend fun compactarBD(){
-       return withContext(Dispatchers.Default) {
-           borrarDatosUsecase.compactarBD()
-       }
-    }
-    fun comprobarDatosCorrutina(contexto: Context, fecha: String,  borrarPedidosChecked: Boolean, borrarCobrosChecked:Boolean, borrarIncidenciasChecked:Boolean, borrarHojaDeCargaChecked:Boolean){
-         viewModelScope.launch(Dispatchers.Default) {
-          comprobarDatos(contexto,fecha, borrarPedidosChecked,borrarCobrosChecked,borrarIncidenciasChecked,borrarHojaDeCargaChecked)
-      }
     }
     fun compactarBaseDeDatos(contexto: Context){
         viewModelScope.launch(Dispatchers.Default) {
             compactarBDcorrutina(contexto)
         }
     }
-    private suspend fun comprobarDatos(contexto: Context, fecha: String, borrarPedidosChecked: Boolean, borrarCobrosChecked:Boolean, borrarIncidenciasChecked:Boolean, borrarHojaDeCargaChecked:Boolean) = withContext(Dispatchers.Main) {
-        val dialogo= showProgressDialog(contexto, "Comprobando datos sin exportar")
-        val pendientes = arrayListOf<Int>(comprobarDatosPendientesCabPedidos(fecha), comprobarDatosPendientesCobros(fecha), comprobarDatosPendientesVisitas(fecha))
+
+    private suspend fun comprobarDatos(fecha: String, borrarPedidosChecked: Boolean, borrarCobrosChecked:Boolean, borrarIncidenciasChecked:Boolean, borrarHojaDeCargaChecked:Boolean) = withContext(Dispatchers.Main) {
+        _respuestaDialogo.postValue(Respuesta.cargando("Comprobando datos sin exportar"))
+        delay(500)
+        val pendientes = arrayListOf(borrarDatosUsecase.comprobarDatosPendientesCabPedidos(fecha), borrarDatosUsecase.comprobarDatosPendientesCobros(fecha), borrarDatosUsecase.comprobarDatosPendientesVisitas(fecha))
         var mensaje = ""
 
         if (pendientes[0] != 0) mensaje += " Ventas: ${pendientes[0]}\n"
@@ -107,48 +52,80 @@ class BorrarDatos_ViewModel @Inject constructor(private var borrarDatosUsecase: 
         if (pendientes[2] != 0) mensaje += " Cobros: ${pendientes[2]}\n"
         if (mensaje.isNotEmpty()) {
             withContext(Dispatchers.Main) {
-                showOkDialog(contexto,"Realice una exportación de: \n$mensaje")
+
+                _respuestaDialogo.postValue(Respuesta.ok("Realice una exportación de: \n$mensaje"))
             }
         } else {
-            borrarDatos(contexto,fecha, borrarPedidosChecked, borrarCobrosChecked, borrarHojaDeCargaChecked, borrarIncidenciasChecked)
+            borrarDatos(fecha, borrarPedidosChecked, borrarCobrosChecked, borrarHojaDeCargaChecked, borrarIncidenciasChecked)
         }
-        if (dialogo.isShowing) dialogo.dismiss()
-    }
-    private suspend fun borrarDatos(contexto: Context, fecha:String, borrarPedidosChecked: Boolean, borrarCobrosChecked:Boolean, borrarIncidenciasChecked:Boolean, borrarHojaDeCargaChecked:Boolean): Boolean = coroutineScope {
 
-        val dialogo = showProgressDialog(contexto, "Procesando datos")
+    }
+    private suspend fun borrarDatos(fecha:String, borrarPedidosChecked: Boolean, borrarCobrosChecked:Boolean, borrarIncidenciasChecked:Boolean, borrarHojaDeCargaChecked:Boolean): Boolean = coroutineScope {
+
         var flag = true
-        try {
+
             withContext(Dispatchers.Main) {
-                publishProgress(dialogo, "Realizando copia de seguridad")
+                _respuestaDialogo.postValue(Respuesta.cargando("Realizando copia de seguridad"))
                 crearBackup(BORRADO)
-                publishProgress(dialogo, "Compactando base de datos")
-                compactarBD()
-                if (borrarPedidosChecked && flag) {
-                    publishProgress(dialogo, "Eliminando ventas")
-                    flag = borrarVentasCabPedidos(fecha)
-                    flag= borrarVentasDetPedidos(fecha)
+            }
+
+            withContext(Dispatchers.Main) {
+                delay(1000)
+                _respuestaDialogo.postValue(Respuesta.cargando("Compactando base de datos"))
+                borrarDatosUsecase.compactarBD()
+            }
+
+            if (borrarPedidosChecked && flag) {
+                withContext(Dispatchers.Main) {
+                    delay(1000)
+                    _respuestaDialogo.postValue(Respuesta.cargando("Eliminando ventas"))
+                    flag = borrarDatosUsecase.borrarVentasCabPedidos(fecha) && borrarDatosUsecase.borrarVentasDetPedidos(fecha)
                 }
-                if (borrarCobrosChecked && flag) {
-                    publishProgress(dialogo, "Eliminando cobros")
-                    flag = borrarCobros(fecha)
+            }
+
+            if (borrarCobrosChecked && flag) {
+                withContext(Dispatchers.Main) {
+                    delay(1000)
+                    _respuestaDialogo.postValue(Respuesta.cargando("Eliminando cobros"))
+                    flag = borrarDatosUsecase.borrarCobros(fecha)
                 }
-                if (borrarHojaDeCargaChecked && flag) {
-                    publishProgress(dialogo, "Eliminando hoja de carga")
-                    flag =borrarHojaCarga()
+            }
+
+            if (borrarHojaDeCargaChecked && flag) {
+                withContext(Dispatchers.Main) {
+                    delay(1000)
+                    _respuestaDialogo.postValue(Respuesta.cargando("Eliminando hoja de carga"))
+                    flag = borrarDatosUsecase.borrarHojaCarga()
+                }
+
+
                 }
                 if (borrarIncidenciasChecked && flag) {
-                    publishProgress(dialogo, "Eliminando visitas")
-                    flag =borrarVisitas()
+                    withContext(Dispatchers.Main) {
+                        delay(1000)
+                        _respuestaDialogo.postValue(Respuesta.cargando("Eliminando visitas"))
+                        flag = borrarDatosUsecase.borrarVisitas()
+                    }
+
                 }
-                publishProgress(dialogo, "Eliminando otros datos")
+            withContext(Dispatchers.Main) {
+                delay(1000)
+                _respuestaDialogo.postValue(Respuesta.cargando("Eliminando otros datos"))
                 if (flag) {
-                    flag = borrarCargaCero()
-                    borrarRegistrosSueltos()
+                    flag = borrarDatosUsecase.borrarCargaCero()
+                    borrarDatosUsecase.borrarRegistrosSueltos()
                 }
-                publishProgress(dialogo, "Compactando base de datos")
-                compactarBD()
-                publishProgress(dialogo, "Eliminando ficheros")
+            }
+
+            withContext(Dispatchers.Main) {
+                delay(1000)
+                _respuestaDialogo.postValue(Respuesta.cargando("Compactando base de datos"))
+                borrarDatosUsecase.compactarBD()
+            }
+
+            withContext(Dispatchers.Main) {
+                delay(1000)
+                _respuestaDialogo.postValue(Respuesta.cargando("Eliminando ficheros"))
                 val filesToDelete = listOf(
                     "versionmovil.txt",
                     "existe.txt",
@@ -177,34 +154,28 @@ class BorrarDatos_ViewModel @Inject constructor(private var borrarDatosUsecase: 
                     }
                 }
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            flag = false
-        } finally {
-            dialogo.dismiss()
+        withContext(Dispatchers.Main) {
+            if (flag) {
+                delay(1000)
+                _respuesta.postValue(Respuesta.ok("Datos borrados correctamente"))
+            } else {
+                delay(1000)
+                _respuesta.postValue(Respuesta.error("Error al borrar datos"))
+            }
         }
-
         flag
     }
-    private suspend fun compactarBDcorrutina(contexto: Context) = withContext(Dispatchers.Main) {
-        val dialogo = showProgressDialog(contexto, "Compactando base de datos")
-        var flag = false
+    private suspend fun compactarBDcorrutina(contexto: Context) = coroutineScope {
 
+        _respuestaDialogo.postValue(Respuesta.cargando("Compactando base de datos"))
         try {
-            compactarBD()
-            flag = true
+            delay(1000)
+            borrarDatosUsecase.compactarBD()
+            _respuesta.postValue(Respuesta.ok("Proceso realizado con éxito."))
         } catch (e: Exception) {
-            e.printStackTrace()
-
+            _respuesta.postValue(Respuesta.error("Error al compactar la base de datos"))
         }
 
-        if (flag) {
-            showOkDialog(contexto, "Proceso realizado con éxito.")
-        } else {
-            showOkDialog(contexto, "Proceso no completado. Vuelve a intentarlo.")
-        }
-
-        if (dialogo.isShowing) dialogo.dismiss()
     }
 
     private fun eliminarCarpetaFecha10(carpeta: File) {
@@ -242,9 +213,5 @@ class BorrarDatos_ViewModel @Inject constructor(private var borrarDatosUsecase: 
             e.printStackTrace()
         }
     }
-    private suspend fun publishProgress(dialogo: AlertDialog, message: String) {
-        withContext(Dispatchers.Main) {
-            dialogo.setMessage(message)
-        }
-    }
+
 }

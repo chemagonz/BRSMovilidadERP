@@ -9,6 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.BorrarDatos_ViewModel
+import com.advantys.brsmovilidaderp.Utils.Respuesta
+import com.advantys.brsmovilidaderp.Utils.TipoAlerta
+import com.advantys.brsmovilidaderp.Utils.mostrarSnackbar
+import com.advantys.brsmovilidaderp.Utils.showOkDialog
 import com.advantys.brsmovilidaderp.Utils.showProgressDialog
 import com.advantys.brsmovilidaderp.databinding.ActivityBorrarDatosBinding
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -48,7 +52,18 @@ class BorrarDatos_Activity : AppCompatActivity() , CoroutineScope by MainScope()
         }
 
         borrarDatosviewModel.respuestaDialogo.observe(this,  Observer { respuesta ->
-            showProgressDialog(respuesta.mensaje,1000)
+            when (respuesta.tipo) {
+                Respuesta.Tipo.OK -> showOkDialog(respuesta.mensaje)
+                Respuesta.Tipo.CARGANDO -> showProgressDialog(respuesta.mensaje,1000)
+                else -> Unit
+            }
+        })
+        borrarDatosviewModel.respuesta.observe(this,  Observer { respuesta ->
+            when (respuesta.tipo) {
+                Respuesta.Tipo.OK -> mostrarSnackbar(respuesta.mensaje, TipoAlerta.ok)
+                Respuesta.Tipo.ERROR -> mostrarSnackbar(respuesta.mensaje, TipoAlerta.error)
+                else -> Unit
+            }
         })
 
     }
@@ -60,7 +75,7 @@ class BorrarDatos_Activity : AppCompatActivity() , CoroutineScope by MainScope()
             var date = Date()
             val dateFormat = SimpleDateFormat("yyyy/MM/dd")
             fecha = dateFormat.format(date)
-            borrarDatosviewModel.comprobarDatosCorrutina(this@BorrarDatos_Activity,fecha,binding.borrarPedidos.isChecked,binding.borrarCobros.isChecked,binding.borrarHojadeCarga.isChecked,binding.borrarIncidencias.isChecked)
+            borrarDatosviewModel.comprobarDatosCorrutina(fecha,binding.borrarPedidos.isChecked,binding.borrarCobros.isChecked,binding.borrarHojadeCarga.isChecked,binding.borrarIncidencias.isChecked)
             true
         }
         return true

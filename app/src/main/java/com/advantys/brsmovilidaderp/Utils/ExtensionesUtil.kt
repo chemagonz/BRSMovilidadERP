@@ -2,7 +2,6 @@ package com.advantys.brsmovilidaderp.Utils
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Handler
@@ -17,8 +16,6 @@ import androidx.core.content.ContextCompat
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.databinding.SnackbarBinding
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import java.io.File
 import java.util.Date
 
@@ -108,8 +105,8 @@ import java.util.Date
         return dialog
     }
 
-    fun Activity.showOkDialog(context: Context, message: String): AlertDialog {
-        val dialogBuilder = AlertDialog.Builder(context)
+    fun Activity.showOkDialog(message: String): AlertDialog {
+        val dialogBuilder = AlertDialog.Builder(this)
         dialogBuilder.setMessage(message)
         dialogBuilder.setPositiveButton("OK") { dialog, which ->
             dialog.dismiss()
@@ -118,12 +115,6 @@ import java.util.Date
         dialog.show()
 
         return dialog
-    }
-
-    private suspend fun Activity.publishProgress(dialogo: AlertDialog, message: String) {
-        withContext(Dispatchers.Main) {
-            dialogo.setMessage(message)
-        }
     }
 
     //endregion

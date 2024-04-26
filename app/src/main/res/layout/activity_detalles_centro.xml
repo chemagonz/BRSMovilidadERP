@@ -16,8 +16,8 @@
 
     <LinearLayout
         android:id="@+id/LinearLayout1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="#FFFFFF"
         android:gravity="center_horizontal"
         android:orientation="vertical">
@@ -27,7 +27,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:layout_weight="0"
             android:paddingLeft="6dp"
             android:paddingRight="5dp"
             >
@@ -167,7 +166,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="411dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10sp"
             android:layout_marginBottom="10dp"
@@ -220,7 +219,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="411dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -271,7 +270,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="411dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -331,7 +330,7 @@
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="411dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20sp"
@@ -349,7 +348,7 @@
 
                 <CheckBox
                     android:id="@+id/checkAplicaCargo"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10sp"
                     android:layout_gravity="center"
@@ -359,7 +358,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
@@ -368,7 +367,7 @@
                     android:id="@+id/txtVentaMenorA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5sp"
+                    android:layout_marginStart="10sp"
                     android:layout_marginBottom="10sp"
                     android:clickable="false"
                     android:focusable="false"
@@ -382,13 +381,13 @@
                 </TextView>
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/customOutlineText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="40sp">
 
                     <EditText
                         android:id="@+id/edVentaMenorA"
-                        android:layout_width="107dp"
+                        android:layout_width="match_parent"
                         android:layout_height="46dp"
                         android:layout_marginStart="30sp"
                         android:layout_marginRight="12sp"
