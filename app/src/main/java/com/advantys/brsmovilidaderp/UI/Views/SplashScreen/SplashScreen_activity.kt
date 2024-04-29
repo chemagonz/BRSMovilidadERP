@@ -10,10 +10,13 @@ import android.os.Environment.getExternalStorageDirectory
 import android.os.Handler
 import android.os.Looper
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.advantys.brsmovilidaderp.UI.ViewModels.SplashScreen_ViewModel
 import com.advantys.brsmovilidaderp.UI.Views.Clientes.Clientes_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Licencia.Licencia_Activity
+import com.advantys.brsmovilidaderp.UI.Views.Novedades.Novedades_Activity
 import com.advantys.brsmovilidaderp.Utils.BDUtil
 import com.advantys.brsmovilidaderp.Utils.FechaHoy
 import com.advantys.brsmovilidaderp.Utils.INICIO
@@ -32,6 +35,9 @@ import javax.inject.Inject
 class SplashScreen_activity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashScreenBinding
     @Inject lateinit var bdUtil: BDUtil
+    var LISTA_VERSIONES: Int = 1
+
+    val splashScreenviewmodel: SplashScreen_ViewModel by viewModels()
 
     private val responseLauncher= registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ activityResult->
 
@@ -39,6 +45,7 @@ class SplashScreen_activity : AppCompatActivity() {
            EntrarAlPrograma()
         }
     }
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +54,8 @@ class SplashScreen_activity : AppCompatActivity() {
 
 
         // Modificar versión de la aplicación
-        binding.txtVersion.text = "Version 1.0"
+        binding.txtVersion.text = " v."
+
 
         //Verificar permisos
         Handler(Looper.getMainLooper()).postDelayed({
@@ -58,6 +66,19 @@ class SplashScreen_activity : AppCompatActivity() {
                 continuarDespuesPermisos()
             }
         }, 500)
+
+        //Posible forma de comprobar permisos
+
+//        fun iniciarProceso() {
+//            lifecycleScope.launch {
+//                // Verificar permisos
+//                if (!PermisosUtils.verificarPermisosAlmacenamiento(this@SplashScreen_activity)) {
+//                    PermisosUtils.solicitarPermisosAlmacenamiento(this@SplashScreen_activity)
+//                } else {
+//                    continuarDespuesPermisos()
+//                }
+//            }
+//        }
     }
 
     //Si no tiene los permisos, salta aviso para permitir o denegar.
@@ -100,7 +121,10 @@ class SplashScreen_activity : AppCompatActivity() {
                 bdUtil.actualizarBD()
                 if (ComprobarLicencia()) {
                     GuardarLicenciaEnXML()
-                    EntrarAlPrograma()
+                    if(LISTA_VERSIONES != 1){
+                        antesCargarPrograma()
+                    }else
+                        EntrarAlPrograma()
                 } else {
                     entrarLicenciaActivity()
                 }
@@ -124,7 +148,7 @@ class SplashScreen_activity : AppCompatActivity() {
 //        licencia = splashViewmodel.ObtenerLicencia()
 //        if (ValidarLicencia(licencia))
 //            ok = true
-
+//
         return ok
     }
 
@@ -140,8 +164,22 @@ class SplashScreen_activity : AppCompatActivity() {
     private fun GuardarLicenciaEnXML() {
     }
 
-    private fun EntrarAlPrograma() {
+    private fun antesCargarPrograma(): Boolean{
+        var flag = false
+        if(LISTA_VERSIONES != 1){
+            val intent = Intent(this, Novedades_Activity::class.java)
+            responseLauncher.launch(intent)
+            flag = true
+        }
+        else{
+            flag = false
+        }
+        return flag
+    }
+
+     fun EntrarAlPrograma() {
         //idUtil.escribirIDPreferencias
+
         YaCargado = true
         //ComprobarConfiguracion
         crearBackup(INICIO)

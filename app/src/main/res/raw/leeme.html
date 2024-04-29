@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cambios BRSERP</title>
+    <meta charset="utf-8" />
+    <meta http-equiv=”Cache-Control” content=”no-cache” />
+    <style type="text/css">
+        div {
+            font-family: 'Roboto Condensed', Tauri, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, SimSun, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Segoe UI', AppleSDGothicNeo-Medium, 'Malgun Gothic', Verdana, Tahoma, sans-serif;
+            overflow-x: hidden;
+            overflow-y: auto;
+            margin: 0px !important;
+            padding: 5px 20px 0px !important;
+            color: rgb(34, 34, 34);
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+            background: rgb(255, 255, 255);
+        }
+
+        a {
+            text-decoration: none;
+            vertical-align: baseline;
+            color: rgb(50, 105, 160);
+        }
+
+        h1 {
+            clear: both;
+            font-size: 2.2em;
+            font-weight: bold;
+            margin: 1.5em 0px 1em;
+            margin-top: 0px;
+        }
+
+        h2 {
+            clear: both;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 1.275em 0px 0px;
+        }
+
+        h2,
+        h4 {
+            display: inline-block;
+        }
+
+        h4 {
+            margin: 1.275em 0px 0px;
+        }
+
+        ul li {
+            display: list-item;
+        }
+
+        .general,
+        .modulo {
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        .modulo {
+            line-height: 1.4em;
+        }
+
+        .general {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .fecha {
+            font-size: .5em;
+            font-weight: bold;
+            color: rgb(119, 119, 119);
+            margin: 1.275em 0px 0px;
+        }
+
+            .fecha::before {
+                content: "(";
+            }
+
+            .fecha::after {
+                content: ")";
+            }
+
+        .vermodulo {
+            font-size: .75em;
+            font-weight: bold;
+            color: rgb(119, 119, 119);
+            margin: 1.275em 0px 0px;
+        }
+
+        .aviso h1 {
+            margin-top: 1.275em;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<!-- EJEMPLO DE ESTRUCTURA
+     <div id="06010532" class="version">
+         <h2>Versión 06.01.05.32 <span class="vermodulo">05/10/2023</span></h2>
+         <ul class="general">
+             <li>
+                 <h4>General</h4>
+                 <ul class="modulo">
+                     <li>CORREGIDO:...</li>
+                 </ul>
+             </li>
+             <li>
+                 <h4>Preventa</h4>
+                 <ul class="modulo">
+                     <li>CORREGIDO:...</li>
+                 </ul>
+             </li>
+             <li>
+                 <h4>Autoventa</h4>
+                 <ul class="modulo">
+                     <li>REVISADO:...</li>
+                 </ul>
+             </li>
+             <li>
+                 <h4>Reparto</h4>
+                 <ul class="modulo">
+                     <li>REVISADO:...</li>
+                 </ul>
+             </li>
+         </ul>
+     </div>-->
+
+<body>
+<div>
+    <h1 id="historico">HISTÓRICO DE CAMBIOS</h1>
+
+    <div id="06030523" class="version">
+        <h2>Versión 06.03.05.23 <span class="vermodulo"></span></h2>
+        <ul class="general">
+            <li>
+                <h4>General</h4>
+                <ul class="modulo">
+                    <li>NUEVO: Mejora de la pantalla "Buscar clientes".</li>
+                    <li>NUEVO: Adaptación de la aplicación a Android 14.</li>
+                    <li>CORREGIDO: Problema de redondeo del en el punto verde.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div id="06030522" class="version">
+        <h2>Versión 06.03.05.22 <span class="vermodulo"></span></h2>
+        <ul class="general">
+            <li>
+                <h4>General</h4>
+                <ul class="modulo">
+                    <li>NUEVO: Pantalla informativa que incluye las novedades de la última versión.</li>
+                    <li>NUEVO: Permitir consultar tarifas mientras se realiza una venta.</li>
+                    <li>NUEVO: Se mejora la importación/exportación de datos para que se pueda realizar por un puerto diferente al puerto 21.</li>
+                    <li>CORREGIDO: En la liquidación de cobros diaria se muestra los cobros realizados en ese mismo día, antes se motraban todos.</li>
+                    <li>CORREGIDO: Duplicidad de líneas de regalo al aplicar promociones múltiples.</li>
+                    <li>CORREGIDO: Problemas al salir de una venta (mensaje “Espere por favor...”). </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    var getElementsByClassName = function (className, tag, elm) {
+        if (document.getElementsByClassName) {
+            getElementsByClassName = function (className, tag, elm) {
+                elm = elm || document;
+                var elements = elm.getElementsByClassName(className),
+                    nodeName = (tag) ? new RegExp("\\b" + tag + "\\b", "i") : null,
+                    returnElements = [],
+                    current;
+                for (var i = 0, il = elements.length; i < il; i += 1) {
+                    current = elements[i];
+                    if (!nodeName || nodeName.test(current.nodeName)) {
+                        returnElements.push(current);
+                    }
+                }
+                return returnElements;
+            };
+        }
+        else if (document.evaluate) {
+            getElementsByClassName = function (className, tag, elm) {
+                tag = tag || "*";
+                elm = elm || document;
+                var classes = className.split(" "),
+                    classesToCheck = "",
+                    xhtmlNamespace = "http://www.w3.org/1999/xhtml",
+                    namespaceResolver = (document.documentElement.namespaceURI === xhtmlNamespace) ? xhtmlNamespace : null,
+                    returnElements = [],
+                    elements,
+                    node;
+                for (var j = 0, jl = classes.length; j < jl; j += 1) {
+                    classesToCheck += "[contains(concat(' ', @class, ' '), ' " + classes[j] + " ')]";
+                }
+                try {
+                    elements = document.evaluate(".//" + tag + classesToCheck, elm, namespaceResolver, 0, null);
+                }
+                catch (e) {
+                    elements = document.evaluate(".//" + tag + classesToCheck, elm, null, 0, null);
+                }
+                while ((node = elements.iterateNext())) {
+                    returnElements.push(node);
+                }
+                return returnElements;
+            };
+        }
+        else {
+            getElementsByClassName = function (className, tag, elm) {
+                tag = tag || "*";
+                elm = elm || document;
+                var classes = className.split(" "),
+                    classesToCheck = [],
+                    elements = (tag === "*" && elm.all) ? elm.all : elm.getElementsByTagName(tag),
+                    current,
+                    returnElements = [],
+                    match;
+                for (var k = 0, kl = classes.length; k < kl; k += 1) {
+                    classesToCheck.push(new RegExp("(^|\\s)" + classes[k] + "(\\s|$)"));
+                }
+                for (var l = 0, ll = elements.length; l < ll; l += 1) {
+                    current = elements[l];
+                    match = false;
+                    for (var m = 0, ml = classesToCheck.length; m < ml; m += 1) {
+                        match = classesToCheck[m].test(current.className);
+                        if (!match) {
+                            break;
+                        }
+                    }
+                    if (match) {
+                        returnElements.push(current);
+                    }
+                }
+                return returnElements;
+            };
+        }
+        return getElementsByClassName(className, tag, elm);
+    };
+
+    function findGetParameter(parameterName) {
+        var result = null,
+            tmp = [];
+        var items = location.search.substr(1).split("&");
+        for (var index = 0; index < items.length; index++) {
+            tmp = items[index].split("=");
+            if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+        }
+        return result;
+    }
+
+    //var urlParams = new URLSearchParams(window.location.search);
+    //var version = urlParams.get('version');
+    var version = findGetParameter('version');
+    if (version != null) {
+        var historico = document.getElementById("historico").style.display = "none";
+        var actualizaciones = document.getElementById("actualizaciones").style.display = "block";
+        var versiones = getElementsByClassName("version");
+        for (index = 0, len = versiones.length; index < len; ++index) {
+            if (versiones[index].id <= version)
+                versiones[index].style.display = "none";
+        }
+    } else {
+        var historico = document.getElementById("historico").style.display = "block";
+        var actualizaciones = document.getElementById("actualizaciones").style.display = "none";
+    }
+</script>
+</body>
+
+</html>
