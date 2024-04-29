@@ -66,19 +66,19 @@ class BorrarDatos_ViewModel @Inject constructor(private var borrarDatosUsecase: 
 
         var flag = true
 
-            withContext(Dispatchers.Main) {
+            withContext(Dispatchers.IO) {
                 _respuestaDialogo.postValue(Respuesta.cargando("Realizando copia de seguridad"))
                 crearBackup(BORRADO)
             }
 
-            withContext(Dispatchers.Main) {
+            withContext(Dispatchers.IO) {
                 delay(1000)
                 _respuestaDialogo.postValue(Respuesta.cargando("Compactando base de datos"))
                 borrarDatosUsecase.compactarBD()
             }
 
             if (borrarPedidosChecked && flag) {
-                withContext(Dispatchers.Main) {
+                withContext(Dispatchers.IO) {
                     delay(1000)
                     _respuestaDialogo.postValue(Respuesta.cargando("Eliminando ventas"))
                     flag = borrarDatosUsecase.borrarVentasCabPedidos(fecha) && borrarDatosUsecase.borrarVentasDetPedidos(fecha)
@@ -86,7 +86,7 @@ class BorrarDatos_ViewModel @Inject constructor(private var borrarDatosUsecase: 
             }
 
             if (borrarCobrosChecked && flag) {
-                withContext(Dispatchers.Main) {
+                withContext(Dispatchers.IO) {
                     delay(1000)
                     _respuestaDialogo.postValue(Respuesta.cargando("Eliminando cobros"))
                     flag = borrarDatosUsecase.borrarCobros(fecha)
@@ -94,7 +94,7 @@ class BorrarDatos_ViewModel @Inject constructor(private var borrarDatosUsecase: 
             }
 
             if (borrarHojaDeCargaChecked && flag) {
-                withContext(Dispatchers.Main) {
+                withContext(Dispatchers.IO) {
                     delay(1000)
                     _respuestaDialogo.postValue(Respuesta.cargando("Eliminando hoja de carga"))
                     flag = borrarDatosUsecase.borrarHojaCarga()
@@ -103,14 +103,14 @@ class BorrarDatos_ViewModel @Inject constructor(private var borrarDatosUsecase: 
 
                 }
                 if (borrarIncidenciasChecked && flag) {
-                    withContext(Dispatchers.Main) {
+                    withContext(Dispatchers.IO) {
                         delay(1000)
                         _respuestaDialogo.postValue(Respuesta.cargando("Eliminando visitas"))
                         flag = borrarDatosUsecase.borrarVisitas()
                     }
 
                 }
-            withContext(Dispatchers.Main) {
+            withContext(Dispatchers.IO) {
                 delay(1000)
                 _respuestaDialogo.postValue(Respuesta.cargando("Eliminando otros datos"))
                 if (flag) {
@@ -119,13 +119,13 @@ class BorrarDatos_ViewModel @Inject constructor(private var borrarDatosUsecase: 
                 }
             }
 
-            withContext(Dispatchers.Main) {
+            withContext(Dispatchers.IO) {
                 delay(1000)
                 _respuestaDialogo.postValue(Respuesta.cargando("Compactando base de datos"))
                 borrarDatosUsecase.compactarBD()
             }
 
-            withContext(Dispatchers.Main) {
+            withContext(Dispatchers.IO) {
                 delay(1000)
                 _respuestaDialogo.postValue(Respuesta.cargando("Eliminando ficheros"))
                 val filesToDelete = listOf(
@@ -156,7 +156,7 @@ class BorrarDatos_ViewModel @Inject constructor(private var borrarDatosUsecase: 
                     }
                 }
             }
-        withContext(Dispatchers.Main) {
+        withContext(Dispatchers.IO) {
             if (flag) {
                 delay(1000)
                 _respuesta.postValue(Respuesta.ok("Datos borrados correctamente"))
