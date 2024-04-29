@@ -10,14 +10,12 @@ class Licencia_Dao  @Inject constructor(private val databaseManager: BDUtil){
     //INSERT LICENCIA
     fun insertLicencia(licencia: Licencia_Entity): Boolean{
         var ok = false
-
         try {
             databaseManager.insert(Licencia_Schema.TABLE_NAME, licencia.toContentValues())
             ok = true
         }catch(e: Exception){
             e.printStackTrace()
         }
-
         return ok
     }
     //DELETE LICENCIA YA EXISTENTE

@@ -1,7 +1,7 @@
 package com.advantys.brsmovilidaderp.Domain.UseCases
 
-import com.advantys.brsmovilidaderp.Data.DataBase.Entities.Licencia_Entity
 import com.advantys.brsmovilidaderp.Data.Repositories.Licencia_Repository
+import com.advantys.brsmovilidaderp.Domain.Models.Licencia
 import com.advantys.brsmovilidaderp.Utils.EncriptarUtils
 import java.util.Locale
 import javax.inject.Inject
@@ -13,7 +13,7 @@ class Licencia_UseCase @Inject constructor (private val repository: Licencia_Rep
 //        return licencia?: throw NoSuchElementException("Error")
 //    }
 
-    suspend fun insertLicencia(licencia: Licencia_Entity): Boolean{
+    suspend fun insertLicencia(licencia: Licencia): Boolean{
        return repository.insertLicencia(licencia)
     }
 
@@ -21,7 +21,7 @@ class Licencia_UseCase @Inject constructor (private val repository: Licencia_Rep
         val licencia= repository.deleteLicencia()
         return licencia?: throw NoSuchElementException("Error")
     }
-   suspend fun verificarLicencia(licencia: Licencia_Entity):Boolean{
+   suspend fun verificarLicencia(licencia: Licencia):Boolean{
        return if(licencia.licencia?.uppercase().equals(ObtenerLicencia(licencia.idenProg?.uppercase()))) true
        else false
     }

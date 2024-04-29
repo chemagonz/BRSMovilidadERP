@@ -38,9 +38,7 @@ data class Licencia_Entity(
         return values
     }
 }
-
-
-fun Licencia.toEntity() = Licencia_Entity(idenDisp, idenProg, licencia, cliente, numLicencia)
+    fun Licencia.toEntity() = Licencia_Entity(idenDisp, idenProg, licencia, cliente, numLicencia)
 
 
 

@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.advantys.brsmovilidaderp.Data.DataBase.Entities.Licencia_Entity
 import com.advantys.brsmovilidaderp.Domain.Models.Licencia
 import com.advantys.brsmovilidaderp.Domain.UseCases.Licencia_UseCase
 import com.advantys.brsmovilidaderp.Utils.Respuesta
@@ -32,7 +31,7 @@ class Licencia_ViewModel @Inject constructor(private var licenciaUsecase: Licenc
 //        }
 //    }
 
-   suspend fun insertLicencia(licencia: Licencia_Entity): Boolean {
+   suspend fun insertLicencia(licencia: Licencia): Boolean {
         viewModelScope.launch(Dispatchers.Default) {
             licenciaUsecase.insertLicencia(licencia)
         }
@@ -53,7 +52,7 @@ class Licencia_ViewModel @Inject constructor(private var licenciaUsecase: Licenc
 //        return ok
 //    }
 
-    fun aceptar(licencia: Licencia_Entity): Boolean {
+    fun aceptar(licencia: Licencia): Boolean {
         var ok = false
 
         _respuestaDialogo.postValue(Respuesta.cargando("Verificando licencia"))
