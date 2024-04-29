@@ -12,7 +12,7 @@ import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.advantys.brsmovilidaderp.Data.DataBase.Entities.Licencia_Entity
+import com.advantys.brsmovilidaderp.Domain.Models.Licencia
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Licencia_ViewModel
 import com.advantys.brsmovilidaderp.Utils.Respuesta
@@ -88,7 +88,7 @@ class Licencia_Activity : AppCompatActivity() {
     @SuppressLint("HardwareIds")
     private fun aceptarLicencia() {
 
-        val licencia = Licencia_Entity()
+        val licencia = Licencia()
         licencia.cliente = binding.identificadorClienteLicencia.text.toString()
         licencia.numLicencia = binding.numLicencia.text.toString()
         licencia.idenProg = licencia.cliente + licencia.numLicencia + binding.identificadorIDENDISP.text.toString() + "ILC9TJWQBO9C54WCKAZV0H1P5OWAFR0QXPMDUOAH"
