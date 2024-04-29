@@ -1,6 +1,9 @@
 package com.advantys.brsmovilidaderp.Utils
 
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.os.Environment
+import com.advantys.brsmovilidaderp.BRSMovilidadERPApp
 import java.io.File
 import java.text.DateFormat
 import java.text.ParseException
@@ -64,16 +67,16 @@ var diasSeleccionados: MutableMap<Dias, Boolean> = mutableMapOf(
 
     //Obtener versión de la aplicación instalada
 
-//    fun obtenerVersionApp():String{
-//        return try {
-//            val pinfo: PackageInfo = BRSMovilidadERPApp.getContext().packageManager
-//                .getPackageInfo(BRSMovilidadERPApp.getContext().packageName, 0)
-//            pinfo.versionName
-//        } catch (e: PackageManager.NameNotFoundException) {
-//            e.printStackTrace()
-//            ""
-//        }
-//    }
+    fun obtenerVersionApp():String{
+        return try {
+            val pinfo: PackageInfo = BRSMovilidadERPApp.getContext().packageManager
+                .getPackageInfo(BRSMovilidadERPApp.getContext().packageName, 0)
+            pinfo.versionName
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+            ""
+        }
+    }
 
 
 
