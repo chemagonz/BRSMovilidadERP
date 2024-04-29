@@ -24,6 +24,7 @@ import com.advantys.brsmovilidaderp.Utils.PermisosUtils
 import com.advantys.brsmovilidaderp.Utils.Ruta
 import com.advantys.brsmovilidaderp.Utils.YaCargado
 import com.advantys.brsmovilidaderp.Utils.crearBackup
+import com.advantys.brsmovilidaderp.Utils.obtenerVersionApp
 import com.advantys.brsmovilidaderp.databinding.ActivitySplashScreenBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
@@ -35,7 +36,8 @@ import javax.inject.Inject
 class SplashScreen_activity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashScreenBinding
     @Inject lateinit var bdUtil: BDUtil
-    var LISTA_VERSIONES: Int = 1
+
+
 
     val splashScreenviewmodel: SplashScreen_ViewModel by viewModels()
 
@@ -54,7 +56,7 @@ class SplashScreen_activity : AppCompatActivity() {
 
 
         // Modificar versión de la aplicación
-        binding.txtVersion.text = " v."
+        binding.txtVersion.text = " v. " + obtenerVersionApp()
 
 
         //Verificar permisos
@@ -110,7 +112,7 @@ class SplashScreen_activity : AppCompatActivity() {
         }
     }
 
-    private fun ProcesoInicio() {
+    fun ProcesoInicio() {
         //Si la ruta y base de datos son correctas
         if (ObtenerRuta()) {
             FechaHoy = Date()
@@ -121,7 +123,7 @@ class SplashScreen_activity : AppCompatActivity() {
                 bdUtil.actualizarBD()
                 if (ComprobarLicencia()) {
                     GuardarLicenciaEnXML()
-                    if(LISTA_VERSIONES != 1){
+                    if(obtenerVersionApp()!= "1.0"){
                         antesCargarPrograma()
                     }else
                         EntrarAlPrograma()
@@ -166,7 +168,7 @@ class SplashScreen_activity : AppCompatActivity() {
 
     private fun antesCargarPrograma(): Boolean{
         var flag = false
-        if(LISTA_VERSIONES != 1){
+        if(obtenerVersionApp() != "1.0"){
             val intent = Intent(this, Novedades_Activity::class.java)
             responseLauncher.launch(intent)
             flag = true

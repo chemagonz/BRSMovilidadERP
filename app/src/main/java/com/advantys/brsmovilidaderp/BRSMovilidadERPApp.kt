@@ -7,7 +7,7 @@ import dagger.hilt.android.HiltAndroidApp
 @HiltAndroidApp
 class BRSMovilidadERPApp:Application() {
     companion object {
-        private val sApplication: Application? = null
+        private var sApplication: Application? = null
         fun getApplication(): Application? {
             return sApplication
         }
@@ -16,4 +16,9 @@ class BRSMovilidadERPApp:Application() {
             return getApplication()!!.applicationContext
         }
     }
+    override fun onCreate() {
+        super.onCreate()
+        sApplication = this
+    }
+
 }

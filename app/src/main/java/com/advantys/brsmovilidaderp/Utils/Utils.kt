@@ -68,17 +68,17 @@ var diasSeleccionados: MutableMap<Dias, Boolean> = mutableMapOf(
 
     //Obtener versión de la aplicación instalada
 
-    fun obtenerVersionApp():String{
+    fun obtenerVersionApp(): String {
         return try {
-            val pinfo: PackageInfo = BRSMovilidadERPApp.getContext().packageManager
-                .getPackageInfo(BRSMovilidadERPApp.getContext().packageName, 0)
+            val context = BRSMovilidadERPApp.getContext()
+            val pinfo: PackageInfo = context.packageManager
+                .getPackageInfo(context.packageName, 0)
             pinfo.versionName
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
             ""
         }
     }
-
     //Función para validar contraseña introducida
     fun validarPassword(password: String): Boolean {
         val sdf = SimpleDateFormat("ddMMyy", Locale.getDefault())
