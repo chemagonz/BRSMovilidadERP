@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class Tarifas_Repository @Inject constructor(private val tarifas_Dao: Tarifas_Dao) {
 
-    suspend fun getNombreTarifa(tarifa: String?): List<Tarifa> {
+    suspend fun getNombreTarifa(tarifa: Int?): List<Tarifa> {
         val response: List<Tarifas_Entity?> = tarifas_Dao.getNombreTarifa(tarifa)
         return response.filterNotNull().map { it.toDomain() }
     }

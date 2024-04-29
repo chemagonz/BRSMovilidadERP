@@ -21,11 +21,11 @@ class Licencia_UseCase @Inject constructor (private val repository: Licencia_Rep
         val licencia= repository.deleteLicencia()
         return licencia?: throw NoSuchElementException("Error")
     }
-    fun verificarLicencia(licencia: Licencia_Entity):Boolean{
+   suspend fun verificarLicencia(licencia: Licencia_Entity):Boolean{
        return if(licencia.licencia?.uppercase().equals(ObtenerLicencia(licencia.idenProg?.uppercase()))) true
        else false
     }
-    fun ObtenerLicencia(codigo: String?): String {
+   suspend fun ObtenerLicencia(codigo: String?): String {
         var licencia = ""
         val aux = StringBuilder(codigo)
         licencia = EncriptarUtils.CRC32(aux.reverse().toString())

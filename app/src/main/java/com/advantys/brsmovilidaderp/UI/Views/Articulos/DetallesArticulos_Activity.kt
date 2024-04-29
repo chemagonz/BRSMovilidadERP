@@ -61,8 +61,8 @@ class DetallesArticulos_Activity : AppCompatActivity() {
 //            binding.recyclerViewTarifaArticulos.adapter= Tarifas_Adapter(it, tarifaViewmodel)
 //        })
 
-//        tarifaViewmodel.onCreate()
-        val nombreTarifa= intent.getStringExtra("nombre")
+
+        val nombreTarifa= intent.getIntExtra("numTarifa", 0)
         tarifaViewmodel.onCreate(nombreTarifa)
     }
     //Funcion para manejar botones

@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class Tarifa_ViewModel @Inject constructor(private val tarifa_UseCase: Tarifa_UseCase) : ViewModel() {
     val tarifasModel= MutableLiveData<List<Tarifa>>()
-    fun onCreate(tarifa:String?){
+    fun onCreate(tarifa:Int?){
         viewModelScope.launch(Dispatchers.Default) {
             val resultado= tarifa_UseCase(tarifa)
             if(!resultado.isNullOrEmpty()) tarifasModel.postValue(resultado)
@@ -23,6 +23,6 @@ class Tarifa_ViewModel @Inject constructor(private val tarifa_UseCase: Tarifa_Us
 
     fun GetNombre(item: Tarifa?){
         val intent= Intent()
-        intent.putExtra("nombre", item?.nombre)
+        intent.putExtra("numTarifa", item?.numTarifa)
     }
 }

@@ -1,5 +1,6 @@
 package com.advantys.brsmovilidaderp.UI.ViewModels
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -60,6 +61,7 @@ class BorrarDatos_ViewModel @Inject constructor(private var borrarDatosUsecase: 
         }
 
     }
+    @SuppressLint("SuspiciousIndentation")
     private suspend fun borrarDatos(fecha:String, borrarPedidosChecked: Boolean, borrarCobrosChecked:Boolean, borrarIncidenciasChecked:Boolean, borrarHojaDeCargaChecked:Boolean): Boolean = coroutineScope {
 
         var flag = true
