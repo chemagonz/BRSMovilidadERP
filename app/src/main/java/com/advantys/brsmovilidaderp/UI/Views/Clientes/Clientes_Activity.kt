@@ -37,6 +37,7 @@ import com.advantys.brsmovilidaderp.Utils.mostrar
 import com.advantys.brsmovilidaderp.Utils.mostrarSnackbar
 import com.advantys.brsmovilidaderp.Utils.orderPor
 import com.advantys.brsmovilidaderp.Utils.passwordDialogo
+import com.advantys.brsmovilidaderp.Utils.validarPassword
 import com.advantys.brsmovilidaderp.databinding.ActivityClientesBinding
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -130,7 +131,7 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             }
             R.id.ajustesAvanzados->{
                 passwordDialogo("Inserte la contraseña para entrar") { password ->
-                    if (clientesViewModel.validarPassword(password)) {
+                    if (validarPassword(password)) {
                         val intent = Intent(this, AjustesAvanzados_Activity::class.java)
                         startActivity(intent)
                     } else {

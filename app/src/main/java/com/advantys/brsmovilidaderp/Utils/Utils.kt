@@ -9,6 +9,7 @@ import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 
 var diasSeleccionados: MutableMap<Dias, Boolean> = mutableMapOf(
@@ -76,6 +77,14 @@ var diasSeleccionados: MutableMap<Dias, Boolean> = mutableMapOf(
             e.printStackTrace()
             ""
         }
+    }
+
+    //Función para validar contraseña introducida
+    fun validarPassword(password: String): Boolean {
+        val sdf = SimpleDateFormat("ddMMyy", Locale.getDefault())
+        val currentDate = sdf.format(Date())
+        val expectedPassword = "$currentDate${10}"
+        return password == expectedPassword
     }
 
 

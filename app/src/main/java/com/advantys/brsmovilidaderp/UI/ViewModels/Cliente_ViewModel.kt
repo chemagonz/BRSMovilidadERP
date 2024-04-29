@@ -15,9 +15,6 @@ import com.advantys.brsmovilidaderp.Utils.OrdenarPor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
@@ -70,15 +67,4 @@ class Cliente_ViewModel @Inject constructor(private val ClienteUsecase: Cliente_
         intent.putExtra("numClientes", item?.numClientes)
         context.startActivity(intent)
     }
-
-    //Función para validar contraseña que se tiene que introducir previamente para acceder a la pantalla ajustes avanzados
-     fun validarPassword(password: String): Boolean {
-        val sdf = SimpleDateFormat("ddMMyy", Locale.getDefault())
-        val currentDate = sdf.format(Date())
-        val expectedPassword = "$currentDate${10}"
-        return password == expectedPassword
-    }
-
-
-
 }
