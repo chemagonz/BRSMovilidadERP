@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.transition.TransitionManager
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.databinding.ActivityConfiguracionBinding
 
@@ -52,21 +50,24 @@ class Configuracion_Activity : AppCompatActivity() {
         layoutPairs.addAll(pairs)
         layoutPairs.forEach { (layout, hiddenLayout) ->
             layout.setOnClickListener {
-                val isExpanded = hiddenLayout.visibility == View.VISIBLE
-                TransitionManager.beginDelayedTransition(binding.root as ViewGroup)
-                layout.isSelected = !isExpanded
-                toggleVisibility(hiddenLayout, !isExpanded)
-                toggleArrow(!isExpanded)
+                val expand = hiddenLayout.visibility != View.VISIBLE
+                toggleVisibility(hiddenLayout, expand)
+                toggleArrow(expand)
             }
         }
     }
 
     private fun toggleVisibility(hiddenLayout: View, expand: Boolean) {
-        hiddenLayout.visibility = if (expand) View.VISIBLE else View.GONE
+        if (expand) {
+            hiddenLayout.visibility = View.VISIBLE
+        } else {
+            TransitionManager.beginDelayedTransition(binding.scrollView)
+            binding.scrollView.postDelayed({ hiddenLayout.visibility = View.GONE }, 300)
+        }
     }
 
     private fun toggleArrow(expand: Boolean) {
         val drawableRes = if (expand) R.drawable.expandable_flecha2 else R.drawable.expandable_flecha
-        binding.flechaCardview.setImageDrawable(ContextCompat.getDrawable(this, drawableRes))
+        binding.flechaCardview.setImageResource(drawableRes)
     }
 }
