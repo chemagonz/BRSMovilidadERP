@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.advantys.brsmovilidaderp.UI.ViewModels.SplashScreen_ViewModel
 import com.advantys.brsmovilidaderp.UI.Views.Clientes.Clientes_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Licencia.Licencia_Activity
-import com.advantys.brsmovilidaderp.UI.Views.Novedades.Novedades_Activity
 import com.advantys.brsmovilidaderp.Utils.BDUtil
 import com.advantys.brsmovilidaderp.Utils.FechaHoy
 import com.advantys.brsmovilidaderp.Utils.INICIO
@@ -55,8 +54,7 @@ class SplashScreen_activity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        // Modificar versión de la aplicación
-        binding.txtVersion.text = " v. " + obtenerVersionApp()
+
 
 
         //Verificar permisos
@@ -123,10 +121,7 @@ class SplashScreen_activity : AppCompatActivity() {
                 bdUtil.actualizarBD()
                 if (ComprobarLicencia()) {
                     GuardarLicenciaEnXML()
-                    if(obtenerVersionApp()!= "1.0"){
-                        antesCargarPrograma()
-                    }else
-                        EntrarAlPrograma()
+                    EntrarAlPrograma()
                 } else {
                     entrarLicenciaActivity()
                 }
@@ -165,29 +160,21 @@ class SplashScreen_activity : AppCompatActivity() {
 
     private fun GuardarLicenciaEnXML() {
     }
+    private fun cargarClientesenLista(){
+        // Modificar versión de la aplicación
+        binding.txtVersion.text = " v. " + obtenerVersionApp()
 
-    private fun antesCargarPrograma(): Boolean{
-        var flag = false
-        if(obtenerVersionApp() != "1.0"){
-            val intent = Intent(this, Novedades_Activity::class.java)
-            responseLauncher.launch(intent)
-            flag = true
-        }
-        else{
-            flag = false
-        }
-        return flag
     }
 
      fun EntrarAlPrograma() {
         //idUtil.escribirIDPreferencias
-
-        YaCargado = true
+         YaCargado = true
         //ComprobarConfiguracion
-        crearBackup(INICIO)
-        val intent = Intent(this, Clientes_Activity::class.java)
-        startActivity(intent)
-        finish()
+         crearBackup(INICIO)
+         cargarClientesenLista()
+         val intent = Intent(this, Clientes_Activity::class.java)
+         startActivity(intent)
+         finish()
     }
 
     //Comprobar si existe carpetas de la aplicación y su base de datos

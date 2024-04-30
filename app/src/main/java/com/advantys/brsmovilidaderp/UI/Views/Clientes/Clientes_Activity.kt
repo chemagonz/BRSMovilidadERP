@@ -1,7 +1,9 @@
 package com.advantys.brsmovilidaderp.UI.Views.Clientes
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.Rect
 import android.os.Bundle
@@ -14,6 +16,7 @@ import androidx.activity.result.contract.ActivityResultContracts.StartActivityFo
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
@@ -29,6 +32,7 @@ import com.advantys.brsmovilidaderp.UI.Views.Configuracion.Configuracion_Activit
 import com.advantys.brsmovilidaderp.UI.Views.Exportar.Exportar_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Importar.Importar_Activity
 import com.advantys.brsmovilidaderp.UI.Views.MultiClientes.MultiClientes_Activity
+import com.advantys.brsmovilidaderp.UI.Views.Novedades.Novedades_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Rutas.Rutas_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Series.Series_Activity
 import com.advantys.brsmovilidaderp.Utils.MostrarPor
@@ -107,6 +111,8 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             binding.recyclerviewClientes.adapter = adapterCliente
 
         })
+
+        comprobarNovedadesVersion()
 
     }
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -272,6 +278,27 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             }
         }
         popupMenu.show()
+    }
+    private fun comprobarNovedadesVersion() {
+        val sharedPreferences = applicationContext.getSharedPreferences("Preferencias", Context.MODE_PRIVATE)
+        val versionGuardada = sharedPreferences.getString("Version", "")
+        val versionActual = try {
+            packageManager.getPackageInfo(packageName, 0).versionName
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+            ""
+        }
+
+        if (versionGuardada != versionActual) {
+            sharedPreferences.edit {
+                putString("Version", versionActual)
+                apply()
+            }
+
+            val intent = Intent(this, Novedades_Activity::class.java)
+            startActivity(intent)
+
+        }
     }
 
     private fun funcionBottomNavigationView() {
