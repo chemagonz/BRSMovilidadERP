@@ -1,7 +1,23 @@
 package com.advantys.brsmovilidaderp.Data.DataBase.Daos
 
+import com.advantys.brsmovilidaderp.Data.DataBase.Entities.MultiClientes_Entity
+import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.MultiClientes_Schema
 import com.advantys.brsmovilidaderp.Utils.BDUtil
 import javax.inject.Inject
 
 class MultiClientes_Dao @Inject constructor(private val databaseManager: BDUtil) {
+
+    fun getAll():List<MultiClientes_Entity?>{
+        val sql = "SELECT DISTINCT ${MultiClientes_Schema.TABLE_NAME}.${MultiClientes_Schema.MULTICLIENTE_FIELD}, ${MultiClientes_Schema.TABLE_NAME}.${MultiClientes_Schema.MULTIDELEGACION_FIELD} FROM ${MultiClientes_Schema.TABLE_NAME} "
+        return databaseManager.query(sql){ cursor ->
+            MultiClientes_Entity.fromCursor(cursor)
+        }
+    }
+
+    fun getDetalles(multicliente: Int?): MultiClientes_Entity?{
+        val sql = "SELECT ${MultiClientes_Schema.TABLE_NAME}.${MultiClientes_Schema.MULTICLIENTE_FIELD},${MultiClientes_Schema.TABLE_NAME}.${MultiClientes_Schema.MULTIDELEGACION_FIELD}, ${MultiClientes_Schema.TABLE_NAME}.${MultiClientes_Schema.CLIEFABRI_FIELD}, ${MultiClientes_Schema.TABLE_NAME}.${MultiClientes_Schema.FACTURABLE_FIELD},${MultiClientes_Schema.TABLE_NAME}.${MultiClientes_Schema.TIPOOPERACION_FIELD}, ${MultiClientes_Schema.TABLE_NAME}.${MultiClientes_Schema.TARIFA_FIELD}, ${MultiClientes_Schema.TABLE_NAME}.${MultiClientes_Schema.SERIEALBARAN_FIELD} FROM ${MultiClientes_Schema.TABLE_NAME} WHERE ${MultiClientes_Schema.TABLE_NAME}.${MultiClientes_Schema.MULTICLIENTE_FIELD} = $multicliente "
+        return databaseManager.queryDetalles(sql) { cursor ->
+            MultiClientes_Entity.fromCursor(cursor)
+        }
+    }
 }

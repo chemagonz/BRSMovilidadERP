@@ -26,5 +26,9 @@
     <item android:id="@+id/acercade"
         android:title="ACERCA DE">
     </item>
+    <item android:id="@+id/multicodigo"
+        android:title="MULTICÓDIGOS">
+    </item>
+
 </group>
 </menu>

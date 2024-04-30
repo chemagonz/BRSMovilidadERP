@@ -28,6 +28,7 @@ import com.advantys.brsmovilidaderp.UI.Views.Centros.Centros_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Configuracion.Configuracion_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Exportar.Exportar_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Importar.Importar_Activity
+import com.advantys.brsmovilidaderp.UI.Views.MultiClientes.MultiClientes_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Rutas.Rutas_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Series.Series_Activity
 import com.advantys.brsmovilidaderp.Utils.MostrarPor
@@ -147,6 +148,10 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             }
             R.id.config -> {
                 val intent= Intent(this, Configuracion_Activity::class.java)
+                startActivity(intent)
+            }
+            R.id.multicodigo ->{
+                val intent = Intent(this, MultiClientes_Activity::class.java)
                 startActivity(intent)
             }
         }
