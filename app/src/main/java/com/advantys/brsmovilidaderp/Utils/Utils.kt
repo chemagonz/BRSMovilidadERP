@@ -29,6 +29,9 @@ var diasSeleccionados: MutableMap<Dias, Boolean> = mutableMapOf(
     var Ruta= Environment.getExternalStorageDirectory().path+ "/BRSAndroid/"
     var FechaHoy: Date? = null
     var YaCargado = false
+    var hemosEntradoEnMulti = false
+    var hemosCanceladoMulti = false
+
 
     fun fechaValida(date: String?, dateFormat: String?): Boolean {
         val sdf: DateFormat = SimpleDateFormat(dateFormat)

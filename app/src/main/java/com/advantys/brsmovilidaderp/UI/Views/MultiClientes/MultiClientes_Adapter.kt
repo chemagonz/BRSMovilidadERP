@@ -45,7 +45,10 @@ class MultiClientes_Adapter (val multiclientesList:List<MultiCliente?>, private 
             notifyItemChanged(elementoSeleccionado)
             true
         }
-
+    }
+    fun getElementoSeleccionado(): MultiCliente? {
+        return if(elementoSeleccionado!=-1) multiclientesList[elementoSeleccionado]
+        else null
     }
 }
 

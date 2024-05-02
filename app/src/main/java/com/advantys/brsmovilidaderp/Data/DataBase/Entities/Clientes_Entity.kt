@@ -2,6 +2,7 @@ package com.advantys.brsmovilidaderp.Data.DataBase.Entities
 
 import android.database.Cursor
 import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.Clientes_Schema
+import com.advantys.brsmovilidaderp.Domain.Models.Cliente
 import com.advantys.brsmovilidaderp.Utils.getBoolean
 import com.advantys.brsmovilidaderp.Utils.getInt
 import com.advantys.brsmovilidaderp.Utils.getString
@@ -86,3 +87,4 @@ data class Clientes_Entity(
         }
     }
 }
+fun Cliente.toEntity() = Clientes_Entity(numClientes, delegacion, nombre, razonSocial, direccion, codPostal, poblacion, provincia, NIF, telefono1, telefono2, regimenIva, copiasAlb, copiasFac, categoria, formaPago, tarifa, riesgoConsumo, impoRiesgo, diasRiesgo, docsRiesgo, riesgoImpo, riesgoDias, riesgoDocs, aplicaPromgral, centro, facturaEnvases, aplicaAlcoholes, aplicapVerde, porCDTO, serieAlbaran, facturable, tipoOperacion, facturaInmediata, ultVenta, clienteFiscal, delegacionFiscal, DTOvtacaj, DTOportes, consumoAnt, consumoAct, desviacion, serieFactura, sector, actividad, avisos, estado, lmarcado, cmarcado, aplexcart, tipoEnvaseSemanal, latitud, longitud, pendiente, deuda, ultPedido, pendienteValidar, limiteRiesgo, tiplinenvaut, aplicaManipulacion, correo, aplicaAzucar, orden)

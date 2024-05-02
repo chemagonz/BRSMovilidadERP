@@ -17,4 +17,10 @@ class MultiClientes_Repository @Inject constructor(private val multiClienteDao: 
         val response: MultiClientes_Entity? = multiClienteDao.getDetalles(multiCliente)
         return response?.toDomain()
     }
+
+    suspend fun codigoFabricante(multiClienteFab: Short?): MultiCliente? {
+        val response: MultiClientes_Entity? = multiClienteDao.codigoFabricante(multiClienteFab)
+        return response?.toDomain()
+    }
+
 }

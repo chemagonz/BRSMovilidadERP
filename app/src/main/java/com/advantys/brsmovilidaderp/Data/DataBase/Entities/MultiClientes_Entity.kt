@@ -2,6 +2,7 @@ package com.advantys.brsmovilidaderp.Data.DataBase.Entities
 
 import android.database.Cursor
 import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.MultiClientes_Schema
+import com.advantys.brsmovilidaderp.Domain.Models.MultiCliente
 import com.advantys.brsmovilidaderp.Utils.getBoolean
 import com.advantys.brsmovilidaderp.Utils.getInt
 import com.advantys.brsmovilidaderp.Utils.getShort
@@ -40,3 +41,5 @@ class MultiClientes_Entity (
         }
     }
 }
+
+fun MultiCliente.toEntity() = MultiClientes_Entity(multiCliente, multiDelegacion, fabricante, clieFabri, tarifa, serieAlbaran, facturable, tipoOperacion)

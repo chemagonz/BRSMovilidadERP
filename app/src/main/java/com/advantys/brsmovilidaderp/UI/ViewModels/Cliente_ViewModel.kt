@@ -27,7 +27,9 @@ class Cliente_ViewModel @Inject constructor(private val ClienteUsecase: Cliente_
         if(!resultado.isNullOrEmpty()) ClientesModel.postValue(resultado)
         }
     }
-    fun onCreateDetalles(cliente: Int?){ viewModelScope.launch(Dispatchers.Default) {
+    fun onCreateDetalles(cliente: Int?){
+
+        viewModelScope.launch(Dispatchers.Default) {
         val resultado= ClienteUsecase(cliente)
         if (resultado != null) {
             clienteModel.postValue(resultado)

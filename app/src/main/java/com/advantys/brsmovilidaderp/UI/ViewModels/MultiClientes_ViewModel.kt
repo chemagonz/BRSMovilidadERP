@@ -11,6 +11,7 @@ import com.advantys.brsmovilidaderp.UI.Views.MultiClientes.DetallesMultiClientes
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,16 +21,27 @@ class MultiClientes_ViewModel @Inject constructor(private val multiclienteUsecas
     val multiClienteModel= MutableLiveData<MultiCliente?>()
 
     fun onCreate(){
-        viewModelScope.launch(Dispatchers.Default) {
+        viewModelScope.launch(Dispatchers.IO) {
             val resultado= multiclienteUsecase()
-            if(!resultado.isNullOrEmpty()) multiClientesModel.postValue(resultado)
+            if(resultado.isNotEmpty()) multiClientesModel.postValue(resultado)
         }
     }
     fun onCreateDetalles(multicliente: Int?){
-        viewModelScope.launch(Dispatchers.Default) {
+        viewModelScope.launch(Dispatchers.IO) {
             val resultado= multiclienteUsecase(multicliente)
             if (resultado != null) {
                 multiClienteModel.postValue(resultado)
+            }
+        }
+    }
+
+    fun codigoFabricante(multiclienteFab: Short?){
+        viewModelScope.launch(Dispatchers.IO){
+            withContext(Dispatchers.IO){
+                val resultado = multiclienteUsecase.codigoFabricante(multiclienteFab)
+                if (resultado != null) {
+                    multiClienteModel.postValue(resultado)
+                }
             }
         }
     }

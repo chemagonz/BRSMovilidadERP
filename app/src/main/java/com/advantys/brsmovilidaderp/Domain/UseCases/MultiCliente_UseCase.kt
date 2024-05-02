@@ -16,4 +16,9 @@ class MultiCliente_UseCase @Inject constructor(private val repository: MultiClie
     suspend operator fun invoke(multicliente:Int?): MultiCliente? {
           return repository.getDetallesMulticlientes(multicliente)
     }
+
+    suspend  fun codigoFabricante(multiClienteFab: Short?): MultiCliente? {
+        return repository.codigoFabricante(multiClienteFab)
+    }
+
 }

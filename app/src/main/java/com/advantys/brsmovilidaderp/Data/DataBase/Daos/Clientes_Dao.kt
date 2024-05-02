@@ -169,6 +169,8 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
             Clientes_Entity.fromCursor(cursor)
         }
     }
+
+
 }
 //Se implementa una enum class para simplificar mejor la funcion, ya que guardo en una variable dos posibles columnas, asi no tengo que hacer dos veces lo mismo
 enum class columnas{
