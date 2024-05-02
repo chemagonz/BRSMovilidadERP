@@ -2,7 +2,7 @@ package com.advantys.brsmovilidaderp.Domain.Models
 
 import com.advantys.brsmovilidaderp.Data.DataBase.Entities.TipoOperacion_Entity
 
-class tipoOperacion(
+class TipoOperacion(
     var tipoOperacion: Int? = null,
     var nombre: String? = null,
     var genEnvVen: String? = null,
@@ -26,5 +26,5 @@ class tipoOperacion(
     var actStkPro: String? = null,
     var actStkInc: String? = null
 )
-fun TipoOperacion_Entity.toDomain() = tipoOperacion(tipoOperacion, nombre, genEnvVen, genEnvReg, genEnvDep, genEnvPro, genEnvInc, ptoVerVen, ptoVerReg, ptoVerDep,ptoVerPro,ptoVerInc,
+fun TipoOperacion_Entity.toDomain() = TipoOperacion(tipoOperacion, nombre, genEnvVen, genEnvReg, genEnvDep, genEnvPro, genEnvInc, ptoVerVen, ptoVerReg, ptoVerDep,ptoVerPro,ptoVerInc,
     manipuVen,manipuReg,manipuDep,manipuPro,manipuInc,actStkVen,actStkReg,actStkDep,actStkPro,actStkInc )

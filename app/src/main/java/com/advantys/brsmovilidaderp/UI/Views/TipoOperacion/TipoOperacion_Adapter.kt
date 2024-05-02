@@ -4,12 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.advantys.brsmovilidaderp.Domain.Models.tipoOperacion
+import com.advantys.brsmovilidaderp.Domain.Models.TipoOperacion
+
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.TipoOperacion_ViewModel
 import com.advantys.brsmovilidaderp.databinding.ItemOperaciontipoBinding
 
-class TipoOperacion_Adapter (private val tipoOperacionList:List<tipoOperacion?>, private val tipoOperacionViewModel: TipoOperacion_ViewModel): RecyclerView.Adapter<TipoOperacion_ViewHolder>(){
+class TipoOperacion_Adapter (private val tipoOperacionList:List<TipoOperacion?>, private val tipoOperacionViewModel: TipoOperacion_ViewModel): RecyclerView.Adapter<TipoOperacion_ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TipoOperacion_ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return TipoOperacion_ViewHolder(layoutInflater.inflate(R.layout.item_operaciontipo, parent, false))
@@ -28,7 +29,7 @@ class TipoOperacion_Adapter (private val tipoOperacionList:List<tipoOperacion?>,
 
 class TipoOperacion_ViewHolder(view: View):RecyclerView.ViewHolder(view) {
     val binding= ItemOperaciontipoBinding.bind(view)
-    fun bind(tipoOperacionModel: tipoOperacion?){
+    fun bind(tipoOperacionModel: TipoOperacion?){
         binding.nombre.text= tipoOperacionModel?.nombre
         binding.tipoOperacion.text= tipoOperacionModel?.tipoOperacion.toString()
     }
