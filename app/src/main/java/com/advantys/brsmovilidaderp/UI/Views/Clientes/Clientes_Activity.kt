@@ -230,6 +230,7 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         val busquedaItem= menu.findItem(R.id.busqueda)
         val marcardesmarcarItem= menu.findItem(R.id.marcardesmarcar)
         val desmarcartodosItem= menu.findItem(R.id.desmarcartodos)
+        val ordenarRutaItem= menu.findItem(R.id.ordenarRuta)
 
         busquedaItem?.setOnMenuItemClickListener {
             val intent= Intent(this, BuscarCliente_Activity::class.java)
@@ -253,6 +254,12 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             clientesViewModel.updateDesmarcado()
             true
         }
+        ordenarRutaItem.setOnMenuItemClickListener {
+            val intent= Intent(this, OrdenarClientes_Activity::class.java)
+            startActivity(intent)
+            true
+        }
+
        return true
     }
     private fun showPopupMenu() {

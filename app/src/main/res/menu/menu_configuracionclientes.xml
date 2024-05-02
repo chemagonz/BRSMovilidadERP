@@ -51,4 +51,9 @@
         android:title="Desmarcar todos">
     </item>
 
+    <item android:id="@+id/ordenarRuta"
+        android:title="Ordenar ruta">
+    </item>
+
+
 </menu>
