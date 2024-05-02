@@ -31,6 +31,11 @@ class Clientes_Repository @Inject constructor(private val ClienteDao: Clientes_D
         val response: Clientes_Entity? = ClienteDao.getDetalles(cliente)
         return response?.toDomain()
     }
+
+    suspend fun getNombre(cliente:Int?):Cliente?{
+        val response: Clientes_Entity? = ClienteDao.getNombre(cliente)
+        return response?.toDomain()
+    }
     suspend fun updateMarcado(cliente:Int?,valor:Boolean?, delegacion: Int?){
             ClienteDao.updateMarcado(cliente,valor,delegacion)
     }

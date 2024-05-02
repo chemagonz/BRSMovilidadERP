@@ -6,10 +6,12 @@ import javax.inject.Inject
 
 class Tarifa_UseCase@Inject constructor(private val repository: Tarifas_Repository) {
 
-    suspend operator fun invoke(tarifas:Int?): List<Tarifa>{
-        val tarifa = repository.getNombreTarifa(tarifas)
-        return if(tarifa.isNullOrEmpty())
-            listOf<Tarifa>()
-        else tarifa
+    suspend operator fun invoke(tarifas:Short?):Tarifa{
+      tarifas?.let {
+          val tarifaNombre = repository.getNombreTarifa(tarifas)
+          return tarifaNombre?:throw NoSuchElementException("Error")
+      }?:throw IllegalArgumentException("no puede ser nulo")
     }
 }
+
+

@@ -16,7 +16,7 @@ class Serie_Repository @Inject constructor( private val seriesDao:Series_Dao){
         return response?.toDomain()
     }
     suspend fun getSerieNombre(serie: String?):Serie?{
-        val response: Series_Entity?= seriesDao.getSerie(serie)
+        val response: Series_Entity?= seriesDao.getNombreSerie(serie)
         return response?.toDomain()
     }
 }

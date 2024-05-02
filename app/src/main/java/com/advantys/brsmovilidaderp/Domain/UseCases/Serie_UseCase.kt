@@ -18,4 +18,8 @@ class Serie_UseCase @Inject constructor(private val repository:Serie_Repository)
             return serieDet ?: throw NoSuchElementException("Error")
         }?:throw IllegalArgumentException("no puede ser nulo")
     }
+
+    suspend  fun getNombreSerie(serie:String?): Serie? {
+            return repository.getSerieNombre(serie)
+    }
 }

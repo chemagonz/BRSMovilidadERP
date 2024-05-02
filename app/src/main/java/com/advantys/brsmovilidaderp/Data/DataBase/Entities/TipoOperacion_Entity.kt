@@ -27,7 +27,7 @@ data class TipoOperacion_Entity(
     var actStkPro: String? = null,
     var actStkInc: String? = null) {
     companion object{
-        fun fromCursorA(cursor: Cursor):TipoOperacion_Entity{
+        fun fromCursor(cursor: Cursor):TipoOperacion_Entity{
             var modelo= TipoOperacion_Entity()
             modelo.tipoOperacion= cursor.getInt(cursor.getColumnIndexOrThrow(TipoOperacion_Schema.TIPOOPERACION_FIELD))
             modelo.nombre= cursor.getString(cursor.getColumnIndexOrThrow(TipoOperacion_Schema.NOMBRE_FIELD))

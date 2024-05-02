@@ -24,4 +24,12 @@ class Series_Dao @Inject constructor( private val databaseManager:BDUtil) {
         Series_Entity.fromCursor(cursor)
         }
     }
+
+    fun getNombreSerie(serie:String?):Series_Entity? {
+        var sql = "SELECT ${Series_Schema.NOMBRE_FIELD},${Series_Schema.SERIE_FIELD} FROM ${Series_Schema.TABLE_NAME} WHERE ${Series_Schema.SERIE_FIELD} = '${serie}'"
+        return databaseManager.queryDetalles(sql){ cursor ->
+            Series_Entity.fromCursor(cursor)
+        }
+    }
+
 }

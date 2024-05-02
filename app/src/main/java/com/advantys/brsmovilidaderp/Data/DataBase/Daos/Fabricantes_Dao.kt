@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class Fabricantes_Dao @Inject constructor(private val databaseManager: BDUtil) {
     fun getNombreFabricante(fabricante: Short?):Fabricante_Entity?{
-        val sql = " SELECT ${Fabricante_Schema.TABLE_NAME}.${Fabricante_Schema.NOMBRE_FIELD} FROM ${Fabricante_Schema.TABLE_NAME} WHERE ${Fabricante_Schema.FABRICANTE_FIELD} = $fabricante"
+        var sql = " SELECT ${Fabricante_Schema.NOMBRE_FIELD}, ${Fabricante_Schema.FABRICANTE_FIELD} FROM ${Fabricante_Schema.TABLE_NAME} WHERE ${Fabricante_Schema.FABRICANTE_FIELD} = $fabricante"
         return databaseManager.queryDetalles(sql){ cursor ->
             Fabricante_Entity.fromCursor(cursor)
         }

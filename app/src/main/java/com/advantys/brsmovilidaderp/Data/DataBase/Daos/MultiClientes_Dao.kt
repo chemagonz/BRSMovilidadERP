@@ -15,7 +15,7 @@ class MultiClientes_Dao @Inject constructor(private val databaseManager: BDUtil)
     }
 
     fun getDetalles(multicliente: Int?): MultiClientes_Entity?{
-        val sql = "SELECT ${MultiClientes_Schema.TABLE_NAME}.${MultiClientes_Schema.MULTICLIENTE_FIELD},${MultiClientes_Schema.TABLE_NAME}.${MultiClientes_Schema.MULTIDELEGACION_FIELD}, ${MultiClientes_Schema.TABLE_NAME}.${MultiClientes_Schema.CLIEFABRI_FIELD}, ${MultiClientes_Schema.TABLE_NAME}.${MultiClientes_Schema.FACTURABLE_FIELD},${MultiClientes_Schema.TABLE_NAME}.${MultiClientes_Schema.TIPOOPERACION_FIELD}, ${MultiClientes_Schema.TABLE_NAME}.${MultiClientes_Schema.TARIFA_FIELD}, ${MultiClientes_Schema.TABLE_NAME}.${MultiClientes_Schema.SERIEALBARAN_FIELD} FROM ${MultiClientes_Schema.TABLE_NAME} WHERE ${MultiClientes_Schema.TABLE_NAME}.${MultiClientes_Schema.MULTICLIENTE_FIELD} = $multicliente "
+        val sql = "SELECT * FROM ${MultiClientes_Schema.TABLE_NAME} WHERE ${MultiClientes_Schema.MULTICLIENTE_FIELD} = $multicliente "
         return databaseManager.queryDetalles(sql) { cursor ->
             MultiClientes_Entity.fromCursor(cursor)
         }

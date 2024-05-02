@@ -8,9 +8,9 @@ import javax.inject.Inject
 
 class Tarifas_Dao @Inject constructor(private val databaseManager: BDUtil) {
 
-    fun getNombreTarifa(tarifa:Int?): List<Tarifas_Entity?>{
-        var sql= "SELECT ${Tarifas_Schema.NOMBRE_FIELD} FROM ${Tarifas_Schema.TABLE_NAME} WHERE ${TarifasArticulo_Schema.TARIFA_FIELD} = ${tarifa}"
-        return  databaseManager.query(sql){cursor ->
+    fun getNombreTarifa(tarifa:Short?): Tarifas_Entity? {
+        var sql= "SELECT ${Tarifas_Schema.NOMBRE_FIELD}, ${TarifasArticulo_Schema.TARIFA_FIELD} FROM ${Tarifas_Schema.TABLE_NAME} WHERE ${TarifasArticulo_Schema.TARIFA_FIELD} = ${tarifa}"
+        return  databaseManager.queryDetalles(sql){cursor ->
             Tarifas_Entity.fromCursor(cursor)
         }
     }

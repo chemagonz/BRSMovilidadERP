@@ -162,6 +162,13 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
             Clientes_Entity.fromCursor(cursor)
         }
     }
+
+    fun getNombre(cliente: Int?): Clientes_Entity?{
+        var sql= "SELECT   ${Clientes_Schema.NOMBRE_FIELD}  FROM ${Clientes_Schema.TABLE_NAME} WHERE ${Clientes_Schema.CLIENTE_FIELD} = '${cliente}'"
+        return databaseManager.queryDetalles(sql){ cursor ->
+            Clientes_Entity.fromCursor(cursor)
+        }
+    }
 }
 //Se implementa una enum class para simplificar mejor la funcion, ya que guardo en una variable dos posibles columnas, asi no tengo que hacer dos veces lo mismo
 enum class columnas{

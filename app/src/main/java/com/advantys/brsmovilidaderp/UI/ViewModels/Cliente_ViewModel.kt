@@ -33,6 +33,13 @@ class Cliente_ViewModel @Inject constructor(private val ClienteUsecase: Cliente_
             clienteModel.postValue(resultado)
         }
     }}
+
+    @SuppressLint("SuspiciousIndentation")
+    fun onCreateNombre(cliente: Int?){
+        viewModelScope.launch(Dispatchers.Default) {
+        val resultado= ClienteUsecase.getNombre(cliente)
+            clienteModel.postValue(resultado)
+    }}
     @SuppressLint("SuspiciousIndentation")
     fun buscarClientes(tipo:columnas=columnas.Nombre, query:String){ viewModelScope.launch(Dispatchers.Default) {
         viewModelScope.launch(Dispatchers.Default) {

@@ -15,11 +15,10 @@ class Fabricante_ViewModel @Inject constructor(private val fabricanteUsecase: Fa
 
     val fabricanteModel = MutableLiveData<Fabricante?>()
     fun onCreateGetNombreFab(fabricante: Short?) {
+
         viewModelScope.launch(Dispatchers.Default) {
-            val resultado = fabricanteUsecase.getNombreFabricante(fabricante)
-            if (resultado != null) {
+                val resultado = fabricanteUsecase.getNombreFabricante(fabricante)
                 fabricanteModel.postValue(resultado)
-            }
         }
     }
 }

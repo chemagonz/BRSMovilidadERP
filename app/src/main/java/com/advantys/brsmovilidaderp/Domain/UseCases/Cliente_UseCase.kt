@@ -30,6 +30,13 @@ class Cliente_UseCase @Inject constructor(private val repository: Clientes_Repos
             return clienteDet ?: throw NoSuchElementException("Error")
         }?:throw IllegalArgumentException("no puede ser nulo")
     }
+
+    suspend fun getNombre(cliente:Int?): Cliente {
+        cliente?.let {
+            val clienteNombre= repository.getNombre(cliente)
+            return clienteNombre ?: throw NoSuchElementException("Error")
+        }?:throw IllegalArgumentException("no puede ser nulo")
+    }
     suspend operator fun invoke(cliente:Int?,valor: Boolean?, delegacion:Int?) {
         valor?.let {
             val clientesUp= repository.updateMarcado(cliente,valor, delegacion)
