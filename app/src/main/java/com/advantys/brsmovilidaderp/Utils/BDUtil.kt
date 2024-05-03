@@ -175,6 +175,26 @@ class BDUtil @Inject constructor (private val dbHelper:BD){
         return resultado
     }
     ///region Funciones SelectScalar
+
+    //Función nueva de prueba
+    fun getScalInt(sql: String): Int {
+        var db = dbHelper.openDatabaseRead()
+        val cursor = db.rawQuery(sql, null)
+        var resultado: Int = 0
+
+        try {
+            if (cursor.moveToFirst()) {
+                resultado = cursor.getInt(0)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            cursor.close()
+            db.close()
+        }
+
+        return resultado
+    }
     fun getSelectScalarInt(sql: String) :Int {
         return getSelectScalar(sql) as Int
     }
@@ -231,6 +251,8 @@ class BDUtil @Inject constructor (private val dbHelper:BD){
         //FUNCIÓN VACÍA POR AHORA
         return result
     }
+
+
     @RequiresApi(Build.VERSION_CODES.O)
     fun basedeDatosCorrupta(): List<Configuracion_Entity?> {
         var sql= "SELECT ${Configuracion_Schema.TERMINAL_FIELD} FROM ${Configuracion_Schema.TABLE_NAME} "

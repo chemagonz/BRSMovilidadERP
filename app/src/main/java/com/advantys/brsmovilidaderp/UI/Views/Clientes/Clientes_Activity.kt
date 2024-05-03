@@ -23,6 +23,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Cliente_ViewModel
+import com.advantys.brsmovilidaderp.UI.Views.AcercaDe.AcercaDe_Activity
 import com.advantys.brsmovilidaderp.UI.Views.AjustesAvanzados.AjustesAvanzados_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Articulos.Articulos_Activity
 import com.advantys.brsmovilidaderp.UI.Views.BorrarVentas.BorrarDatos_Activity
@@ -147,6 +148,8 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 }
             }
             R.id.acercade -> {
+                val intent= Intent(this, AcercaDe_Activity::class.java)
+                startActivity(intent)
             }
             R.id.articulos->{
                 val intent= Intent(this, Articulos_Activity::class.java)
