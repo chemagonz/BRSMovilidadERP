@@ -18,15 +18,14 @@ class MoverCliente(private val listener: OnItemTouchListener) : ItemTouchHelper.
         return makeMovementFlags(dragFlags, 0)
     }
 
-    override fun onMove(
-        recyclerView: RecyclerView,
-        viewHolder: RecyclerView.ViewHolder,
-        target: RecyclerView.ViewHolder
-    ): Boolean {
-        listener.onItemMove(viewHolder.adapterPosition, target.adapterPosition)
+    override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+        val fromPosition = viewHolder.bindingAdapterPosition
+        val toPosition = target.bindingAdapterPosition
+        if (fromPosition != RecyclerView.NO_POSITION && toPosition != RecyclerView.NO_POSITION) {
+            listener.onItemMove(fromPosition, toPosition)
+        }
         return true
     }
-
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
 
     }
