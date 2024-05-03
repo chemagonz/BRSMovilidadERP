@@ -44,9 +44,9 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
         }
     }
 
-    fun updateMarcado(cliente: Int?, valor:Boolean?, delegacion:Int?){
+    fun updateMarcado(cliente: Int?, valor:Boolean?, delegacion:Short?){
         val valorConvertido = if (valor == true) 1 else 0
-        var sql= "UPDATE ${Clientes_Schema.TABLE_NAME} SET  ${Clientes_Schema.LMARCADO_FIELD} ='${valorConvertido}' WHERE ${Clientes_Schema.CLIENTE_FIELD} = '${cliente}' AND ${Clientes_Schema.DELEGACION_FIELD} = '${delegacion}'"
+        var sql= "UPDATE ${Clientes_Schema.TABLE_NAME} SET  ${Clientes_Schema.LMARCADO_FIELD} =$valorConvertido WHERE ${Clientes_Schema.CLIENTE_FIELD} = $cliente AND ${Clientes_Schema.DELEGACION_FIELD} = $delegacion"
         databaseManager.queryUp(sql)
     }
 
@@ -148,17 +148,17 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
      fun obtenerConsultaClientes(ordenar: OrdenarPor, mostrarPor: MostrarPor):List<Clientes_Entity?>{
 
        //var  sql=  "SELECT DISTINCT ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.NOMBRE_FIELD},${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.CLIENTE_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.RUTA_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.DIASEMANA_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.LMARCADO_FIELD} FROM ${Clientes_Schema.TABLE_NAME},${RutaClientes_Schema.TABLE_NAME},${Rutas_Schema.TABLE_NAME} "
-       var  sql=  "SELECT DISTINCT ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.NOMBRE_FIELD},${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.CLIENTE_FIELD},${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.LMARCADO_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.DELEGACION_FIELD} FROM ${Clientes_Schema.TABLE_NAME},${RutaClientes_Schema.TABLE_NAME},${Rutas_Schema.TABLE_NAME} "
+       var  sql=  "SELECT DISTINCT ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.NOMBRE_FIELD},${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.CLIENTE_FIELD},${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.LMARCADO_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.DELEGACION_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.TIENEPEDIDO_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.ORDEN_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.RUTA_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.SECUENCIA_FIELD} FROM ${Clientes_Schema.TABLE_NAME},${RutaClientes_Schema.TABLE_NAME},${Rutas_Schema.TABLE_NAME} "
         sql += ObtenerWhere()
-//        sql= " ORDER BY "
-//        when(ordenar){
-//            ordenarPor.ruta-> sql= "${Clientes_Schema.TIENEPEDIDO_FIELD}, ${RutaClientes_Schema.RUTA_FIELD}, ${RutaClientes_Schema.SECUENCIA_FIELD}, ${Clientes_Schema.CLIENTE_FIELD}, ${Clientes_Schema.DELEGACION_FIELD}"
-//            ordenarPor.secuencia-> sql= "${Clientes_Schema.TIENEPEDIDO_FIELD}, ${RutaClientes_Schema.SECUENCIA_FIELD}, ${Clientes_Schema.CLIENTE_FIELD}, ${Clientes_Schema.DELEGACION_FIELD}"
-//            ordenarPor.cliente-> sql= "${Clientes_Schema.TIENEPEDIDO_FIELD}, ${Clientes_Schema.CLIENTE_FIELD}, ${Clientes_Schema.DELEGACION_FIELD}"
-//            ordenarPor.nombre->sql= "${Clientes_Schema.TIENEPEDIDO_FIELD}, ${Clientes_Schema.NOMBRE_FIELD}"
-//            ordenarPor.ordenpersonalizado-> sql= "${Clientes_Schema.TIENEPEDIDO_FIELD}, ${Clientes_Schema.ORDEN_FIELD}"
-//        }
-        return databaseManager.query(sql){ cursor ->
+        sql += " ORDER BY "
+        when(ordenar){
+            OrdenarPor.ruta -> sql += "${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.TIENEPEDIDO_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.RUTA_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.SECUENCIA_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.CLIENTE_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.DELEGACION_FIELD}"
+            OrdenarPor.secuencia -> sql += "${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.TIENEPEDIDO_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.SECUENCIA_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.CLIENTE_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.DELEGACION_FIELD}"
+            OrdenarPor.cliente -> sql += "${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.TIENEPEDIDO_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.CLIENTE_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.DELEGACION_FIELD}"
+            OrdenarPor.nombre -> sql += "${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.TIENEPEDIDO_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.NOMBRE_FIELD}"
+            OrdenarPor.ordenpersonalizado -> sql += "${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.TIENEPEDIDO_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.ORDEN_FIELD}"
+        }
+       return databaseManager.query(sql){ cursor ->
             Clientes_Entity.fromCursor(cursor)
         }
     }
@@ -170,6 +170,15 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil){
         }
     }
 
+    fun guardarOrdenClientes( cliente: Int?, delegacion: Short?, orden: Int?){
+        val sql = "UPDATE ${Clientes_Schema.TABLE_NAME} SET ${Clientes_Schema.ORDEN_FIELD} = $orden  WHERE ${Clientes_Schema.CLIENTE_FIELD} = $cliente AND ${Clientes_Schema.DELEGACION_FIELD} = $delegacion"
+        databaseManager.queryUp(sql)
+    }
+
+    fun guardarNullOrdenClientes(){
+        var sql= "UPDATE ${Clientes_Schema.TABLE_NAME} SET ${Clientes_Schema.ORDEN_FIELD} = NULL"
+        databaseManager.queryUp(sql)
+    }
 
 }
 //Se implementa una enum class para simplificar mejor la funcion, ya que guardo en una variable dos posibles columnas, asi no tengo que hacer dos veces lo mismo

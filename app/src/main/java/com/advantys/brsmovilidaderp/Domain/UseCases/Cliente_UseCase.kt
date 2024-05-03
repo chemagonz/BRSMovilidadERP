@@ -37,7 +37,7 @@ class Cliente_UseCase @Inject constructor(private val repository: Clientes_Repos
             return clienteNombre ?: throw NoSuchElementException("Error")
         }?:throw IllegalArgumentException("no puede ser nulo")
     }
-    suspend operator fun invoke(cliente:Int?,valor: Boolean?, delegacion:Int?) {
+    suspend operator fun invoke(cliente:Int?,valor: Boolean?, delegacion:Short?) {
         valor?.let {
             val clientesUp= repository.updateMarcado(cliente,valor, delegacion)
             return clientesUp?: throw NoSuchElementException("Error")
@@ -46,5 +46,12 @@ class Cliente_UseCase @Inject constructor(private val repository: Clientes_Repos
 
     suspend  fun invokeDesmarcado() {
         return repository.updateDesmarcado()
+    }
+    suspend fun guardarOrdenClientes(cliente:Int?, delegacion:Short?, orden:Int? ){
+        repository.guardarOrdenClientes(cliente,delegacion,orden)
+    }
+
+    suspend fun guardarNullOrdenClientes(){
+        repository.guardarNullOrdenClientes()
     }
 }

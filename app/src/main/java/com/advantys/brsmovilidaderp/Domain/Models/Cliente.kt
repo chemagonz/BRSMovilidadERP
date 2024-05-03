@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter
 
 class Cliente (
     var numClientes: Int?=null,
-    var delegacion: Int?=null,
+    var delegacion: Short?=null,
     var nombre: String?=null,
     var razonSocial: String?=null,
     var direccion: String?=null,

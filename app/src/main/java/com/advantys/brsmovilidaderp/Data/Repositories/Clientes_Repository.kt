@@ -36,10 +36,18 @@ class Clientes_Repository @Inject constructor(private val ClienteDao: Clientes_D
         val response: Clientes_Entity? = ClienteDao.getNombre(cliente)
         return response?.toDomain()
     }
-    suspend fun updateMarcado(cliente:Int?,valor:Boolean?, delegacion: Int?){
+    suspend fun updateMarcado(cliente:Int?,valor:Boolean?, delegacion: Short?){
             ClienteDao.updateMarcado(cliente,valor,delegacion)
     }
     suspend fun updateDesmarcado(){
          ClienteDao.updateDesmarcado()
+    }
+
+    suspend fun guardarOrdenClientes(cliente: Int?, delegacion: Short?, orden: Int?){
+        ClienteDao.guardarOrdenClientes(cliente,delegacion,orden)
+    }
+
+    suspend fun guardarNullOrdenClientes(){
+        ClienteDao.guardarNullOrdenClientes()
     }
 }

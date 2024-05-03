@@ -61,7 +61,7 @@ class Cliente_ViewModel @Inject constructor(private val ClienteUsecase: Cliente_
             ClientesModel.postValue(resultado)
         }
     }
-    fun updateMarcado(cliente:Int?,valor:Boolean?, delegacion: Int?) {
+    fun updateMarcado(cliente:Int?,valor:Boolean?, delegacion: Short?) {
         viewModelScope.launch(Dispatchers.Default) {
             ClienteUsecase(cliente,valor,delegacion)
         }
@@ -69,6 +69,18 @@ class Cliente_ViewModel @Inject constructor(private val ClienteUsecase: Cliente_
     fun updateDesmarcado() {
         viewModelScope.launch(Dispatchers.Default) {
             ClienteUsecase.invokeDesmarcado()
+        }
+    }
+
+    fun guardarOrdenClientes( cliente:Int?, delegacion:Short?, orden:Int?){
+        viewModelScope.launch(Dispatchers.Default) {
+            ClienteUsecase.guardarOrdenClientes(cliente,delegacion,orden)
+        }
+    }
+
+    fun guardarNullOrdenClientes(){
+        viewModelScope.launch(Dispatchers.Default) {
+            ClienteUsecase.guardarNullOrdenClientes()
         }
     }
     fun btnDetalle(item: Cliente?, context: Context) {

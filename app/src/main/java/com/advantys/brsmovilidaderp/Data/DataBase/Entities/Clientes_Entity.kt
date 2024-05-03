@@ -5,12 +5,13 @@ import com.advantys.brsmovilidaderp.Data.DataBase.Schemas.Clientes_Schema
 import com.advantys.brsmovilidaderp.Domain.Models.Cliente
 import com.advantys.brsmovilidaderp.Utils.getBoolean
 import com.advantys.brsmovilidaderp.Utils.getInt
+import com.advantys.brsmovilidaderp.Utils.getShort
 import com.advantys.brsmovilidaderp.Utils.getString
 import java.time.format.DateTimeFormatter
 
 data class Clientes_Entity(
     var nClientes: Int?=null,
-    var delegacion: Int?=null,
+    var delegacion: Short?=null,
     var nombre: String?=null,
     var razonSocial: String?=null,
     var direccion: String?=null,
@@ -76,13 +77,14 @@ data class Clientes_Entity(
         fun fromCursor(cursor: Cursor): Clientes_Entity {
             var modelo = Clientes_Entity()
             modelo.nClientes = cursor.getInt(Clientes_Schema.CLIENTE_FIELD,null)
+            modelo.delegacion= cursor.getShort(Clientes_Schema.DELEGACION_FIELD,null)
             modelo.nombre = cursor.getString(Clientes_Schema.NOMBRE_FIELD,null)
             modelo.direccion = cursor.getString(Clientes_Schema.DIRECCION_FIELD,null)
             modelo.codPostal = cursor.getString(Clientes_Schema.CODIGOPOSTAL_FIELD,null)
             modelo.provincia = cursor.getString(Clientes_Schema.PROVINCIA_FIELD,null)
             modelo.poblacion = cursor.getString(Clientes_Schema.POBLACION_FIELD,null)
             modelo.lmarcado= cursor.getBoolean(Clientes_Schema.LMARCADO_FIELD, null)
-            modelo.delegacion= cursor.getInt(Clientes_Schema.DELEGACION_FIELD,null)
+            modelo.orden= cursor.getInt(Clientes_Schema.ORDEN_FIELD,null)
             return modelo
         }
     }
