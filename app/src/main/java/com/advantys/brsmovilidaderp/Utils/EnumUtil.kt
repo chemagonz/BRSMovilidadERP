@@ -33,3 +33,8 @@ enum class TipoAlerta{
         informacion,
         advertencia
 }
+
+enum class TipoPromocion{
+        general,
+        particular
+}

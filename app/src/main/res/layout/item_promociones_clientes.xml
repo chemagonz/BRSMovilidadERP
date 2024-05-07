@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="4dp"
+    app:cardUseCompatPadding="true"
+    android:theme="@style/Theme.BRSMovilidadERPprueba">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/codigoPromocionPar"
+            android:layout_width="57dp"
+            android:layout_height="34dp"
+            android:text="T"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/descripPromocionPar"
+            android:layout_width="160dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@id/codigoPromocionPar"
+            android:text="descripcion"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/verDetallesButton"
+            android:layout_width="17dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="10dp"
+            android:background="#00000000"
+            android:onClick="verDetalles"
+            android:padding="16dp"
+            app:srcCompat="@drawable/ic_action_name" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

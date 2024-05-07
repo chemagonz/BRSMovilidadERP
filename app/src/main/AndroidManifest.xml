@@ -6,8 +6,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
-
-
     <application
         android:name=".BRSMovilidadERPApp"
         android:allowBackup="true"
@@ -19,6 +17,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BRSMovilidadERPprueba"
         tools:targetApi="31">
+        <activity
+            android:name=".UI.Views.Promociones.Promociones_Activity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".UI.Views.Visitas.Visitas_Activity"
             android:exported="false" />
@@ -57,13 +64,9 @@
             android:exported="true" />
         <activity
             android:name=".UI.Views.SplashScreen.SplashScreen_activity"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/Theme.BRSMovilidadERP.NoActionBarPrueba">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".UI.Views.Articulos.FiltrarArticulos_Activity"
