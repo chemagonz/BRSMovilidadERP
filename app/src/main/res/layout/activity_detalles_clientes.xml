@@ -67,7 +67,7 @@
                     android:focusableInTouchMode="false"
                     android:inputType="text"
                     android:textAlignment="center"
-                    android:textSize="14dp">
+                    android:textSize="18dp">
                 </EditText>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -112,7 +112,7 @@
                         android:focusableInTouchMode="false"
                         android:inputType="text"
                         android:textAlignment="center"
-                        android:textSize="14dp" />
+                        android:textSize="18dp" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
         </LinearLayout>
@@ -147,7 +147,7 @@
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:textAlignment="center"
-                android:textSize="14dp">
+                android:textSize="18dp">
             </EditText>
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
@@ -193,7 +193,7 @@
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:textAlignment="center"
-                android:textSize="14dp">
+                android:textSize="18dp">
 
             </EditText>
             </com.google.android.material.textfield.TextInputLayout>
@@ -243,6 +243,7 @@
                 android:maxLines="5"
                 android:minLines="3"
                 android:scrollbars="vertical"
+                android:textSize="18dp"
                 android:textAlignment="center" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -297,7 +298,7 @@
                     android:focusableInTouchMode="false"
                     android:inputType="text"
                     android:textAlignment="center"
-                    android:textSize="14dp">
+                    android:textSize="18dp">
 
                 </EditText>
             </com.google.android.material.textfield.TextInputLayout>
@@ -316,7 +317,7 @@
                     android:focusableInTouchMode="false"
                     android:inputType="text"
                     android:textAlignment="center"
-                    android:textSize="14dp">
+                    android:textSize="18dp">
                 </EditText>
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
