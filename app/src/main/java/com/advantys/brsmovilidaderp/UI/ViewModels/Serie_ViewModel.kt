@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class Serie_ViewModel @Inject constructor(private val serieUsecase: Serie_UseCase):ViewModel(){
     val seriesModel = MutableLiveData<List<Serie>>()
-    val serieModel= MutableLiveData<Serie>()
+    val serieModel= MutableLiveData<Serie?>()
 
     fun onCreate(){ viewModelScope.launch{
             val resultado = serieUsecase()

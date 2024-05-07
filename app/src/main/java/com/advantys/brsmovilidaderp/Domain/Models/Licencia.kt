@@ -11,4 +11,4 @@ class Licencia(
     var numLicencia: String? = null,
 
 )
-    fun Licencia_Entity.toDomain() = Licencia(idenDisp, idenProg, licencia, cliente, numLicencia)
+fun Licencia_Entity.toDomain() = Licencia(idenDisp, idenProg, licencia, cliente, numLicencia)
