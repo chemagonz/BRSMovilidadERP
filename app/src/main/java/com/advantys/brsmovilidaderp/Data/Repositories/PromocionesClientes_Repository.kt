@@ -8,8 +8,8 @@ import javax.inject.Inject
 
 class PromocionesClientes_Repository @Inject constructor(private val promocionesDao: PromocionesClientes_Dao){
 
-    suspend fun getPromocionesParticulares():List<PromoCliente>{
-        val response: List<PromocionesClientes_Entity?> = promocionesDao.getPromocionesParticulares()
+    suspend fun getPromocionesParticulares(cliente: Int?, delegacion: Short?):List<PromoCliente>{
+        val response: List<PromocionesClientes_Entity?> = promocionesDao.getPromocionesParticulares(cliente, delegacion)
         return response.filterNotNull().map { it.toDomain() }
     }
 }

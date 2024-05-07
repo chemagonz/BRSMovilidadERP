@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class PromocionesClientes_UseCase @Inject constructor(private val repository: PromocionesClientes_Repository) {
 
-    suspend  fun getPromocionesParticulares():List<PromoCliente>{
-        return repository.getPromocionesParticulares()
+    suspend  fun getPromocionesParticulares(cliente:Int?, delegacion:Short?):List<PromoCliente>{
+        return repository.getPromocionesParticulares(cliente,delegacion)
     }
 }

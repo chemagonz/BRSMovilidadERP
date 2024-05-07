@@ -15,9 +15,9 @@ class PromocionesClientes_ViewModel @Inject constructor(private val promocionesP
 
     val promocionesParModel= MutableLiveData<List<PromoCliente>>()
 
-    fun getPromocionesParticulares(){
+    fun getPromocionesParticulares(cliente:Int?, delegacion: Short?){
         viewModelScope.launch(Dispatchers.Default) {
-            val resultado= promocionesPar_Usecase.getPromocionesParticulares()
+            val resultado= promocionesPar_Usecase.getPromocionesParticulares(cliente, delegacion)
             if(!resultado.isNullOrEmpty()) promocionesParModel.postValue(resultado)
         }
     }

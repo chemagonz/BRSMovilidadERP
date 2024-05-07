@@ -23,6 +23,7 @@
             android:id="@+id/btns_bg"
             android:layout_width="match_parent"
             android:layout_height="49dp"
+            android:layout_gravity="center_horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -32,6 +33,7 @@
                 android:layout_width="0dp"
                 android:layout_height="49dp"
                 android:layout_weight="0.5"
+                android:layout_gravity="center_horizontal"
                 android:background="@color/colorAdvantysApp1"
                 android:text="GENERALES"
                 android:textColor="#ffffff" />

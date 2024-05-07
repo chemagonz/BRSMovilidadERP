@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.PromocionesClientes_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.Promociones_ViewModel
+import com.advantys.brsmovilidaderp.Utils.TipoPromocion
 import com.advantys.brsmovilidaderp.databinding.ActivityPromocionesBinding
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class Promociones_Activity : AppCompatActivity() {
@@ -21,6 +23,10 @@ class Promociones_Activity : AppCompatActivity() {
     private val promocionesParViewmodel: PromocionesClientes_ViewModel by viewModels()
     private lateinit var adapterPromociones: Promociones_Adapter
     private lateinit var adapterPromocionesPar: PromocionesParticulares_Adapter
+
+    companion object{
+        var pantallaparticular = false
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityPromocionesBinding.inflate(layoutInflater)
@@ -34,9 +40,24 @@ class Promociones_Activity : AppCompatActivity() {
             title = "PROMOCIONES"
         }
 
-        mostrarPromocionesGeneralesVista()
-        mostrarPromocionesGenerales()
-        mostrarPromocionesParticulares()
+        val prom = intent.getSerializableExtra("Tipo")
+        if(prom != null)
+        {
+            when(prom){
+                TipoPromocion.general-> {
+                    setContentView(binding.root)
+                    pantallaparticular = false
+                    mostrarPromocionesGenerales()
+                }
+                TipoPromocion.particular-> {
+                    setContentView(binding.root)
+                    pantallaparticular = true
+                    mostrarPromocionesParticulares()
+                }
+            }
+        }
+
+       //mostrarPromocionesGeneralesVista()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -80,14 +101,15 @@ class Promociones_Activity : AppCompatActivity() {
         }
     }
     fun mostrarPromocionesParticulares(){
-        binding.btnPromocionesParticulares.setOnClickListener {
-            promocionesParViewmodel.getPromocionesParticulares()
+
+        val clienteCodigo = intent.getIntExtra("cliente_codigo", 0)
+        val clienteDelegacion = intent.getShortExtra("cliente_delegacion", 0)
+            promocionesParViewmodel.getPromocionesParticulares(clienteCodigo, clienteDelegacion)
             promocionesParViewmodel.promocionesParModel.observe(this, Observer {
-                adapterPromocionesPar =  PromocionesParticulares_Adapter(it, promocionesParViewmodel)
+                adapterPromocionesPar = PromocionesParticulares_Adapter(it, promocionesParViewmodel)
                 binding.recyclerViewPromociones.layoutManager = LinearLayoutManager(this)
                 binding.recyclerViewPromociones.adapter = adapterPromocionesPar
 
             })
-        }
     }
 }

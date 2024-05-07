@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.advantys.brsmovilidaderp.Domain.Models.PromoCliente
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.PromocionesClientes_ViewModel
-import com.advantys.brsmovilidaderp.databinding.ItemPromocionesParticularesBinding
+import com.advantys.brsmovilidaderp.databinding.ItemPromocionesClientesBinding
 
 class PromocionesParticulares_Adapter (private val promocionesParList: List<PromoCliente?>, private val promocionParViewModel: PromocionesClientes_ViewModel): RecyclerView.Adapter<PromocionesParticulares_ViewHolder>(){
 
@@ -33,7 +33,7 @@ class PromocionesParticulares_Adapter (private val promocionesParList: List<Prom
     }
 }
     class PromocionesParticulares_ViewHolder (view: View): RecyclerView.ViewHolder(view){
-        val binding = ItemPromocionesParticularesBinding.bind(view)
+        val binding = ItemPromocionesClientesBinding.bind(view)
         fun bind(promocionesParModel: PromoCliente?){
             binding.codigoPromocionPar.text = promocionesParModel?.promocion
             binding.descripPromocionPar.text = promocionesParModel?.descripcion
