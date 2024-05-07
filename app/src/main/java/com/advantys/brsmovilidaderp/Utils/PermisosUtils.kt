@@ -2,58 +2,64 @@ package com.advantys.brsmovilidaderp.Utils
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
+import android.provider.Settings
+import android.os.Environment
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.advantys.brsmovilidaderp.BRSMovilidadERPApp
+import com.google.firebase.BuildConfig
 import javax.inject.Inject
 
 class PermisosUtils @Inject constructor(){
 
     companion object {
-        const val REQUEST_STORAGE_PERMISSION = 1
-        fun solicitarPermisosAlmacenamiento(activity: Activity) {
-            val permissionsToRequest = mutableListOf<String>()
 
-            if (ContextCompat.checkSelfPermission(
-                    activity,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                permissionsToRequest.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        const val REQUEST_STORAGE_PERMISSION = 1
+        private val permisosAlmacenamiento = arrayListOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+
+        fun solicitarPermisosAlmacenamiento(activity: Activity) {
+            if(Build.VERSION.SDK_INT >= 30) {
+                val uri = Uri.parse("package:com.advantys.brsmovilidaderp")
+                activity.startActivity(Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, uri))
+                activity.finish()
             }
-            if (ContextCompat.checkSelfPermission(
-                    activity,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                permissionsToRequest.add(Manifest.permission.READ_EXTERNAL_STORAGE)
-            }
-            if (permissionsToRequest.isNotEmpty()) {
-                ActivityCompat.requestPermissions(
-                    activity,
-                    permissionsToRequest.toTypedArray(),
-                    REQUEST_STORAGE_PERMISSION
-                )
+            else {
+                val permissionsToRequest = mutableListOf<String>()
+
+                for (permmiso in permisosAlmacenamiento) {
+                    if (ContextCompat.checkSelfPermission(activity, permmiso) != PackageManager.PERMISSION_GRANTED)
+                        permissionsToRequest.add(permmiso)
+                }
+
+                if (permissionsToRequest.isNotEmpty())
+                    ActivityCompat.requestPermissions(activity, permissionsToRequest.toTypedArray(), REQUEST_STORAGE_PERMISSION)
             }
         }
 
         fun verificarPermisosAlmacenamiento(activity: Activity): Boolean {
-            return ContextCompat.checkSelfPermission(
-                activity,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-                activity,
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            ) == PackageManager.PERMISSION_GRANTED
+            if(Build.VERSION.SDK_INT >= 30)
+                return Environment.isExternalStorageManager()
+            else {
+                val permisosRequeridos = mutableListOf<String>()
+
+                for (permmiso in permisosAlmacenamiento) {
+                    if (ContextCompat.checkSelfPermission(activity, permmiso) != PackageManager.PERMISSION_GRANTED)
+                        permisosRequeridos.add(permmiso)
+                }
+
+                return !permisosRequeridos.isNotEmpty()
+            }
         }
 
         fun irConfiguracionPermisos(activity: Activity) {
             val intent = Intent()
-            intent.action = android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-            val uri = Uri.fromParts("package", activity.packageName, null)
-            intent.data = uri
+            intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+            intent.data = Uri.fromParts("package", activity.packageName, null)
             activity.startActivity(intent)
         }
     }

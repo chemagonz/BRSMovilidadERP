@@ -4,27 +4,34 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.os.Environment.getExternalStorageDirectory
 import android.os.Handler
 import android.os.Looper
+import android.provider.Settings
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.advantys.brsmovilidaderp.BRSMovilidadERPApp
 import com.advantys.brsmovilidaderp.UI.ViewModels.SplashScreen_ViewModel
 import com.advantys.brsmovilidaderp.UI.Views.Clientes.Clientes_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Licencia.Licencia_Activity
 import com.advantys.brsmovilidaderp.Utils.BDUtil
 import com.advantys.brsmovilidaderp.Utils.FechaHoy
 import com.advantys.brsmovilidaderp.Utils.INICIO
+import com.advantys.brsmovilidaderp.Utils.MostrarPor
+import com.advantys.brsmovilidaderp.Utils.OrdenarPor
 import com.advantys.brsmovilidaderp.Utils.PermisosUtils
 import com.advantys.brsmovilidaderp.Utils.Ruta
 import com.advantys.brsmovilidaderp.Utils.YaCargado
 import com.advantys.brsmovilidaderp.Utils.crearBackup
 import com.advantys.brsmovilidaderp.Utils.obtenerVersionApp
 import com.advantys.brsmovilidaderp.databinding.ActivitySplashScreenBinding
+import com.google.firebase.BuildConfig
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.util.Date
@@ -53,10 +60,6 @@ class SplashScreen_activity : AppCompatActivity() {
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
-
-
         //Verificar permisos
         Handler(Looper.getMainLooper()).postDelayed({
             // Verificar permisos
@@ -67,40 +70,30 @@ class SplashScreen_activity : AppCompatActivity() {
             }
         }, 500)
 
-        //Posible forma de comprobar permisos
-
-//        fun iniciarProceso() {
-//            lifecycleScope.launch {
-//                // Verificar permisos
-//                if (!PermisosUtils.verificarPermisosAlmacenamiento(this@SplashScreen_activity)) {
-//                    PermisosUtils.solicitarPermisosAlmacenamiento(this@SplashScreen_activity)
-//                } else {
-//                    continuarDespuesPermisos()
-//                }
-//            }
-//        }
     }
 
     //Si no tiene los permisos, salta aviso para permitir o denegar.
     @RequiresApi(Build.VERSION_CODES.O)
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
         if (requestCode == PermisosUtils.REQUEST_STORAGE_PERMISSION) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                continuarDespuesPermisos()
-            } else {
-                mostrarDialogoPermisosDenegados()
+            if(grantResults.isNotEmpty()){
+                var flag = true
+
+                for (resultado in grantResults) {
+                    if (resultado == PackageManager.PERMISSION_DENIED) flag = false
+                }
+
+                if(flag) continuarDespuesPermisos()
+                else mostrarDialogoPermisosDenegados()
             }
+            else mostrarDialogoPermisosDenegados()
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun continuarDespuesPermisos() {
-
         val file = File(Ruta, "BRSAndroid.db")
         if (!file.exists()) {
             GenerarBBDD()
