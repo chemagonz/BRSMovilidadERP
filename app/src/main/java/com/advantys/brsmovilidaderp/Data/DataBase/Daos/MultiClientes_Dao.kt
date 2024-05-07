@@ -24,7 +24,7 @@ class MultiClientes_Dao @Inject constructor(private val databaseManager: BDUtil)
 
     fun codigoFabricante(multiClienteFab: Short?) : MultiClientes_Entity?{
 
-        var sql = "SELECT ${MultiClientes_Schema.TABLE_NAME}.${MultiClientes_Schema.FABRICANTE_FIELD},${Fabricante_Schema.TABLE_NAME}.${Fabricante_Schema.FABRICANTE_FIELD}  FROM ${MultiClientes_Schema.TABLE_NAME},${Fabricante_Schema.TABLE_NAME}  WHERE ${MultiClientes_Schema.TABLE_NAME}.${MultiClientes_Schema.FABRICANTE_FIELD} = ${Fabricante_Schema.TABLE_NAME}.${Fabricante_Schema.FABRICANTE_FIELD}"
+        val sql = "SELECT ${MultiClientes_Schema.TABLE_NAME}.${MultiClientes_Schema.FABRICANTE_FIELD},${Fabricante_Schema.TABLE_NAME}.${Fabricante_Schema.FABRICANTE_FIELD}  FROM ${MultiClientes_Schema.TABLE_NAME},${Fabricante_Schema.TABLE_NAME}  WHERE ${MultiClientes_Schema.TABLE_NAME}.${MultiClientes_Schema.FABRICANTE_FIELD} = ${Fabricante_Schema.TABLE_NAME}.${Fabricante_Schema.FABRICANTE_FIELD}"
         return databaseManager.queryDetalles(sql){ cursor ->
             MultiClientes_Entity.fromCursor(cursor)
         }
