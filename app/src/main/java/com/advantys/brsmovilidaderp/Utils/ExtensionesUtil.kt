@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ProgressBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.databinding.SnackbarBinding
@@ -115,6 +116,20 @@ import java.util.Date
         dialog.show()
 
         return dialog
+    }
+
+    fun AppCompatActivity.actionBar(
+        titulo: String,
+        subtitulo: String? = null,
+        displayHomeAsUpEnabled: Boolean = true,
+        homeButtonEnabled: Boolean = true
+    ) {
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(displayHomeAsUpEnabled)
+            setHomeButtonEnabled(homeButtonEnabled)
+            this.title = titulo
+            this.subtitle = subtitulo
+        }
     }
 
     //endregion
