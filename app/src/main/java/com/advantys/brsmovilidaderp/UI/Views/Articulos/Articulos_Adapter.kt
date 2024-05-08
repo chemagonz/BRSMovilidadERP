@@ -11,6 +11,7 @@ import com.advantys.brsmovilidaderp.databinding.ItemArticulosBinding
 
 class Articulos_Adapter(private val articulosList: List<Articulo?>, private val articulosViewModel: Articulo_ViewModel): RecyclerView.Adapter<Articulos_ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Articulos_ViewHolder {
+
         val layoutInflater = LayoutInflater.from(parent.context)
         return Articulos_ViewHolder(layoutInflater.inflate(R.layout.item_articulos, parent, false))
     }
@@ -20,22 +21,21 @@ class Articulos_Adapter(private val articulosList: List<Articulo?>, private val 
         holder.bind(articulosList[position])
 
         val item = articulosList[position]
-        holder.binding.nombreArticulo.text= item?.nombre
-        holder.binding.codigoArticulo.text= item?.articulo
+        holder.binding.nombreArticulo.text = item?.nombre
+        holder.binding.codigoArticulo.text = item?.articulo
         holder.binding.imagenArticulo.setImageResource(R.mipmap.imagen_prueba_foreground)
 
         holder.binding.botonDetalles.setOnClickListener {
             articulosViewModel.btnDetalles(item, holder.itemView.context)
         }
-
     }
 }
 
     class Articulos_ViewHolder(view: View): RecyclerView.ViewHolder(view){
     val binding = ItemArticulosBinding.bind(view)
     fun bind(articulosModel: Articulo?){
-        binding.nombreArticulo.text= articulosModel?.nombre
-        binding.codigoArticulo.text= articulosModel?.articulo
+        binding.nombreArticulo.text = articulosModel?.nombre
+        binding.codigoArticulo.text = articulosModel?.articulo
     }
 
 }
