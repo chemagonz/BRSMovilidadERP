@@ -18,9 +18,10 @@ class TarifasArticulo_Adapter (private val tarifaArticuloList:List<TarifaArticul
     override fun getItemCount(): Int = tarifaArticuloList.size
     override fun onBindViewHolder(holder: TarifaArticulo_ViewHolder, position: Int) {
         holder.bind(tarifaArticuloList[position])
+
         val item= tarifaArticuloList[position]
         holder.binding.numTarifa.text = item?.numTarifa.toString()
-        holder.binding.tarifaPVP.text= item?.pvp.toString()
+        holder.binding.tarifaPVP.text = item?.pvp.toString()
     }
 
 
@@ -29,7 +30,7 @@ class TarifasArticulo_Adapter (private val tarifaArticuloList:List<TarifaArticul
 class TarifaArticulo_ViewHolder(view: View): RecyclerView.ViewHolder(view){
     val binding = ItemTarifaArticuloBinding.bind(view)
     fun bind(tarifaArticulosModel: TarifaArticulo?){
-        binding.numTarifa.text=  tarifaArticulosModel?.numTarifa.toString()
-        binding.tarifaPVP.text= tarifaArticulosModel?.pvp.toString()
+        binding.numTarifa.text =  tarifaArticulosModel?.numTarifa.toString()
+        binding.tarifaPVP.text = tarifaArticulosModel?.pvp.toString()
     }
 }

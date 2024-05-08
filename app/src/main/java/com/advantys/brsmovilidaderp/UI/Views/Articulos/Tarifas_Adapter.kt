@@ -19,8 +19,9 @@ class Tarifas_Adapter(private val tarifaList:List<Tarifa?>, private val tarifaVi
 
     override fun onBindViewHolder(holder: Tarifa_ViewHolder, position: Int) {
         holder.bind(tarifaList[position])
+
         val item= tarifaList[position]
-        holder.binding.nombreTarifa.text= item?.nombre
+        holder.binding.nombreTarifa.text = item?.nombre
 
     }
 }
@@ -28,6 +29,6 @@ class Tarifas_Adapter(private val tarifaList:List<Tarifa?>, private val tarifaVi
 class Tarifa_ViewHolder(view: View): RecyclerView.ViewHolder(view){
     val binding = ItemTarifaArticuloBinding.bind(view)
     fun bind(tarifaModel: Tarifa?){
-        binding.nombreTarifa.text= tarifaModel?.nombre
+            binding.nombreTarifa.text= tarifaModel?.nombre
     }
 }
