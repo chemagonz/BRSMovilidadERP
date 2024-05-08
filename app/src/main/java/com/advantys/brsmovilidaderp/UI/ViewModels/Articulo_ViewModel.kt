@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class Articulo_ViewModel @Inject constructor(private var articuloUsecase: Articulo_UseCase): ViewModel() {
     val articulosModel = MutableLiveData<List<Articulo>>()
-    val articuloModel = MutableLiveData<Articulo>()
+    val articuloModel = MutableLiveData<Articulo?>()
 
 
     fun onCreate(){
@@ -26,12 +26,10 @@ class Articulo_ViewModel @Inject constructor(private var articuloUsecase: Articu
             if(!resultado.isNullOrEmpty()) articulosModel.postValue(resultado)
         }
     }
-    fun onCreateDetalles(articulo: String?, fabricante:Short?) {
+    fun onCreateDetalles(articulo: String?) {
         viewModelScope.launch(Dispatchers.Default) {
-            val resultado = articuloUsecase.detalles(articulo,fabricante)
-            if (resultado != null) {
-                articuloModel.postValue(resultado)
-            }
+            val resultado = articuloUsecase.detalles(articulo)
+            articuloModel.postValue(resultado)
         }
     }
     fun btnDetalles(item: Articulo?, context: Context){
@@ -40,7 +38,7 @@ class Articulo_ViewModel @Inject constructor(private var articuloUsecase: Articu
         intent.putExtra("fabricante", item?.fabricante)
         context.startActivity(intent)
     }
-    fun buscarArticulos(columnas: BuscarArticulosPor, query:String){ viewModelScope.launch(Dispatchers.Default) {
+    fun buscarArticulos(columnas: BuscarArticulosPor, query:String)  {
         viewModelScope.launch(Dispatchers.Default) {
             val resultado = articuloUsecase(columnas,query)
             if (resultado.isEmpty() && query.isNotEmpty()) { // Verificar si la lista está vacía y la consulta no lo está
@@ -48,7 +46,7 @@ class Articulo_ViewModel @Inject constructor(private var articuloUsecase: Articu
             } else {
                 articulosModel.postValue(resultado)
             }
-        }
+
     }
     }
     fun buscarArticulosFiltro(buscarArticulosPor: BuscarArticulosPor, codfamilia: Short?=null, codsubfamilia:Short?=null, codformato:Int?=null, codmarca:String?=null, codsabor:String?=null, tipoConsulta: String?=null){

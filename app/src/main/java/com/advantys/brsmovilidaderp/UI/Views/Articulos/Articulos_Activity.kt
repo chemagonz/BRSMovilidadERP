@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Articulo_ViewModel
@@ -20,6 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class Articulos_Activity : AppCompatActivity() {
+
     val articulosViewModel: Articulo_ViewModel by viewModels()
     var tipoSeleccionado: BuscarArticulosPor = BuscarArticulosPor.descripcion
 
@@ -67,8 +69,10 @@ class Articulos_Activity : AppCompatActivity() {
             binding.articulosRecyclerView.adapter = Articulos_Adapter(it, articulosViewModel)
         })
     }
+
     //Manejo de boton para la actividad buscar articulos
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
+
         menuInflater.inflate(R.menu.filtrar_articulo, menu)
 
         val searchItem = menu.findItem(R.id.searchArticulo)
@@ -87,6 +91,7 @@ class Articulos_Activity : AppCompatActivity() {
 
             }
         })
+
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -118,6 +123,7 @@ class Articulos_Activity : AppCompatActivity() {
                 responseLauncher.launch(intent)
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -126,17 +132,30 @@ class Articulos_Activity : AppCompatActivity() {
 
         popupMenu.menuInflater.inflate(R.menu.articulos_descripcion_codigo, popupMenu.menu)
         popupMenu.setOnMenuItemClickListener { menuItem ->
+
             when (menuItem.itemId) {
+
                 R.id.descripcionlarga -> {
                     tipoSeleccionado = BuscarArticulosPor.descripcion
                     supportActionBar?.subtitle = "DESCRIPCIÓN"
                     searchView?.setQuery("", false)
                     true
                 }
+
                 R.id.codigo -> {
                     tipoSeleccionado = BuscarArticulosPor.codigo
                     supportActionBar?.subtitle = "CÓDIGO"
                     searchView?.setQuery("", false)
+                    true
+                }
+
+                R.id.mostrar -> {
+                    articulosViewModel.buscarArticulosFiltro(tipoSeleccionado)
+                    articulosViewModel.articulosModel.observe(this, Observer {
+                        binding.articulosRecyclerView.adapter = Articulos_Adapter_mostrar(it, articulosViewModel)
+                        val layoutManager = GridLayoutManager(this, 2)
+                        binding.articulosRecyclerView.layoutManager = layoutManager
+                    })
                     true
                 }
                 else -> false
@@ -144,6 +163,8 @@ class Articulos_Activity : AppCompatActivity() {
         }
         popupMenu.show()
     }
+
+
     private fun cleanFiltros() {
         val editor = sharedPreferences.edit()
         editor.remove(KEY_SELECTED_FAMILIA)

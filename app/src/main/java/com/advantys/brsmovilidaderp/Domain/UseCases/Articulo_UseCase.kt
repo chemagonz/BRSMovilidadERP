@@ -15,11 +15,8 @@ class Articulo_UseCase @Inject constructor (private val repository: Articulos_Re
     suspend operator fun invoke(columnas: BuscarArticulosPor, query:String):List<Articulo>{
         return repository.getFilter(columnas, query)
     }
-    suspend  fun detalles(articulo:String?, fabricante:Short?): Articulo {
-        articulo?.let {
-            val articuloDet= repository.getDetalles(articulo, fabricante)
-            return articuloDet ?: throw NoSuchElementException("Error")
-        }?:throw IllegalArgumentException("no puede ser nulo")
+    suspend  fun detalles(articulo:String?): Articulo? {
+        return repository.getDetalles(articulo)
     }
 
     suspend operator fun invoke(buscarArticulosPor: BuscarArticulosPor, codfamilia: Short?, codsubfamilia:Short?, codformato:Int?, codmarca:String?, codsabor:String?, tipoConsulta: String?): List<Articulo>{

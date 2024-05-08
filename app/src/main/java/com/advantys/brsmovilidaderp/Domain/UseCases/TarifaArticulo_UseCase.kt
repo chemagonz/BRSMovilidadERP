@@ -8,8 +8,8 @@ import javax.inject.Inject
 
 class TarifaArticulo_UseCase @Inject constructor(private val repository: TarifasArticulo_Repository) {
     @RequiresApi(Build.VERSION_CODES.O)
-    suspend operator fun invoke(articulo:String?, fabricante:Short?): List<TarifaArticulo>{
-        val articulo = repository.getTarifa(articulo, fabricante)
+    suspend operator fun invoke(articulo:String?): List<TarifaArticulo>{
+        val articulo = repository.getTarifa(articulo)
         return if(articulo.isNullOrEmpty())
             listOf<TarifaArticulo>()
         else articulo

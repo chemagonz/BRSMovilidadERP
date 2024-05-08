@@ -6,4 +6,8 @@
     <item
         android:id="@+id/codigo"
         android:title="CÓDIGO" />
+
+    <item
+        android:id="@+id/mostrar"
+        android:title="MOSTRAR VISTA" />
 </menu>

@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.advantys.brsmovilidaderp.Domain.Models.Articulo
 import com.advantys.brsmovilidaderp.Domain.Models.TipoIVA
+import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Articulo_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.TarifaArticulo_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.Tarifa_ViewModel
@@ -40,8 +41,10 @@ class DetallesArticulos_Activity : AppCompatActivity() {
 
         BDUtil.KeyboardUtil.esconderTeclado(this)
         val articuloC= intent.getStringExtra("articulo")
-        val articuloFab= intent.getShortExtra("fabricante", 0)
-        articuloViewmodel.onCreateDetalles(articuloC, articuloFab)
+        //val articuloFab= intent.getShortExtra("fabricante", 0)
+
+
+        articuloViewmodel.onCreateDetalles(articuloC)
         articuloViewmodel.articuloModel.observe(this, Observer { articulo ->
             articulo?.let { verDetallesArticulo(articulo)}
             tipoIvaViewModel.onCreateGetIVA(articulo?.tipoIVA)
@@ -50,7 +53,7 @@ class DetallesArticulos_Activity : AppCompatActivity() {
             tipoIVA?.let { verDetallesTipoIVA(tipoIVA) }
         })
 
-        tarifaArticuloViewmodel.onCreate(articuloC, articuloFab)
+        tarifaArticuloViewmodel.onCreate(articuloC)
         tarifaArticuloViewmodel.tarifasArticuloModel.observe(this, Observer {
             binding.recyclerViewTarifaArticulos.layoutManager= LinearLayoutManager(this)
             binding.recyclerViewTarifaArticulos.adapter = TarifasArticulo_Adapter(it, tarifaArticuloViewmodel)
@@ -96,6 +99,7 @@ class DetallesArticulos_Activity : AppCompatActivity() {
         binding.edEnvase.setText(detalles.toString())
         binding.edStockCP.setText(articulo.disponible1.toString())
         binding.edStockUK.setText(articulo.disponible2.toString())
+        binding.imageArticulo.setImageResource(R.mipmap.imagen_prueba_foreground)
     }
     private fun verDetallesTipoIVA(tipoIVA: TipoIVA) {
         binding.edTipoIVA.setText(tipoIVA.porcIVA.toString())

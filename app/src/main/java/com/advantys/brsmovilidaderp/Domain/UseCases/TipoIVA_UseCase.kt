@@ -5,10 +5,7 @@ import com.advantys.brsmovilidaderp.Domain.Models.TipoIVA
 import javax.inject.Inject
 
 class TipoIVA_UseCase @Inject constructor(private val repository: TiposIVA_Repository) {
-    suspend fun getIVA(IVA: Short?):TipoIVA{
-        IVA?.let {
-            val ivaDet= repository.getIVA(IVA)
-            return ivaDet?: throw NoSuchElementException("Error")
-        }?:throw IllegalArgumentException("no puede ser nulo")
+    suspend fun getIVA(IVA: Short?):TipoIVA?{
+           return repository.getIVA(IVA)
     }
 }

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:orientation="vertical"
+    app:cardCornerRadius="0dp"
+    android:theme="@style/Theme.BRSMovilidadERPprueba"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imagenArticulo"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true" />
+
+            <TextView
+                android:id="@+id/nombreArticulo"
+                android:layout_width="264dp"
+                android:layout_height="70dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@id/imagenArticulo"
+                android:paddingEnd="5dp"
+                android:text="TextView"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/codigoArticulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/nombreArticulo"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="3dp"
+                android:layout_toEndOf="@id/imagenArticulo"
+                android:text="TextView"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/botonDetalles"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="350dp"
+                android:layout_marginTop="67dp"
+                android:layout_marginEnd="0dp"
+                android:background="#00000000"
+                android:padding="8dp"
+                android:src="@drawable/ic_action_name" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

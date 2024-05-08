@@ -17,8 +17,8 @@ class Articulos_Repository @Inject constructor(private val articulosDao: Articul
         val response :List<Articulos_Entity?> =articulosDao.getFilter(columna,tipoConsulta)
         return response.filterNotNull().map { it.toDomain() }
     }
-    suspend fun getDetalles(articulo:String?, fabricante:Short?): Articulo?{
-        val response : Articulos_Entity?= articulosDao.getDetalles(articulo, fabricante)
+    suspend fun getDetalles(articulo:String?): Articulo?{
+        val response : Articulos_Entity?= articulosDao.getDetalles(articulo)
         return response?.toDomain()
     }
 

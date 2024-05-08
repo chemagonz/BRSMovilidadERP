@@ -11,8 +11,8 @@ import javax.inject.Inject
 class TarifasArticulo_Repository @Inject constructor(private val tarifasArticulos_Dao: TarifasArticulo_Dao) {
 
     @RequiresApi(Build.VERSION_CODES.O)
-    suspend fun getTarifa(articulo:String?, fabricante: Short?):List<TarifaArticulo>{
-        val response: List<TarifasArticulos_Entity?> = tarifasArticulos_Dao.getTarifa(articulo, fabricante)
+    suspend fun getTarifa(articulo:String?):List<TarifaArticulo>{
+        val response: List<TarifasArticulos_Entity?> = tarifasArticulos_Dao.getTarifa(articulo)
         return response.filterNotNull().map { it.toDomain() }
     }
 }

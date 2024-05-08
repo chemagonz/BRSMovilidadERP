@@ -8,55 +8,78 @@
     android:layout_margin="4dp"
     android:orientation="vertical"
     app:cardCornerRadius="0dp"
+    android:theme="@style/Theme.BRSMovilidadERPprueba"
     app:cardElevation="4dp">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
 
         <RelativeLayout
-            android:layout_width="349dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-            <TextView
-                android:id="@+id/nombreArticulo"
-                android:layout_width="301dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="7dp"
-                android:layout_marginTop="16dp"
-                android:text="TextView"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imagenArticulo"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                 />
 
 
-            <TextView
-                android:id="@+id/codigoArticulo"
-                android:layout_width="299dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/nombreArticulo"
-                android:layout_marginStart="7dp"
-                android:layout_marginTop="8dp"
-                android:text="TextView"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:layout_marginBottom="4dp"
-                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="273dp"
+                android:layout_height="93dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="-2dp"
+                android:layout_toStartOf="@+id/botonDetalles"
+                android:layout_toEndOf="@+id/imagenArticulo"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/nombreArticulo"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="19dp"
+                    android:layout_toEndOf="@id/imageArticulo"
+                    android:text="TextView"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/codigoArticulo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/nombreArticulo"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toEndOf="@id/imageArticulo"
+                    android:text="TextView"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <ImageButton
+                    android:id="@+id/botonDetalles"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="27dp"
+                    android:layout_marginEnd="9dp"
+                    android:background="#00000000"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_action_name" />
+
 
         </RelativeLayout>
 
-        <!-- ImageButton a la derecha -->
-        <ImageButton
-            android:id="@+id/botonDetalles"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="20sp"
-            android:background="#00000000"
-            android:paddingLeft="10sp"
-            android:src="@drawable/ic_action_name" />
 
-    </LinearLayout>
 
 
 </androidx.cardview.widget.CardView>

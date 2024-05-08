@@ -125,8 +125,8 @@ class Articulos_Dao @Inject constructor(private val databaseManager: BDUtil) {
     }
 
 
-    fun getDetalles(articulo:String?, fabricante: Short?): Articulos_Entity?{
-        var sql= "SELECT ${Articulos_Schema.ARTICULO_FIELD},${Articulos_Schema.ARTICULO_RET_FIELD}, ${Articulos_Schema.FABRICANTE_RET_FIELD}, ${Articulos_Schema.UNIDADES_CAJA_FIELD}, ${Articulos_Schema.NOMBRE_FIELD}, ${Articulos_Schema.NOMBRE_CORTO_FIELD},${Articulos_Schema.TIPOIVA_FIELD},${Articulos_Schema.PRECOSTE_FIELD}, ${Articulos_Schema.PREULT_COMPRA_FIELD},${Articulos_Schema.DISPONIBLE1_FIELD}, ${Articulos_Schema.DISPONIBLE2_FIELD},${Articulos_Schema.PUNTO_VERDE_FIELD},${Articulos_Schema.ALCOHOL_FIELD}, ${Articulos_Schema.MANIPULACION_FIELD} FROM ${Articulos_Schema.TABLE_NAME} WHERE ${Articulos_Schema.ARTICULO_FIELD} = '${articulo}' AND ${Articulos_Schema.FABRICANTE_FIELD} = ${fabricante}"
+    fun getDetalles(articulo:String?): Articulos_Entity?{
+        val sql= "SELECT ${Articulos_Schema.ARTICULO_FIELD},${Articulos_Schema.ARTICULO_RET_FIELD}, ${Articulos_Schema.FABRICANTE_RET_FIELD}, ${Articulos_Schema.UNIDADES_CAJA_FIELD}, ${Articulos_Schema.NOMBRE_FIELD}, ${Articulos_Schema.NOMBRE_CORTO_FIELD},${Articulos_Schema.TIPOIVA_FIELD},${Articulos_Schema.PRECOSTE_FIELD}, ${Articulos_Schema.PREULT_COMPRA_FIELD},${Articulos_Schema.DISPONIBLE1_FIELD}, ${Articulos_Schema.DISPONIBLE2_FIELD},${Articulos_Schema.PUNTO_VERDE_FIELD},${Articulos_Schema.ALCOHOL_FIELD}, ${Articulos_Schema.MANIPULACION_FIELD} FROM ${Articulos_Schema.TABLE_NAME} WHERE ${Articulos_Schema.TABLE_NAME}.${Articulos_Schema.ARTICULO_FIELD} = '${articulo}' "
         return  databaseManager.queryDetalles(sql){cursor ->
             Articulos_Entity.fromCursor(cursor)
         }

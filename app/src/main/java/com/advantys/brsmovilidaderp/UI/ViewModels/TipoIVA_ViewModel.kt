@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TipoIVA_ViewModel @Inject constructor(private val tipoivaUsecase: TipoIVA_UseCase ): ViewModel() {
-    val tipoIVAModel = MutableLiveData<TipoIVA>()
+    val tipoIVAModel = MutableLiveData<TipoIVA?>()
     fun onCreateGetIVA(IVA: Short?) {
         viewModelScope.launch(Dispatchers.Default) {
             val resultado = tipoivaUsecase.getIVA(IVA)

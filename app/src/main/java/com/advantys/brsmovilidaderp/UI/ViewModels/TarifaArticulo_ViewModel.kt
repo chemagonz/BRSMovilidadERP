@@ -16,9 +16,9 @@ import javax.inject.Inject
 class TarifaArticulo_ViewModel @Inject constructor(private val tarifaArticulo_UseCase: TarifaArticulo_UseCase) : ViewModel(){
     val tarifasArticuloModel= MutableLiveData<List<TarifaArticulo>>()
     @RequiresApi(Build.VERSION_CODES.O)
-    fun onCreate(articulo:String?, fabricante:Short?){
+    fun onCreate(articulo:String?){
         viewModelScope.launch(Dispatchers.Default) {
-            val resultado= tarifaArticulo_UseCase(articulo,fabricante)
+            val resultado= tarifaArticulo_UseCase(articulo)
             if(!resultado.isNullOrEmpty()) tarifasArticuloModel.postValue(resultado)
         }
     }
