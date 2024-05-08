@@ -17,6 +17,7 @@ import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Articulo_ViewModel
 import com.advantys.brsmovilidaderp.Utils.BDUtil.KeyboardUtil.esconderTeclado
 import com.advantys.brsmovilidaderp.Utils.BuscarArticulosPor
+import com.advantys.brsmovilidaderp.Utils.actionBar
 import com.advantys.brsmovilidaderp.databinding.ActivityArticulosBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -64,7 +65,7 @@ class Articulos_Activity : AppCompatActivity() {
 
         sharedPreferences = getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE)
         esconderTeclado(this)
-        appbar()
+        actionBar("ARTÍCULOS")
         mostrarArticulos()
     }
 
@@ -178,11 +179,5 @@ class Articulos_Activity : AppCompatActivity() {
         editor.remove(KEY_SELECTED_SABOR)
         editor.apply()
     }
-    private fun appbar(){
-        supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            setHomeButtonEnabled(true)
-            title="ARTÍCULOS"
-        }
-    }
+
 }

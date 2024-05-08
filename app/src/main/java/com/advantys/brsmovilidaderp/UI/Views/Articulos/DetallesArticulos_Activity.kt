@@ -16,6 +16,7 @@ import com.advantys.brsmovilidaderp.UI.ViewModels.TarifaArticulo_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.Tarifa_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.TipoIVA_ViewModel
 import com.advantys.brsmovilidaderp.Utils.BDUtil.KeyboardUtil.esconderTeclado
+import com.advantys.brsmovilidaderp.Utils.actionBar
 import com.advantys.brsmovilidaderp.databinding.ActivityDetallesArticulosBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,7 +37,7 @@ class DetallesArticulos_Activity : AppCompatActivity() {
         setContentView(binding.root)
 
         esconderTeclado(this)
-        appbar()
+        actionBar("ARTÍCULOS", "DETALLES")
         mostrarDetalles()
         mostrarDetallesIVA()
         mostrarTarifas()
@@ -87,15 +88,6 @@ class DetallesArticulos_Activity : AppCompatActivity() {
     private fun verDetallesTipoIVA(tipoIVA: TipoIVA) {
         binding.edTipoIVA.setText(tipoIVA.porcIVA.toString())
         binding.edTipoIVAREC.setText(tipoIVA.porCREC.toString())
-    }
-
-    private fun appbar(){
-        supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            setDisplayShowHomeEnabled(true)
-            title="ARTÍCULOS"
-            subtitle="DETALLES"
-        }
     }
 
     private fun mostrarDetalles() {

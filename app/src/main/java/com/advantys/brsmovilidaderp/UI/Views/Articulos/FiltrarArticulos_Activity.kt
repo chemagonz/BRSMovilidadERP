@@ -23,6 +23,7 @@ import com.advantys.brsmovilidaderp.UI.ViewModels.Marca_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.Sabor_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.Subfamilia_ViewModel
 import com.advantys.brsmovilidaderp.Utils.TipoAlerta
+import com.advantys.brsmovilidaderp.Utils.actionBar
 import com.advantys.brsmovilidaderp.Utils.mostrarSnackbar
 import com.advantys.brsmovilidaderp.databinding.ActivityFiltrarArticulosBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -62,7 +63,7 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
 
         sharedPreferences = getSharedPreferences(SHARED_PREFS_KEY, Context.MODE_PRIVATE)
 
-        appbar()
+        actionBar("FILTRAR")
         mostrarFamilias()
         mostrarSubfamilias()
         mostrarFormato()
@@ -148,14 +149,6 @@ class FiltrarArticulos_Activity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    private fun appbar(){
-        supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            setHomeButtonEnabled(true)
-            title= "FILTRAR"
-        }
     }
 
     private fun mostrarFamilias() {
