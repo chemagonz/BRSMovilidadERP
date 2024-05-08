@@ -16,43 +16,37 @@ import javax.inject.Inject
 
 @HiltViewModel
 class Articulo_ViewModel @Inject constructor(private var articuloUsecase: Articulo_UseCase): ViewModel() {
+
     val articulosModel = MutableLiveData<List<Articulo>>()
     val articuloModel = MutableLiveData<Articulo?>()
 
-
-    fun onCreate(){
+    fun obtenerTodosArticulos() {
         viewModelScope.launch(Dispatchers.Default) {
-            val resultado= articuloUsecase()
+
+            val resultado = articuloUsecase.obtenerTodosArticulos()
             if(!resultado.isNullOrEmpty()) articulosModel.postValue(resultado)
         }
     }
-    fun onCreateDetalles(articulo: String?) {
+    fun obtenerDetalles(articulo: String?) {
         viewModelScope.launch(Dispatchers.Default) {
+
             val resultado = articuloUsecase.detalles(articulo)
             articuloModel.postValue(resultado)
         }
     }
-    fun btnDetalles(item: Articulo?, context: Context){
+    fun btnDetalles(item: Articulo?, context: Context) {
         val intent = Intent(context, DetallesArticulos_Activity::class.java)
+
         intent.putExtra("articulo", item?.articulo)
         intent.putExtra("fabricante", item?.fabricante)
         context.startActivity(intent)
     }
-    fun buscarArticulos(columnas: BuscarArticulosPor, query:String)  {
-        viewModelScope.launch(Dispatchers.Default) {
-            val resultado = articuloUsecase(columnas,query)
-            if (resultado.isEmpty() && query.isNotEmpty()) { // Verificar si la lista está vacía y la consulta no lo está
-                articulosModel.postValue(emptyList()) // Asignar una lista vacía a ClientesModel
-            } else {
-                articulosModel.postValue(resultado)
-            }
 
-    }
-    }
-    fun buscarArticulosFiltro(buscarArticulosPor: BuscarArticulosPor, codfamilia: Short?=null, codsubfamilia:Short?=null, codformato:Int?=null, codmarca:String?=null, codsabor:String?=null, tipoConsulta: String?=null){
+    fun obtenerArticulos(buscarArticulosPor: BuscarArticulosPor, codfamilia: Short?=null, codsubfamilia:Short?=null, codformato:Int?=null, codmarca:String?=null, codsabor:String?=null, tipoConsulta: String?=null) {
         viewModelScope.launch(Dispatchers.Default) {
-            val resultado= articuloUsecase(buscarArticulosPor, codfamilia, codsubfamilia, codformato, codmarca, codsabor, tipoConsulta)
-            if(!resultado.isNullOrEmpty()){
+            val resultado = articuloUsecase.obtenerArticulos(buscarArticulosPor, codfamilia, codsubfamilia, codformato, codmarca, codsabor, tipoConsulta)
+
+            if(!resultado.isNullOrEmpty()) {
                 articulosModel.postValue(resultado)
             }else{
                 articulosModel.postValue(emptyList())

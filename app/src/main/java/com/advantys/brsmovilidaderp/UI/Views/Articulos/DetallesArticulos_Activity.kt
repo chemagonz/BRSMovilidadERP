@@ -15,63 +15,43 @@ import com.advantys.brsmovilidaderp.UI.ViewModels.Articulo_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.TarifaArticulo_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.Tarifa_ViewModel
 import com.advantys.brsmovilidaderp.UI.ViewModels.TipoIVA_ViewModel
-import com.advantys.brsmovilidaderp.Utils.BDUtil
+import com.advantys.brsmovilidaderp.Utils.BDUtil.KeyboardUtil.esconderTeclado
 import com.advantys.brsmovilidaderp.databinding.ActivityDetallesArticulosBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DetallesArticulos_Activity : AppCompatActivity() {
+
     val articuloViewmodel:Articulo_ViewModel by viewModels()
     val tipoIvaViewModel: TipoIVA_ViewModel by viewModels()
     val tarifaArticuloViewmodel: TarifaArticulo_ViewModel by viewModels()
     val tarifaViewmodel: Tarifa_ViewModel by viewModels()
+
     private lateinit var binding: ActivityDetallesArticulosBinding
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityDetallesArticulosBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            setDisplayShowHomeEnabled(true)
-            title="ARTÍCULOS"
-            subtitle="DETALLES"
-        }
+        esconderTeclado(this)
+        appbar()
+        mostrarDetalles()
+        mostrarDetallesIVA()
+        mostrarTarifas()
 
-        BDUtil.KeyboardUtil.esconderTeclado(this)
-        val articuloC= intent.getStringExtra("articulo")
-        //val articuloFab= intent.getShortExtra("fabricante", 0)
-
-
-        articuloViewmodel.onCreateDetalles(articuloC)
-        articuloViewmodel.articuloModel.observe(this, Observer { articulo ->
-            articulo?.let { verDetallesArticulo(articulo)}
-            tipoIvaViewModel.onCreateGetIVA(articulo?.tipoIVA)
-        })
-        tipoIvaViewModel.tipoIVAModel.observe(this, Observer { tipoIVA ->
-            tipoIVA?.let { verDetallesTipoIVA(tipoIVA) }
-        })
-
-        tarifaArticuloViewmodel.onCreate(articuloC)
-        tarifaArticuloViewmodel.tarifasArticuloModel.observe(this, Observer {
-            binding.recyclerViewTarifaArticulos.layoutManager= LinearLayoutManager(this)
-            binding.recyclerViewTarifaArticulos.adapter = TarifasArticulo_Adapter(it, tarifaArticuloViewmodel)
-        })
 //        tarifaViewmodel.onCreate(articuloC,articuloFab)
 //        tarifaViewmodel.tarifasModel.observe(this, Observer {
 //            binding.recyclerViewTarifaArticulos.layoutManager= LinearLayoutManager(this)
 //            binding.recyclerViewTarifaArticulos.adapter= Tarifas_Adapter(it, tarifaViewmodel)
 //        })
-
-
-
     }
+
     //Funcion para manejar botones
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                //Boton para atras
                 finish()
                 return true
             }
@@ -81,6 +61,7 @@ class DetallesArticulos_Activity : AppCompatActivity() {
 
     private fun verDetallesArticulo(articulo: Articulo){
         val detalles= StringBuilder()
+
         binding.edCodigoArticulo.setText(articulo.articulo)
         binding.edFCarticulo.setText(articulo.udsCaja.toString())
         binding.edNombreArticulo.setText(articulo.nombre)
@@ -91,10 +72,12 @@ class DetallesArticulos_Activity : AppCompatActivity() {
         binding.edPuntoVerde.setText(articulo.puntoVerde.toString())
         binding.edAlcohol.setText(articulo.alcohol.toString())
         binding.edManipulacion.setText(articulo.manipulacion.toString())
-        val articuloRet= articulo.articuloRet
-        if(articuloRet !=null){
+
+        val articuloRet = articulo.articuloRet
+        if(articuloRet != null){
             detalles.append(if (articuloRet.isEmpty()) "" else "$articuloRet , ")
         }
+
         detalles.append(articulo.fabricanteRet)
         binding.edEnvase.setText(detalles.toString())
         binding.edStockCP.setText(articulo.disponible1.toString())
@@ -106,4 +89,41 @@ class DetallesArticulos_Activity : AppCompatActivity() {
         binding.edTipoIVAREC.setText(tipoIVA.porCREC.toString())
     }
 
+    private fun appbar(){
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+            title="ARTÍCULOS"
+            subtitle="DETALLES"
+        }
+    }
+
+    private fun mostrarDetalles() {
+        val articuloC= intent.getStringExtra("articulo")
+        //val articuloFab= intent.getShortExtra("fabricante", 0)
+
+        articuloViewmodel.obtenerDetalles(articuloC)
+        articuloViewmodel.articuloModel.observe(this, Observer { articulo ->
+            articulo?.let { verDetallesArticulo(articulo)}
+            tipoIvaViewModel.onCreateGetIVA(articulo?.tipoIVA)
+        })
+    }
+
+    private fun mostrarDetallesIVA() {
+        tipoIvaViewModel.tipoIVAModel.observe(this, Observer { tipoIVA ->
+            tipoIVA?.let { verDetallesTipoIVA(tipoIVA) }
+        })
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun mostrarTarifas() {
+        val articuloC= intent.getStringExtra("articulo")
+        //val articuloFab= intent.getShortExtra("fabricante", 0)
+
+        tarifaArticuloViewmodel.onCreate(articuloC)
+        tarifaArticuloViewmodel.tarifasArticuloModel.observe(this, Observer {
+            binding.recyclerViewTarifaArticulos.layoutManager= LinearLayoutManager(this)
+            binding.recyclerViewTarifaArticulos.adapter = TarifasArticulo_Adapter(it, tarifaArticuloViewmodel)
+        })
+    }
 }

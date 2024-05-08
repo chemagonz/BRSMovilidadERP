@@ -7,22 +7,19 @@ import com.advantys.brsmovilidaderp.Domain.Models.toDomain
 import com.advantys.brsmovilidaderp.Utils.BuscarArticulosPor
 import javax.inject.Inject
 
-class Articulos_Repository @Inject constructor(private val articulosDao: Articulos_Dao){
+class Articulos_Repository @Inject constructor (private val articulosDao: Articulos_Dao) {
 
-    suspend fun getAllArticulos():List<Articulo>{
-        val response: List<Articulos_Entity?> = articulosDao.getAll()
+    suspend fun obtenerTodosArticulos():List<Articulo>{
+        val response: List<Articulos_Entity?> = articulosDao.obtenerTodosArticulos()
         return response.filterNotNull().map { it.toDomain() }
     }
-    suspend fun getFilter(columna: BuscarArticulosPor, tipoConsulta: String?):List<Articulo>{
-        val response :List<Articulos_Entity?> =articulosDao.getFilter(columna,tipoConsulta)
-        return response.filterNotNull().map { it.toDomain() }
-    }
-    suspend fun getDetalles(articulo:String?): Articulo?{
-        val response : Articulos_Entity?= articulosDao.getDetalles(articulo)
+
+    suspend fun obtenerDetalles(articulo: String?): Articulo? {
+        val response : Articulos_Entity? = articulosDao.obtenerDetalles(articulo)
         return response?.toDomain()
     }
 
-    suspend fun obtenerArticulos(buscarArticulosPor: BuscarArticulosPor, codfamilia: Short?, codsubfamilia:Short?, codformato:Int?, codmarca:String?, codsabor:String?, tipoConsulta: String?):List<Articulo>{
+    suspend fun obtenerArticulos(buscarArticulosPor: BuscarArticulosPor, codfamilia: Short?, codsubfamilia:Short?, codformato:Int?, codmarca:String?, codsabor:String?, tipoConsulta: String?):List<Articulo> {
         val response : List<Articulos_Entity?> = articulosDao.obtenerArticulos(buscarArticulosPor,codfamilia,codsubfamilia,codformato,codmarca,codsabor,tipoConsulta)
         return response.filterNotNull().map { it.toDomain() }
     }

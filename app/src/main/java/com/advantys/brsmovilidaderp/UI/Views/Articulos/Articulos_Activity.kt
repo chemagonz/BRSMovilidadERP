@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.advantys.brsmovilidaderp.R
 import com.advantys.brsmovilidaderp.UI.ViewModels.Articulo_ViewModel
+import com.advantys.brsmovilidaderp.Utils.BDUtil.KeyboardUtil.esconderTeclado
 import com.advantys.brsmovilidaderp.Utils.BuscarArticulosPor
 import com.advantys.brsmovilidaderp.databinding.ActivityArticulosBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,6 +35,7 @@ class Articulos_Activity : AppCompatActivity() {
 
     private lateinit var binding: ActivityArticulosBinding
 
+    //Variables para filtro de artículos
     private lateinit var sharedPreferences: SharedPreferences
     private val SHARED_PREFS_KEY = "FiltrarArticulosPrefs"
     private val KEY_SELECTED_FAMILIA = "Familia"
@@ -45,34 +47,29 @@ class Articulos_Activity : AppCompatActivity() {
     private val responseLauncher= registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ activityResult->
 
         if(activityResult.resultCode== RESULT_OK){
+
             familiaID= activityResult.data?.getShortExtra("familia", -1)
             subfamiliaID= activityResult.data?.getShortExtra("subfamilia",-1)
             formatoID = activityResult.data?.getIntExtra("formato",-1)
             marcaID= activityResult.data?.getStringExtra("marca")
             saborID =activityResult.data?.getStringExtra("sabor")
-            articulosViewModel.buscarArticulosFiltro(BuscarArticulosPor.descripcion,familiaID,subfamiliaID,formatoID,marcaID,saborID)
-        }else articulosViewModel.buscarArticulosFiltro(tipoSeleccionado)
+            articulosViewModel.obtenerArticulos(BuscarArticulosPor.descripcion,familiaID,subfamiliaID,formatoID,marcaID,saborID)
+
+        }else articulosViewModel.obtenerArticulos(tipoSeleccionado)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityArticulosBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            setHomeButtonEnabled(true)
-            title="ARTÍCULOS"
-        }
+
         sharedPreferences = getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE)
-        articulosViewModel.buscarArticulosFiltro(tipoSeleccionado)
-        articulosViewModel.articulosModel.observe(this, Observer {
-            binding.articulosRecyclerView.layoutManager= LinearLayoutManager(this)
-            binding.articulosRecyclerView.adapter = Articulos_Adapter(it, articulosViewModel)
-        })
+        esconderTeclado(this)
+        appbar()
+        mostrarArticulos()
     }
 
     //Manejo de boton para la actividad buscar articulos
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-
         menuInflater.inflate(R.menu.filtrar_articulo, menu)
 
         val searchItem = menu.findItem(R.id.searchArticulo)
@@ -80,13 +77,12 @@ class Articulos_Activity : AppCompatActivity() {
         searchView.queryHint = "Buscar artículo"
 
         searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
-
             override fun onMenuItemActionExpand(item: MenuItem): Boolean {
                 return true
             }
 
             override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
-                articulosViewModel.buscarArticulosFiltro(tipoSeleccionado)
+                articulosViewModel.obtenerArticulos(tipoSeleccionado)
                 return true
 
             }
@@ -97,9 +93,9 @@ class Articulos_Activity : AppCompatActivity() {
                 return false
             }
             override fun onQueryTextChange(newText: String?): Boolean {
-
                 if (!newText.isNullOrEmpty() && tipoSeleccionado!=null) {
-                    articulosViewModel.buscarArticulosFiltro(tipoSeleccionado!!,familiaID,subfamiliaID, formatoID,marcaID,saborID,newText)
+                    articulosViewModel.obtenerArticulos(tipoSeleccionado!!,familiaID,subfamiliaID, formatoID,marcaID,saborID,newText)
+
                 }else binding.articulosRecyclerView.adapter= Articulos_Adapter(emptyList(), articulosViewModel)
 
                 return false
@@ -107,15 +103,17 @@ class Articulos_Activity : AppCompatActivity() {
         })
         return super.onCreateOptionsMenu(menu)
     }
+
+    //Manejo de botones menú
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home->{
-                cleanFiltros()
+                borrarFiltros()
                 finish()
                 true
             }
             R.id.busquedaArticuloPor ->{
-                showPopupMenu()
+                mostrarPopupMenu()
                 true
             }
             R.id.filtrarArticulo ->{
@@ -127,7 +125,7 @@ class Articulos_Activity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-    private fun showPopupMenu() {
+    private fun mostrarPopupMenu() {
         val popupMenu = PopupMenu(this, findViewById(R.id.busquedaArticuloPor))
 
         popupMenu.menuInflater.inflate(R.menu.articulos_descripcion_codigo, popupMenu.menu)
@@ -150,7 +148,7 @@ class Articulos_Activity : AppCompatActivity() {
                 }
 
                 R.id.mostrar -> {
-                    articulosViewModel.buscarArticulosFiltro(tipoSeleccionado)
+                    articulosViewModel.obtenerArticulos(tipoSeleccionado)
                     articulosViewModel.articulosModel.observe(this, Observer {
                         binding.articulosRecyclerView.adapter = Articulos_Adapter_mostrar(it, articulosViewModel)
                         val layoutManager = GridLayoutManager(this, 2)
@@ -164,8 +162,14 @@ class Articulos_Activity : AppCompatActivity() {
         popupMenu.show()
     }
 
-
-    private fun cleanFiltros() {
+    private fun mostrarArticulos(){
+        articulosViewModel.obtenerArticulos(tipoSeleccionado)
+        articulosViewModel.articulosModel.observe(this, Observer {
+            binding.articulosRecyclerView.layoutManager= LinearLayoutManager(this)
+            binding.articulosRecyclerView.adapter = Articulos_Adapter(it, articulosViewModel)
+        })
+    }
+    private fun borrarFiltros() {
         val editor = sharedPreferences.edit()
         editor.remove(KEY_SELECTED_FAMILIA)
         editor.remove(KEY_SELECTED_SUBFAMILIA)
@@ -173,5 +177,12 @@ class Articulos_Activity : AppCompatActivity() {
         editor.remove(KEY_SELECTED_MARCA)
         editor.remove(KEY_SELECTED_SABOR)
         editor.apply()
+    }
+    private fun appbar(){
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeButtonEnabled(true)
+            title="ARTÍCULOS"
+        }
     }
 }
