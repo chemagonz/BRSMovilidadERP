@@ -8,6 +8,14 @@
         android:title="CÓDIGO" />
 
     <item
-        android:id="@+id/mostrar"
-        android:title="MOSTRAR VISTA" />
+        android:id="@+id/modoCatalogoColumn"
+        android:title="MODO CATÁLOGO COLUMNA" />
+
+    <item
+        android:id="@+id/modoCatalogoFoto"
+        android:title="MODO CATÁLOGO FOTO" />
+
+    <item
+        android:id="@+id/modoCatalogoLista"
+        android:title="MODO CATÁLOGO LISTA" />
 </menu>

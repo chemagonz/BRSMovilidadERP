@@ -66,7 +66,7 @@ class Articulos_Activity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE)
         esconderTeclado(this)
         actionBar("ARTÍCULOS")
-        mostrarArticulos()
+        mostrarArticulosModoLista()
     }
 
     //Manejo de boton para la actividad buscar articulos
@@ -148,26 +148,51 @@ class Articulos_Activity : AppCompatActivity() {
                     true
                 }
 
-                R.id.mostrar -> {
-                    articulosViewModel.obtenerArticulos(tipoSeleccionado)
-                    articulosViewModel.articulosModel.observe(this, Observer {
-                        binding.articulosRecyclerView.adapter = Articulos_Adapter_mostrar(it, articulosViewModel)
-                        val layoutManager = GridLayoutManager(this, 2)
-                        binding.articulosRecyclerView.layoutManager = layoutManager
-                    })
+                R.id.modoCatalogoColumn -> {
+                    mostrarArticulosModoColumna()
                     true
                 }
+
+                R.id.modoCatalogoFoto -> {
+                    mostrarArticulosModoFoto()
+
+                    true
+                }
+
+                R.id.modoCatalogoLista -> {
+                  mostrarArticulosModoLista()
+                    true
+                }
+
                 else -> false
             }
         }
         popupMenu.show()
     }
 
-    private fun mostrarArticulos(){
+    private fun mostrarArticulosModoLista(){
         articulosViewModel.obtenerArticulos(tipoSeleccionado)
         articulosViewModel.articulosModel.observe(this, Observer {
             binding.articulosRecyclerView.layoutManager= LinearLayoutManager(this)
             binding.articulosRecyclerView.adapter = Articulos_Adapter(it, articulosViewModel)
+        })
+    }
+
+    private fun mostrarArticulosModoColumna() {
+        articulosViewModel.obtenerArticulos(tipoSeleccionado)
+        articulosViewModel.articulosModel.observe(this, Observer {
+            binding.articulosRecyclerView.adapter = Articulos_Adapter_ModoCatalogoColumna(it, articulosViewModel)
+            val layoutManager = GridLayoutManager(this, 2)
+            binding.articulosRecyclerView.layoutManager = layoutManager
+        })
+        true
+    }
+
+    private fun mostrarArticulosModoFoto() {
+        articulosViewModel.obtenerArticulos(tipoSeleccionado)
+        articulosViewModel.articulosModel.observe(this, Observer {
+            binding.articulosRecyclerView.layoutManager= LinearLayoutManager(this)
+            binding.articulosRecyclerView.adapter = Articulos_Adapter_ModoCatalogoFoto(it, articulosViewModel)
         })
     }
     private fun borrarFiltros() {
