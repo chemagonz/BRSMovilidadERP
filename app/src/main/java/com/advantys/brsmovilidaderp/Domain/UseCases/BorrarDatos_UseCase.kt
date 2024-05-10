@@ -5,7 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class BorrarDatos_UseCase @Inject constructor(private val repository: BorrarDatos_Repository) {
+class BorrarDatos_UseCase @Inject constructor (private val repository: BorrarDatos_Repository) {
 
     suspend fun borrarCobros(fecha: String): Boolean = withContext(Dispatchers.IO) {
         try {
@@ -16,6 +16,7 @@ class BorrarDatos_UseCase @Inject constructor(private val repository: BorrarDato
             false
         }
     }
+
     suspend fun borrarCargaCero(): Boolean = withContext(Dispatchers.IO) {
         try {
             repository.borrarCargaCero()
@@ -102,8 +103,13 @@ class BorrarDatos_UseCase @Inject constructor(private val repository: BorrarDato
             null
         }
     }
-    suspend fun compactarBD(){
-      return repository.compactarBD()
-    }
 
+    suspend fun compactarBD() = withContext(Dispatchers.IO) {
+        try {
+            repository.compactarBD()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
 }

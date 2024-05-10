@@ -25,18 +25,19 @@ import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
-class BorrarDatos_ViewModel @Inject constructor(private var borrarDatosUsecase: BorrarDatos_UseCase): ViewModel() {
+class BorrarDatos_ViewModel @Inject constructor (private var borrarDatosUsecase: BorrarDatos_UseCase): ViewModel() {
+
     private var _respuesta = MutableLiveData<Respuesta>()
     private var _respuestaDialogo = MutableLiveData<Respuesta>()
     val respuesta : LiveData<Respuesta> get() = _respuesta
     val respuestaDialogo : LiveData<Respuesta> get() = _respuestaDialogo
 
-    fun comprobarDatosCorrutina(fecha: String,  borrarPedidosChecked: Boolean, borrarCobrosChecked:Boolean, borrarIncidenciasChecked:Boolean, borrarHojaDeCargaChecked:Boolean){
+    fun comprobarDatosCorrutina(fecha: String, borrarPedidosChecked: Boolean, borrarCobrosChecked:Boolean, borrarIncidenciasChecked:Boolean, borrarHojaDeCargaChecked:Boolean) {
         viewModelScope.launch(Dispatchers.Default) {
             comprobarDatos(fecha, borrarPedidosChecked,borrarCobrosChecked,borrarIncidenciasChecked,borrarHojaDeCargaChecked)
         }
     }
-    fun compactarBaseDeDatos(contexto: Context){
+    fun compactarBaseDeDatos(contexto: Context) {
         viewModelScope.launch(Dispatchers.Default) {
             compactarBDcorrutina(contexto)
         }
@@ -145,6 +146,7 @@ class BorrarDatos_ViewModel @Inject constructor(private var borrarDatosUsecase: 
                 eliminarCarpeta(File(Ruta + "informes"))
                 eliminarCarpetaFecha10(File(Ruta +"/Logs/"))
                 borrarBackups()
+
                 val firmaFolder = File(Ruta + "/Firma")
                 firmaFolder.listFiles()?.forEach { file ->
                     if (!file.isDirectory) {
@@ -156,6 +158,7 @@ class BorrarDatos_ViewModel @Inject constructor(private var borrarDatosUsecase: 
                     }
                 }
             }
+
         withContext(Dispatchers.IO) {
             if (flag) {
                 delay(1000)
@@ -165,11 +168,12 @@ class BorrarDatos_ViewModel @Inject constructor(private var borrarDatosUsecase: 
                 _respuesta.postValue(Respuesta.error("Error al borrar datos"))
             }
         }
+
         flag
     }
     private suspend fun compactarBDcorrutina(contexto: Context) = coroutineScope {
-
         _respuestaDialogo.postValue(Respuesta.cargando("Compactando base de datos"))
+
         try {
             delay(1000)
             borrarDatosUsecase.compactarBD()
@@ -183,6 +187,7 @@ class BorrarDatos_ViewModel @Inject constructor(private var borrarDatosUsecase: 
     private fun eliminarCarpetaFecha10(carpeta: File) {
         val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
         val calendar = Calendar.getInstance()
+
         calendar.add(Calendar.DATE, -10)
         val fechaAnterior = calendar.time
 
