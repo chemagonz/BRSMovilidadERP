@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.8"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="#eaeaea"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/cabeceraPedidos"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@color/colorAdvantysApp1">
+
+                <Button
+                    android:id="@+id/botonPedidototal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="0.5"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:backgroundTint="@color/colorAdvantysApp1"
+                    android:paddingTop="5dp"
+                    android:text="PEDIDO"
+                    android:textColor="#ffffff" />
+
+                <LinearLayout
+                    android:id="@+id/separador3"
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/botonTotales"
+                    android:layout_width="0dp"
+                    android:layout_height="49dp"
+                    android:layout_weight="0.5"
+                    android:text="TOTALES"
+                    android:backgroundTint="@color/colorAdvantysApp1"
+                    android:textColor="#ffffff" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="5dp" >
+
+                <LinearLayout
+                    android:id="@+id/linearLayout10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Bruto"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" >
+
+                    </TextView>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/customOutlineText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp">
+
+                        <EditText
+                        android:id="@+id/edBrutoTotales"
+                        android:layout_width="fill_parent"
+                        android:layout_height="46dp"
+                        android:layout_marginRight="7dp"
+                        android:gravity="right"
+                        android:inputType="numberDecimal"
+                        android:paddingLeft="1dp"
+                        android:textSize="18dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearLayout02"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Dto.PP"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" >
+
+                    </TextView>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/customOutlineText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/edDtoPPTotales"
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+                        android:layout_marginRight="7dp"
+                        android:gravity="right"
+                        android:inputType="numberDecimal"
+                        android:paddingLeft="1dp"
+                        android:textSize="18dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearLayout03"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="P.Verde"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" >
+                    </TextView>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/customOutlineText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+
+                    <EditText
+                        android:id="@+id/edPVerdeTotales"
+                        android:layout_width="fill_parent"
+                        android:layout_height="46dp"
+                        android:layout_marginRight="7dp"
+                        android:gravity="right"
+                        android:inputType="numberDecimal"
+                        android:paddingLeft="1dp"
+                        android:textSize="18dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearLayout04"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Alcohol"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" >
+
+                    </TextView>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/customOutlineText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="10dp">
+
+                    <EditText
+                        android:id="@+id/edAlcoholTotales"
+                        android:layout_width="fill_parent"
+                        android:layout_height="46dp"
+                        android:layout_marginRight="2dp"
+                        android:gravity="right"
+                        android:inputType="numberDecimal"
+                        android:paddingLeft="1dp"
+                        android:textSize="18dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="5dp" >
+
+                <LinearLayout
+                    android:layout_width="147dp"
+                    android:layout_height="match_parent"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:lines="1"
+                        android:text="Manipulación"
+                        android:textColor="@color/black"
+                        android:textSize="15sp">
+
+                    </TextView>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/customOutlineText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp">
+
+                        <EditText
+                            android:id="@+id/edManipulacionTotales"
+                            android:layout_width="match_parent"
+                            android:layout_height="46dp"
+                            android:layout_marginRight="7dp"
+                            android:gravity="right"
+                            android:inputType="numberDecimal"
+                            android:paddingLeft="1dp"
+                            android:textSize="18dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:lines="1"
+                        android:text="Azúcar"
+                        android:textColor="@color/black"
+                        android:textSize="15sp">
+
+                    </TextView>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/customOutlineText"
+                        android:layout_width="117dp"
+                        android:layout_height="match_parent">
+
+                        <EditText
+                            android:id="@+id/edAzucarTotales"
+                            android:layout_width="match_parent"
+                            android:layout_height="46dp"
+                            android:layout_marginRight="10dp"
+                            android:gravity="right"
+                            android:inputType="numberDecimal"
+                            android:paddingLeft="1dp"
+                            android:textSize="18dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="5dp" >
+
+                <LinearLayout
+                    android:id="@+id/LinearLayout05"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="B.Imponible"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" >
+
+                    </TextView>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/customOutlineText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp">
+
+                    <EditText
+                        android:id="@+id/edBaseImponibleTotales"
+                        android:layout_width="fill_parent"
+                        android:layout_height="46dp"
+                        android:layout_marginRight="7dp"
+                        android:gravity="right|center"
+                        android:inputType="numberDecimal"
+                        android:textSize="18dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearLayout06"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/tabtotalesventaID_lb_cuotaiva"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Cuota IVA"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" >
+
+                    </TextView>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/customOutlineText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <EditText
+                        android:layout_width="fill_parent"
+                        android:layout_height="46dp"
+                        android:layout_marginRight="7dp"
+                        android:gravity="right|center"
+                        android:inputType="numberDecimal"
+                        android:paddingLeft="1dp"
+                        android:textSize="18dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearLayout07"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/edCuotaRecTotales"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Cuota rec."
+                        android:textColor="@color/black"
+                        android:textSize="15sp" >
+
+                    </TextView>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/customOutlineText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="10dp">
+
+                    <EditText
+                        android:id="@+id/tabtotalesventaID_cuotarec"
+                        android:layout_width="fill_parent"
+                        android:layout_height="46dp"
+                        android:gravity="right|center"
+                        android:inputType="numberDecimal"
+                        android:paddingLeft="1dp"
+                        android:textSize="18dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout9"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="right" >
+
+                <LinearLayout
+                    android:id="@+id/LinearLayout08"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingRight="5dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="TOTAL"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="25dp" >
+                    </TextView>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/customOutlineText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="10dp">
+
+                    <EditText
+                        android:id="@+id/edTotalTotales"
+                        android:layout_width="140dp"
+                        android:layout_height="46dp"
+                        android:gravity="right|center"
+                        android:inputType="numberDecimal"
+                        android:paddingLeft="1dp"
+                        android:textSize="18sp"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

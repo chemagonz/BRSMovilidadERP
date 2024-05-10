@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/calendarioPedido"
+        android:title="Calendario"
+        android:icon="@drawable/calendario"
+        app:showAsAction="always">
+    </item>
+
+    <item android:id="@+id/editablePedido"
+        android:title="Editar"
+        android:icon="@drawable/editable"
+        app:showAsAction="always">
+    </item>
+
+    <item android:id="@+id/aceptarPedido"
+        android:title="Aceptar"
+        android:icon="@drawable/aceptar"
+        app:showAsAction="always">
+    </item>
+
+
+
+</menu>

@@ -1,0 +1,1466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/cabeceraPedidos"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="@color/colorAdvantysApp1">
+
+        <Button
+            android:id="@+id/botonPedido"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.5"
+            android:backgroundTint="@color/colorAdvantysApp1"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:paddingTop="5dp"
+            android:text="PEDIDO"
+            android:textColor="#ffffff" />
+
+        <LinearLayout
+            android:id="@+id/separador3"
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"></LinearLayout>
+
+        <Button
+            android:id="@+id/botonTotales"
+            android:layout_width="0dp"
+            android:layout_height="49dp"
+            android:layout_weight="0.5"
+            android:backgroundTint="@color/colorAdvantysApp1"
+            android:text="TOTALES"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+
+    <ScrollView
+        android:id="@+id/scrollViewcab"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="0.8">
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="900dp"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+                <LinearLayout
+                    android:id="@+id/layoutPresupuesto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:scrollbars="vertical"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/TextView02"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:maxLines="1"
+                        android:text="Presupuesto"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/layout1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="15dp"
+                        android:focusableInTouchMode="true"
+                        android:paddingRight="5dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/edPresupuesto1"
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:layout_marginRight="7dp"
+                                android:layout_weight="1"
+                                android:enabled="false"
+                                android:focusable="false"
+                                android:inputType="number"
+                                android:maxLines="1"
+                                android:textAlignment="center"
+                                android:textSize="20sp">
+
+                                <requestFocus />
+                            </EditText>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/edPresupuesto2"
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:layout_marginRight="7dp"
+                                android:layout_weight="1"
+                                android:maxLines="1"
+                                android:paddingStart="7dp"
+                                android:selectAllOnFocus="true"
+                                android:textAlignment="textStart"
+                                android:textSize="20sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <ImageButton
+                            android:id="@+id/btnBuscarPresupuesto"
+                            android:layout_width="70dp"
+                            android:layout_height="46dp"
+                            android:layout_marginTop="5dp"
+                            android:backgroundTint="@color/colorAdvantysApp2"
+                            android:src="@drawable/search" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/layoutPedidos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Pedido"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+
+
+                <LinearLayout
+                    android:id="@+id/layout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:paddingLeft="6dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/customOutlineText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/edNumPedido"
+                            android:layout_width="match_parent"
+                            android:layout_height="46dp"
+                            android:enabled="false"
+                            android:focusable="false"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:textSize="14sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/customOutlineText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/edNumSerie"
+                            android:layout_width="match_parent"
+                            android:layout_height="46dp"
+                            android:layout_marginRight="7dp"
+                            android:maxLines="1"
+                            android:paddingStart="7dp"
+                            android:paddingRight="5dp"
+                            android:selectAllOnFocus="true"
+                            android:singleLine="true"
+                            android:textAlignment="textStart"
+                            android:textSize="14sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageButton
+                        android:id="@+id/btnBuscarPedido"
+                        android:layout_width="50dp"
+                        android:layout_height="46dp"
+                        android:layout_marginTop="5dp"
+                        android:backgroundTint="@color/colorAdvantysApp2"
+                        android:src="@drawable/search" />
+
+                    <CheckBox
+                        android:id="@+id/checkPedido"
+                        android:layout_width="wrap_content"
+                        android:layout_height="33dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="25dp"
+                        android:layout_weight="1"
+                        android:text="Pedido"
+                        android:textColor="#000000"
+                        android:textColorHint="#000"
+                        android:textSize="18dp"
+                        android:visibility="visible" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutAlbaran"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Albarán"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+
+                    <LinearLayout
+                        android:id="@+id/layout3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="6dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/edNumAlbaran"
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:enabled="false"
+                                android:focusable="false"
+                                android:inputType="number"
+                                android:maxLines="1"
+                                android:textSize="14sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/edNumSerieAlbaran"
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:layout_marginRight="7dp"
+                                android:maxLines="1"
+                                android:paddingStart="7dp"
+                                android:paddingRight="5dp"
+                                android:selectAllOnFocus="true"
+                                android:singleLine="true"
+                                android:textAlignment="textStart"
+                                android:textSize="14sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <ImageButton
+                            android:id="@+id/btnBuscarSerieAlbaran"
+                            android:layout_width="50dp"
+                            android:layout_height="46dp"
+                            android:layout_marginTop="5dp"
+                            android:backgroundTint="@color/colorAdvantysApp2"
+                            android:src="@drawable/search" />
+
+                        <CheckBox
+                            android:id="@+id/checkFacturar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="17dp"
+                            android:layout_weight="1"
+                            android:text="Facturar"
+                            android:textColor="#000000"
+                            android:textColorHint="#000"
+                            android:textSize="18dp"
+                            android:visibility="visible" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutFactura"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Factura"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:id="@+id/layout6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="6dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/edNumFactura"
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:enabled="false"
+                                android:focusable="false"
+                                android:inputType="number"
+                                android:maxLines="1"
+                                android:textSize="14sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/edNumSerieFactura"
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:layout_marginRight="7dp"
+                                android:maxLines="1"
+                                android:paddingStart="7dp"
+                                android:paddingRight="5dp"
+                                android:selectAllOnFocus="true"
+                                android:singleLine="true"
+                                android:textAlignment="textStart"
+                                android:textSize="14sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <ImageButton
+                            android:id="@+id/btnBuscarSerieFactura"
+                            android:layout_width="50dp"
+                            android:layout_height="46dp"
+                            android:layout_marginTop="5dp"
+                            android:backgroundTint="@color/colorAdvantysApp2"
+                            android:src="@drawable/search" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutNombreCliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_weight="1">
+                    <!--android:visibility="gone" >-->
+
+                    <LinearLayout
+                        android:id="@+id/LinearLayout04"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvNombreCliente"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Nombre del cliente"
+                                android:textColor="@color/black"
+                                android:textSize="18dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutCliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Cliente"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:id="@+id/layout4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="15dp"
+                        android:paddingLeft="6dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/edNumCliente"
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:enabled="false"
+                                android:focusable="false"
+                                android:inputType="number"
+                                android:maxLines="1"
+                                android:textSize="14sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/edNumDelegacion"
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:layout_marginRight="7dp"
+                                android:maxLines="1"
+                                android:paddingStart="7dp"
+                                android:paddingRight="5dp"
+                                android:selectAllOnFocus="true"
+                                android:singleLine="true"
+                                android:textAlignment="textStart"
+                                android:textSize="14sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <CheckBox
+                            android:id="@+id/checkPresupuesto"
+                            android:layout_width="147dp"
+                            android:layout_height="33dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="17dp"
+                            android:layout_weight="1"
+                            android:text="Presupuesto"
+                            android:textColor="#000000"
+                            android:textColorHint="#000"
+                            android:textSize="18dp"
+                            android:visibility="visible" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutNombreFiscal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_weight="1">
+                    <!--android:visibility="gone" >-->
+
+                    <LinearLayout
+                        android:id="@+id/LinearLayout05"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvNombreFiscal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Nombre del fiscal"
+                                android:textColor="@color/black"
+                                android:textSize="18dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutClienteFisc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="R.Social"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:id="@+id/layout7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="6dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/edClienteFiscal"
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:layout_marginRight="7dp"
+                                android:maxLines="1"
+                                android:paddingStart="7dp"
+                                android:paddingRight="5dp"
+                                android:selectAllOnFocus="true"
+                                android:singleLine="true"
+                                android:textAlignment="textStart"
+                                android:textSize="14sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <ImageButton
+                            android:id="@+id/btnBuscarClienteFiscal"
+                            android:layout_width="50dp"
+                            android:layout_height="46dp"
+                            android:layout_marginTop="5dp"
+                            android:backgroundTint="@color/colorAdvantysApp2"
+                            android:src="@drawable/search" />
+
+                        <ImageButton
+                            android:id="@+id/btClienteFiscal"
+                            android:layout_width="50dp"
+                            android:layout_height="46dp"
+                            android:layout_marginTop="5dp"
+                            android:backgroundTint="@color/colorAdvantysApp2"
+                            android:src="@drawable/cliente"
+                            android:visibility="visible" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/separador2"
+                    android:layout_width="280dp"
+                    android:layout_height="2dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorAdvantysApp3"
+                    android:orientation="vertical" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+
+                        android:layout_width="65dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="R.Ventas"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:id="@+id/layout9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="6dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/edRutaVenta"
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:enabled="false"
+                                android:focusable="false"
+                                android:inputType="number"
+                                android:maxLines="1"
+                                android:textSize="14sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/edSecuVenta"
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:layout_marginRight="7dp"
+                                android:maxLines="1"
+                                android:paddingStart="7dp"
+                                android:paddingRight="5dp"
+                                android:selectAllOnFocus="true"
+                                android:singleLine="true"
+                                android:textAlignment="textStart"
+                                android:textSize="14sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="R.Reparto"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+
+                    <LinearLayout
+                        android:id="@+id/layout8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="6dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/edRutaReparto"
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:enabled="false"
+                                android:focusable="false"
+                                android:inputType="number"
+                                android:maxLines="1"
+                                android:textSize="14sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/edSecuReparto"
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:layout_marginRight="7dp"
+                                android:maxLines="1"
+                                android:paddingStart="7dp"
+                                android:paddingRight="5dp"
+                                android:selectAllOnFocus="true"
+                                android:singleLine="true"
+                                android:textAlignment="textStart"
+                                android:textSize="14sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/separador8"
+                android:layout_width="280dp"
+                android:layout_height="2dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="6dp"
+                android:layout_weight="1"
+                android:background="@color/colorAdvantysApp3"
+                android:orientation="vertical" />
+
+            <LinearLayout
+                android:id="@+id/layoutTarifa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Tarifa"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:id="@+id/layout10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="6dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/customOutlineText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/edTarifa"
+                            android:layout_width="match_parent"
+                            android:layout_height="46dp"
+                            android:layout_marginRight="7dp"
+                            android:enabled="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="true"
+                            android:maxLines="1"
+                            android:paddingStart="7dp"
+                            android:paddingRight="5dp"
+                            android:selectAllOnFocus="true"
+                            android:singleLine="true"
+                            android:textAlignment="textStart"
+                            android:textSize="14sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageButton
+                        android:id="@+id/btnBuscarTarifa"
+                        android:layout_width="50dp"
+                        android:layout_height="46dp"
+                        android:layout_marginTop="5dp"
+                        android:backgroundTint="@color/colorAdvantysApp2"
+                        android:src="@drawable/search" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout013"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="65dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Centro"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:id="@+id/layout11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="6dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/edCentroPedidos"
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:enabled="false"
+                                android:focusable="false"
+                                android:inputType="number"
+                                android:maxLines="1"
+                                android:textSize="14sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Fabricante"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+
+                    <LinearLayout
+                        android:id="@+id/layout12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="6dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/edFabricantePedidos"
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:clickable="false"
+                                android:enabled="false"
+                                android:focusable="false"
+                                android:inputType="number"
+                                android:maxLines="1"
+                                android:textSize="14sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout012"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="117dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Tipo Operación"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:id="@+id/layout123"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="6dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/edTipoOperacion"
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:focusable="false"
+                                android:inputType="number"
+                                android:maxLines="1"
+                                android:paddingStart="7dp"
+                                android:paddingRight="5dp"
+                                android:textSize="14sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="F. Pago"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+
+                    <LinearLayout
+                        android:id="@+id/layout13"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="6dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/edFormaPago"
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:focusable="false"
+                                android:focusableInTouchMode="true"
+                                android:inputType="number"
+                                android:maxLines="1"
+                                android:paddingStart="7dp"
+                                android:paddingRight="5dp"
+                                android:textSize="14sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/separador123"
+                android:layout_width="280dp"
+                android:layout_height="2dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="6dp"
+                android:layout_weight="1"
+                android:background="@color/colorAdvantysApp3"
+                android:orientation="vertical" />
+
+            <LinearLayout
+                android:id="@+id/layout014"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="65dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="S/R"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:id="@+id/layout14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="6dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/edSuReferencia"
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:ems="10"
+                                android:gravity="left|center"
+                                android:inputType="number"
+                                android:maxLines="1"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="5dp"
+                                android:singleLine="true"
+                                android:textSize="18dp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Tipo Reparto"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+
+                    <LinearLayout
+                        android:id="@+id/layout15"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="6dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/edTipoReparto"
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:gravity="left|center"
+                                android:maxLength="1"
+                                android:maxLines="1"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="5dp"
+                                android:textSize="18dp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/separador124"
+                android:layout_width="280dp"
+                android:layout_height="2dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="6dp"
+                android:layout_weight="1"
+                android:background="@color/colorAdvantysApp3"
+                android:orientation="vertical" />
+
+            <LinearLayout
+                android:id="@+id/layout015"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="65dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="%Dto.PP"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:id="@+id/layout16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="6dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/edPorctoPP"
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:ems="10"
+                                android:gravity="right|center"
+                                android:inputType="numberDecimal"
+                                android:maxLines="1"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="10dp"
+                                android:selectAllOnFocus="true"
+                                android:textSize="18dp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Carga"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+
+                    <LinearLayout
+                        android:id="@+id/layout17"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="6dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/customOutlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/edCargaPedido"
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:ems="10"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLength="1"
+                                android:maxLines="1"
+                                android:paddingStart="7dp"
+                                android:paddingRight="5dp"
+                                android:selectAllOnFocus="true"
+                                android:text="1"
+                                android:textSize="18sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout019"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/layout18"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="6dp">
+
+                        <CheckBox
+                            android:id="@+id/checkFacturable"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:text="Facturable"
+                            android:textSize="18dp" />
+
+                        <CheckBox
+                            android:id="@+id/checkPortes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Portes"
+                            android:textSize="18dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout020"
+                android:layout_width="match_parent"
+                android:layout_height="101dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:text="Aviso"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/customOutlineText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/edAvisoPedidos"
+                            android:layout_width="match_parent"
+                            android:layout_height="46dp"
+                            android:ems="10"
+                            android:enabled="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:inputType="numberDecimal"
+                            android:maxLines="1"
+                            android:selectAllOnFocus="true"
+                            android:textSize="18dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout021"
+                android:layout_width="match_parent"
+                android:layout_height="101dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="109dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:text="Observaciones"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/customOutlineText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/edObservacionesPedido"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:gravity="left|center"
+                            android:inputType="textCapCharacters"
+                            android:maxLength="100"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="5dp"
+                            android:selectAllOnFocus="true"
+                            android:singleLine="true"
+                            android:textSize="18dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
+

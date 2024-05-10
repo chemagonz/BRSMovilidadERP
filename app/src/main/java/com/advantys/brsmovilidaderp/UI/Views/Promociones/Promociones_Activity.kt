@@ -1,5 +1,6 @@
 package com.advantys.brsmovilidaderp.UI.Views.Promociones
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -100,6 +101,7 @@ class Promociones_Activity : AppCompatActivity() {
             })
         }
     }
+    @SuppressLint("SuspiciousIndentation")
     fun mostrarPromocionesParticulares(){
 
         val clienteCodigo = intent.getIntExtra("cliente_codigo", 0)

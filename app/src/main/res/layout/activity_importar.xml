@@ -31,14 +31,15 @@
 
             <RadioGroup
                 android:id="@+id/f_importacionID_radiogroup"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="20sp"
                 android:gravity="center" >
 
                 <RadioButton
                     android:id="@+id/impoRedExterna_radiobutton"
-                    android:layout_width="390dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Red externa"
@@ -49,7 +50,7 @@
 
                 <RadioButton
                     android:id="@+id/impRedInterna_radiobutton"
-                    android:layout_width="390dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Red interna"
@@ -58,7 +59,7 @@
 
                 <RadioButton
                     android:id="@+id/impIPalternativa_radiobutton"
-                    android:layout_width="390dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="IP alternativa"
@@ -85,14 +86,18 @@
                     android:textSize="16sp" />
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/customOutlineText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_weight="1">
 
                 <EditText
                     android:id="@+id/edImpServidorFTP"
-                    android:layout_width="380dp"
+                    android:layout_width="match_parent"
                     android:layout_height="37dp"
                     android:textSize="14sp"
+                    android:layout_weight="1"
                     android:gravity="center"
                     android:singleLine="true"
                     android:maxLines="1" />
@@ -108,14 +113,17 @@
                     android:textSize="16sp" />
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/customOutlineText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp">
                 <EditText
                     android:id="@+id/edImpPuertoFTP"
-                    android:layout_width="380dp"
+                    android:layout_width="match_parent"
                     android:layout_height="37dp"
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
+                    android:layout_weight="1"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textSize="14sp" />

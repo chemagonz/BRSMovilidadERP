@@ -28,6 +28,7 @@ import com.advantys.brsmovilidaderp.UI.Views.AjustesAvanzados.AjustesAvanzados_A
 import com.advantys.brsmovilidaderp.UI.Views.Articulos.Articulos_Activity
 import com.advantys.brsmovilidaderp.UI.Views.BorrarVentas.BorrarDatos_Activity
 import com.advantys.brsmovilidaderp.UI.Views.BuscarClientes.BuscarCliente_Activity
+import com.advantys.brsmovilidaderp.UI.Views.CabVenta.CabVenta_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Centros.Centros_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Configuracion.Configuracion_Activity
 import com.advantys.brsmovilidaderp.UI.Views.Exportar.Exportar_Activity
@@ -104,6 +105,7 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             }
             true
         }
+
         //al implementarlo se quita la funcionalidad de los botones del action bar. Mirar
         clientesViewModel.obtenerConsultaClientes(OrdenarPor.ruta, MostrarPor.todos)
         clientesViewModel.ClientesModel.observe(this, Observer {
@@ -113,6 +115,10 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
         })
 
+        binding.botonFlotante.setOnClickListener {
+            val intent = Intent(this, CabVenta_Activity::class.java)
+            startActivity(intent)
+        }
         comprobarNovedadesVersion()
 
     }
@@ -316,7 +322,6 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             when (menuItem.itemId) {
                 R.id.Importar -> {
                     startActivity(Intent(this, Importar_Activity::class.java))
-                    finish()
                     true
                 }
                 R.id.Exportar -> {
@@ -327,4 +332,6 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             }
         }
     }
+
+
 }
