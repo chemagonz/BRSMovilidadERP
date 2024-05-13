@@ -38,3 +38,12 @@ enum class TipoPromocion{
         general,
         particular
 }
+
+enum class TipoVenta{
+        pedido,
+        albaran,
+        factura,
+        ultalbaran,
+        gasto,
+        pedidoimportado
+}
