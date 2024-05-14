@@ -115,10 +115,7 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
         })
 
-        binding.botonFlotante.setOnClickListener {
-            val intent = Intent(this, CabVenta_Activity::class.java)
-            startActivity(intent)
-        }
+        botonFlotante()
         comprobarNovedadesVersion()
 
     }
@@ -328,10 +325,24 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                     startActivity(Intent(this, Exportar_Activity::class.java))
                     true
                 }
+
+
                 else -> false
             }
         }
     }
 
+    private fun botonFlotante() {
+
+        binding.botonFlotante.setOnClickListener {
+            val clienteSeleccionado = adapterCliente.getElementoSeleccionado()
+            if(clienteSeleccionado!= null) {
+                val intent = Intent(this, CabVenta_Activity::class.java)
+                startActivity(intent)
+            } else {
+                mostrarSnackbar("No se ha seleccionado ningún cliente.", TipoAlerta.informacion)
+            }
+        }
+    }
 
 }

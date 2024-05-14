@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/cancelar_serie"
+        android:icon="@drawable/borrar_filtro_"
+        android:title="Cancelar serie"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/aceptar_serie"
+        android:icon="@drawable/aceptar"
+        android:title="Aceptar serie"
+        app:showAsAction="always"/>
+
+</menu>

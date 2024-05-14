@@ -4,8 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="4dp"
+    android:layout_margin="4dp"
+    android:foreground="?android:attr/selectableItemBackground"
     android:theme="@style/Theme.BRSMovilidadERPprueba"
-    app:cardUseCompatPadding="true">
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
