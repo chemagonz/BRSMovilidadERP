@@ -370,7 +370,7 @@ class CabVenta_Activity : AppCompatActivity() {
         val numCliente = intent.getIntExtra("cliente", 0)
         val delegacion = intent.getIntExtra("numdelegacion", 0)
         val nombre = intent.getStringExtra("nombre")
-        val centro = intent.getIntExtra("centro", 0)
+        val centro = intent.getIntExtra("centro", 1)
         val razonSocial = intent.getStringExtra("razonSocial")
         val clienteFiscal = intent.getIntExtra("clienteFiscal", 0)
         val tarifa = intent.getIntExtra("tarifa", 0)
@@ -415,11 +415,11 @@ class CabVenta_Activity : AppCompatActivity() {
         //CENTRO
         binding.edCentroPedidos.setText(centro.toString())
 
-        if(binding.edCentroPedidos.text.equals("0")) {
+        if(binding.edCentroPedidos.text.equals("-1")) {
             binding.edCentroPedidos.setText(centroViewmodel.obtenerCodCentro())
         }
 
-        if(binding.edCentroPedidos.text.equals("0")) {
+        if(binding.edCentroPedidos.text.equals("-1")) {
             binding.edCentroPedidos.setText("1")
         }
 
