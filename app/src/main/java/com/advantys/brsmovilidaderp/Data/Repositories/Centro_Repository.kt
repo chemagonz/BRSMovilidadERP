@@ -16,4 +16,25 @@ class Centro_Repository @Inject constructor(private val centroDao: Centros_Dao) 
         return response?.toDomain()
     }
 
+    suspend fun centroValido(centro: Int?): Boolean {
+        val response: Boolean = centroDao.centroValido(centro)
+        return response
+    }
+
+    suspend fun obtenerSerieDeCentro(centro: Int?): String? {
+        val response: String? = centroDao.obtenerSerieDeCentro(centro)
+        return response
+    }
+
+    suspend fun primeraSerieCentros(): String? {
+        val response: String? = centroDao.primeraSerieCentros()
+        return response
+    }
+
+    suspend fun obtenerCodCentro():Int {
+        val response: Int = centroDao.obtenerCodCentro()
+        return response
+    }
+
+
 }

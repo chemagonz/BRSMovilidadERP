@@ -24,4 +24,20 @@ class Centro_UseCase   @Inject constructor (private val repository: Centro_Repos
             return nombreSerie ?: throw NoSuchElementException("Error")
         }?:throw IllegalArgumentException("no puede ser nulo")
     }
+
+    suspend fun centroValido(centro: Int?): Boolean {
+        return repository.centroValido(centro)
+    }
+
+    suspend fun obtenerSerieDeCentro(centro: Int?): String? {
+        return repository.obtenerSerieDeCentro(centro)
+    }
+
+    suspend fun primeraSerieCentros(): String? {
+        return repository.primeraSerieCentros()
+    }
+
+    suspend fun obtenerCodCentro(): Int {
+        return repository.obtenerCodCentro()
+    }
 }

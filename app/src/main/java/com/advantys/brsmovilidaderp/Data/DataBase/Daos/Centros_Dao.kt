@@ -27,18 +27,23 @@ class Centros_Dao @Inject constructor(private val databaseManager:BDUtil) {
         }
     }
 
-    fun centroValido(centro: Int): Boolean {
+    fun centroValido(centro: Int?): Boolean {
         val sql = "SELECT ${Centros_Schema.TABLE_NAME}.${Centros_Schema.CENTRO_FIELD} FROM ${Centros_Schema.TABLE_NAME} WHERE ${Centros_Schema.CENTRO_FIELD} = $centro"
         return databaseManager.getSelectScalarBoolean(sql)
     }
 
-    fun obtenerSerieDeCentro(centro: Int): String{
+    fun obtenerSerieDeCentro(centro: Int?): String?{
         val sql = " SELECT ${Centros_Schema.TABLE_NAME}.${Centros_Schema.SERIE_FIELD} FROM ${Centros_Schema.TABLE_NAME} WHERE ${Centros_Schema.TABLE_NAME}.${Centros_Schema.SERIE_FIELD} = $centro AND ${Centros_Schema.TABLE_NAME}.${Centros_Schema.SERIE_FIELD} IS NOT NULL"
         return databaseManager.getSelectScalarString(sql)
     }
 
-    fun primeraSerieCentros(): String {
+    fun primeraSerieCentros(): String? {
         val sql = " SELECT ${Centros_Schema.TABLE_NAME}.${Centros_Schema.SERIE_FIELD} FROM ${Centros_Schema.TABLE_NAME} ORDER BY ${Centros_Schema.TABLE_NAME}.${Centros_Schema.CENTRO_FIELD} "
         return databaseManager.getSelectScalarString(sql)
+    }
+
+    fun obtenerCodCentro(): Int {
+        val sql = "SELECT ${Centros_Schema.TABLE_NAME}.${Centros_Schema.CENTRO_FIELD} FROM ${Centros_Schema.TABLE_NAME} WHERE ${Centros_Schema.TABLE_NAME}.${Centros_Schema.CENTRO_FIELD} IS NOT NULL ORDER BY ${Centros_Schema.TABLE_NAME}.${Centros_Schema.CENTRO_FIELD} LIMIT 1 "
+        return databaseManager.getSelectScalarInt(sql)
     }
 }

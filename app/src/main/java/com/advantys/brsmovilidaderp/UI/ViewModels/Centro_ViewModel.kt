@@ -17,7 +17,9 @@ import javax.inject.Inject
 @HiltViewModel
 class Centro_ViewModel @Inject constructor(private var centroUsecase: Centro_UseCase): ViewModel() {
     val centrosModel = MutableLiveData<List<Centro>>()
-    val centroModel = MutableLiveData<Centro>()
+    val centroModel = MutableLiveData<Centro?>()
+    val centroStringModel = MutableLiveData<String?>()
+    val centroIntModel = MutableLiveData<Int>()
     val serieModel= MutableLiveData<Serie?>()
     fun onCreate(){ viewModelScope.launch(Dispatchers.Default ) {
             val resultado = centroUsecase()
@@ -44,6 +46,22 @@ class Centro_ViewModel @Inject constructor(private var centroUsecase: Centro_Use
         val intent = Intent(context,DetallesCentro_Activity::class.java)
         intent.putExtra("numCentro", item?.numCentro)
         context.startActivity(intent)
+    }
+
+    fun obtenerSerieDeCentros(centro: Int?) {
+        viewModelScope.launch(Dispatchers.Default) {
+            val resultado = centroUsecase.obtenerSerieDeCentro(centro)
+            centroStringModel.postValue(resultado)
+        }
+    }
+
+    fun obtenerCodCentro(): Int {
+        var resultado = -1
+        viewModelScope.launch(Dispatchers.Default) {
+             resultado = centroUsecase.obtenerCodCentro()
+            centroIntModel.postValue(resultado)
+        }
+        return resultado
     }
 }
 
