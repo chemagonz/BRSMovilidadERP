@@ -1,6 +1,7 @@
 package com.advantys.brsmovilidaderp.Domain.UseCases
 
 import com.advantys.brsmovilidaderp.Data.Repositories.MultiClientes_Repository
+import com.advantys.brsmovilidaderp.Domain.Models.Cliente
 import com.advantys.brsmovilidaderp.Domain.Models.MultiCliente
 import javax.inject.Inject
 
@@ -21,4 +22,7 @@ class MultiCliente_UseCase @Inject constructor(private val repository: MultiClie
         return repository.codigoFabricante(multiClienteFab)
     }
 
+    suspend fun obtenerMultiClientes(cliente: Cliente, fabricante: Int): MultiCliente? {
+        return repository.obtenerMultiClientes(cliente,fabricante)
+    }
 }
