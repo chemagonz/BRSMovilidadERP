@@ -162,14 +162,11 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil) {
     }
 
     // dias: diasSemana,marcado:Boolean, desmarcado: Boolean PONER EN OBTENER CONSULTA CUANDO SE ASGINE
-    fun obtenerConsultaClientes(
-        ordenar: OrdenarPor,
-        mostrarPor: MostrarPor
-    ): List<Clientes_Entity?> {
+    fun obtenerConsultaClientes(ordenar: OrdenarPor, mostrarPor: MostrarPor): List<Clientes_Entity?> {
 
         //var  sql=  "SELECT DISTINCT ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.NOMBRE_FIELD},${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.CLIENTE_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.RUTA_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.DIASEMANA_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.LMARCADO_FIELD} FROM ${Clientes_Schema.TABLE_NAME},${RutaClientes_Schema.TABLE_NAME},${Rutas_Schema.TABLE_NAME} "
         var sql =
-            "SELECT DISTINCT ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.NOMBRE_FIELD},${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.CLIENTE_FIELD},${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.LMARCADO_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.DELEGACION_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.TIENEPEDIDO_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.ORDEN_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.RUTA_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.SECUENCIA_FIELD} FROM ${Clientes_Schema.TABLE_NAME},${RutaClientes_Schema.TABLE_NAME},${Rutas_Schema.TABLE_NAME} "
+            "SELECT DISTINCT ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.NOMBRE_FIELD},${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.CLIENTE_FIELD},${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.LMARCADO_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.DELEGACION_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.TIENEPEDIDO_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.ORDEN_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.RAZON_SOCIAL},${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.CLIENTEFISCAL_FIELD} ,${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.CENTRO_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.TARIFA_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.TIPOOPERACION_FIELD},${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.PORCDTO_FIELD}, ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.FORMAPAGO_FIELD},${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.AVISOS_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.RUTA_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.SECUENCIA_FIELD} FROM ${Clientes_Schema.TABLE_NAME},${RutaClientes_Schema.TABLE_NAME},${Rutas_Schema.TABLE_NAME} "
         sql += ObtenerWhere()
         sql += " ORDER BY "
         when (ordenar) {
@@ -376,6 +373,13 @@ class Clientes_Dao @Inject constructor(private val databaseManager: BDUtil) {
         val sql = "SELECT * FROM ${Clientes_Schema.TABLE_NAME} WHERE  ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.CLIENTE_FIELD} = ${cliente.clienteFiscal} AND  ${Clientes_Schema.TABLE_NAME}.${Clientes_Schema.DELEGACION_FIELD} = ${cliente.delegacionFiscal}"
         return databaseManager.query(sql) { cursor ->
             Clientes_Entity.fromCursor(cursor)
+        }
+    }
+
+    fun obtenerRutaClientes(codigo: Int): RutaClientes_Entity? {
+        val sql = "SELECT ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.RUTA_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.CRR_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.SECUENCIA_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.TIPOREPARTO_FIELD}, ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.CSR_FIELD} FROM ${RutaClientes_Schema.TABLE_NAME} WHERE ${RutaClientes_Schema.TABLE_NAME}.${RutaClientes_Schema.RUTACLIENTE_FIELD} = $codigo"
+        return databaseManager.queryDetalles(sql) { cursor ->
+            RutaClientes_Entity.fromCursor(cursor)
         }
     }
 

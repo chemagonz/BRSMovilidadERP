@@ -338,6 +338,21 @@ class Clientes_Activity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             val clienteSeleccionado = adapterCliente.getElementoSeleccionado()
             if(clienteSeleccionado!= null) {
                 val intent = Intent(this, CabVenta_Activity::class.java)
+                intent.putExtra("cliente", clienteSeleccionado.numClientes)
+                intent.putExtra("numdelegacion", clienteSeleccionado.delegacion)
+                intent.putExtra("nombre", clienteSeleccionado.nombre)
+                intent.putExtra("numdelegacion", clienteSeleccionado.delegacion)
+                intent.putExtra("centro", clienteSeleccionado.centro)
+                intent.putExtra("razonSocial", clienteSeleccionado.razonSocial)
+                intent.putExtra("tarifa", clienteSeleccionado.tarifa)
+                intent.putExtra("clienteFiscal", clienteSeleccionado.clienteFiscal)
+                intent.putExtra("porCto", clienteSeleccionado.porCDTO)
+                intent.putExtra("formapago", clienteSeleccionado.formaPago)
+                intent.putExtra("operacion", clienteSeleccionado.tipoOperacion)
+                intent.putExtra("facturable", clienteSeleccionado.facturable)
+                intent.putExtra("serieAlbaran", clienteSeleccionado.serieAlbaran)
+                intent.putExtra("aviso", clienteSeleccionado.avisos)
+
                 startActivity(intent)
             } else {
                 mostrarSnackbar("No se ha seleccionado ningún cliente.", TipoAlerta.informacion)

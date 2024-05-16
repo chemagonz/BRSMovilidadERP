@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.advantys.brsmovilidaderp.Data.DataBase.Daos.columnas
 import com.advantys.brsmovilidaderp.Domain.Models.Cliente
+import com.advantys.brsmovilidaderp.Domain.Models.RutaCliente
 import com.advantys.brsmovilidaderp.Domain.UseCases.Cliente_UseCase
 import com.advantys.brsmovilidaderp.UI.Views.Clientes.DetallesClientes_Activity
 import com.advantys.brsmovilidaderp.Utils.MostrarPor
@@ -21,6 +22,7 @@ import javax.inject.Inject
 class Cliente_ViewModel @Inject constructor(private val ClienteUsecase: Cliente_UseCase): ViewModel() {
     val ClientesModel= MutableLiveData<List<Cliente>>()
     val clienteModel= MutableLiveData<Cliente?>()
+    val rutaClienteModel = MutableLiveData<RutaCliente?>()
     fun onCreate(){
         viewModelScope.launch(Dispatchers.Default) {
         val resultado= ClienteUsecase()
@@ -87,5 +89,12 @@ class Cliente_ViewModel @Inject constructor(private val ClienteUsecase: Cliente_
         val intent = Intent(context, DetallesClientes_Activity::class.java)
         intent.putExtra("numClientes", item?.numClientes)
         context.startActivity(intent)
+    }
+
+    fun obtenerRutaClientes(codigo: Int) {
+        viewModelScope.launch(Dispatchers.Default) {
+            val resultado = ClienteUsecase.obtenerRutaClientes(codigo)
+            rutaClienteModel.postValue(resultado)
+        }
     }
 }

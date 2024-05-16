@@ -3,7 +3,9 @@ package com.advantys.brsmovilidaderp.Data.Repositories
 import com.advantys.brsmovilidaderp.Data.DataBase.Daos.Clientes_Dao
 import com.advantys.brsmovilidaderp.Data.DataBase.Daos.columnas
 import com.advantys.brsmovilidaderp.Data.DataBase.Entities.Clientes_Entity
+import com.advantys.brsmovilidaderp.Data.DataBase.Entities.RutaClientes_Entity
 import com.advantys.brsmovilidaderp.Domain.Models.Cliente
+import com.advantys.brsmovilidaderp.Domain.Models.RutaCliente
 import com.advantys.brsmovilidaderp.Domain.Models.toDomain
 import com.advantys.brsmovilidaderp.Utils.MostrarPor
 import com.advantys.brsmovilidaderp.Utils.OrdenarPor
@@ -49,5 +51,10 @@ class Clientes_Repository @Inject constructor(private val ClienteDao: Clientes_D
 
     suspend fun guardarNullOrdenClientes(){
         ClienteDao.guardarNullOrdenClientes()
+    }
+
+    suspend fun obtenerRutaClientes(codigo: Int): RutaCliente? {
+        val response: RutaClientes_Entity? = ClienteDao.obtenerRutaClientes(codigo)
+        return response?.toDomain()
     }
 }
