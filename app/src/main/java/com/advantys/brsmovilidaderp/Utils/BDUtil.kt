@@ -223,8 +223,8 @@ class BDUtil @Inject constructor (private val dbHelper:BD){
         return getSelectScalar(sql) as Boolean
     }
 
-    fun getSelectScalarString(sql: String) :String? {
-        return getSelectScalar(sql) as String?
+    fun getSelectScalarString(sql: String) :String {
+        return getSelectScalar(sql) as String
     }
 
     fun getSelectScalarFloat(sql: String) :Float {
