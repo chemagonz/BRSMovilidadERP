@@ -158,6 +158,26 @@ class BDUtil @Inject constructor (private val dbHelper:BD){
     return result
     }
 
+    fun <K, V> queryMap(sql: String, fromCursor: (cursor: Cursor) -> Pair<K, V>): Map<K, V> {
+        val db = dbHelper.openDatabaseRead()
+        val cursor: Cursor = db.rawQuery(sql, null)
+        val map: MutableMap<K, V> = mutableMapOf()
+        try {
+            if (cursor != null) {
+                while (cursor.moveToNext()) {
+                    val pair = fromCursor(cursor)
+                    map[pair.first] = pair.second
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            cursor?.close()
+            db.close()
+        }
+        return map
+    }
+
     ///region  Utilidades
     //fun Any?.esNulo() = this == null
 
@@ -203,8 +223,8 @@ class BDUtil @Inject constructor (private val dbHelper:BD){
         return getSelectScalar(sql) as Boolean
     }
 
-    fun getSelectScalarString(sql: String) :String {
-        return getSelectScalar(sql) as String
+    fun getSelectScalarString(sql: String) :String? {
+        return getSelectScalar(sql) as String?
     }
 
     fun getSelectScalarFloat(sql: String) :Float {

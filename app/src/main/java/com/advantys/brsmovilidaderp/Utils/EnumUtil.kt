@@ -47,3 +47,13 @@ enum class TipoVenta{
         gasto,
         pedidoimportado
 }
+
+
+enum class Opcion{
+        mostrar,
+        modificiar,
+        borrar,
+        agregar
+}
+
+

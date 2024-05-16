@@ -31,6 +31,14 @@ var diasSeleccionados: MutableMap<Dias, Boolean> = mutableMapOf(
     var YaCargado = false
     var hemosEntradoEnMulti = false
     var hemosCanceladoMulti = false
+    var riesgoSuperadoContinuar = false
+    var serieConfiguracion = ""
+    var serieAlbaranConfiguracion = ""
+    var autorizadoModFacturable = false
+    var modoVenta: String? = null
+    var nTipoDoc = 0
+    var obligadoContado = false
+
 
 
     fun fechaValida(date: String?, dateFormat: String?): Boolean {
