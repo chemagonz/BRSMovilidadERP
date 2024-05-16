@@ -34,6 +34,9 @@ class Series_Activity : AppCompatActivity() {
         binding= ActivitySeriesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        adapterSerie = Series_Adapter(emptyList(), seriesViewModel)
+
+
         val Datos = intent
         modoseleccion = Datos.getBooleanExtra("Seleccion", false)
         centroCliente = -1
@@ -77,10 +80,6 @@ class Series_Activity : AppCompatActivity() {
                 setResult(RESULT_CANCELED)
                 finish()
             }
-
-
-
-
             true
         }
 

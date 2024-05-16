@@ -22,4 +22,12 @@ class Serie_UseCase @Inject constructor(private val repository:Serie_Repository)
     suspend  fun getNombreSerie(serie:String?): Serie? {
             return repository.getSerieNombre(serie)
     }
+
+    suspend fun serieValida(serie: String): Boolean {
+        return repository.serieValida(serie)
+    }
+
+    suspend fun primeraSerieVentas(): String {
+        return repository.primeraSerieVentas()
+    }
 }

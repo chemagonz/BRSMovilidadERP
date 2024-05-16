@@ -19,4 +19,15 @@ class Serie_Repository @Inject constructor( private val seriesDao:Series_Dao){
         val response: Series_Entity?= seriesDao.getNombreSerie(serie)
         return response?.toDomain()
     }
+
+    suspend fun serieValida(serie: String): Boolean {
+        val response: Boolean = seriesDao.serieValida(serie)
+
+        return response
+    }
+
+    suspend fun primeraSerieVentas(): String {
+        val response: String = seriesDao.primeraSerieVentas()
+        return response
+    }
 }

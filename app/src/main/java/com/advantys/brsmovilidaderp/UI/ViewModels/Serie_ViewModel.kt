@@ -14,34 +14,56 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class Serie_ViewModel @Inject constructor(private val serieUsecase: Serie_UseCase):ViewModel(){
+class Serie_ViewModel @Inject constructor(private val serieUsecase: Serie_UseCase):ViewModel() {
     val seriesModel = MutableLiveData<List<Serie>>()
-    val serieModel= MutableLiveData<Serie?>()
+    val serieModel = MutableLiveData<Serie?>()
+    val serieSModel = MutableLiveData<String>()
 
-    fun onCreate(){ viewModelScope.launch{
+    fun onCreate() {
+        viewModelScope.launch {
             val resultado = serieUsecase()
-            if(!resultado.isNullOrEmpty()) seriesModel.postValue(resultado)
+            if (!resultado.isNullOrEmpty()) seriesModel.postValue(resultado)
         }
     }
-    fun onCreateDetalles(serie:String?){ viewModelScope.launch (Dispatchers.Default){
-            val resultado= serieUsecase(serie)
-            if(resultado!=null){
+
+    fun onCreateDetalles(serie: String?) {
+        viewModelScope.launch(Dispatchers.Default) {
+            val resultado = serieUsecase(serie)
+            if (resultado != null) {
                 serieModel.postValue(resultado)
             }
         }
     }
 
-    fun onCreateNombreSerie(serie:String?){
-        viewModelScope.launch (Dispatchers.Default){
-        val resultado= serieUsecase.getNombreSerie(serie)
-        if(resultado!=null){
-            serieModel.postValue(resultado)
+    fun onCreateNombreSerie(serie: String?) {
+        viewModelScope.launch(Dispatchers.Default) {
+            val resultado = serieUsecase.getNombreSerie(serie)
+            if (resultado != null) {
+                serieModel.postValue(resultado)
+            }
         }
     }
-    }
-    fun btnDetalle(item: Serie?, context:Context){
+
+    fun btnDetalle(item: Serie?, context: Context) {
         val intent = Intent(context, DetallesSerie_Activity::class.java)
         intent.putExtra("cSeries", item?.cSeries)
         context.startActivity(intent)
+    }
+
+    fun BuscarSerie(centro: Int) {
+        val BuscarSerie = Intent("ns.erpandroid.SERIES")
+        BuscarSerie.putExtra("Seleccion", true)
+        BuscarSerie.putExtra("Boton", "Pedido")
+        BuscarSerie.putExtra("centroCliente", centro)
+
+    }
+
+    fun primeraSerieVentas() {
+        viewModelScope.launch(Dispatchers.Default) {
+            val resultado = serieUsecase.primeraSerieVentas()
+            if (resultado != null) {
+                serieSModel.postValue(resultado)
+            }
+        }
     }
 }
