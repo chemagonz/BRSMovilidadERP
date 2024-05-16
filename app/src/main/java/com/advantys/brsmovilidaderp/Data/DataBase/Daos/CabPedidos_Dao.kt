@@ -119,7 +119,7 @@ class CabPedidos_Dao @Inject constructor(private val databaseManager: BDUtil) {
 //        return Resultado
 //    }
 
-    fun comprobarExistencia(tipo: TipoVenta, serie:String, siguiente: Int): Int {
+    fun comprobarExistencia(tipo: TipoVenta, serie:String, siguiente: Int): Int? {
         var campo1: String? = null
         var campo2: String? = null
         val existe = false
@@ -158,5 +158,198 @@ class CabPedidos_Dao @Inject constructor(private val databaseManager: BDUtil) {
 //    fun insertarCabeceraVenta(cab: CabPedido, fechaPreventa: String, fechaReparto: String): Boolean {
 //        val sql = obtenerValores(cab, fechaPreventa, fechaReparto)
 //        return databaseManager.getSelectScalarBoolean(sql)
+//    }
+
+//    fun obtenerValores(cab: CabPedido, fechaPreventa: String, fechaReparto: String): String {
+//        var aplicaDto = 0
+//
+//        if(cab.apldtopor != null && cab.apldtopor!!)
+//            aplicaDto = 1
+//        else
+//            aplicaDto = 0
+//
+//        var fabricante = " NULL"
+//
+//        if(cab.fabricante?.toInt() != -1) {
+//            fabricante = cab.fabricante.toString()
+//        } else {
+//            fabricante = null.toString()
+//        }
+//
+//        if(fechaPreventa.contains(" 24: ")) {
+//            fechaPreventa = fechaPreventa.replace(" 24:", " 00:")
+//        }
+//
+//        if(fechaReparto.contains(" 24: ")) {
+//            fechaReparto = fechaReparto.replace(" 24:", " 00:")
+//        }
+//
+//        var sql = " INSERT INTO ${CabPedidos_Schema.TABLE_NAME} (${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.SERIE_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.PEDIDO_FIELD}, " +
+//                "${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.CENTRO_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.CLIENTE_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.DELEGACION_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.CLIENTEFISCAL_FIELD}, " +
+//                "${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.DELEGACIONFISCAL_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.FORMAPAGO_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.DPREVENTA_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.REPARTO_FIELD}, " +
+//                "${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.RUTAVENTA_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.SECUVENTA_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.RUTAREPARTO_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.SECUREPARTO_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.PORCDTO_FIELD}, " +
+//                "${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.FACTURABLE_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.TIPOOPERACION_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.SERIEHOJA_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.HOJA_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.SUREFERENCIA_FIELD},  " +
+//                "${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.NOTAS_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.CARGA_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.APLDTOPOR_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.FABRICANTE_FIELD} , ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.TOTALPEDIDO_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.TIPOREPARTO_FIELD}, " +
+//                "${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.SERIEALBARAN_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.ALBARAN_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.FECHAALBARAN_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.SERIEFACTURA_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.FACTURA_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.FECHAFACTURA_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.TARIFA_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.EJERCICIO_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.EJERALBARAN_FIELD}, ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.EJERFACTURA_FIELD}"
+//
+//        if(riesgoSuperadoContinuar) {
+//            sql += " ${CabPedidos_Schema.TABLE_NAME}.${CabPedidos_Schema.PENDIENTEVALIDAR_FIELD} )"
+//        } else {
+//            sql += " )"
+//        }
+//
+//        sql += " VALUES (${cab.serie} , ${cab.pedido}, ${cab.centro}, ${cab.cliente}, ${cab.delegacion}, ${cab.clientefiscal}, ${cab.delegacionfiscal}, ${cab.formapago}, $fechaPreventa, $fechaReparto, ${cab.rutaventa}, ${cab.secuventa}, ${cab.rutareparto}, ${cab.secureparto}, ${cab.porcdto}, ${cab.facturable}, ${cab.tipooperacion} , "
+//
+//        if(cab.seriehoja != null) {
+//            sql += " ${cab.seriehoja}"
+//        } else {
+//            sql += " null,"
+//        }
+//
+//        if(cab.ejerhoja!! > 0) {
+//            sql += " ${cab.ejerhoja} , "
+//        } else {
+//            sql += "null "
+//        }
+//
+//        if(cab.sureferencia != null) {
+//
+//            if(cab.sureferencia!!.contains("\'")) {
+//                cab.sureferencia!!.replace("\'", "?")
+//            }
+//
+//            sql += "${cab.sureferencia} , "
+//        } else {
+//            sql += "null, "
+//        }
+//
+//        if(cab.notas != null) {
+//
+//            if(cab.notas!!.contains("\'")) {
+//                cab.notas!!.replace("\'", "?")
+//            }
+//
+//            sql += "${cab.notas} , "
+//        } else {
+//            sql += "null, "
+//        }
+//
+//        if(cab.carga?.toInt() != -1)
+//        {
+//            sql += " ${cab.carga} , ";
+//        }
+//        else
+//        {
+//            sql += "1, ";
+//        }
+//
+//        if(fabricante == null) {
+//            sql +=	 " $aplicaDto , null , ${cab.totalpedido}"
+//        }  else {
+//            sql +=
+//        }
+//        {
+//            Consulta += String.valueOf(aplicaDto) + ", " +
+//                    fabricante + ", " +
+//                    String.valueOf(cab.getNTOTALPEDIDO());
+//        }
+//        Consulta += ", '" + cab.getCTIPOREPARTO()+"', ";
+//
+//        if(cab.getCSERIEALBARAN() != null)
+//        {
+//            Consulta += "'"+ cab.getCSERIEALBARAN() +"', ";
+//        }
+//        else
+//        {
+//            Consulta += " null , ";
+//        }
+//        if(cab.getNALBARAN() != -1)
+//        {
+//            Consulta += cab.getNALBARAN() + ", ";
+//        }
+//        else
+//        {
+//            Consulta += " null , ";
+//        }
+//        if(cab.getDFECHAALBARAN() != null)
+//        {
+//            //Consulta += "'" + VarGlobales.formatofechaconhora2(Date.parse(cab.getDFECHAALBARAN()),true) + "', ";
+//            //String fechaalb = cab.getDFECHAALBARAN().getYear() + "-" + cab.getDFECHAALBARAN().getMonth() + "-" + cab.getDFECHAALBARAN().getDate() + " " + cab.getDFECHAALBARAN().getHours() + ":" + cab.getDFECHAALBARAN().getMinutes();
+//            Consulta += "'" + VarGlobales.formatofechaconhora2(cab.getDFECHAALBARAN(), false) + "', ";
+//        }
+//        else
+//        {
+//            Consulta += " null , ";
+//        }
+//        if(cab.getCSERIEFACTURA() != null)
+//        {
+//            Consulta += "'" + cab.getCSERIEFACTURA() +"', ";
+//        }
+//        else
+//        {
+//            Consulta += " null , ";
+//        }
+//        if(cab.getNFACTURA() != -1)
+//        {
+//            Consulta += cab.getNFACTURA() +", ";
+//        }
+//        else
+//        {
+//            Consulta += ", null , ";
+//        }
+//        if(cab.getDFECHAFACTURA() != null)
+//        {
+//            Consulta += " '"+ VarGlobales.formatofechaconhora2(cab.getDFECHAFACTURA(), false)+"' ";
+//        }
+//        else
+//        {
+//            Consulta += " null ";
+//        }
+//
+//        if(cab.getTarifa() != -1)
+//        {
+//            Consulta += ", "+cab.getTarifa();
+//        }
+//        else
+//        {
+//            Consulta += ", null";
+//        }
+//
+//        if(cab.getEjercicio() != -1)
+//        {
+//            Consulta += ", "+cab.getEjercicio();
+//        }
+//        else
+//        {
+//            Consulta += ", null";
+//        }
+//
+//        if(cab.getEjerAlbaran() != -1)
+//        {
+//            Consulta += ", "+cab.getEjerAlbaran();
+//        }
+//        else
+//        {
+//            Consulta += ", null";
+//        }
+//
+//        if(cab.getEjerFactura() != -1)
+//        {
+//            Consulta += ", "+cab.getEjerFactura();
+//        }
+//        else
+//        {
+//            Consulta += ", null";
+//        }
+//
+//        if(VarGlobales.RiesgoSuperadoContinuar)
+//        {
+//            Consulta += ", 'S' )";
+//        }
+//        else
+//        {
+//            Consulta += " )";
+//        }
+//        VarGlobales.RiesgoSuperadoContinuar = false;
 //    }
 }
