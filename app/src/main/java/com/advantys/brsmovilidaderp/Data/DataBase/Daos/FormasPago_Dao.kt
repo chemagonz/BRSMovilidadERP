@@ -13,4 +13,11 @@ class FormasPago_Dao @Inject constructor(private val databaseManager: BDUtil) {
             FormasPago_Entity.fromCursor(cursor)
         }
     }
+
+    fun obtenerFormaPago(forma: Int): FormasPago_Entity? {
+        val sql = " SELECT  ${FormasPago_Schema.TABLE_NAME}.${FormasPago_Schema.FORMAPAGO_FIELD}, ${FormasPago_Schema.TABLE_NAME}.${FormasPago_Schema.NOMBRE_FIELD} FROM ${FormasPago_Schema.TABLE_NAME} WHERE ${FormasPago_Schema.TABLE_NAME}.${FormasPago_Schema.FORMAPAGO_FIELD} = $forma "
+        return databaseManager.queryDetalles(sql) { cursor ->
+            FormasPago_Entity.fromCursor(cursor)
+        }
+    }
 }
