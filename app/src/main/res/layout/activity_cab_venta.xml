@@ -188,7 +188,8 @@
                             android:focusable="false"
                             android:inputType="number"
                             android:maxLines="1"
-                            android:textSize="14sp" />
+                            android:textAlignment="center"
+                            android:textSize="18sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -209,8 +210,8 @@
                             android:paddingRight="5dp"
                             android:selectAllOnFocus="true"
                             android:singleLine="true"
-                            android:textAlignment="textStart"
-                            android:textSize="14sp" />
+                            android:textAlignment="center"
+                            android:textSize="18sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -483,7 +484,8 @@
                                 android:focusable="false"
                                 android:inputType="number"
                                 android:maxLines="1"
-                                android:textSize="14sp" />
+                                android:textAlignment="center"
+                                android:textSize="18sp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -504,8 +506,8 @@
                                 android:paddingRight="5dp"
                                 android:selectAllOnFocus="true"
                                 android:singleLine="true"
-                                android:textAlignment="textStart"
-                                android:textSize="14sp" />
+                                android:textAlignment="center"
+                                android:textSize="18sp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -604,8 +606,8 @@
                                 android:paddingRight="5dp"
                                 android:selectAllOnFocus="true"
                                 android:singleLine="true"
-                                android:textAlignment="textStart"
-                                android:textSize="14sp" />
+                                android:textAlignment="center"
+                                android:textSize="18sp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -617,14 +619,7 @@
                             android:backgroundTint="@color/colorAdvantysApp2"
                             android:src="@drawable/search" />
 
-                        <ImageButton
-                            android:id="@+id/btClienteFiscal"
-                            android:layout_width="50dp"
-                            android:layout_height="46dp"
-                            android:layout_marginTop="5dp"
-                            android:backgroundTint="@color/colorAdvantysApp2"
-                            android:src="@drawable/cliente"
-                            android:visibility="visible" />
+
 
                     </LinearLayout>
 
@@ -690,7 +685,9 @@
                                 android:focusable="false"
                                 android:inputType="number"
                                 android:maxLines="1"
-                                android:textSize="14sp" />
+                                android:textAlignment="center"
+
+                                android:textSize="18sp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -711,8 +708,8 @@
                                 android:paddingRight="5dp"
                                 android:selectAllOnFocus="true"
                                 android:singleLine="true"
-                                android:textAlignment="textStart"
-                                android:textSize="14sp" />
+                                android:textAlignment="center"
+                                android:textSize="18sp"  />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -758,7 +755,8 @@
                                 android:focusable="false"
                                 android:inputType="number"
                                 android:maxLines="1"
-                                android:textSize="14sp" />
+                                android:textAlignment="center"
+                                android:textSize="18sp"  />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -779,8 +777,8 @@
                                 android:paddingRight="5dp"
                                 android:selectAllOnFocus="true"
                                 android:singleLine="true"
-                                android:textAlignment="textStart"
-                                android:textSize="14sp" />
+                                android:textAlignment="center"
+                                android:textSize="18sp"  />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -846,8 +844,8 @@
                             android:paddingRight="5dp"
                             android:selectAllOnFocus="true"
                             android:singleLine="true"
-                            android:textAlignment="textStart"
-                            android:textSize="14sp" />
+                            android:textAlignment="center"
+                            android:textSize="18sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -909,7 +907,8 @@
                                 android:focusable="false"
                                 android:inputType="number"
                                 android:maxLines="1"
-                                android:textSize="14sp" />
+                                android:textAlignment="center"
+                                android:textSize="18sp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -956,7 +955,8 @@
                                 android:focusable="false"
                                 android:inputType="number"
                                 android:maxLines="1"
-                                android:textSize="14sp" />
+                                android:textAlignment="center"
+                                android:textSize="18sp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -976,7 +976,7 @@
                 android:visibility="visible">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
@@ -1013,7 +1013,8 @@
                                 android:maxLines="1"
                                 android:paddingStart="7dp"
                                 android:paddingRight="5dp"
-                                android:textSize="14sp" />
+                                android:textAlignment="center"
+                                android:textSize="18sp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -1061,7 +1062,8 @@
                                 android:maxLines="1"
                                 android:paddingStart="7dp"
                                 android:paddingRight="5dp"
-                                android:textSize="14sp" />
+                                android:textAlignment="center"
+                                android:textSize="18sp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
