@@ -30,5 +30,19 @@ class RazonesSociales_Entity(
             modelo.telefono2 = cursor.getString(RazonesSociales_Schema.TELEFONO2_FIELD,null)
             return modelo
         }
+
+        fun fromCursorMap(cursor: Cursor): Pair<Int, RazonesSociales_Entity> {
+            val modelo= RazonesSociales_Entity()
+            modelo.razonSocial = cursor.getInt(RazonesSociales_Schema.RAZONSOCIAL_FIELD,null)
+            modelo.nombre = cursor.getString(RazonesSociales_Schema.NOMBRE_FIELD,null)
+            modelo.nif = cursor.getString(RazonesSociales_Schema.NIF_FIELD,null)
+            modelo.direccion = cursor.getString(RazonesSociales_Schema.DIRECCION_FIELD,null)
+            modelo.codPostal = cursor.getString(RazonesSociales_Schema.CODPOSTAL_FIELD,null)
+            modelo.poblacion = cursor.getString(RazonesSociales_Schema.POBLACION_FIELD,null)
+            modelo.provincia = cursor.getString(RazonesSociales_Schema.PROVINCIA_FIELD,null)
+            modelo.telefono1 = cursor.getString(RazonesSociales_Schema.TELEFONO1_FIELD,null)
+            modelo.telefono2 = cursor.getString(RazonesSociales_Schema.TELEFONO2_FIELD,null)
+            return modelo.razonSocial!! to modelo
+        }
     }
 }
